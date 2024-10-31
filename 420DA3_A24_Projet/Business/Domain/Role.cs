@@ -8,11 +8,11 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
     public class Role
     {
-        public const int AdminRoleId = 1;
-        public const int OfficeEmployeeRoleId = 2;
-        public const int WhEmployeeRoleId = 3;
-        public const int RoleNameMaxLength = 64;
-        public const int RoleDescriptionMaxLength = 255;
+        public const int ADMIN_ROLE_ID = 1;
+        public const int OFFICE_EMPLOYEE_ROLE_ID = 2;
+        public const int WH_EMPLOYEE_ROLE_ID = 3;
+        public const int ROLE_NAME_MAX_LENGTH = 64;
+        public const int ROLE_DESCRIPTION_MAX_LENGTH = 255;
 
         public int Id {  get; set; }
         public string RoleName {  get; set; }
@@ -30,7 +30,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.RoleDescription = roleDescription;
         }
 
-        public Role(int id,
+        protected Role(int id,
             string roleName,
             string roleDescription,
             DateTime dateCreated,
@@ -48,12 +48,12 @@ namespace _420DA3_A24_Projet.Business.Domain
         // Methodes de validation
         public bool ValidateRoleName(string roleName)
         {
-            return roleName.Length <= RoleDescriptionMaxLength;
+            return roleName.Length <= ROLE_NAME_MAX_LENGTH;
         }
 
         public bool ValidateRoleDescription(string roleDescription)
         {
-            return roleDescription.Length <= RoleDescriptionMaxLength;
+            return roleDescription.Length <= ROLE_DESCRIPTION_MAX_LENGTH;
         }
     }
 }

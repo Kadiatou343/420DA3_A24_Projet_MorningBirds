@@ -8,8 +8,8 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
     public class User
     {
-        public const int UsernameMaxLength = 64;
-        public const int PasswordHashMaxLength = 128;
+        public const int USERNAME_MAX_LENGTH = 64;
+        public const int PASSWORDHASH_MAX_LENGTH = 128;
 
         // Propriétés des utilisateurs
         
@@ -27,11 +27,11 @@ namespace _420DA3_A24_Projet.Business.Domain
         // TODO : List<ShippingOrder> CretedShipOrders
         // TODO : List<ShippingOrder> FulfilledShipOrders
         // Proprietes de navigation 
-        // TODO: Warehouse? EmployeeWarehouse
+        // TODO: Warehouse? EmployeeWarehouse (virtual)
 
         // Construteur de creation 
 
-        public User(string username, string passwordHash, int? employeeWarehouseId)
+        public User(string username, string passwordHash, int? employeeWarehouseId = null)
         {
             this.Username = username;
             this.PasswordHash = passwordHash;
@@ -39,7 +39,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         }
 
         // Constructeurs pour la base de données
-        public User(int id,
+        protected User(int id,
             string username,
             string passwordHash,
             int? employeeWarehouseId,
@@ -59,12 +59,12 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public bool ValidateUsername(string username)
         {
-            return username.Length <= UsernameMaxLength;
+            return username.Length <= USERNAME_MAX_LENGTH;
         }
 
         public bool ValidatePasswordHash(string passwordHash)
         {
-            return passwordHash.Length <= PasswordHashMaxLength;
+            return passwordHash.Length <= PASSWORDHASH_MAX_LENGTH;
         }
 
         // Methodes pour determiner les roles d'un utilisateurs 
@@ -72,7 +72,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         {
             foreach (Role role in this.Roles)
             {
-                if (role.Id == Role.AdminRoleId)
+                if (role.Id == Role.ADMIN_ROLE_ID)
                 {
                     return true;
                 }
@@ -84,7 +84,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         {
             foreach(Role role in this.Roles)
             {
-                if(role.Id == Role.OfficeEmployeeRoleId)
+                if(role.Id == Role.OFFICE_EMPLOYEE_ROLE_ID)
                 {
                     return true;
                 }
@@ -96,7 +96,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         {
             foreach (Role role in this.Roles)
             {
-                if(role.Id == Role.WhEmployeeRoleId)
+                if(role.Id == Role.WH_EMPLOYEE_ROLE_ID)
                 {
                     return true;
                 }
