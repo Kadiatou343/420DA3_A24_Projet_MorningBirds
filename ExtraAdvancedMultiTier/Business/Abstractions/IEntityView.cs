@@ -5,7 +5,8 @@ public interface IEntityView<TEntity, TEntityKey>
     where TEntity : class, IEntity<TEntityKey>
     where TEntityKey : IEquatable<TEntityKey> {
 
-    protected abstract IEntityService<TEntity, TEntityKey> Service { get; }
-    protected TEntity? CurrentInstance { get; set; }
-    protected ViewActionsEnum CurrentAction { get; set; }
+    public DialogResult OpenFor(ViewActionsEnum action, TEntity? entity);
+
+    public TEntity? GetCurrentInstance();
+
 }

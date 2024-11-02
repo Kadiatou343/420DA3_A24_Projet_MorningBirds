@@ -1,18 +1,12 @@
-﻿using ExtraAdvancedMultiTier.Business.Abstractions;
-using ExtraAdvancedMultiTier.DataAccess.Abstractions;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Exemple_Enseignant_Avance.DataAccess.Contexts;
-internal class MySqlDataContext : AbstractAdvancedExampleContext
-{
+internal class MySqlDataContext : AbstractAdvancedExampleContext {
+    public MySqlDataContext() : base() { }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
+    public MySqlDataContext(DbContextOptions options) : base(options) { }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
         _ = optionsBuilder
