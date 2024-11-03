@@ -2,9 +2,15 @@
 using ExtraAdvancedMultiTier.Business.Abstractions.Daos;
 
 namespace ExtraAdvancedMultiTier.DataAccess.Abstractions;
+
+/// <summary>
+/// Classe abstraite avancée de DAO pour les entités de type <typeparamref name="TEntity"/> avec clé de type <typeparamref name="TEntityKey"/>.
+/// </summary>
+/// <typeparam name="TEntity">Le type de l'entité gérée par le DAO.</typeparam>
+/// <typeparam name="TEntityKey">Le type de la clé de l'entité gérée par le DAO.</typeparam>
 public abstract class AbstractDao<TEntity, TEntityKey> : IDao<TEntity, TEntityKey>
     where TEntity : class, IEntity<TEntityKey>
-    where TEntityKey : struct, IEquatable<TEntityKey> {
+    where TEntityKey : notnull, IEquatable<TEntityKey> {
 
     protected readonly IDataContext Context;
 
@@ -13,38 +19,43 @@ public abstract class AbstractDao<TEntity, TEntityKey> : IDao<TEntity, TEntityKe
     }
 
 
-    public virtual TEntity Create(TEntity instance) {
-        _ = this.Context.GetDbSet<TEntity>().Add(instance);
-        _ = this.Context.SaveChanges();
-        return instance;
-    }
-
     public virtual List<TEntity> GetAll(bool includeDeleted = false) {
         return includeDeleted
             ? this.Context.GetDbSet<TEntity>().ToList()
-            : this.Context.GetDbSet<TEntity>().Where(entity => entity.GetDateDeleted() == null).ToList();
+            : this.Context.GetDbSet<TEntity>().Where(entity => includeDeleted || entity.GetDateDeleted() == null).ToList();
     }
 
     public virtual TEntity? GetById(TEntityKey id, bool includeDeleted = false) {
         return includeDeleted
             ? this.Context.GetDbSet<TEntity>().Where(entity => entity.GetId().Equals(id)).FirstOrDefault()
-            : this.Context.GetDbSet<TEntity>().Where(entity => entity.GetId().Equals(id) && entity.GetDateDeleted() == null).ToList().FirstOrDefault();
+            : this.Context.GetDbSet<TEntity>().Where(entity => entity.GetId().Equals(id) && (includeDeleted || entity.GetDateDeleted() == null)).ToList().FirstOrDefault();
     }
 
-    public virtual TEntity Update(TEntity instance) {
-        instance.SetDateModified(DateTime.Now);
-        _ = this.Context.GetDbSet<TEntity>().Update(instance);
-        _ = (this.Context?.SaveChanges());
+    public virtual TEntity Create(TEntity instance, bool doSaveChanges = true) {
+        _ = this.Context.GetDbSet<TEntity>().Add(instance);
+        if (doSaveChanges) {
+            _ = this.Context.SaveChanges();
+        }
         return instance;
     }
 
-    public virtual TEntity Delete(TEntity instance, bool softDeletes = true) {
+    public virtual TEntity Update(TEntity instance, bool doSaveChanges = true) {
+        instance.SetDateModified(DateTime.Now);
+        _ = this.Context.GetDbSet<TEntity>().Update(instance);
+        if (doSaveChanges) {
+            _ = this.Context.SaveChanges();
+        }
+        return instance;
+    }
+
+    public virtual TEntity Delete(TEntity instance, bool doSaveChanges = true, bool softDeletes = true) {
         if (softDeletes) {
             instance.SetDateDeleted(DateTime.Now);
             _ = this.Context.GetDbSet<TEntity>().Update(instance);
-            _ = this.Context.SaveChanges();
         } else {
             _ = this.Context.GetDbSet<TEntity>().Remove(instance);
+        }
+        if (doSaveChanges) {
             _ = this.Context.SaveChanges();
         }
         return instance;

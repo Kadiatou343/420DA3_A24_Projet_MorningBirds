@@ -1,10 +1,20 @@
 ﻿using ExtraAdvancedMultiTier.Business.Abstractions;
 using System.Text;
 
-namespace ExtraAdvancedMultiTier.Business.Services;
-public static class ExceptionHandlerExtensions {
+namespace ExtraAdvancedMultiTier.Presentation;
+public abstract class AbstractDefaultExceptionHandler : IExceptionHandler {
 
-    public static void HandleException(this IExceptionHandler handler, Exception ex) {
+    public event IExceptionHandler.ExceptionThrownEvent? ExceptionThrown;
+
+    public AbstractDefaultExceptionHandler() {
+        this.ExceptionThrown += this.HandleException;
+    }
+
+    public void TriggerExceptionThrownEvent(Exception ex) {
+        this.ExceptionThrown?.Invoke(ex);
+    }
+
+    public virtual void HandleException(Exception ex) {
         string? stack = ex.StackTrace;
         StringBuilder messageBuilder = new StringBuilder();
         Console.Error.WriteLine(ex.Message);

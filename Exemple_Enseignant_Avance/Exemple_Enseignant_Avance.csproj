@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Presentation\Views\" />
+    <None Remove=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +27,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExtraAdvancedMultiTier\ExtraAdvancedMultiTier.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Presentation\Views\MedecinView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

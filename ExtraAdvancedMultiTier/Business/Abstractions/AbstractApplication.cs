@@ -1,5 +1,6 @@
 ﻿using ExtraAdvancedMultiTier.Business.Domain;
 using ExtraAdvancedMultiTier.Business.Services;
+using ExtraAdvancedMultiTier.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExtraAdvancedMultiTier.Business.Abstractions;
-public abstract class AbstractApplication : IApplication, IServiceContainer {
+public abstract class AbstractApplication : AbstractDefaultExceptionHandler, IApplication, IServiceContainer {
     protected readonly Dictionary<Type, IService> Services;
     public readonly AppConfigurations Configurations;
     public readonly List<string> CliArguments;
@@ -17,7 +18,7 @@ public abstract class AbstractApplication : IApplication, IServiceContainer {
     public event IStoppable.StoppableEventHandler? Stopping;
     public event IStoppable.StoppableEventHandler? Stopped;
 
-    protected AbstractApplication(string[]? args = null) { 
+    protected AbstractApplication(string[]? args = null) : base() { 
         this.Configurations = AppConfigurationsService.GetConfigs();
         this.CliArguments = args?.ToList() ?? new List<string>();
         this.Services = new Dictionary<Type, IService>();
@@ -27,10 +28,16 @@ public abstract class AbstractApplication : IApplication, IServiceContainer {
         this.Stopped += this.OnStopped;
     }
 
-    public virtual T? GetService<T>() where T : class, IService {
+    public AppConfigurations GetAppConfigurations() {
+        return this.Configurations;
+    }
+
+    // TODO: @PROF Move service method implementations to a future abstract class for that (AbstractServiceContainer)
+
+    public virtual T GetService<T>() where T : class, IService {
         return this.Services.Where(service => {
             return service.GetType() == typeof(T);
-        }) as T;
+        }) as T ?? throw new Exception($"Cannot retrieve service of type [{typeof(T)}]: no service of that type is registered in the service container.");
     }
 
     public virtual void RegisterService(IService service) {

@@ -11,7 +11,7 @@ internal class MySqlDataContext : AbstractAdvancedExampleContext {
 
         _ = optionsBuilder
             .UseLazyLoadingProxies()
-            .UseMySQL("Server=.\\SQL2022DEV;Database=420da3_projet_exemple_enseignant_avance;Integrated Security=true;TrustServerCertificate=true;");
+            .UseMySQL(""); // TODO: Ajouter la chaîne de connexion MySQL
     }
 
 }
