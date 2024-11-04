@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain
 {
-    internal class PurchaseOrrder
+    public class PurchaseOrrder
     {
         public int Id { get; set; }
         public PurchaseOrderStatusEnum Status { get; set; }

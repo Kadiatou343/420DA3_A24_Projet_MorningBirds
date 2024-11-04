@@ -22,6 +22,6 @@ namespace _420DA3_A24_Projet.Business.Domain
         public User? CreatorEmployee { get; set; }
         public User? FulfillerEmployee { get; set; }
         public Address DestinationAddress { get; set; }
-        public List<ShippingOrderProduct> ShippingOrderProducts { get; set;
+        public List<ShippingOrderProduct> ShippingOrderProducts { get; set; }
     }
 }
