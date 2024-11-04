@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain
 {
-    internal class Address
+    public class Address
     {
         public const int AddresseeMaxLength = 64;
         public const int CivicNumberMaxLength = 6;
