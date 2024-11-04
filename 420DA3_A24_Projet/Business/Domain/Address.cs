@@ -20,7 +20,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int PostalCodeMaxLength = 64 ;
 
         [Key]
-        [Column("Id", TypeName = "int", Order = 0)]
+        [Column ("Id", TypeName = "int", Order = 0)]
         public int Id { get; set; }
         public string AddressType { get; set; }
 
