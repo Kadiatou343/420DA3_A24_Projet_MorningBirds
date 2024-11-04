@@ -17,7 +17,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int CityMaxLength = 64;
         public const int StateMaxLength = 64;
         public const int CountryMaxLength = 64;
-        public const int PostalCodeMaxLength = 64;
+        public const int PostalCodeMaxLength = 64 ;
 
         [Key]
         [Column("Id", TypeName = "int", Order = 0)]
