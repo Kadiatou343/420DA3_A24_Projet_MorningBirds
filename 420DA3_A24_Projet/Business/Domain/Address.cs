@@ -15,7 +15,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int CivicNumberMaxLength = 6;
         public const int StreetMaxLength = 128;
         public const int CityMaxLength = 64;
-        public const int StateMaxLength = 64;
+        public const int StateMaxLength = 64 ;
         public const int CountryMaxLength = 64;
         public const int PostalCodeMaxLength = 64 ;
 
