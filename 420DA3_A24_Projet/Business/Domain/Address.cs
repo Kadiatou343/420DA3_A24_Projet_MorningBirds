@@ -77,8 +77,8 @@ namespace _420DA3_A24_Projet.Business.Domain
           DateTime dateCreated,
           DateTime? dateModified,
           DateTime? dateDeleted,
-          byte[] rowVersion)
-         // Warehouse? ownerWarehouse,
+          byte[] rowVersion,
+         Warehouse? ownerWarehouse)
         // ShippingOrder? ownerShipOrder)
           :this(addresse, civicNumber,street, city,state,country,postalCode)
       {
@@ -94,7 +94,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateModified = dateModified;
             DateDeleted = dateDeleted;
             this.RowVersion = rowVersion;
-             //OwnerWarehouse = ownerWarehouse;
+            OwnerWarehouse = ownerWarehouse;
           // OwnerShipOrder = ownerShipOrder;
         }
 
