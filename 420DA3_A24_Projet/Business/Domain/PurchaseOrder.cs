@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain
 {
-    public class PurchaseOrrder
+    public class PurchaseOrder
     {
         public int Id { get; set; }
         public PurchaseOrderStatusEnum Status { get; set; }
@@ -20,5 +20,18 @@ namespace _420DA3_A24_Projet.Business.Domain
         public DateTime? DateModified { get; set; }
         public Product OrderedProduct { get; set; }
         public Warehouse Warehouse { get; set; }
+
+
+        public PurchaseOrder(int ProductId, int WarehouseId,int Quantity) {
+            this.ProductId = ProductId;
+            this.WarehouseId = WarehouseId;
+            this.Quantity = Quantity;
+        }
+
+        public void Complete() {
+
+        }
     }
+
+    
 }
