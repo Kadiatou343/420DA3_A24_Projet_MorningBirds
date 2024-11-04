@@ -7,7 +7,7 @@ public abstract class AbstractDataContext : DbContext, IDataContext {
 
     protected AbstractDataContext() : base() { }
 
-    public AbstractDataContext(DbContextOptions options) : base(options) { }
+    protected AbstractDataContext(DbContextOptions options) : base(options) { }
 
     /// <summary>
     /// Méthode générique permettant d'obtenir le <see cref="DbSet{TEntity}"/> d'une entité

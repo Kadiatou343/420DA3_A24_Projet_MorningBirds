@@ -46,8 +46,8 @@
         <mxCell id="7oJCTgPkj-AoVVujGY5o-16" value="REFRESH BTN" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="285" y="240" width="120" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="7oJCTgPkj-AoVVujGY5o-17" value="SET PACKAGED BTN" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="285" y="660" width="120" height="30" as="geometry" />
+        <mxCell id="7oJCTgPkj-AoVVujGY5o-17" value="VIEW BTN" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="270" y="660" width="70" height="30" as="geometry" />
         </mxCell>
         <mxCell id="7oJCTgPkj-AoVVujGY5o-22" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="450" y="220" width="170" height="480" as="geometry" />
@@ -72,6 +72,9 @@
         </mxCell>
         <mxCell id="7oJCTgPkj-AoVVujGY5o-27" value="SET RECEIVED BTN" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="665" y="660" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7C_9SUmNjMN0SXHy5IcC-1" value="SET PACKAGED BTN" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="660" width="70" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

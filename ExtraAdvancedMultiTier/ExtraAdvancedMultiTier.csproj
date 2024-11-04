@@ -21,4 +21,8 @@
     <Folder Include="Presentation\Abstractions\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project_Utilities\Project_Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

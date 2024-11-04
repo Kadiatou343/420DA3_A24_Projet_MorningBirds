@@ -1,7 +1,7 @@
 ﻿using ExtraAdvancedMultiTier.Business.Abstractions;
 using System.Security.Cryptography;
 
-namespace Project_Utilities.Services;
+namespace _420DA3_A24_Projet.Business.Services;
 
 
 /// <summary>

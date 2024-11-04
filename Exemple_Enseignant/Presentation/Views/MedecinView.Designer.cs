@@ -33,7 +33,6 @@ partial class MedecinView {
         this.cancelButton = new Button();
         this.centralTableLayoutPanel = new TableLayoutPanel();
         this.centralPanel = new Panel();
-        this.licenseNumericUpDown = new NumericUpDown();
         this.dateDeletedDTPicker = new DateTimePicker();
         this.dateModifiedDTPicker = new DateTimePicker();
         this.dateCreatedDTPicker = new DateTimePicker();
@@ -47,11 +46,11 @@ partial class MedecinView {
         this.prenomLabel = new Label();
         this.nomLabel = new Label();
         this.idLabel = new Label();
+        this.licenseNumericUpDown = new TextBox();
         this.topBarPanel.SuspendLayout();
         this.bottomBarPanel.SuspendLayout();
         this.centralTableLayoutPanel.SuspendLayout();
         this.centralPanel.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize) this.licenseNumericUpDown).BeginInit();
         ((System.ComponentModel.ISupportInitialize) this.idNumericUpDown).BeginInit();
         this.SuspendLayout();
         // 
@@ -163,14 +162,6 @@ partial class MedecinView {
         this.centralPanel.Name = "centralPanel";
         this.centralPanel.Size = new Size(634, 354);
         this.centralPanel.TabIndex = 0;
-        // 
-        // licenseNumericUpDown
-        // 
-        this.licenseNumericUpDown.Location = new Point(215, 148);
-        this.licenseNumericUpDown.Maximum = new decimal(new int[] { 2000000000, 0, 0, 0 });
-        this.licenseNumericUpDown.Name = "licenseNumericUpDown";
-        this.licenseNumericUpDown.Size = new Size(250, 23);
-        this.licenseNumericUpDown.TabIndex = 14;
         // 
         // dateDeletedDTPicker
         // 
@@ -288,6 +279,13 @@ partial class MedecinView {
         this.idLabel.Text = "ID: ";
         this.idLabel.TextAlign = ContentAlignment.MiddleRight;
         // 
+        // licenseNumericUpDown
+        // 
+        this.licenseNumericUpDown.Location = new Point(215, 147);
+        this.licenseNumericUpDown.Name = "licenseNumericUpDown";
+        this.licenseNumericUpDown.Size = new Size(250, 23);
+        this.licenseNumericUpDown.TabIndex = 14;
+        // 
         // MedecinView
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,7 +303,6 @@ partial class MedecinView {
         this.centralTableLayoutPanel.ResumeLayout(false);
         this.centralPanel.ResumeLayout(false);
         this.centralPanel.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize) this.licenseNumericUpDown).EndInit();
         ((System.ComponentModel.ISupportInitialize) this.idNumericUpDown).EndInit();
         this.ResumeLayout(false);
     }
@@ -334,5 +331,5 @@ partial class MedecinView {
     private TextBox prenomTextBox;
     private NumericUpDown idNumericUpDown;
     private TextBox nomTextBox;
-    private NumericUpDown licenseNumericUpDown;
+    private TextBox licenseNumericUpDown;
 }

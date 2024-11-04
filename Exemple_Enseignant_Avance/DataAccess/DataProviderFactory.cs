@@ -14,8 +14,7 @@ public static class DataProviderFactory {
 
     private static IDataProvider? currentProvider;
 
-#pragma warning disable IDE0060 // Remove unused parameter
-    public static IDataProvider GetDataProvider(this DataProviderService service, AppConfigurations configurations) {
+    public static IDataProvider GetDataProvider(AppConfigurations configurations) {
         switch (configurations.GetDbTypeConfig()) {
             case DbTypesEnum.SqlServer:
                 if (currentProvider is null || currentProvider.GetType() != typeof(SqlServerDataProvider)) {
@@ -33,5 +32,5 @@ public static class DataProviderFactory {
         }
         return currentProvider;
     }
-#pragma warning restore IDE0060 // Remove unused parameter
+
 }

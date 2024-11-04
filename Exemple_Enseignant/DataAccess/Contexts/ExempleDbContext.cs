@@ -298,7 +298,7 @@ internal class ExempleDbContext : DbContext {
             .HasData(patient1, patient2);
 
 
-        Medecin medecin1 = new Medecin("Jones", "Indianna", 1234567) {
+        Medecin medecin1 = new Medecin("Jones", "Indianna", "1234567") {
             Id = 1
         };
         _ = modelBuilder.Entity<Medecin>()

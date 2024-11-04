@@ -17,13 +17,13 @@ namespace ExtraAdvancedMultiTier.Business.Abstractions;
 /// </list>
 /// </remarks>
 /// <typeparam name="Tkey">Le type de données de l'identifiant de l'entité du domaine.</typeparam>
-public interface IEntity<Tkey> where Tkey : IEquatable<Tkey> {
+public interface IEntity<Tkey> where Tkey : notnull, IEquatable<Tkey> {
 
     /// <summary>
     /// Getter pour l'identifiant dans la base de données de l'instance.
     /// </summary>
     /// <returns>L'identifiant de l'instance ou <see langword="null"/>.</returns>
-    public Tkey? GetId();
+    public Tkey GetId();
 
     /// <summary>
     /// Getter pour la date de création l'instance dans la base de données de.

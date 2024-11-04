@@ -3,6 +3,6 @@ public enum ShippingOrderStatusEnum {
     New,
     Unassigned,
     Processing,
-    PAckaged,
+    Packaged,
     Shipped
 }

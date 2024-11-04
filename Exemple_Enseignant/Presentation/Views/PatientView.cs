@@ -1,6 +1,6 @@
 ﻿using _420DA3_A24_Exemple_Enseignant.Business;
 using _420DA3_A24_Exemple_Enseignant.Business.Domain;
-using _420DA3_A24_Exemple_Enseignant.Presentation.Enums;
+using Project_Utilities.Enums;
 using Project_Utilities.Exceptions;
 
 namespace _420DA3_A24_Exemple_Enseignant.Presentation.Views;

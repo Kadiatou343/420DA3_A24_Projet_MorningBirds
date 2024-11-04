@@ -1,6 +1,6 @@
 ﻿using _420DA3_A24_Exemple_Enseignant.Business;
 using _420DA3_A24_Exemple_Enseignant.Business.Domain;
-using _420DA3_A24_Exemple_Enseignant.Presentation.Enums;
+using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Exemple_Enseignant.Presentation;
 internal partial class MainMenu : Form {
@@ -19,7 +19,7 @@ internal partial class MainMenu : Form {
         int? selectedMedecinId = (this.medecinSearchResultsListBox.SelectedItem as Medecin)?.Id;
         this.medecinSearchResultsListBox.SelectedItem = null;
         foreach (Medecin medecin in results) {
-            this.medecinSearchResultsListBox.Items.Add(medecin);
+            _ = this.medecinSearchResultsListBox.Items.Add(medecin);
             if (selectedMedecinId is not null && medecin.Id == selectedMedecinId) {
                 this.medecinSearchResultsListBox.SelectedItem = medecin;
             }
@@ -48,27 +48,27 @@ internal partial class MainMenu : Form {
     }
 
     private void BtnCreateMedecin_Click(object sender, EventArgs e) {
-        this.app.MedecinService.OpenViewFor(ViewActionsEnum.Creation);
+        _ = this.app.MedecinService.OpenViewFor(ViewActionsEnum.Creation);
     }
 
     private void BtnMedecinViewDetails_Click(object sender, EventArgs e) {
         Medecin? medecin = this.medecinSearchResultsListBox.SelectedItem as Medecin;
         if (medecin is not null) {
-            this.app.MedecinService.OpenViewFor(ViewActionsEnum.Visualization, medecin);
+            _ = this.app.MedecinService.OpenViewFor(ViewActionsEnum.Visualization, medecin);
         }
     }
 
     private void BtnMedecinModifier_Click(object sender, EventArgs e) {
         Medecin? medecin = this.medecinSearchResultsListBox.SelectedItem as Medecin;
         if (medecin is not null) {
-            this.app.MedecinService.OpenViewFor(ViewActionsEnum.Edition, medecin);
+            _ = this.app.MedecinService.OpenViewFor(ViewActionsEnum.Edition, medecin);
         }
     }
 
     private void BtnMedecinSupprimer_Click(object sender, EventArgs e) {
         Medecin? medecin = this.medecinSearchResultsListBox.SelectedItem as Medecin;
         if (medecin is not null) {
-            this.app.MedecinService.OpenViewFor(ViewActionsEnum.Deletion, medecin);
+            _ = this.app.MedecinService.OpenViewFor(ViewActionsEnum.Deletion, medecin);
         }
     }
 
@@ -83,7 +83,7 @@ internal partial class MainMenu : Form {
         int? selectedPatientId = (this.patientSearchResultsListBox.SelectedItem as Patient)?.Id;
         this.patientSearchResultsListBox.SelectedItem = null;
         foreach (Patient patient in results) {
-            this.patientSearchResultsListBox.Items.Add(patient);
+            _ = this.patientSearchResultsListBox.Items.Add(patient);
             if (selectedPatientId is not null && patient.Id == selectedPatientId) {
                 this.patientSearchResultsListBox.SelectedItem = patient;
             }
@@ -112,27 +112,27 @@ internal partial class MainMenu : Form {
     }
 
     private void BtnCreatePatient_Click(object sender, EventArgs e) {
-        this.app.PatientService.OpenViewFor(ViewActionsEnum.Creation);
+        _ = this.app.PatientService.OpenViewFor(ViewActionsEnum.Creation);
     }
 
     private void BtnPatientViewDetails_Click(object sender, EventArgs e) {
         Patient? patient = this.patientSearchResultsListBox.SelectedItem as Patient;
         if (patient is not null) {
-            this.app.PatientService.OpenViewFor(ViewActionsEnum.Visualization, patient);
+            _ = this.app.PatientService.OpenViewFor(ViewActionsEnum.Visualization, patient);
         }
     }
 
     private void BtnPatientModifier_Click(object sender, EventArgs e) {
         Patient? patient = this.patientSearchResultsListBox.SelectedItem as Patient;
         if (patient is not null) {
-            this.app.PatientService.OpenViewFor(ViewActionsEnum.Edition, patient);
+            _ = this.app.PatientService.OpenViewFor(ViewActionsEnum.Edition, patient);
         }
     }
 
     private void BtnPatientSupprimer_Click(object sender, EventArgs e) {
         Patient? patient = this.patientSearchResultsListBox.SelectedItem as Patient;
         if (patient is not null) {
-            this.app.PatientService.OpenViewFor(ViewActionsEnum.Deletion, patient);
+            _ = this.app.PatientService.OpenViewFor(ViewActionsEnum.Deletion, patient);
         }
     }
 
