@@ -2,10 +2,11 @@
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace _420DA3_A24_Exemple_Enseignant.Migrations {
     /// <inheritdoc />
+#pragma warning disable IDE1006 // Naming Styles
+#pragma warning disable IDE0053 // Use block body for lambda expression
     public partial class initial : Migration {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder) {
@@ -118,4 +119,6 @@ namespace _420DA3_A24_Exemple_Enseignant.Migrations {
                 name: "Patients");
         }
     }
+#pragma warning restore IDE0053 // Use block body for lambda expression
+#pragma warning restore IDE1006 // Naming Styles
 }

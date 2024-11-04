@@ -17,10 +17,10 @@ namespace ExtraAdvancedMultiTier.Business.Abstractions;
 /// </list>
 /// </summary>
 /// <typeparam name="Tkey">Le type de données de l'identifiant de l'entité du domaine.</typeparam>
-public abstract class AbstractEntity<Tkey> : IEntity<Tkey> where Tkey : IEquatable<Tkey> {
+public abstract class AbstractEntity<Tkey> : IEntity<Tkey> where Tkey : notnull, IEquatable<Tkey> {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Tkey? Id { get; set; }
+    public Tkey Id { get; set; }
 
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime? DateCreated { get; set; }
@@ -69,8 +69,8 @@ public abstract class AbstractEntity<Tkey> : IEntity<Tkey> where Tkey : IEquatab
     /// Le type de l'identifiant <typeparamref name="Tkey"/> doit être spécifié comme paramètre de type
     /// de <see cref="AbstractEntity{TIdentifier}"/> dont héritent les classes du domaine.
     /// </remarks>
-    /// <returns>L'identifiant de l'instance ou <see langword="null"/>.</returns>
-    public Tkey? GetId() {
+    /// <returns>L'identifiant de l'instance.</returns>
+    public Tkey GetId() {
         return this.Id;
     }
 

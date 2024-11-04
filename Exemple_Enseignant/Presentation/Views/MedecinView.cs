@@ -64,7 +64,7 @@ internal partial class MedecinView : Form {
             this.idNumericUpDown.Value = medecin.Id;
             this.nomTextBox.Text = medecin.Nom;
             this.prenomTextBox.Text = medecin.Prenom;
-            this.licenseNumericUpDown.Value = medecin.NumLicenseMedicale;
+            this.licenseNumericUpDown.Text = medecin.NumLicenseMedicale;
             this.dateCreatedDTPicker.Value = medecin.DateCreated;
             this.dateModifiedDTPicker.Value = medecin.DateModified ?? DateTime.Now;
             this.dateDeletedDTPicker.Value = medecin.DateDeleted ?? DateTime.Now;
@@ -72,7 +72,7 @@ internal partial class MedecinView : Form {
             this.idNumericUpDown.Value = 0;
             this.nomTextBox.Text = null;
             this.prenomTextBox.Text = null;
-            this.licenseNumericUpDown.Value = 0;
+            this.licenseNumericUpDown.Text = null;
             this.dateCreatedDTPicker.Value = DateTime.Now;
             this.dateModifiedDTPicker.Value = DateTime.Now;
             this.dateDeletedDTPicker.Value = DateTime.Now;
@@ -114,7 +114,7 @@ internal partial class MedecinView : Form {
                 Medecin newMedecin = new Medecin(
                     this.nomTextBox.Text.Trim(),
                     this.prenomTextBox.Text.Trim(),
-                    (int) this.licenseNumericUpDown.Value
+                    this.licenseNumericUpDown.Text.Trim()
                 );
                 this.currentInstance = this.application.MedecinService.Create(newMedecin);
                 break;
@@ -127,7 +127,7 @@ internal partial class MedecinView : Form {
                 }
                 this.currentInstance.Nom = this.nomTextBox.Text.Trim();
                 this.currentInstance.Prenom = this.prenomTextBox.Text.Trim();
-                this.currentInstance.NumLicenseMedicale = (int) this.licenseNumericUpDown.Value;
+                this.currentInstance.NumLicenseMedicale = this.licenseNumericUpDown.Text.Trim();
                 this.currentInstance = this.application.MedecinService.Update(this.currentInstance);
                 break;
             case ViewActionsEnum.Deletion:
@@ -177,11 +177,11 @@ internal partial class MedecinView : Form {
                 message += Environment.NewLine + $"\t- Le prénom ne peut dépasser {Medecin.FIRSTNAME_MAX_LENGTH} caractères.";
             }
 
-            if (this.licenseNumericUpDown.Value == 0) {
+            if (string.IsNullOrEmpty(this.licenseNumericUpDown.Text.Trim())) {
                 message += Environment.NewLine + "\t- Le numéro de license médicale ne peut être vide.";
             }
-            if (this.licenseNumericUpDown.Value < 0) {
-                message += Environment.NewLine + "\t- Le numéro de license médicale ne peut être négatif.";
+            if (this.licenseNumericUpDown.Text.Trim().Length > Medecin.LICENSE_MAX_LENGTH) {
+                message += Environment.NewLine + $"\t- Le numéro de license médicale ne peut dépasser {Medecin.LICENSE_MAX_LENGTH} caractères.";
             }
         }
 

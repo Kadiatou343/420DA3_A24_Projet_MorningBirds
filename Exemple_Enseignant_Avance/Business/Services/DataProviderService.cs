@@ -1,4 +1,9 @@
-﻿using ExtraAdvancedMultiTier.Business.Abstractions;
+﻿using Exemple_Enseignant_Avance.Business.Abstractions;
+using Exemple_Enseignant_Avance.DataAccess;
+using Exemple_Enseignant_Avance.DataAccess.DataProviders;
+using ExtraAdvancedMultiTier.Business.Abstractions;
+using ExtraAdvancedMultiTier.Business.Domain;
+using ExtraAdvancedMultiTier.Business.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +11,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.Business.Services;
+
+/// <summary>
+/// Classe de services avancée pour les fournisseurs de données.
+/// Permet de récupérer un fournisseur de données en fonction de la configuration de l'application.
+/// </summary>
+/// <remarks>
+/// Hérite de la classe abstraite <see cref="AbstractService"/> permettant l'enregistrement de ce service dans un conteneur de services (<see cref="IServiceContainer"/>).
+/// </remarks>
 public class DataProviderService : AbstractService {
 
-    public DataProviderService(IServiceContainer parent) : base(parent) { }
+    private IDataProvider dataProvider;
+
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="parent"></param>
+    public DataProviderService(IServiceContainer parent, AppConfigurations configurations) : base(parent) { 
+        this.dataProvider = DataProviderFactory.GetDataProvider(configurations);
+    }
+
+    public IDataProvider GetDataProvider() {
+        return this.dataProvider;
+    }
 
 }

@@ -1,33 +1,41 @@
 ﻿using ExtraAdvancedMultiTier.Business.Abstractions.Daos;
+using Project_Utilities.Enums;
 
 namespace ExtraAdvancedMultiTier.Business.Abstractions;
 public abstract class AbstractEntityService<TEntity, TEntityKey> : AbstractService, IEntityService<TEntity, TEntityKey>
     where TEntity : class, IEntity<TEntityKey>
-    where TEntityKey : IEquatable<TEntityKey> {
+    where TEntityKey : notnull, IEquatable<TEntityKey> {
+
+    public abstract IDao<TEntity, TEntityKey> Dao { get; }
+    public abstract IEntityView<TEntity, TEntityKey> View { get; }
 
     protected AbstractEntityService(IServiceContainer parent)
         : base(parent) { }
 
 
-    public abstract IDao<TEntity, TEntityKey> Dao { get; }
-
-    public TEntity Create(TEntity entity) {
-        return this.Dao.Create(entity);
+    public virtual TEntity? OpenViewFor(ViewActionsEnum action, TEntity? entity) {
+        _ = this.View.OpenFor(action, entity);
+        return entity;
     }
 
-    public List<TEntity> GetAll() {
-        return this.Dao.GetAll();
+
+    public virtual List<TEntity> GetAll(bool includeDeleted = false) {
+        return this.Dao.GetAll(includeDeleted);
     }
 
-    public TEntity? GetById(TEntityKey id) {
-        return this.Dao.GetById(id);
+    public virtual TEntity? GetById(TEntityKey id, bool includeDeleted = false) {
+        return this.Dao.GetById(id, includeDeleted);
     }
 
-    public TEntity Update(TEntity entity) {
-        return this.Dao.Update(entity);
+    public virtual TEntity Create(TEntity entity, bool doSaveChanges = true) {
+        return this.Dao.Create(entity, doSaveChanges);
     }
 
-    public TEntity Delete(TEntity entity, bool softDeletes = true) {
-        return this.Dao.Delete(entity, softDeletes);
+    public virtual TEntity Update(TEntity entity, bool doSaveChanges = true) {
+        return this.Dao.Update(entity, doSaveChanges);
+    }
+
+    public virtual TEntity Delete(TEntity entity, bool doSaveChanges = true, bool softDeletes = true) {
+        return this.Dao.Delete(entity, doSaveChanges, softDeletes);
     }
 }

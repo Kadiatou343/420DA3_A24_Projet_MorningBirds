@@ -2,7 +2,7 @@
 using Project_Utilities.Enums;
 using Project_Utilities.Services.APIs;
 
-namespace Project_Utilities.Services;
+namespace _420DA3_A24_Projet.Business.Services;
 public class TrackingNumberFactory : AbstractService {
 
     private static readonly FakeCanadaPostAPI fakeCanadaPostAPI = new FakeCanadaPostAPI();

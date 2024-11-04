@@ -12,7 +12,8 @@ namespace Exemple_Enseignant_Avance.Business;
 internal class AdvancedExampleApplication : AbstractApplication {
 
     public AdvancedExampleApplication() {
-        _ = new DataProviderService(this);
+        _ = new DataProviderService(this, this.Configurations);
+        _ = new PatientService(this);
     }
 
     public override void Start() {
@@ -21,10 +22,6 @@ internal class AdvancedExampleApplication : AbstractApplication {
             service.Start();
         }
         this.TriggerStartedEvent();
-    }
-
-    public void Test() {
-        IDataProvider dp = this.GetService<DataProviderService>()?.GetDataProvider(this.Configurations) ?? throw new Exception();
     }
 
 }

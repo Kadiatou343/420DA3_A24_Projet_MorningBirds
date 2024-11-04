@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace Exemple_Enseignant_Avance.Business.Abstractions;
 public interface IRendezVousDAO : IDao<RendezVous, int> {
 
-    public List<RendezVous> Search(string filter);
+    public List<RendezVous> Search(string criterion, bool includeDeleted = false);
 
-    public List<RendezVous> GetByMedecin(Medecin medecin, bool includePastRdvs = false);
+    public List<RendezVous> GetByMedecin(Medecin medecin, bool includePastRdvs = false, bool includeDeleted = false);
 
-    public List<RendezVous> GetByPatient(Patient patient, bool includePastRdvs = false);
+    public List<RendezVous> GetByPatient(Patient patient, bool includePastRdvs = false, bool includeDeleted = false);
 
 }

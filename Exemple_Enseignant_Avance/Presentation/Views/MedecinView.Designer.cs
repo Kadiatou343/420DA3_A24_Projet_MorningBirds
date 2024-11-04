@@ -1,4 +1,4 @@
-﻿namespace _420DA3_A24_Exemple_Enseignant.Presentation.Views;
+﻿namespace Exemple_Enseignant_Avance.Presentation.Views;
 
 partial class MedecinView {
     /// <summary>
