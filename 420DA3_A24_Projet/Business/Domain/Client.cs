@@ -90,7 +90,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateModified = dateModified;
             DateDeleted = dateDeleted;
             this.RowVersion = rowVersion;
-           // AssignedWarehouse = assignedWarehouse;
+            AssignedWarehouse = assignedWarehouse;
         }
 
         public bool ValidateCLientName(string clientName) 
