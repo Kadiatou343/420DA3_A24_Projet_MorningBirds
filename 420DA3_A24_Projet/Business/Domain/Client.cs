@@ -42,15 +42,14 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public byte[] RowVersion { get; set; } = null!;
 
-       // [ForeignKey(nameof(WarehouseId))]
-       //[DeleteBehavior(DeleteBehavior.SetNull)]
+        [ForeignKey(nameof(WarehouseId))]
+        [DeleteBehavior(DeleteBehavior.SetNull)]
 
-       //public Warehouse? AssignedWarehouse{ get; set; }
-
-        /* en Attente des créations des classes
+       public Warehouse? AssignedWarehouse{ get; set; }
 
          public List<Product> Product { get; set; } = new List<Product>();
 
+        /* en Attente des créations des classes
         public List<ShippingOrders> ShippingOrders{ get; set; } = new List<ShippingOrders>(); */
 
         public Client (string clientName, string contactFirstName, string contactLastName,
@@ -75,22 +74,22 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateTime dateCreated,
             DateTime? dateModified, 
             DateTime? dateDeleted,
-            byte[] rowVersion)
-           // Warehouse? assignedWarehouse)
+            byte[] rowVersion,
+            Warehouse? assignedWarehouse)
             : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,warehouseId)
         {
-            Id = id;
-            ClientName = clientName;
-            WarehouseId = warehouseId;
-            ContactFirstName = contactFirstName;
-            ContactLastName = contactLastName;
-            ContactEmail = contactEmail;
-            ContactTelephone = contactTelephone;
-            DateCreated = dateCreated;
-            DateModified = dateModified;
-            DateDeleted = dateDeleted;
+            this.Id = id;
+            this.ClientName = clientName;
+            this.WarehouseId = warehouseId;
+            this.ContactFirstName = contactFirstName;
+            this.ContactLastName = contactLastName;
+            this.ContactEmail = contactEmail;
+            this.ContactTelephone = contactTelephone;
+            this.DateCreated = dateCreated;
+            this.DateModified = dateModified;
+            this.DateDeleted = dateDeleted;
             this.RowVersion = rowVersion;
-            AssignedWarehouse = assignedWarehouse;
+            this.AssignedWarehouse = assignedWarehouse;
         }
 
         public bool ValidateCLientName(string clientName) 
