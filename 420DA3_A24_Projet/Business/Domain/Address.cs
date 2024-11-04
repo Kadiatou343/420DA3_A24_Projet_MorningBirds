@@ -47,7 +47,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public byte[] RowVersion { get; set; } = null!;
 
-        //public Warehouse? OwnerWarehouse{ get; set; }  
+        public Warehouse? OwnerWarehouse{ get; set; }  
         //public ShippingOrder? OwnerShipOrder{ get; set; }
 
        
