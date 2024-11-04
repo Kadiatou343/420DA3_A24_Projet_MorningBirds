@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain
 {
-    internal class Address
+    public class Address
     {
         public const int AddresseeMaxLength = 64;
         public const int CivicNumberMaxLength = 6;
@@ -22,8 +22,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         [Key]
         [Column("Id", TypeName = "int", Order = 0)]
         public int Id { get; set; }
-
-        //public string AddressType { get; set; }
+        public string AddressType { get; set; }
 
         public string Addresse { get; set; }
 
@@ -52,7 +51,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 
        
 
-       public Address(string addresse, string civicNumber, 
+       public Address(string addresse,string addresstype, string civicNumber, 
            string street, string city, string state,
            string country, string postalCode)
         {
@@ -68,6 +67,7 @@ namespace _420DA3_A24_Projet.Business.Domain
       protected Address(
           int id,
           string addresse,
+          string addresstype,
           string civicNumber,
           string street, 
           string city, 
@@ -80,10 +80,11 @@ namespace _420DA3_A24_Projet.Business.Domain
           byte[] rowVersion,
          Warehouse? ownerWarehouse)
         // ShippingOrder? ownerShipOrder)
-          :this(addresse, civicNumber,street, city,state,country,postalCode)
+          :this(addresse, addresstype, civicNumber, street, city, state, country, postalCode)
       {
             Id = id;
             Addresse = addresse;
+            AddressType = AddressType;
             CivicNumber = civicNumber;
             Street = street;
             City = city;
