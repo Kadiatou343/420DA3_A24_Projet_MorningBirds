@@ -36,12 +36,35 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// </summary>
         public const int ROLE_DESCRIPTION_MAX_LENGTH = 255;
 
+        private string roleName = null!;
+        private string roleDescription = null!;
+
         // Identifiant du rôle 
         public int Id {  get; set; }
 
         // Données du rôle
-        public string RoleName {  get; set; }
-        public string RoleDescription { get; set; }
+        public string RoleName {
+            get {
+                return this.roleName;
+            }
+            set {
+                if (!this.ValidateRoleName(value)) {
+                    throw new ArgumentOutOfRangeException("RoleName", $"La longueur de RoleName devrait être inférieur à {ROLE_NAME_MAX_LENGTH} !");
+                }
+                this.roleName = value;
+            }
+        }
+        public string RoleDescription {
+            get {
+                return this.roleDescription;
+            }
+            set {
+                if (!this.ValidateRoleDescription(value)) {
+                    throw new ArgumentOutOfRangeException("RoleDescription", $"La longueur de RoleDescription devrait être inférieur à {ROLE_DESCRIPTION_MAX_LENGTH} !");
+                }
+                this.roleDescription = value;
+            }
+        }
 
         // Meta-données
         public DateTime DateCreated { get; set; }

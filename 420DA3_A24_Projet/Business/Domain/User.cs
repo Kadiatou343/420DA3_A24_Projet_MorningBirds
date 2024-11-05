@@ -57,7 +57,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             get { return this.passwordHash; }
             set {
                 if (!this.ValidatePasswordHash(value)) {
-                    throw new ArgumentOutOfRangeException("PasswordHash", $"La longueur de PasswordHas devrait être inférieur à {PASSWORDHASH_MAX_LENGTH} !");
+                    throw new ArgumentOutOfRangeException("PasswordHash", $"La longueur de PasswordHash devrait être inférieur à {PASSWORDHASH_MAX_LENGTH} !");
                 }
                 this.passwordHash = value;
             }
