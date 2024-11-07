@@ -19,8 +19,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int CountryMaxLength = 64;
         public const int PostalCodeMaxLength = 64 ;
 
-        [Key]
-        [Column ("Id", TypeName = "int", Order = 0)]
+       
         public int Id { get; set; }
         public string AddressType { get; set; }
 
@@ -47,7 +46,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public byte[] RowVersion { get; set; } = null!;
 
         public Warehouse? OwnerWarehouse{ get; set; }  
-        //public ShippingOrder? OwnerShipOrder{ get; set; }
+        public ShippingOrder? OwnerShipOrder{ get; set; }
 
        
 
@@ -78,8 +77,8 @@ namespace _420DA3_A24_Projet.Business.Domain
           DateTime? dateModified,
           DateTime? dateDeleted,
           byte[] rowVersion,
-         Warehouse? ownerWarehouse)
-        // ShippingOrder? ownerShipOrder)
+          Warehouse? ownerWarehouse,
+          ShippingOrder? ownerShipOrder)
           :this(addresse, addresstype, civicNumber, street, city, state, country, postalCode)
       {
             Id = id;
@@ -96,7 +95,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateDeleted = dateDeleted;
             this.RowVersion = rowVersion;
             OwnerWarehouse = ownerWarehouse;
-          // OwnerShipOrder = ownerShipOrder;
+            OwnerShipOrder = ownerShipOrder;
         }
 
         public bool ValidateCivicNumber(string civicNumber)
