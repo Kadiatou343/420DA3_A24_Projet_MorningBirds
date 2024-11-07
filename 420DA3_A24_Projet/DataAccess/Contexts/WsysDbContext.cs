@@ -12,8 +12,7 @@ internal class WsysDbContext : DbContext {
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
 
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<Address> Addresss { get; set; }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
