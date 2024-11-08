@@ -45,7 +45,7 @@ public class MedecinService : AbstractEntityService<Medecin, int> {
 
     /*
      * NOTE: Les méthodes suivantes sont automatiquement héritées de AbstractEntityService<TEntity, TEntityKey>:
-     * - OpenViewFor(ViewActionsEnum, TEntity)  (virtual -> peut être redéfinie)
+     * - OpenViewFor(ViewActionsEnum, TEntity?) (virtual -> peut être redéfinie)
      * - GetAll(bool)                           (virtual -> peut être redéfinie)
      * - GetById(int, bool)                     (virtual -> peut être redéfinie)
      * - Create(TEntity, bool)                  (virtual -> peut être redéfinie)
