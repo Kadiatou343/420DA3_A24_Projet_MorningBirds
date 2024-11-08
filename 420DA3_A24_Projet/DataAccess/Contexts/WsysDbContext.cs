@@ -14,6 +14,9 @@ internal class WsysDbContext : DbContext {
      
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
+
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Supplier> Suppliers { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
@@ -173,6 +176,207 @@ internal class WsysDbContext : DbContext {
             .HasColumnOrder(6)
             .IsRowVersion();
 
+        #endregion
+
+        #region CONFIGURATION DE LA LIAISON ENTITE Product A TABLE 'Products'
+        _ = modelBuilder.Entity<Product>()     
+            .ToTable("Products")               
+            .HasKey(product => product.ProductId);       
+
+        // CONFIGURATION DES COLONNE DE LA TABLE 'Products'
+
+        _ = modelBuilder.Entity<Product>()     
+            .Property(product => product.ProductId)      
+            .HasColumnName("ProductId")            
+            .HasColumnOrder(0)              
+            .HasColumnType("int");          
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.ProductName)
+            .HasColumnName("ProductName")
+            .HasColumnOrder(1)
+            .HasColumnType($"nvarchar({Product.PRODUCT_NAME_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Desc)
+            .HasColumnName("Desc")
+            .HasColumnOrder(2)
+            .HasColumnType($"nvarchar({Product.DESC_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.CodeUPC)
+            .HasColumnName("CodeUPC")
+            .HasColumnOrder(3)
+            .HasColumnType($"nvarchar({Product.CODE_UPC_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.PictureName)
+            .HasColumnName("PictureName")
+            .HasColumnOrder(4)
+            .HasColumnType($"nvarchar({Product.PICTURE_NAME_MAX_LENGTH})")
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.ClientId)
+            .HasColumnName("ClientId")
+            .HasColumnOrder(5)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.SupplierId)
+            .HasColumnName("SupplierId")
+            .HasColumnOrder(6)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.SupplierCode)
+            .HasColumnName("SupplierCode")
+            .HasColumnOrder(7)
+            .HasColumnType($"nvarchar({Product.SUPPLIER_CODE_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Quantity)
+            .HasColumnName("SupplierCode")
+            .HasColumnOrder(8)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.AimQuantity)
+            .HasColumnName("AimQuanity")
+            .HasColumnOrder(9)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Weight)
+            .HasColumnName("Weight")
+            .HasColumnOrder(10)
+            .HasColumnType("float")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.DateCreated)
+            .HasColumnName("DateCreated")
+            .HasColumnOrder(11)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasDefaultValueSql("GETUTCDATE()")
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.DateModified)
+            .HasColumnName("DateModified")
+            .HasColumnOrder(12)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(13)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.RowVersion)
+            .HasColumnName("RowVersion")
+            .HasColumnOrder(14)
+            .IsRowVersion();
+        #endregion
+
+        #region CONFIGURATION DE LA LIAISON ENTITE Supplier A TABLE 'Suppliers'
+        _ = modelBuilder.Entity<Supplier>()
+            .ToTable("Suppliers")
+            .HasKey(supplier => supplier.SupplierId);
+
+        // CONFIGURATION DES COLONNE DE LA TABLE 'Suppliers'
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.SupplierId)
+            .HasColumnName("SupplierId")
+            .HasColumnOrder(0)
+            .HasColumnType("int");
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.SupplierName)
+            .HasColumnName("SupplierName")
+            .HasColumnOrder(1)
+            .HasColumnType($"nvarchar({Supplier.SUPPLIER_NAME_MAX_LENGTH})")
+            .IsRequired(true);
+            
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.ContactLastName)
+            .HasColumnName("ContactLastName")
+            .HasColumnOrder(2)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_NAME_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.ContactFirstName)
+            .HasColumnName("ContactFirstName")
+            .HasColumnOrder(3)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_NAME_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.ContactEmail)
+            .HasColumnName("ContactEmail")
+            .HasColumnOrder(4)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_EMAIL_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.ContactPhone)
+            .HasColumnName("ContactPhone")
+            .HasColumnOrder(5)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_PHONE_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.DateCreated)
+            .HasColumnName("DateCreated")
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasDefaultValueSql("GETUTCDATE()")
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.DateModified)
+            .HasColumnName("DateModified")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(8)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Supplier>()
+            .Property(supplier => supplier.RowVersion)
+            .HasColumnName("RowVersion")
+            .HasColumnOrder(9)
+            .IsRowVersion();
         #endregion
 
         // Note de Kadiatou : On peut tous mettre la configuration de nos relations ici 

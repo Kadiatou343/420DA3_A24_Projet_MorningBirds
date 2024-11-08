@@ -8,6 +8,13 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
     public class Product
     {
+        // Constants 
+        public const int PRODUCT_NAME_MAX_LENGTH = 50;
+        public const int DESC_MAX_LENGTH = 256;
+        public const int CODE_UPC_MAX_LENGTH = 13;
+        public const int PICTURE_NAME_MAX_LENGTH = 256;
+        public const int SUPPLIER_CODE_MAX_LENGTH = 128;
+
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Desc { get; set; }
@@ -26,7 +33,10 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         // Propriété de navigation 
         public virtual Supplier Supplier { get; set; } = null!;
-        // TODO : public virtual Client Client {get; set;}
+        public virtual Client Client { get; set; } = null!;
+
+        public virtual List<PurchaseOrder> PurchaseOrders { get; set; } = null!;
+        public virtual List<ShippingOrderProduct> ShippingOrderProducts { get; set; } = null!;
 
         // Constructeur
         public Product(string productName, string desc, string codeUPC, int clientId, int supplierId, string supplierCode, int quantity,
