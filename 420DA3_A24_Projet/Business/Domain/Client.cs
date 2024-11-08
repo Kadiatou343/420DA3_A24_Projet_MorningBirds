@@ -100,7 +100,7 @@ namespace _420DA3_A24_Projet.Business.Domain
            => contactTelephone?.Length <= ContactTelephoneMaxLength;
 
         // Propriété de navigation
-        public virtual List<Address> Addresses { get; set; } = new List<Address>();
+        public virtual List<Address> Addresses { get; set; } =  new List<Address>();
 
     }
 
