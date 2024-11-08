@@ -23,10 +23,29 @@ namespace _420DA3_A24_Projet.Business.Domain
         public User? FulfillerEmployee { get; set; }
         public Address DestinationAddress { get; set; }
         public List<ShippingOrderProduct> ShippingOrderProducts { get; set; }
-
+        //constructeur de l'App
         public ShippingOrder(int CreatorEmployeeId, int DestinationAdressId) {
             this.CreatorEmployeeId = CreatorEmployeeId;
             this.DestinationAdressId=DestinationAdressId;
+        }
+        //constructeur base de donnée
+
+        public ShippingOrder(int id,int CreatorEmployeeId, int DestinationAdressId,
+            int  FulfillerEmployeeId, DateTime ShippingDate, DateTime DateDeleted,
+            DateTime DateCreated, DateTime DateModified, Client SourceClient, User CreatorEmployee,
+            User FulfillerEmployee, Address DestinationAddress) {
+            this.Id = id;
+            this.CreatorEmployeeId = CreatorEmployeeId;
+            this.DestinationAdressId = DestinationAdressId;
+            this.FulfillerEmployeeId = FulfillerEmployeeId;
+            this.ShippingDate = ShippingDate;
+            this.DateDeleted = DateDeleted;
+            this.DateCreated = DateCreated;
+            this.DateModified = DateModified;
+            this.SourceClient = SourceClient;
+            this.CreatorEmployee = CreatorEmployee;
+            this.FulfillerEmployee = FulfillerEmployee;
+            this.DestinationAddress = DestinationAddress;
         }
     }
 }
