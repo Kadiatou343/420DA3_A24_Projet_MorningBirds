@@ -111,5 +111,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         public bool ValidatePostalCode (string postalCode)
             => postalCode.Length <= PostalCodeMaxLength;
 
+        // Propriétés de navigation 
+        public List<Client> Clients { get; set; } = new List<Client>();
     }
+
+  
 }

@@ -11,7 +11,9 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts;
 internal class WsysDbContext : DbContext {
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
-
+     
+    public DbSet<Client> Clients { get; set; }
+    public DbSet<Address> Addresses { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
@@ -235,5 +237,210 @@ internal class WsysDbContext : DbContext {
             .HasData(user1, user2);
 
         #endregion
+
+        ///
+        #region CONFIGURATION DE LA LIAISON ENTITE Client A TABLE 'CLIENTS'
+        
+        _ = modelBuilder.Entity<Client>()
+           .ToTable("Clients")
+           .HasKey(client => client.Id);
+
+        _ = modelBuilder.Entity<Client>()     
+          .Property(client => client.Id)   
+          .HasColumnName("Id")           
+          .HasColumnOrder(0)            
+          .HasColumnType("int");
+
+        _ = modelBuilder.Entity<Client>()     
+          .Property(client => client.ClientName)      
+          .HasColumnName("ClientName")           
+          .HasColumnOrder(2)             
+          .HasColumnType("nvarchar(128)")
+          .IsRequired(true);
+
+         _ = modelBuilder.Entity<Client>()
+         .Property(client => client.WarehouseId)
+         .HasColumnName("WarehouseId ")
+         .HasColumnOrder(3)
+         .HasColumnType("int")
+         .IsRequired(false);
+
+         _ = modelBuilder.Entity<Client>()
+         .Property(client => client.ContactFirstName)
+         .HasColumnName("ContactFirstName")
+         .HasColumnOrder(4)
+         .HasColumnType("nvarchar(32)")
+         .IsRequired(true);
+
+         _ = modelBuilder.Entity<Client>()
+         .Property(client => client.ContactLastName)
+         .HasColumnName("ContactLastName")
+         .HasColumnOrder(5)
+         .HasColumnType("nvarchar(32)")
+         .IsRequired(true);
+
+         _ = modelBuilder.Entity<Client>()
+         .Property(client => client.ContactEmail)
+         .HasColumnName("ContactEmail")
+         .HasColumnOrder(6)
+         .HasColumnType("nvarchar(128)")
+         .IsRequired(true);
+
+         _ = modelBuilder.Entity<Client>()
+         .Property(client => client.ContactTelephone)
+         .HasColumnName("ContactTelephone")
+         .HasColumnOrder(7)
+         .HasColumnType("nvarchar(15)")
+         .IsRequired(true);
+
+          _ = modelBuilder.Entity<Client>()
+          .Property(client => client.DateCreated)
+          .HasColumnName("DateCreated")
+          .HasColumnOrder(8)
+          .HasColumnType("datetime2(6)")
+          .HasPrecision(6)
+          .HasDefaultValueSql("GETUTCDATE()")
+          .HasConversion(utcDateTimeConverter)
+          .IsRequired(true);
+
+          _ = modelBuilder.Entity<Client>()
+          .Property(client => client.DateModified)
+          .HasColumnName("DateModified")
+          .HasColumnOrder(9)
+          .HasColumnType("datetime2(6)")
+          .HasPrecision(6)
+          .HasConversion(utcDateTimeConverter)
+          .IsRequired(false);
+
+          _ = modelBuilder.Entity<Client>()
+          .Property(client=> client.DateDeleted)
+          .HasColumnName("DateDeleted")
+          .HasColumnOrder(10)
+          .HasColumnType("datetime2(6)")
+          .HasPrecision(6)
+          .HasConversion(utcDateTimeConverter)
+          .IsRequired(false);
+
+          _ = modelBuilder.Entity<Client>()
+          .Property(client => client.RowVersion)
+          .HasColumnName("RowVersion")
+          .HasColumnOrder(11)
+          .IsRowVersion();
+
+        #endregion
+
+        #region CONFIGURATION DE LA LIAISON ENTITE Address A TABLE 'ADDRESSES'
+
+        _ = modelBuilder.Entity<Address>()
+           .ToTable("Addresses")
+           .HasKey(address => address.Id);
+
+        _ = modelBuilder.Entity<Address>()
+          .Property(address => address.Id)
+          .HasColumnName("Id")
+          .HasColumnOrder(0)
+          .HasColumnType("int");
+
+        _ = modelBuilder.Entity<Address>()
+          .Property(address=> address.AddressType)
+          .HasColumnName("AddressType")
+          .HasColumnOrder(1)
+          .HasColumnType("nvarchar(64)")
+          .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address=> address.Addresse)
+        .HasColumnName("Addresse")
+        .HasColumnOrder(2)
+        .HasColumnType("nvarchar(64)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address=> address.CivicNumber)
+        .HasColumnName("CivicNumber")
+        .HasColumnOrder(3)
+        .HasColumnType("nvarchar(6)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.Street)
+        .HasColumnName("ContactLastName")
+        .HasColumnOrder(4)
+        .HasColumnType("nvarchar(128)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.City)
+        .HasColumnName("City")
+        .HasColumnOrder(5)
+        .HasColumnType("nvarchar(64)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.State)
+        .HasColumnName("State")
+        .HasColumnOrder(6)
+        .HasColumnType("nvarchar(64)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.Country)
+        .HasColumnName("Country")
+        .HasColumnOrder(7)
+        .HasColumnType("nvarchar(64)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.PostalCode)
+        .HasColumnName("PostalCode")
+        .HasColumnOrder(8)
+        .HasColumnType("nvarchar(64)")
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.DateCreated)
+        .HasColumnName("DateCreated")
+        .HasColumnOrder(9)
+        .HasColumnType("datetime2(6)")
+        .HasPrecision(6)
+        .HasDefaultValueSql("GETUTCDATE()")
+        .HasConversion(utcDateTimeConverter)
+        .IsRequired(true);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.DateModified)
+        .HasColumnName("DateModified")
+        .HasColumnOrder(10)
+        .HasColumnType("datetime2(6)")
+        .HasPrecision(6)
+        .HasConversion(utcDateTimeConverter)
+        .IsRequired(false);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.DateDeleted)
+        .HasColumnName("DateDeleted")
+        .HasColumnOrder(11)
+        .HasColumnType("datetime2(6)")
+        .HasPrecision(6)
+        .HasConversion(utcDateTimeConverter)
+        .IsRequired(false);
+
+        _ = modelBuilder.Entity<Address>()
+        .Property(address => address.RowVersion)
+        .HasColumnName("RowVersion")
+        .HasColumnOrder(11)
+        .IsRowVersion();
+
+        #endregion
+
+        #region CONFIGURATION DES RELATIONS ENTRE ENTITES
+
+        // Relation plusieurs à plusieurs entre Client et Address
+        _ = modelBuilder.Entity<Client>()
+            .HasMany(client => client.Addresses)
+            .WithMany(address => address.Clients);
+        /// en cours ////
+        #endregion
+
     }
 }

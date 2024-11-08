@@ -21,7 +21,8 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public byte[] RowVersion { get; set; } = null!;
 
-        //public List<Client> Clients { get; set; } = new List<Client>();
+       //public List<Client> Clients { get; set; } = new List<Client>();
+        public virtual Client Clients { get; set; } = null!;
         //public Addresse Adresse { get; set; }
         //public List<PurchaseOrder> RestockOrders { get; set; } = new List<PurchaseOrder>();
         public List<User> WarehouseEmployees { get; set; } = new List<User>();
