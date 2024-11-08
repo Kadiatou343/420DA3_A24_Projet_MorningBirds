@@ -218,14 +218,16 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<Role>()
             .HasData(role1, role2);
 
-        User user1 = new User("hunter","ILoveEFCore") {
+        User user1 = new User("hunter", "7761467A80A38D8429C0B80898FE3047F1E85E1C0CB2A9304FF72D028D39FF4D:" +
+            "8C68F80262A76FDB8E595A6212B3545A:100000:SHA256") { // Mdp non hashé : ILoveEFCore
             Id = 1
         };
 
         user1.Roles.Add(role1);
         user1.Roles.Add(role2);
 
-        User user2 = new User("deiiidia", "GitIsOurSavior") {
+        User user2 = new User("deiiidia", "4ECAA597B625B3FCA7E36442D4C6A3EB05AB9DFFC9F254EE483FBDBEB6D2910C:" +
+            "D761ED59218EDF8032D7F7882DE44EAE:100000:SHA256") { // Mpd non hashé : GitIsOurSavior
             Id = 2
         };
 
