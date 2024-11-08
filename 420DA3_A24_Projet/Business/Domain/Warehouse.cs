@@ -47,21 +47,21 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// Les clients associés à cet entrepôt
         /// </summary>
-        public List<Client> Clients { get; set; } = new List<Client>();
+        public virtual List<Client> Clients { get; set; } = new List<Client>();
         /// <summary>
         /// Objet de class Address associé à chaque entrepôt
         /// </summary>
         
-        public Address Adresse { get; set; }
+        public virtual Address Adresse { get; set; }
         /// <summary>
         /// Liste de PurchaseOrder assocìé à l'entrepôt
         /// </summary>
-        public List<PurchaseOrder> RestockOrders { get; set; } = new List<PurchaseOrder>();
+        public virtual List<PurchaseOrder> RestockOrders { get; set; } = new List<PurchaseOrder>();
 
         /// <summary>
         /// Liste des employés d'entrepôt associés à chaque entrepôt
         /// </summary>
-        public List<User> WarehouseEmployees { get; set; } = new List<User>();
+        public virtual List<User> WarehouseEmployees { get; set; } = new List<User>();
 
         /// <summary>
         /// Constructeur orienté création manuelle

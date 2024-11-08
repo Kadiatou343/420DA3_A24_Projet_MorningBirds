@@ -18,8 +18,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int ContactEmailMaxLength = 128;
         public const int ContactTelephoneMaxLength = 15;
 
-        [Key]
-        [Column("Id", TypeName = "int", Order = 0)]
+      
         public int Id { get; set; }
 
         public string ClientName { get; set; }
@@ -40,18 +39,15 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public DateTime? DateDeleted { get; set; }
 
-        public byte[] RowVersion { get; set; } = null!;
+        public byte[] RowVersion { get; set; } = null!;   
 
-        [ForeignKey(nameof(WarehouseId))]
-        [DeleteBehavior(DeleteBehavior.SetNull)]
-
-       public Warehouse? AssignedWarehouse{ get; set; }
+        public Warehouse? AssignedWarehouse{ get; set; }
 
          public List<Product> Product { get; set; } = new List<Product>();
 
-        /* en Attente des créations des classes
-        public List<ShippingOrders> ShippingOrders{ get; set; } = new List<ShippingOrders>(); */
+        public List<ShippingOrder> ShippingOrders{ get; set; } = new List<ShippingOrder>();
 
+       
         public Client (string clientName, string contactFirstName, string contactLastName,
             string contactEmail, string contactTelephone, int? warehouseId)
         {
@@ -103,7 +99,10 @@ namespace _420DA3_A24_Projet.Business.Domain
         public bool ValidateContactTelephone(string contactTelephone)
            => contactTelephone?.Length <= ContactTelephoneMaxLength;
 
+        // Propriété de navigation
+        public virtual List<Address> Addresses { get; set; } =  new List<Address>();
+
     }
 
- 
+
 }
