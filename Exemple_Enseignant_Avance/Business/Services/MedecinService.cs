@@ -10,11 +10,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.Business.Services;
+
+/// <summary>
+/// Classe de service avancée pour les médecins.
+/// Permet la gestion des entités de type <see cref="Medecin"/>.
+/// </summary>
+/// <remarks>
+/// Hérite de <see cref="AbstractEntityService{TEntity, TEntityKey}"/> avec les types <see cref="Medecin"/> et <see cref="int"/>
+/// pour bénéficier des opérations CRUD de base et de l'enregistrement automatique auprès du conteneur de services parent
+/// (voir <see cref="IServiceContainer"/>).
+/// </remarks>
 public class MedecinService : AbstractEntityService<Medecin, int> {
 
+    /// <summary>
+    /// Le DAO pour les entités de type Medecin.
+    /// </summary>
     public override IMedecinDAO Dao { get; }
+    /// <summary>
+    /// La fenêtre de gestion des médecins.
+    /// </summary>
     public override MedecinView View { get; }
 
+    /// <summary>
+    /// Constructeur de MedecinService.
+    /// </summary>
+    /// <param name="parent">Le conteneur de services parent.</param>
+    /// <exception cref="ArgumentException">Si le conteneur de services reçu ne contient pas de DataProviderService.</exception>
     public MedecinService(IServiceContainer parent) : base(parent) {
         this.Dao = parent.GetService<DataProviderService>()?.GetDataProvider()?.GetMedecinDao()
             ?? throw new ArgumentException("Le conteneur de services parent reçu n'a pas de DataProviderService enregistré.", nameof(parent));

@@ -20,7 +20,7 @@ public partial class PatientView : Form, IEntityView<Patient, int> {
 
     public IServiceContainer ServiceContainer { get; }
     public PatientService EntityService { get; }
-    public Patient CurrentInstance { get; set; }
+    public Patient CurrentInstance { get; set; } = null!;
     public ViewActionsEnum CurrentAction { get; set; }
 
     IEntityService<Patient, int> IEntityView<Patient, int>.EntityService {
@@ -31,6 +31,7 @@ public partial class PatientView : Form, IEntityView<Patient, int> {
 
     public PatientView(IServiceContainer parent) {
         this.ServiceContainer = parent;
+        this.EntityService = parent.GetService<PatientService>();
         this.InitializeComponent();
         this.ViewOpenEvent += this.OnViewOpen;
         this.CreationActionTriggeredEvent += this.OnCreationActionTriggered;

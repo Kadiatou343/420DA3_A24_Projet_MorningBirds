@@ -17,13 +17,27 @@ public class AppConfigurations {
     private const string dbUserPasswordKeyName = "DB_Password";
 
     private readonly NameValueCollection configurations;
+    private readonly Dictionary<string, string> connectionStrings;
 
     public AppConfigurations() {
         this.configurations = ConfigurationManager.AppSettings;
+        this.connectionStrings = ConfigurationManager.ConnectionStrings.Cast<ConnectionStringSettings>().ToDictionary(
+            setting => {
+                return setting.Name;
+            },
+            setting => {
+                return setting.ConnectionString;
+            });
     }
 
     public string? GetConfig(string configKey) {
         return this.configurations.Get(configKey);
+    }
+
+    public string? GetConnexionString(string connStringName) {
+        return this.connectionStrings.Where(kvp => {
+            return kvp.Key == connStringName;
+        }).FirstOrDefault().Value;
     }
 
     public DbTypesEnum GetDbTypeConfig() {
