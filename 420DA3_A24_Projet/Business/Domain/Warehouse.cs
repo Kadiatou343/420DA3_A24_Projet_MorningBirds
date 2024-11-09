@@ -81,9 +81,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="id">Identificant de l'entrepôt</param>
         /// <param name="wareHouseName">Nom de l'entrepôt</param>
         /// <param name="adressId">L'identification de l'addresse associé à l'entrepôt</param>
-        /// <param name="dateCreated">Date de création de l'entrepôt dans le BD</param>
-        /// <param name="dateModified">Date de modification de l'entrepôt dans le BD</param>
-        /// <param name="dateDeleted">Date de suppresion de l'entrepôt dans le BD</param>
+        /// <param name="dateCreated">Date de création de l'entrepôt dans la BD</param>
+        /// <param name="dateModified">Date de modification de l'entrepôt dans la BD</param>
+        /// <param name="dateDeleted">Date de suppresion de l'entrepôt dans la BD</param>
         /// <param name="rowVersion">Valeur anti-concurrence de la base de données</param>
 
         protected Warehouse(
