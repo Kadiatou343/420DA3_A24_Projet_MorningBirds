@@ -18,7 +18,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         public DateTime DateDeleted { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
-        public Client SourceClient { get; set; }
+        public Client SourceClient { get; set; } 
+        public virtual Shipment Shipment { get; set; }
         public User? CreatorEmployee { get; set; }
         public User? FulfillerEmployee { get; set; }
         public Address DestinationAddress { get; set; }

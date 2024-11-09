@@ -17,6 +17,10 @@ internal class WsysDbContext : DbContext {
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
+
+    public DbSet<Warehouse> Warehouses { get; set; }
+
+    public DbSet<Shipment> Shipments { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
@@ -379,9 +383,150 @@ internal class WsysDbContext : DbContext {
             .IsRowVersion();
         #endregion
 
+        #region  CONFIGURATION DE LA LIAISON ENTITE Warehouse A TABLE 'Warehouses'
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .ToTable("Warehouses")
+            .HasKey(warehouse => warehouse.Id);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int");
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.WareHouseName)
+            .HasColumnName("WarehouseName")
+            .HasColumnOrder(1)
+            .HasColumnType($"nvarchar({Warehouse.WAREHOUSE_NAME_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.AddressId)
+            .HasColumnName("AddressId")
+            .HasColumnOrder(2)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.DateCreated)
+            .HasColumnName("DateCreated")
+            .HasColumnOrder(3)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasDefaultValueSql("GETUTCDATE()")
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(4)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.DateModified)
+            .HasColumnName("DateModified")
+            .HasColumnOrder(5)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.RowVersion)
+            .HasColumnName("RowVersion")
+            .HasColumnOrder(6)
+            .IsRowVersion();
+
+
+        #endregion
+
+        #region CONFIGURATION DE LA LIAISON ENTITE Shipment A TABLE 'Shipments'
+
+        _ = modelBuilder.Entity<Shipment>()
+            .ToTable("Shipments")
+            .HasKey(shipment => shipment.Id);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int");
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.Status)
+            .HasColumnName("Status")
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(16)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.ShippingService)
+            .HasColumnName("ShippingService")
+            .HasColumnOrder(2)
+            .HasColumnType("nvarchar(16)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.ShippingOrderId)
+            .HasColumnName("ShippingOrderId")
+            .HasColumnOrder(3)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.TrackingNumber)
+            .HasColumnName("TrackingNumber")
+            .HasColumnOrder(4)
+            .HasColumnType($"nvarchar({Shipment.TRACKING_NUMBER_MAX_LENGTH})")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.DateCreated)
+            .HasColumnName("DateCreated")
+            .HasColumnOrder(5)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasDefaultValueSql("GETUTCDATE()")
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.DateModified)
+            .HasColumnName("DateModified")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Shipment>()
+            .Property(shipment => shipment.RowVersion)
+            .HasColumnName("RowVersion")
+            .HasColumnOrder(8)
+            .IsRowVersion();
+
+
+        #endregion
+
         // Note de Kadiatou : On peut tous mettre la configuration de nos relations ici 
         #region CONFIGURATION DES RELATIONS ENTRE ENTITES
 
+        #region RELATIONS COTÉ USERS
         // Relation plusieurs à plusieurs entre User et Role
         _ = modelBuilder.Entity<User>()
             .HasMany(user => user.Roles)
@@ -407,6 +552,53 @@ internal class WsysDbContext : DbContext {
             .WithOne(shippingOrder => shippingOrder.FulfillerEmployee)
             .HasForeignKey(shippingOrder => shippingOrder.FulfillerEmployeeId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
+
+        #region RELATIONS COTÉ WAREHOUSE
+
+        // Relation un à plusieurs entre Warehouse et Client coté Warehouse
+        _ = modelBuilder.Entity<Warehouse>()
+            .HasMany(warehouse => warehouse.Clients)
+            .WithOne(client => client.AssignedWarehouse)
+            .HasForeignKey(client => client.WarehouseId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        //Relation un à un entre Warehouse et Address coté Warehouse 
+        _ = modelBuilder.Entity<Warehouse>()
+            .HasOne(warehouse => warehouse.Adresse)
+            .WithOne(address => address.OwnerWarehouse)
+            .HasForeignKey<Warehouse>(warehouse => warehouse.AddressId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        //Relation un à plusieurs entre Warehouse et PurchaseOrder coté Warehouse
+        _ = modelBuilder.Entity<Warehouse>()
+            .HasMany(warehouse => warehouse.RestockOrders)
+            .WithOne(purchaseOrder => purchaseOrder.Warehouse)
+            .HasForeignKey(purchaseOrder => purchaseOrder.WarehouseId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        //Relation un à plusieurs entre Warehouse et User coté Warehouse
+        _ = modelBuilder.Entity<Warehouse>()
+            .HasMany(warehouse => warehouse.WarehouseEmployees)
+            .WithOne(user => user.EmployeeWarehouse)
+            .HasForeignKey(user => user.EmployeeWarehouseId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
+
+        #region RELATION COTÉ SHIPMENT
+
+        //Relation un à un entre Shipment et ShippingOrder coté Shipment
+        _ = modelBuilder.Entity<Shipment>()
+            .HasOne(shipment => shipment.ShippingOrder)
+            .WithOne(shippingOrder => shippingOrder.Shipment)
+            .HasForeignKey<Shipment>(shipment => shipment.ShippingOrderId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
+
+
 
         #endregion
 
