@@ -10,29 +10,118 @@ using System.Threading.Tasks;
 namespace _420DA3_A24_Projet.Business.Domain
 {
 
+    /// <summary>
+    ///  Classe représentant un client
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Longueur maxiamle du nom de l'entreprise
+        /// </summary>
         public const int ClientNameMaxLength = 128;
+
+        /// <summary>
+        /// Longueur maxiamle du nom de la personne à contacter au dans de l'entrprise
+        /// </summary>
+        public const int ClientNameMinLength = 5;
+
+        /// <summary>
+        /// Longueur maximale du nom de la personne à contacter au dans de l'entrprise
         public const int ContactFirstNameMaxLength = 32;
+
+        /// <summary>
+        ///  Longueur maximale du prenom  de la personne à contacter au dans de l'entrprise
+        /// </summary>
         public const int ContactLastNameMaxLength = 32;
+
+        /// <summary>
+        /// Longueur de l'email de l'entreprise
+        /// </summary>
         public const int ContactEmailMaxLength = 128;
+
+        /// <summary>
+        /// Longueur du numéro de télephone de l'entreprise
+        /// </summary>
         public const int ContactTelephoneMaxLength = 15;
 
-      
+       // Identifiants
         public int Id { get; set; }
 
-        public string ClientName { get; set; }
+        // Donnée entrée par l'utiliateur
+        public string ClientName { 
+            get
+            {
+                return this.ClientName;
+
+            }
+            set 
+            {
+                if (!this.ValidateCLientName(value)) {
+                    throw new ArgumentException("ClientName", $"La longueur de ClientName doit entre{ClientNameMinLength} et {ClientNameMaxLength}");
+                }  
+                
+                this.ClientName = value;
+            } 
+        }
 
         public int? WarehouseId { get; set; }
    
-        public string ContactFirstName { get; set; }
-       
-        public string ContactLastName { get; set; }
+        public string ContactFirstName {
+            get {
+                return this.ContactFirstName;
 
-        public string ContactEmail { get; set; }
+            }
+            set {
+                if (!this.ValidateContactFirstName(value)) {
+                    throw new ArgumentException("ContactFirstName", $"La longueur de ContactFirstName doit être inférieur à {ContactFirstNameMaxLength}");
+                }
 
-        public string ContactTelephone { get; set; }
+                this.ContactFirstName = value;
+            }
+        }
+        public string ContactLastName {
+            get {
+                return this.ContactLastName;
 
+            }
+            set {
+                if (!this.ValidateContactLastName(value)) {
+                    throw new ArgumentException("ContactLastName", $"La longueur de ContactLastName doit être inférieur à {ContactLastNameMaxLength}");
+                }
+
+                this.ContactLastName = value;
+            }
+        }
+
+        public string ContactEmail {
+            get {
+                return this.ContactEmail;
+
+            }
+            set {
+                if (!this.ValidateContactEmail(value)) {
+                    throw new ArgumentException("ContactEmail", $"La longueur de l'email doit être inférieur à {ContactEmailMaxLength}");
+                }
+
+                this.ContactEmail = value;
+            }
+        }
+
+        public string ContactTelephone {
+            get {
+                return this.ContactTelephone;
+
+            }
+            set {
+                if (!this.ValidateContactTelephone(value)) {
+                    throw new ArgumentException("ContactTelephone", $"La longueur ddu numéro de téléphone doit être inférieur à {ContactTelephoneMaxLength}");
+                }
+
+                this.ContactTelephone = value;
+            }
+        }
+
+        //Meta-données
         public DateTime DateCreated { get; set; }
 
         public DateTime? DateModified { get; set; }
@@ -41,13 +130,38 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public byte[] RowVersion { get; set; } = null!;   
 
-        public Warehouse? AssignedWarehouse{ get; set; }
 
-         public List<Product> Product { get; set; } = new List<Product>();
+        // Propriétés de navigation EF Core
 
-        public List<ShippingOrder> ShippingOrders{ get; set; } = new List<ShippingOrder>();
+        /// <summary>
+        /// Entrepôt assigné au client
+        /// </summary>
+        public virtual Warehouse AssignedWarehouse{ get; set; }
 
-       
+        /// <summary>
+        /// Addresses d'entreprises clientes
+        /// </summary>
+        public virtual List<Address> Addresses { get; set; } = new List<Address>();
+
+        /// <summary>
+        /// Produits appartenant à l'entreprise 
+        /// </summary>
+        public virtual List<Product> Products { get; set; } = new List<Product>();
+         
+        /// <summary>
+        /// expedition des produits du fournisseurs vers l'entrepôt
+        /// </summary>
+        public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
+
+        /// <summary>
+        /// Constructeur 
+        /// </summary>
+        /// <param name="clientName"> Nom de l'entreprise</param>
+        /// <param name="contactFirstName">Nom de celui à contacter dans l'entrepise</param>
+        /// <param name="contactLastName">prenom de celui à contacter dans l'entrepise</param>
+        /// <param name="contactEmail">Boite mail de l'entreprise</param>
+        /// <param name="contactTelephone">Numéro de téléphone de l'entraprise</param>
+        /// <param name="warehouseId">Identifienat du fournisseur associé aux client</param>
         public Client (string clientName, string contactFirstName, string contactLastName,
             string contactEmail, string contactTelephone, int? warehouseId)
         {
@@ -88,6 +202,10 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.AssignedWarehouse = assignedWarehouse;
         }
 
+        #region Methodes
+
+        // en cours ...
+
         public bool ValidateCLientName(string clientName) 
             => clientName?.Length <= ClientNameMaxLength;
         public bool ValidateContactFirstName(string contactFirstName)
@@ -99,9 +217,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public bool ValidateContactTelephone(string contactTelephone)
            => contactTelephone?.Length <= ContactTelephoneMaxLength;
 
-        // Propriété de navigation
-        public virtual List<Address> Addresses { get; set; } =  new List<Address>();
-
+        #endregion
     }
 
 

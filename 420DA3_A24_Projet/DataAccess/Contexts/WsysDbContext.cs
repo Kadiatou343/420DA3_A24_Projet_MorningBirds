@@ -10,21 +10,11 @@ using System.Threading.Tasks;
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
 internal class WsysDbContext : DbContext {
     public DbSet<User> Users { get; set; }
-   
     public DbSet<Role> Roles { get; set; }
      
     public DbSet<Client> Clients { get; set; }
-   
     public DbSet<Address> Addresses { get; set; }
-
-    public DbSet<Product> Products { get; set; }
     
-    public DbSet<Supplier> Suppliers { get; set; }
-
-    public DbSet<Warehouse> Warehouses { get; set; }
-
-    public DbSet<Shipment> Shipments { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
@@ -800,8 +790,29 @@ internal class WsysDbContext : DbContext {
         // Relation plusieurs à plusieurs entre Client et Address
         _ = modelBuilder.Entity<Client>()
             .HasMany(client => client.Addresses)
-            .WithMany(address => address. Clients);
-        /// en cours ////
+            .WithMany(address => address.Clients);
+
+
+        // Relation un à plusieurs entre Client et warehouse coté Client
+        _ = modelBuilder.Entity<Client>()
+            .HasOne(warehouse => warehouse.Clients)
+            .WithMany(client => client.AssignedWarehouse)  
+            .HasForeignkey(client => client.WarehouseId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation un à plusieurs entre Client et Produit coté Client
+        _ = modelBuilder.Entity<Client>()
+            .HasMany(product => product.OwnerClient)
+            .WithOne(client => client.Products)         
+           .HasForeignKey(product => product.OwnerClientId);
+
+        // Relation un à plusieurs entre Client et ShipmentOrder coté Client
+        _ = modelBuilder.Entity<Client>()
+            .HasOne(client => client.ShippingOrders)
+            .WithMany(shippingOrder => shippingOrder.SourceClient)
+            .HasForeignKey(shippingOrder => shippingOrder.SourceClientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         #endregion
 
         #endregion
