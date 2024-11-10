@@ -228,11 +228,11 @@ namespace _420DA3_A24_Projet.Business.Domain
          
         public bool ValidateContactEmail(string contactEmail) 
         {
-            return contactEmail.Length <= ContactEmailMaxLength;
+            return  contactEmail.Length <= ContactEmailMaxLength;
         }
         public bool ValidateContactTelephone(string contactTelephone) 
         {
-            return contactTelephone.Length <= ContactEmailMaxLength;        }
+            return  contactTelephone.Length <= ContactEmailMaxLength;        }
 
         #endregion
     }
