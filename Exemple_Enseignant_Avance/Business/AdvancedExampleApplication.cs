@@ -1,7 +1,10 @@
 ﻿using Exemple_Enseignant_Avance.Business.Abstractions;
 using Exemple_Enseignant_Avance.Business.Services;
 using Exemple_Enseignant_Avance.DataAccess;
+using Exemple_Enseignant_Avance.Presentation;
 using ExtraAdvancedMultiTier.Business.Abstractions;
+using ExtraAdvancedMultiTier.Business.Services;
+using ExtraAdvancedMultiTier.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +12,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.Business;
+
+/// <summary>
+/// Classe représentant l'application de l'exemple avancé.
+/// </summary>
+/// <remarks>
+/// Hérite de <see cref="AbstractApplication"/> pour bénéficier de la gestion des services.
+/// </remarks>
 internal class AdvancedExampleApplication : AbstractApplication {
 
+    private readonly MainMenu mainMenu;
+
     public AdvancedExampleApplication() {
+        LoggingService logService = new LoggingService(this);
+        logService.RegisterLogger(new DebugConsoleLogger());
+        logService.RegisterLogger(new ConsoleWindowLogger());
         _ = new DataProviderService(this, this.Configurations);
         _ = new PatientService(this);
+        this.mainMenu = new MainMenu(this);
     }
 
     public override void Start() {
@@ -22,6 +38,20 @@ internal class AdvancedExampleApplication : AbstractApplication {
             service.Start();
         }
         this.TriggerStartedEvent();
+        Application.Run(this.mainMenu);
+    }
+
+    public override void Stop() {
+        this.TriggerStoppingEvent();
+        foreach (IService service in this.Services.Values) {
+            service.Stop();
+        }
+        this.TriggerStoppedEvent();
+    }
+
+    public override void HandleException(Exception ex) {
+        base.HandleException(ex);
+        this.GetService<LoggingService>()?.Error(ex);
     }
 
 }

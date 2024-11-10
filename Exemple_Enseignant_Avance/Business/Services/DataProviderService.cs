@@ -21,16 +21,23 @@ namespace Exemple_Enseignant_Avance.Business.Services;
 /// </remarks>
 public class DataProviderService : AbstractService {
 
-    private IDataProvider dataProvider;
+    private readonly IDataProvider dataProvider;
 
     /// <summary>
-    /// Constructeur
+    /// Constructeur de DataProviderService.
+    /// Reçoit un conteneur de services parent et les configuration de l'application. Ces configurations sont utilisées pour
+    /// déterminer quel fournisseur de données doit être utilisé et instancier celui-ci.
     /// </summary>
-    /// <param name="parent"></param>
+    /// <param name="parent">Le conteneur de service parent.</param>
+    /// <param name="configurations">Les configurations de l'application.</param>
     public DataProviderService(IServiceContainer parent, AppConfigurations configurations) : base(parent) { 
         this.dataProvider = DataProviderFactory.GetDataProvider(configurations);
     }
 
+    /// <summary>
+    /// Getter pour le fournisseur de données.
+    /// </summary>
+    /// <returns>Le fournisseur de données.</returns>
     public IDataProvider GetDataProvider() {
         return this.dataProvider;
     }

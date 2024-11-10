@@ -18,8 +18,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         public DateTime? DateDeleted { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
-        public Product OrderedProduct { get; set; }
-        public Warehouse Warehouse { get; set; }
+        public virtual Product OrderedProduct { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
 
         //constructeur de l'App
         public PurchaseOrder(int ProductId, int WarehouseId,int Quantity) {
