@@ -73,7 +73,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public byte[] RowVersion { get; set; } = null!;
 
         // Propriétés de navigation EF Core
-        public List<User> Users { get; set; } = new List<User>();
+        public virtual List<User> Users { get; set; } = new List<User>();
 
         /// <summary>
         /// Constructeur orienté création manuelle
