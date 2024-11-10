@@ -184,8 +184,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateTime dateCreated,
             DateTime? dateModified, 
             DateTime? dateDeleted,
-            byte[] rowVersion,
-            Warehouse? assignedWarehouse)
+            byte[] rowVersion)
             : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,warehouseId)
         {
             this.Id = id;
@@ -199,23 +198,41 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.DateModified = dateModified;
             this.DateDeleted = dateDeleted;
             this.RowVersion = rowVersion;
-            this.AssignedWarehouse = assignedWarehouse;
+            
         }
 
         #region Methodes
 
-        // en cours ...
+        /// <summary>
+        /// Override de la méthode ToString pour affaicher les informations d'un client
+        /// </summary>
+        /// <returns>un String représentant le client </returns>
+
+        public override string ToString() {
+            return $"#{this.Id} - {this.ClientName}";
+        }
 
         public bool ValidateCLientName(string clientName) 
-            => clientName?.Length <= ClientNameMaxLength;
-        public bool ValidateContactFirstName(string contactFirstName)
-           => contactFirstName?.Length <= ContactFirstNameMaxLength;
-        public bool ValidateContactLastName(string contactLastName)
-           => contactLastName?.Length <= ContactLastNameMaxLength;
-        public bool ValidateContactEmail(string contactEmail)
-           => contactEmail?.Length <= ContactEmailMaxLength;
-        public bool ValidateContactTelephone(string contactTelephone)
-           => contactTelephone?.Length <= ContactTelephoneMaxLength;
+        { 
+            return clientName.Length <= ClientNameMaxLength && clientName.Length >= ClientNameMinLength;
+        }
+
+        public bool ValidateContactFirstName(string contactFirstName) 
+        {
+            return contactFirstName.Length <= ContactFirstNameMaxLength && contactFirstName.Length >= ClientNameMinLength;
+        } 
+        public bool ValidateContactLastName(string contactLastName) 
+        {
+            return  contactLastName.Length <= ContactLastNameMaxLength && contactLastName.Length >= ClientNameMinLength;
+        }
+         
+        public bool ValidateContactEmail(string contactEmail) 
+        {
+            return contactEmail.Length <= ContactEmailMaxLength;
+        }
+        public bool ValidateContactTelephone(string contactTelephone) 
+        {
+            return contactTelephone.Length <= ContactEmailMaxLength;        }
 
         #endregion
     }
