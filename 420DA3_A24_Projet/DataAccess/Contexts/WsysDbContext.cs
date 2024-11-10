@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
 internal class WsysDbContext : DbContext {
     public DbSet<User> Users { get; set; }
+   
     public DbSet<Role> Roles { get; set; }
      
     public DbSet<Client> Clients { get; set; }
+   
     public DbSet<Address> Addresses { get; set; }
 
     public DbSet<Product> Products { get; set; }
+    
     public DbSet<Supplier> Suppliers { get; set; }
 
     public DbSet<Warehouse> Warehouses { get; set; }
 
     public DbSet<Shipment> Shipments { get; set; }
-    
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
