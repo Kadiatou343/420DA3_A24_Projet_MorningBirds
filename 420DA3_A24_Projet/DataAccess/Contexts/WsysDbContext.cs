@@ -800,7 +800,7 @@ internal class WsysDbContext : DbContext {
         // Relation plusieurs à plusieurs entre Client et Address
         _ = modelBuilder.Entity<Client>()
             .HasMany(client => client.Addresses)
-            .WithMany(address => address.Clients);
+            .WithMany(address => address. Clients);
         /// en cours ////
         #endregion
 
