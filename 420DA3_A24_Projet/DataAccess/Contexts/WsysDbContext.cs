@@ -716,6 +716,29 @@ internal class WsysDbContext : DbContext {
         // Note de Kadiatou : On peut tous mettre la configuration de nos relations ici 
         #region CONFIGURATION DES RELATIONS ENTRE ENTITES
 
+        #region RELATION COTÉ PRODUCT
+        _ = modelBuilder.Entity<Product>()
+            .HasOne(product => product.Client)
+            .WithMany(client => client.Products)
+            .HasForeignKey(product => product.ClientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        _ = modelBuilder.Entity<Product>()
+            .HasOne(product => product.Supplier)
+            .WithMany(supplier => supplier.Products)
+            .HasForeignKey(product => product.SupplierId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        # endregion
+
+        #region RELATION COTÉ SUPPLIER
+        _ = modelBuilder.Entity<Supplier>()
+            .HasMany(supplier => supplier.Products)
+            .WithOne(product => product.Supplier)
+            .HasForeignKey(product => product.SupplierId)
+            .OnDelete(DeleteBehavior.Cascade);
+        #endregion
+
         #region RELATIONS COTÉ USER
         // Relation plusieurs à plusieurs entre User et Role
         _ = modelBuilder.Entity<User>()
@@ -816,29 +839,6 @@ internal class WsysDbContext : DbContext {
             .HasForeignKey(shippingOrder => shippingOrder.SourceClientId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        #endregion
-
-        #region RELATION COTÉ PRODUCT
-        _ = modelBuilder.Entity<Product>()
-            .HasOne(product => product.Client)
-            .WithMany(client => client.Products)
-            .HasForeignKey(product => product.ClientId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        _ = modelBuilder.Entity<Product>()
-            .HasOne(product => product.Supplier)
-            .WithMany(supplier => supplier.Products)
-            .HasForeignKey(product => product.SupplierId)
-            .OnDelete(DeleteBehavior.SetNull);
-
-        #endregion
-
-        #region RELATION COTÉ SUPPLIER
-        _ = modelBuilder.Entity<Supplier>()
-            .HasMany(supplier => supplier.Products)
-            .WithOne(product => product.Supplier)
-            .HasForeignKey(product => product.SupplierId)
-            .OnDelete(DeleteBehavior.Cascade);
         #endregion
 
         #endregion
