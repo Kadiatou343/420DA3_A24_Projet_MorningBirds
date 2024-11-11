@@ -128,7 +128,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public DateTime? DateDeleted { get; set; }
 
-        public byte[] RowVersion { get; set; } = null!;   
+        public byte[] RowVersion { get; set; } = null!;
 
 
         // Propriétés de navigation EF Core
@@ -136,7 +136,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// Entrepôt assigné au client
         /// </summary>
-        public virtual Warehouse AssignedWarehouse{ get; set; }
+        public virtual Warehouse AssignedWarehouse { get; set; } = null!;
 
         /// <summary>
         /// Addresses d'entreprises clientes
@@ -204,7 +204,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         #region Methodes
 
         /// <summary>
-        /// Override de la méthode ToString pour affaicher les informations d'un client
+        /// Override de la méthode ToString pour afficher les informations d'un client
         /// </summary>
         /// <returns>un String représentant le client </returns>
 
