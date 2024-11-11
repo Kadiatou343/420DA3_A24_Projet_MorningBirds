@@ -15,8 +15,17 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int PICTURE_NAME_MAX_LENGTH = 256;
         public const int SUPPLIER_CODE_MAX_LENGTH = 128;
 
+        // Private properties 
+        private string productName = null!;
+
         public int ProductId { get; set; }
-        public string ProductName { get; set; }
+        public string ProductName { get {
+                return this.productName;
+            } set {
+                this.productName = !ValidateProductName(value)
+                    ? throw new ArgumentOutOfRangeException($"Product Name must be under {PRODUCT_NAME_MAX_LENGTH} character!")
+                    : value;
+            } }
         public string Desc { get; set; }
         public string CodeUPC { get; set; }
         public String? PictureName { get; set; }
@@ -66,7 +75,14 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.RowVersion = rowVersion;
         }
 
+        #region METHODES DE VERIFICATION
+        static private bool ValidateProductName(string value) {
+            return value.Length <= PRODUCT_NAME_MAX_LENGTH;
+        }
 
+        // TODO GINO : Finir les méthodes de validation restante.
+
+        #endregion
 
     }
 }

@@ -11,7 +11,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
 
     /// <summary>
-    ///  Classe représentant un client
+    ///  Classe représentant l'entreprise cliente
     /// </summary>
     public class Client
     {
@@ -64,7 +64,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             } 
         }
 
-        public int? WarehouseId { get; set; }
+        public int AssignedWarehouseId { get; set; }
    
         public string ContactFirstName {
             get {
@@ -128,7 +128,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public DateTime? DateDeleted { get; set; }
 
-        public byte[] RowVersion { get; set; } = null!;   
+        public byte[] RowVersion { get; set; } = null!;
 
 
         // Propriétés de navigation EF Core
@@ -136,7 +136,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// Entrepôt assigné au client
         /// </summary>
-        public virtual Warehouse AssignedWarehouse{ get; set; }
+        public virtual Warehouse AssignedWarehouse { get; set; } = null!;
 
         /// <summary>
         /// Addresses d'entreprises clientes
@@ -161,22 +161,22 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="contactLastName">prenom de celui à contacter dans l'entrepise</param>
         /// <param name="contactEmail">Boite mail de l'entreprise</param>
         /// <param name="contactTelephone">Numéro de téléphone de l'entraprise</param>
-        /// <param name="warehouseId">Identifienat du fournisseur associé aux client</param>
+        /// <param name="assignedwarehouseId">Identifienat du fournisseur associé aux client</param>
         public Client (string clientName, string contactFirstName, string contactLastName,
-            string contactEmail, string contactTelephone, int? warehouseId)
+            string contactEmail, string contactTelephone, int assignedwarehouseId)
         {
             this.ClientName = clientName;
             this.ContactFirstName = contactFirstName;
             this.ContactLastName = contactLastName;
             this.ContactEmail = contactEmail;
             this.ContactTelephone = contactTelephone;
-            this.WarehouseId = warehouseId;
+            this.AssignedWarehouseId = assignedwarehouseId;
         }
 
         protected Client(
             int id, 
             string clientName, 
-            int? warehouseId,
+            int assignedwarehouseId,
             string contactFirstName, 
             string contactLastName, 
             string contactEmail, 
@@ -185,11 +185,11 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateTime? dateModified, 
             DateTime? dateDeleted,
             byte[] rowVersion)
-            : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,warehouseId)
+            : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,assignedwarehouseId)
         {
             this.Id = id;
             this.ClientName = clientName;
-            this.WarehouseId = warehouseId;
+            this.AssignedWarehouseId = assignedwarehouseId;
             this.ContactFirstName = contactFirstName;
             this.ContactLastName = contactLastName;
             this.ContactEmail = contactEmail;
@@ -204,7 +204,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         #region Methodes
 
         /// <summary>
-        /// Override de la méthode ToString pour affaicher les informations d'un client
+        /// Override de la méthode ToString pour afficher les informations d'un client
         /// </summary>
         /// <returns>un String représentant le client </returns>
 
