@@ -1021,6 +1021,55 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
+        #region RELATION COTÉ PURCHASEORDER
+
+        // Relation un à plusieur entre PurchaseOrder et product côté PurchaseOrder
+        _ = modelBuilder.Entity<PurchaseOrder>()
+            .HasOne(PurchaseOrder => PurchaseOrder.OrderedProduct)
+            .WithMany(Product => Product.PurchaseOrders)
+            .HasForeignKey(PO => PO.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+        // Relation un à plusieur entre PurchaseOrder et Warehouse côté PurchaseOrder
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .HasOne(PurchaseOrder => PurchaseOrder.OrderedProduct)
+           .WithMany(Warehouse => Warehouse.PurchaseOrders)
+           .HasForeignKey(WH => WH.WarehouseId)
+           .OnDelete(DeleteBehavior.Cascade);
+
+
+
+        #endregion
+
+        #region RELATION COTÉ SHIPPINGORDER
+
+        // Relation un à plusieur entre ShippingOrder et client côté ShippingOrder
+        _ = modelBuilder.Entity<ShippingOrder>()
+            .HasOne(ShippingOrder => ShippingOrder.SourceClient)
+            .WithMany(Client => Client.ShippingOrders)
+            .HasForeignKey(CL => CL.SourceClientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+        // Relation un à un entre ShippingOrder et Shipment côté ShippingOrder
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .HasOne(ShippingOrder => ShippingOrder.Shipment)
+           .WithOne(Shipment => Shipment.ShippingOrder)
+           .HasForeignKey<Shipment>(Shipment => Shipment.ShippingOrderId)
+           .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation un à un entre ShippingOrder et user côté ShippingOrder
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .HasOne(ShippingOrder => ShippingOrder.Shipment)
+           .WithOne(User => User.ShippingOrder)
+           .HasForeignKey<User>(User => User.CreatedShipOrders)
+           .OnDelete(DeleteBehavior.Cascade);
+
+
+
+        #endregion
+
         #endregion
 
         // Note de Kadiatou : On peut tous mettre les données d'insertion dans cette region

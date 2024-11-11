@@ -11,6 +11,8 @@ namespace _420DA3_A24_Projet.Business.Domain
     {
         public int Id { get; set; }
         public ShippingOrderStatusEnum Status { get; set; }
+
+        public int SourceClientId { get; set; }
         public int CreatorEmployeeId { get; set; }
         public int DestinationAdressId { get; set; }
         public int? FulfillerEmployeeId { get; set; }
@@ -18,7 +20,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public DateTime? DateCreated { get; set; }
         public DateTime DateDeleted { get; set; }
         public DateTime? DateModified { get; set; }
-        public Client SourceClient { get; set; } 
+        public virtual Client SourceClient { get; set; } 
         public virtual Shipment Shipment { get; set; }
         public User? CreatorEmployee { get; set; }
         public User? FulfillerEmployee { get; set; }
@@ -34,11 +36,12 @@ namespace _420DA3_A24_Projet.Business.Domain
         }
         //constructeur base de donnée
 
-        public ShippingOrder(int id,int CreatorEmployeeId, int DestinationAdressId,
+        public ShippingOrder(int id,int CreatorEmployeeId, int SourceClientId, int DestinationAdressId,
             int  FulfillerEmployeeId, DateTime ShippingDate, DateTime DateCreated, DateTime DateDeleted,
              DateTime DateModified, Client SourceClient, User CreatorEmployee,
             User FulfillerEmployee, Address DestinationAddress) {
             this.Id = id;
+            this.SourceClient = SourceClient;
             this.CreatorEmployeeId = CreatorEmployeeId;
             this.DestinationAdressId = DestinationAdressId;
             this.FulfillerEmployeeId = FulfillerEmployeeId;
