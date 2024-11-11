@@ -11,7 +11,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
 
     /// <summary>
-    ///  Classe représentant un client
+    ///  Classe représentant l'entreprise cliente
     /// </summary>
     public class Client
     {
