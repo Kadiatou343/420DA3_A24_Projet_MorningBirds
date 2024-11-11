@@ -828,7 +828,7 @@ internal class WsysDbContext : DbContext {
 
         // Relation un à plusieurs entre Client et Produit coté Client
         _ = modelBuilder.Entity<Client>()
-            .HasMany(product => product.OwnerClient)
+            .HasMany(product => product.Client)
             .WithOne(client => client.Products)
            .HasForeignKey(product => product.OwnerClientId);
 
@@ -854,7 +854,7 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<Address>()
           .HasOne(address => address.OwnerShipOrder)
           .WithOne(shippingOrder => shippingOrder.DestinationAddress)
-          .HasForeignKey<Warehouse>(shippingOrder => shippingOrder.DestinationAdressId)
+          .HasForeignKey<ShippingOrder>(shippingOrder => shippingOrder.DestinationAdressId)
           .OnDelete(DeleteBehavior.Cascade);
 
 
