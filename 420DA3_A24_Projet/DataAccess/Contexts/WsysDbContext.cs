@@ -823,15 +823,15 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<Client>()
             .HasOne(client => client.AssignedWarehouse)
             .WithMany(warehouse => warehouse.Clients)
-            .HasForeignkey(client => client.AssignedWarehouseId)
+            .HasForeignKey(client => client.AssignedWarehouseId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relation un à plusieurs entre Client et Produit coté Client
         _ = modelBuilder.Entity<Client>()
-            .HasOne(client => client.Products)
-            .WithMany(product => product.Client)            
+            .HasMany(client => client.Products)
+            .WithOne(product => product.Client)            
             .HasForeignKey(product => product.ClientId)
-            .onDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Relation un à plusieurs entre Client et ShipmentOrder coté Client
         _ = modelBuilder.Entity<Client>()
@@ -899,7 +899,7 @@ internal class WsysDbContext : DbContext {
         Supplier sup1 = new Supplier("THE ULTIMATE SUPPLIER", "Test", "Jonhy", "jonhytest@gmail.com", "4503497684") { SupplierId = 1 };
 
         // Ajout des données de Clients 
-        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450", null) { Id = 1 };
+        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450",10) { Id = 1 };
 
         // Ajout des données de Product
         Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) { ProductId= 1 };
