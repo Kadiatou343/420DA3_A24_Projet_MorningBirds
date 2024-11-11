@@ -64,7 +64,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             } 
         }
 
-        public int? WarehouseId { get; set; }
+        public int AssignedWarehouseId { get; set; }
    
         public string ContactFirstName {
             get {
@@ -161,22 +161,22 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="contactLastName">prenom de celui à contacter dans l'entrepise</param>
         /// <param name="contactEmail">Boite mail de l'entreprise</param>
         /// <param name="contactTelephone">Numéro de téléphone de l'entraprise</param>
-        /// <param name="warehouseId">Identifienat du fournisseur associé aux client</param>
+        /// <param name="assignedwarehouseId">Identifienat du fournisseur associé aux client</param>
         public Client (string clientName, string contactFirstName, string contactLastName,
-            string contactEmail, string contactTelephone, int? warehouseId)
+            string contactEmail, string contactTelephone, int assignedwarehouseId)
         {
             this.ClientName = clientName;
             this.ContactFirstName = contactFirstName;
             this.ContactLastName = contactLastName;
             this.ContactEmail = contactEmail;
             this.ContactTelephone = contactTelephone;
-            this.WarehouseId = warehouseId;
+            this.AssignedWarehouseId = assignedwarehouseId;
         }
 
         protected Client(
             int id, 
             string clientName, 
-            int? warehouseId,
+            int assignedwarehouseId,
             string contactFirstName, 
             string contactLastName, 
             string contactEmail, 
@@ -185,11 +185,11 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateTime? dateModified, 
             DateTime? dateDeleted,
             byte[] rowVersion)
-            : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,warehouseId)
+            : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,assignedwarehouseId)
         {
             this.Id = id;
             this.ClientName = clientName;
-            this.WarehouseId = warehouseId;
+            this.AssignedWarehouseId = assignedwarehouseId;
             this.ContactFirstName = contactFirstName;
             this.ContactLastName = contactLastName;
             this.ContactEmail = contactEmail;

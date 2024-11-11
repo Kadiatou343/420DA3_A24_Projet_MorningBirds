@@ -821,16 +821,17 @@ internal class WsysDbContext : DbContext {
 
         // Relation un à plusieurs entre Client et warehouse coté Client
         _ = modelBuilder.Entity<Client>()
-            .HasOne(warehouse => warehouse.Clients)
-            .WithMany(client => client.AssignedWarehouse)
-            .HasForeignkey(client => client.WarehouseId)
+            .HasOne(client => client.AssignedWarehouse)
+            .WithMany(warehouse => warehouse.Clients)
+            .HasForeignkey(client => client.AssignedWarehouseId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relation un à plusieurs entre Client et Produit coté Client
         _ = modelBuilder.Entity<Client>()
-            .HasMany(product => product.Client)
-            .WithOne(client => client.Products)
-           .HasForeignKey(product => product.OwnerClientId);
+            .HasOne(client => client.Products)
+            .WithMany(product => product.Client)            
+            .HasForeignKey(product => product.ClientId)
+            .onDelete(DeleteBehavior.Cascade);
 
         // Relation un à plusieurs entre Client et ShipmentOrder coté Client
         _ = modelBuilder.Entity<Client>()
