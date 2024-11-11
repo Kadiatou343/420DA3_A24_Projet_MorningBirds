@@ -15,8 +15,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         public int DestinationAdressId { get; set; }
         public int? FulfillerEmployeeId { get; set; }
         public DateTime? ShippingDate { get; set; }
-        public DateTime DateDeleted { get; set; }
         public DateTime? DateCreated { get; set; }
+        public DateTime DateDeleted { get; set; }
         public DateTime? DateModified { get; set; }
         public Client SourceClient { get; set; } 
         public virtual Shipment Shipment { get; set; }
@@ -24,6 +24,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         public User? FulfillerEmployee { get; set; }
         public Address DestinationAddress { get; set; }
         public virtual List<ShippingOrderProduct> ShippingOrderProducts { get; set; }
+
+
+
         //constructeur de l'App
         public ShippingOrder(int CreatorEmployeeId, int DestinationAdressId) {
             this.CreatorEmployeeId = CreatorEmployeeId;
@@ -32,8 +35,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         //constructeur base de donnée
 
         public ShippingOrder(int id,int CreatorEmployeeId, int DestinationAdressId,
-            int  FulfillerEmployeeId, DateTime ShippingDate, DateTime DateDeleted,
-            DateTime DateCreated, DateTime DateModified, Client SourceClient, User CreatorEmployee,
+            int  FulfillerEmployeeId, DateTime ShippingDate, DateTime DateCreated, DateTime DateDeleted,
+             DateTime DateModified, Client SourceClient, User CreatorEmployee,
             User FulfillerEmployee, Address DestinationAddress) {
             this.Id = id;
             this.CreatorEmployeeId = CreatorEmployeeId;

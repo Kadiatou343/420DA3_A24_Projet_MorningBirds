@@ -361,12 +361,7 @@ internal class WsysDbContext : DbContext {
         .HasConversion(utcDateTimeConverter)
         .IsRequired(false);
 
-        _ = modelBuilder.Entity<Address>()
-        .Property(address => address.RowVersion)
-        .HasColumnName("RowVersion")
-        .HasColumnOrder(11)
-        .IsRowVersion();
-
+      
         #endregion
 
         #region CONFIGURATION DE LA LIAISON ENTITE Product A TABLE 'Products'
@@ -707,6 +702,171 @@ internal class WsysDbContext : DbContext {
             .HasColumnOrder(8)
             .IsRowVersion();
 
+
+
+
+        #endregion
+
+        #region CONFIGURATION DE LA LIAISON ENTITE PurchaseOrder A TABLE 'PurchaseOrders'
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+            .ToTable("PurchaseOrders")
+            .HasKey(PurchaseOrder => PurchaseOrder.Id);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+            .Property(PurchaseOrder => PurchaseOrder.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int");
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .Property(PurchaseOrder => PurchaseOrder.Status)
+           .HasColumnName("Status")
+           .HasColumnOrder(1)
+           .HasColumnType("nvarchar(16)")
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .Property(PurchaseOrder => PurchaseOrder.ProductId)
+           .HasColumnName("ProductId")
+           .HasColumnOrder(2)
+           .HasColumnType("int")
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .Property(PurchaseOrder => PurchaseOrder.WarehouseId)
+           .HasColumnName("WarehouseId")
+           .HasColumnOrder(3)
+           .HasColumnType("int")
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+            .Property(PurchaseOrder => PurchaseOrder.Quantity)
+            .HasColumnName("Quantity")
+            .HasColumnOrder(4)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .Property(PurchaseOrder => PurchaseOrder.CompletionDate)
+           .HasColumnName("CompletionDate")
+           .HasColumnOrder(5)
+           .HasColumnType("datetime2(6)")
+           .HasPrecision(6)
+           .HasConversion(utcDateTimeConverter)
+           .IsRequired(false);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .Property(PurchaseOrder => PurchaseOrder.DateCreated)
+           .HasColumnName("DateCreated")
+           .HasColumnOrder(6)
+           .HasColumnType("datetime2(6)")
+           .HasPrecision(6)
+           .HasDefaultValueSql("GETUTCDATE()")
+           .HasConversion(utcDateTimeConverter)
+           .IsRequired(false);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+            .Property(PurchaseOrder => PurchaseOrder.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<PurchaseOrder>()
+           .Property(PurchaseOrder => PurchaseOrder.DateModified)
+           .HasColumnName("DateModified")
+           .HasColumnOrder(8)
+           .HasColumnType("datetime2(6)")
+           .HasPrecision(6)
+           .HasConversion(utcDateTimeConverter)
+           .IsRequired(false);
+
+        
+
+        #endregion
+
+        #region CONFIGURATION DE LA LIAISON ENTITE ShippingOrder A TABLE 'ShippingOrders'
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+            .ToTable("ShippingOrders")
+            .HasKey(ShippingOrder => ShippingOrder.Id);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+            .Property(ShippingOrder => ShippingOrder.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int");
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .Property(ShippingOrder => ShippingOrder.Status)
+           .HasColumnName("Status")
+           .HasColumnOrder(1)
+           .HasColumnType("nvarchar(16)")
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .Property(ShippingOrder => ShippingOrder.CreatorEmployeeId)
+           .HasColumnName("CreatorEmployeeId")
+           .HasColumnOrder(2)
+           .HasColumnType("int")
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .Property(ShippingOrder => ShippingOrder.DestinationAdressId)
+           .HasColumnName("DestinationAdressId")
+           .HasColumnOrder(3)
+           .HasColumnType("int")
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+            .Property(ShippingOrder => ShippingOrder.FulfillerEmployeeId)
+            .HasColumnName("FulfillerEmployeeId")
+            .HasColumnOrder(4)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .Property(ShippingOrder => ShippingOrder.ShippingDate)
+           .HasColumnName("ShippingDate")
+           .HasColumnOrder(5)
+           .HasColumnType("datetime2(6)")
+           .HasPrecision(6)
+           .HasDefaultValueSql("GETUTCDATE()")
+           .HasConversion(utcDateTimeConverter)
+           .IsRequired(true);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .Property(ShippingOrder => ShippingOrder.DateCreated)
+           .HasColumnName("DateCreated")
+           .HasColumnOrder(6)
+           .HasColumnType("datetime2(6)")
+           .HasPrecision(6)
+           .HasDefaultValueSql("GETUTCDATE()")
+           .HasConversion(utcDateTimeConverter)
+           .IsRequired(false);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+            .Property(ShippingOrder => ShippingOrder.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2(6)")
+            .HasPrecision(6)
+            .HasConversion(utcDateTimeConverter)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .Property(ShippingOrder => ShippingOrder.DateModified)
+           .HasColumnName("DateModified")
+           .HasColumnOrder(8)
+           .HasColumnType("datetime2(6)")
+           .HasPrecision(6)
+           .HasConversion(utcDateTimeConverter)
+           .IsRequired(false);
+
+        
 
         #endregion
 

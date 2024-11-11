@@ -15,8 +15,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         public int WarehouseId { get; set; }
         public int Quantity { get; set; }
         public DateTime CompletionDate { get; set; }
-        public DateTime? DateDeleted { get; set; }
         public DateTime? DateCreated { get; set; }
+        public DateTime? DateDeleted { get; set; }
         public DateTime? DateModified { get; set; }
         public virtual Product OrderedProduct { get; set; }
         public virtual Warehouse Warehouse { get; set; }
@@ -29,16 +29,16 @@ namespace _420DA3_A24_Projet.Business.Domain
         }
         //constructeur base de donnée
         public PurchaseOrder(int id,PurchaseOrderStatusEnum status, int productId, 
-            int warehouseId, int quantity, DateTime completionDate, DateTime? dateDeleted,
-            DateTime? dateCreated, DateTime? dateModified, Product orderedProduct, Warehouse warehouse) {
+            int warehouseId, int quantity, DateTime completionDate, DateTime? dateCreated, DateTime? dateDeleted
+            , DateTime? dateModified, Product orderedProduct, Warehouse warehouse) {
             this.Id = id;
             this.Status = status;
             this.ProductId = productId;
             this.WarehouseId = warehouseId;
             this.Quantity = quantity;
             this.CompletionDate = completionDate;
-            this.DateDeleted = dateDeleted;
             this.DateCreated = dateCreated;
+            this.DateDeleted = dateDeleted;
             this.DateModified = dateModified;
             this.OrderedProduct = orderedProduct;
             this.Warehouse = warehouse;
