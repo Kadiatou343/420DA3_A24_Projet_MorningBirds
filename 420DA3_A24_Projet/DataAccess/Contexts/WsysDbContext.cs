@@ -11,6 +11,9 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts;
 internal class WsysDbContext : DbContext {
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
+
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Supplier> Suppliers { get; set; }
      
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
@@ -42,7 +45,7 @@ internal class WsysDbContext : DbContext {
 
         _ = modelBuilder.Entity<User>()     // L'entité User
             .ToTable("Users")               // Est liée à une table qui se nomme 'Users'
-            .HasKey(user  => user.Id);      // Dont la clé primaire est la propriété Id de l'entité
+            .HasKey(user => user.Id);      // Dont la clé primaire est la propriété Id de l'entité
 
         _ = modelBuilder.Entity<User>()     // L'entite User 
             .Property(user => user.Id)      // A sa propriété Id
@@ -370,17 +373,17 @@ internal class WsysDbContext : DbContext {
         #endregion
 
         #region CONFIGURATION DE LA LIAISON ENTITE Product A TABLE 'Products'
-        _ = modelBuilder.Entity<Product>()     
-            .ToTable("Products")               
-            .HasKey(product => product.ProductId);       
+        _ = modelBuilder.Entity<Product>()
+            .ToTable("Products")
+            .HasKey(product => product.ProductId);
 
         // CONFIGURATION DES COLONNE DE LA TABLE 'Products'
 
-        _ = modelBuilder.Entity<Product>()     
-            .Property(product => product.ProductId)      
-            .HasColumnName("ProductId")            
-            .HasColumnOrder(0)              
-            .HasColumnType("int");          
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.ProductId)
+            .HasColumnName("ProductId")
+            .HasColumnOrder(0)
+            .HasColumnType("int");
 
         _ = modelBuilder.Entity<Product>()
             .Property(product => product.ProductName)
@@ -506,7 +509,7 @@ internal class WsysDbContext : DbContext {
             .HasColumnOrder(1)
             .HasColumnType($"nvarchar({Supplier.SUPPLIER_NAME_MAX_LENGTH})")
             .IsRequired(true);
-            
+
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactLastName)
             .HasColumnName("ContactLastName")
@@ -796,14 +799,14 @@ internal class WsysDbContext : DbContext {
         // Relation un à plusieurs entre Client et warehouse coté Client
         _ = modelBuilder.Entity<Client>()
             .HasOne(warehouse => warehouse.Clients)
-            .WithMany(client => client.AssignedWarehouse)  
+            .WithMany(client => client.AssignedWarehouse)
             .HasForeignkey(client => client.WarehouseId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relation un à plusieurs entre Client et Produit coté Client
         _ = modelBuilder.Entity<Client>()
             .HasMany(product => product.OwnerClient)
-            .WithOne(client => client.Products)         
+            .WithOne(client => client.Products)
            .HasForeignKey(product => product.OwnerClientId);
 
         // Relation un à plusieurs entre Client et ShipmentOrder coté Client
@@ -813,6 +816,29 @@ internal class WsysDbContext : DbContext {
             .HasForeignKey(shippingOrder => shippingOrder.SourceClientId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        #endregion
+
+        #region RELATION COTÉ PRODUCT
+        _ = modelBuilder.Entity<Product>()
+            .HasOne(product => product.Client)
+            .WithMany(client => client.Products)
+            .HasForeignKey(product => product.ClientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        _ = modelBuilder.Entity<Product>()
+            .HasOne(product => product.Supplier)
+            .WithMany(supplier => supplier.Products)
+            .HasForeignKey(product => product.SupplierId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        #endregion
+
+        #region RELATION COTÉ SUPPLIER
+        _ = modelBuilder.Entity<Supplier>()
+            .HasMany(supplier => supplier.Products)
+            .WithOne(product => product.Supplier)
+            .HasForeignKey(product => product.SupplierId)
+            .OnDelete(DeleteBehavior.Cascade);
         #endregion
 
         #endregion
@@ -848,6 +874,15 @@ internal class WsysDbContext : DbContext {
 
         _ = modelBuilder.Entity<User>()
             .HasData(user1, user2);
+
+        // Ajout des données de Supplier 
+        Supplier sup1 = new Supplier("THE ULTIMATE SUPPLIER", "Test", "Jonhy", "jonhytest@gmail.com", "4503497684") { SupplierId = 1 };
+
+        // Ajout des données de Clients 
+        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450", null) { Id = 1 };
+
+        // Ajout des données de Product
+        Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) { ProductId= 1 };
 
         #endregion
 
