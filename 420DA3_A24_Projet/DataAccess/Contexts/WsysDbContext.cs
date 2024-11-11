@@ -1059,12 +1059,35 @@ internal class WsysDbContext : DbContext {
            .HasForeignKey<Shipment>(Shipment => Shipment.ShippingOrderId)
            .OnDelete(DeleteBehavior.Cascade);
 
-        // Relation un à un entre ShippingOrder et user côté ShippingOrder
+        // Relation un à plusieurs entre ShippingOrder et user côté ShippingOrder
         _ = modelBuilder.Entity<ShippingOrder>()
-           .HasOne(ShippingOrder => ShippingOrder.Shipment)
-           .WithOne(User => User.ShippingOrder)
-           .HasForeignKey<User>(User => User.CreatedShipOrders)
+           .HasOne(ShippingOrder => ShippingOrder.CreatorEmployee)
+           .WithMany(User => User.CreatedShipOrders)
+           .HasForeignKey(US => US.Id)
            .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation un à plusieurs entre ShippingOrder et user côté ShippingOrder
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .HasOne(ShippingOrder => ShippingOrder.FulfillerEmployee)
+           .WithMany(User => User.FulfilledShipOrders)
+           .HasForeignKey(US => US.Id)
+           .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation un à un entre ShippingOrder et adress côté ShippingOrder
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .HasOne(ShippingOrder => ShippingOrder.DestinationAddress)
+           .WithOne(Adress => Adress.OwnerShipOrder)
+           .HasForeignKey<Address>(Adress => Adress.Id)
+           .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation un à un entre ShippingOrder et ShippingOrderProduct côté ShippingOrder
+        _ = modelBuilder.Entity<ShippingOrder>()
+           .HasOne(ShippingOrder => ShippingOrder.CreatorEmployee)
+           .WithMany(ShippingOrderProduct => ShippingOrderProduct.CreatedShipOrders)
+           .HasForeignKey(SOP => SOP.Id)
+           .OnDelete(DeleteBehavior.Cascade);
+
+
 
 
 

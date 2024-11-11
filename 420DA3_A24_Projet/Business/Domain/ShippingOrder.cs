@@ -22,9 +22,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         public DateTime? DateModified { get; set; }
         public virtual Client SourceClient { get; set; } 
         public virtual Shipment Shipment { get; set; }
-        public User? CreatorEmployee { get; set; }
-        public User? FulfillerEmployee { get; set; }
-        public Address DestinationAddress { get; set; }
+        public virtual User? CreatorEmployee { get; set; }
+        public virtual User? FulfillerEmployee { get; set; }
+        public virtual Address DestinationAddress { get; set; }
         public virtual List<ShippingOrderProduct> ShippingOrderProducts { get; set; }
 
 
