@@ -175,7 +175,7 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
-        #region CONFIGURATION DE LA LIAISON ENTITE Client A TABLE 'CLIENTS'
+        #region CONFIGURATION DE LA LIAISON ENTITE Client A TABLE 'Clients'
 
         _ = modelBuilder.Entity<Client>()
            .ToTable("Clients")
@@ -265,7 +265,7 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
-        #region CONFIGURATION DE LA LIAISON ENTITE Address A TABLE 'ADDRESSES'
+        #region CONFIGURATION DE LA LIAISON ENTITE Address A TABLE 'Addresses'
 
         _ = modelBuilder.Entity<Address>()
            .ToTable("Addresses")
@@ -812,6 +812,25 @@ internal class WsysDbContext : DbContext {
             .WithMany(shippingOrder => shippingOrder.SourceClient)
             .HasForeignKey(shippingOrder => shippingOrder.SourceClientId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
+
+        #region RELATION COTÉ ADDRESSE
+
+        // Relation un à un entre Addresse et Warehouse côté addresse
+        _ = modelBuilder.Entity<Address>()
+            .HasOne(address => address.OwnerWarehouse)
+            .WithOne(warehouse => warehouse.Adresse)
+            .HasForeignKey<Warehouse>(warehouse => warehouse.AddressId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation un à un entre Adresse et ShippingOrder côté addresse
+        _ = modelBuilder.Entity<Address>()
+          .HasOne(address => address.OwnerShipOrder)
+          .WithOne(shippingOrder => shippingOrder.DestinationAddress)
+          .HasForeignKey<Warehouse>(shippingOrder => shippingOrder.DestinationAdressId)
+          .OnDelete(DeleteBehavior.Cascade);
+
 
         #endregion
 
