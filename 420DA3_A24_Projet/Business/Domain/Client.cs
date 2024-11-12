@@ -64,7 +64,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             } 
         }
 
-        public int AssignedWarehouseId { get; set; }
+        public int WarehouseId { get; set; }
    
         public string ContactFirstName {
             get {
@@ -161,16 +161,16 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="contactLastName">prenom de celui à contacter dans l'entrepise</param>
         /// <param name="contactEmail">Boite mail de l'entreprise</param>
         /// <param name="contactTelephone">Numéro de téléphone de l'entraprise</param>
-        /// <param name="assignedwarehouseId">Identifienat du fournisseur associé aux client</param>
+        /// <param name="warehouseId">Identifienat du fournisseur associé aux client</param>
         public Client (string clientName, string contactFirstName, string contactLastName,
-            string contactEmail, string contactTelephone, int assignedwarehouseId)
+            string contactEmail, string contactTelephone, int warehouseId)
         {
             this.ClientName = clientName;
             this.ContactFirstName = contactFirstName;
             this.ContactLastName = contactLastName;
             this.ContactEmail = contactEmail;
             this.ContactTelephone = contactTelephone;
-            this.AssignedWarehouseId = assignedwarehouseId;
+            this.WarehouseId = warehouseId;
         }
 
         protected Client(
@@ -189,7 +189,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         {
             this.Id = id;
             this.ClientName = clientName;
-            this.AssignedWarehouseId = assignedwarehouseId;
+            this.WarehouseId = assignedwarehouseId;
             this.ContactFirstName = contactFirstName;
             this.ContactLastName = contactLastName;
             this.ContactEmail = contactEmail;
