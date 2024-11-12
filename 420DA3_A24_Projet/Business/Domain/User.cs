@@ -75,7 +75,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// L'entrepot associé à cet utilisateur s'il est un employé d'entrepot
         /// </summary>
-        public virtual Warehouse? EmployeeWarehouse { get; set; } = null!;
+        public virtual Warehouse? EmployeeWarehouse { get; set; } = null;
 
         /// <summary>
         /// Les rôles associés à cet utilisateur 
