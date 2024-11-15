@@ -32,6 +32,7 @@ internal class MedecinService {
                         break;
                 }
             }
+            // retourner l'instance courante du formulaire (créée, visualisée, modifiée ou supprimée)
             return this.view.GetCurrentInstance();
 
         } catch (Exception ex) {
@@ -41,7 +42,11 @@ internal class MedecinService {
     }
 
     public List<Medecin> Search(string filter) {
-        return this.dao.Search(filter);
+        try {
+            return this.dao.Search(filter);
+        } catch (Exception ex) {
+            throw new Exception("Failed to search for [Medecin] instances.", ex);
+        }
     }
 
     public Medecin Create(Medecin nouveauMedecin) {
@@ -53,14 +58,18 @@ internal class MedecinService {
     }
 
     public Medecin? GetById(int id) {
-        return this.dao.GetById(id);
+        try {
+            return this.dao.GetById(id);
+        } catch (Exception ex) {
+            throw new Exception($"Failed to obtain [Medecin] instance with id# {id}.", ex);
+        }
     }
 
     public Medecin Update(Medecin medecin) {
         try {
             return this.dao.Update(medecin);
         } catch (Exception ex) {
-            throw new Exception("Failed to update [Medecin] instance.", ex);
+            throw new Exception($"Failed to update [Medecin] instance with id# {medecin.Id}.", ex);
         }
     }
 
@@ -68,7 +77,7 @@ internal class MedecinService {
         try {
             this.dao.Delete(medecin, softDeletes);
         } catch (Exception ex) {
-            throw new Exception("Failed to delete [Medecin] instance.", ex);
+            throw new Exception($"Failed to delete [Medecin] instance with id# {medecin.Id}.", ex);
         }
     }
 

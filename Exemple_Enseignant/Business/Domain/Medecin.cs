@@ -25,7 +25,7 @@ public class Medecin {
 
     // Propriétés des médecins
     public int Id { get; set; }
-    public string Nom { 
+    public string Nom {
         get { return this.nom; }
         set {
             if (value.Length > LASTNAME_MAX_LENGTH) {

@@ -38,4 +38,12 @@ public abstract class AbstractEntityService<TEntity, TEntityKey> : AbstractServi
     public virtual TEntity Delete(TEntity entity, bool doSaveChanges = true, bool softDeletes = true) {
         return this.Dao.Delete(entity, doSaveChanges, softDeletes);
     }
+
+    public IEntityView<TEntity, TEntityKey> GetEntityView() {
+        return this.View;
+    }
+
+    public T? GetEntityView<T>() where T : class, IEntityView<TEntity, TEntityKey> {
+        return this.GetEntityView() as T;
+    }
 }

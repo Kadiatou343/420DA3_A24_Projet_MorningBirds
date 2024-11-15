@@ -1,13 +1,7 @@
 ﻿using Exemple_Enseignant_Avance.Business.Abstractions;
-using Exemple_Enseignant_Avance.Business.Services;
 using Exemple_Enseignant_Avance.DataAccess.DataProviders;
 using ExtraAdvancedMultiTier.Business.Domain;
 using ExtraAdvancedMultiTier.Business.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.DataAccess;
 public static class DataProviderFactory {

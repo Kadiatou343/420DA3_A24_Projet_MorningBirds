@@ -2,12 +2,6 @@
 using Exemple_Enseignant_Avance.Business.Domain;
 using Exemple_Enseignant_Avance.Presentation.Views;
 using ExtraAdvancedMultiTier.Business.Abstractions;
-using ExtraAdvancedMultiTier.Business.Abstractions.Daos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.Business.Services;
 

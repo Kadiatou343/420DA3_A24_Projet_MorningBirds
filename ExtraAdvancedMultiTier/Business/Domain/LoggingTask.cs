@@ -1,10 +1,5 @@
 ﻿using Project_Utilities.Enums;
 using Project_Utilities.Services.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExtraAdvancedMultiTier.Business.Domain;
 internal class LoggingTask {
@@ -17,7 +12,7 @@ internal class LoggingTask {
     }
 
     public void Execute(IEnumerable<ILogger> loggers) {
-        List<Task > tasks = new List<Task>();
+        List<Task> tasks = new List<Task>();
         foreach (ILogger logger in loggers) {
             tasks.Add(Task.Run(() => {
                 switch (this.Level) {

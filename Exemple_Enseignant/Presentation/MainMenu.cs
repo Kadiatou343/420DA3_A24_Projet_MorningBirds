@@ -15,8 +15,8 @@ internal partial class MainMenu : Form {
 
     private void MedecinSearchBox_TextChanged(object sender, EventArgs e) {
         List<Medecin> results = this.app.MedecinService.Search(this.medecinSearchBox.Text);
-        this.medecinSearchResultsListBox.Items.Clear();
         int? selectedMedecinId = (this.medecinSearchResultsListBox.SelectedItem as Medecin)?.Id;
+        this.medecinSearchResultsListBox.Items.Clear();
         this.medecinSearchResultsListBox.SelectedItem = null;
         foreach (Medecin medecin in results) {
             _ = this.medecinSearchResultsListBox.Items.Add(medecin);
@@ -63,6 +63,7 @@ internal partial class MainMenu : Form {
         if (medecin is not null) {
             _ = this.app.MedecinService.OpenViewFor(ViewActionsEnum.Edition, medecin);
         }
+        this.triggerSearchProcess();
     }
 
     private void BtnMedecinSupprimer_Click(object sender, EventArgs e) {
@@ -77,10 +78,10 @@ internal partial class MainMenu : Form {
 
     #region Gestion des patients
 
-    private void PatientSearchBox_TextChanged(object sender, EventArgs e) {
+    private void triggerSearchProcess() {
         List<Patient> results = this.app.PatientService.Search(this.patientSearchBox.Text);
-        this.patientSearchResultsListBox.Items.Clear();
         int? selectedPatientId = (this.patientSearchResultsListBox.SelectedItem as Patient)?.Id;
+        this.patientSearchResultsListBox.Items.Clear();
         this.patientSearchResultsListBox.SelectedItem = null;
         foreach (Patient patient in results) {
             _ = this.patientSearchResultsListBox.Items.Add(patient);
@@ -88,6 +89,11 @@ internal partial class MainMenu : Form {
                 this.patientSearchResultsListBox.SelectedItem = patient;
             }
         }
+
+    }
+
+    private void PatientSearchBox_TextChanged(object sender, EventArgs e) {
+        this.triggerSearchProcess();
     }
 
     private void PatientSearchResultsListBox_SelectedIndexChanged(object sender, EventArgs e) {

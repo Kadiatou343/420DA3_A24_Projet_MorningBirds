@@ -1,6 +1,5 @@
 ﻿using Exemple_Enseignant_Avance.Business.Abstractions;
 using Exemple_Enseignant_Avance.Business.Domain;
-using Exemple_Enseignant_Avance.DataAccess.Contexts;
 using ExtraAdvancedMultiTier.Business.Abstractions;
 using ExtraAdvancedMultiTier.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;

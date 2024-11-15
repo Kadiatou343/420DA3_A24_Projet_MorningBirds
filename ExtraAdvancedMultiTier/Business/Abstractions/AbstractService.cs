@@ -1,16 +1,9 @@
-﻿using ExtraAdvancedMultiTier.Business.Exceptions;
-using ExtraAdvancedMultiTier.Business.Services;
+﻿using ExtraAdvancedMultiTier.Business.Services;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static ExtraAdvancedMultiTier.Business.Abstractions.IService;
 
 namespace ExtraAdvancedMultiTier.Business.Abstractions;
 public abstract class AbstractService : IService {
-    protected IServiceContainer? Parent {  get; set; }
+    protected IServiceContainer? Parent { get; set; }
 
     private bool isStarted = false;
 
@@ -21,7 +14,7 @@ public abstract class AbstractService : IService {
     public event IStoppable.StoppableEventHandler? Stopped;
 
 
-    protected AbstractService(IServiceContainer? parent = null) { 
+    protected AbstractService(IServiceContainer? parent = null) {
         parent?.RegisterService(this);
         this.Parent = parent;
         this.Started += this.OnStarting;

@@ -1,6 +1,5 @@
 ﻿using Exemple_Enseignant_Avance.Business.Abstractions;
 using Exemple_Enseignant_Avance.Business.Domain;
-using Exemple_Enseignant_Avance.DataAccess.Daos;
 using Exemple_Enseignant_Avance.Presentation.Views;
 using ExtraAdvancedMultiTier.Business.Abstractions;
 
@@ -33,7 +32,7 @@ public class PatientService : AbstractEntityService<Patient, int>, IEntityServic
     /// <exception cref="ArgumentException">Si le conteneur de services reçu ne contient pas de DataProviderService.</exception>
     public PatientService(IServiceContainer parent)
         : base(parent) {
-        this.Dao = parent.GetService<DataProviderService>()?.GetDataProvider()?.GetPatientDao() 
+        this.Dao = parent.GetService<DataProviderService>()?.GetDataProvider()?.GetPatientDao()
             ?? throw new ArgumentException("Le conteneur de services parent reçu n'a pas de DataProviderService enregistré.", nameof(parent));
         this.View = new PatientView(parent);
     }
