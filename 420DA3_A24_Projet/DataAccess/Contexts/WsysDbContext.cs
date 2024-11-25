@@ -909,7 +909,7 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<User>()
             .HasOne(user => user.EmployeeWarehouse)
             .WithMany(warehouse => warehouse.WarehouseEmployees)
-            .HasForeignKey(user => user.EmployeeWarehouse.Id)
+            .HasForeignKey(user => user.EmployeeWarehouseId)
             .OnDelete(DeleteBehavior.SetNull);
 
         // Relation un à plusieurs entre User et ShippingOrder coté User (CreatedShipOrders)
@@ -983,7 +983,7 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<Client>()
             .HasOne(client => client.AssignedWarehouse)
             .WithMany(warehouse => warehouse.Clients)
-            .HasForeignKey(client => client.AssignedWarehouseId)
+            .HasForeignKey(client => client.WarehouseId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Relation un à plusieurs entre Client et Produit coté Client

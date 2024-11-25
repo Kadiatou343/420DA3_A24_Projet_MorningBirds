@@ -1,15 +1,8 @@
-﻿using Exemple_Enseignant_Avance.Business.Abstractions;
-using Exemple_Enseignant_Avance.Business.Services;
-using Exemple_Enseignant_Avance.DataAccess;
+﻿using Exemple_Enseignant_Avance.Business.Services;
 using Exemple_Enseignant_Avance.Presentation;
 using ExtraAdvancedMultiTier.Business.Abstractions;
 using ExtraAdvancedMultiTier.Business.Services;
 using ExtraAdvancedMultiTier.Presentation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.Business;
 
@@ -23,12 +16,10 @@ internal class AdvancedExampleApplication : AbstractApplication {
 
     private readonly MainMenu mainMenu;
 
-    public AdvancedExampleApplication() {
-        LoggingService logService = new LoggingService(this);
-        logService.RegisterLogger(new DebugConsoleLogger());
-        logService.RegisterLogger(new ConsoleWindowLogger());
+    public AdvancedExampleApplication() : base() {
+        this.GetLoggingService().RegisterLogger(new DebugConsoleLogger());
+        this.GetLoggingService().RegisterLogger(new ConsoleWindowLogger());
         _ = new DataProviderService(this, this.Configurations);
-        _ = new PatientService(this);
         this.mainMenu = new MainMenu(this);
     }
 
@@ -54,4 +45,7 @@ internal class AdvancedExampleApplication : AbstractApplication {
         this.GetService<LoggingService>()?.Error(ex);
     }
 
+    protected override IFacade GetAppropriateFacade() {
+        throw new NotImplementedException();
+    }
 }

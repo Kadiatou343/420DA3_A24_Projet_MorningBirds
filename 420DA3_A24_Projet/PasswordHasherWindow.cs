@@ -8,7 +8,7 @@ public partial class PasswordHasherWindow : Form {
     }
 
     private void ConvertButton_Click(object sender, EventArgs e) {
-        PasswordService passwordService = new PasswordService();
+        PasswordService passwordService = PasswordService.GetInstance();
         string password = this.clearPasswordTextBox.Text;
         string hashedPassword = passwordService.HashPassword(password);
         this.phHashTextBox.Text = hashedPassword;

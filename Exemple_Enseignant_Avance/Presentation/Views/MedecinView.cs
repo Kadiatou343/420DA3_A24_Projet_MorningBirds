@@ -3,7 +3,6 @@ using Exemple_Enseignant_Avance.Business.Services;
 using ExtraAdvancedMultiTier.Business.Abstractions;
 using Project_Utilities.Enums;
 using Project_Utilities.Exceptions;
-using System;
 using System.Runtime.Serialization;
 
 namespace Exemple_Enseignant_Avance.Presentation.Views;
@@ -165,7 +164,7 @@ public partial class MedecinView : Form, IEntityView<Medecin, int> {
         try {
             switch (this.CurrentAction) {
                 case ViewActionsEnum.Creation:
-                    this.CurrentInstance = this.CreationActionTriggeredEvent?.Invoke() 
+                    this.CurrentInstance = this.CreationActionTriggeredEvent?.Invoke()
                         ?? throw new Exception("Event [CreationActionTriggeredEvent] has no attached handler.");
                     ;
                     break;

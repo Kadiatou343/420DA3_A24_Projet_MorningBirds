@@ -1,5 +1,4 @@
-﻿using ExtraAdvancedMultiTier.Business.Abstractions;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace _420DA3_A24_Projet.Business.Services;
 
@@ -9,7 +8,7 @@ namespace _420DA3_A24_Projet.Business.Services;
 /// </summary>
 /// <remarks>
 /// </remarks>
-public class PasswordService : AbstractService {
+public class PasswordService {
     // Paramètres de hashage.
     private const int saltSize = 16; // sel cryptographique de 128 bits
     private const int keySize = 32; // clé cryptographique de 256 bits
@@ -17,8 +16,14 @@ public class PasswordService : AbstractService {
     private const char hashSegmentDelimiter = ':'; // séparateur des sections générées - NE PAS CHANGER (sinon hashs existants invalidables)
     private static readonly HashAlgorithmName cryptographicAlgorithm = HashAlgorithmName.SHA256; // algorithme de base
 
+    private static PasswordService? instance;
 
-    public PasswordService(IServiceContainer? parent = null) : base(parent) { }
+    private PasswordService() { }
+
+    public static PasswordService GetInstance() {
+        instance ??= new PasswordService();
+        return instance;
+    }
 
 
     /// <summary>

@@ -9,6 +9,10 @@ public interface IEntityService<TEntity, TKey> : IService
     protected abstract IDao<TEntity, TKey> Dao { get; }
     protected abstract IEntityView<TEntity, TKey> View { get; }
 
+    public IEntityView<TEntity, TKey> GetEntityView();
+
+    public T? GetEntityView<T>() where T : class, IEntityView<TEntity, TKey>;
+
     public List<TEntity> GetAll(bool includeDeleted = false);
 
     public TEntity? GetById(TKey id, bool includeDeleted = false);

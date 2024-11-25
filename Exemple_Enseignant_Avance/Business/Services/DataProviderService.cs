@@ -1,14 +1,7 @@
 ﻿using Exemple_Enseignant_Avance.Business.Abstractions;
 using Exemple_Enseignant_Avance.DataAccess;
-using Exemple_Enseignant_Avance.DataAccess.DataProviders;
 using ExtraAdvancedMultiTier.Business.Abstractions;
 using ExtraAdvancedMultiTier.Business.Domain;
-using ExtraAdvancedMultiTier.Business.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exemple_Enseignant_Avance.Business.Services;
 
@@ -30,7 +23,7 @@ public class DataProviderService : AbstractService {
     /// </summary>
     /// <param name="parent">Le conteneur de service parent.</param>
     /// <param name="configurations">Les configurations de l'application.</param>
-    public DataProviderService(IServiceContainer parent, AppConfigurations configurations) : base(parent) { 
+    public DataProviderService(IServiceContainer parent, AppConfigurations configurations) : base(parent) {
         this.dataProvider = DataProviderFactory.GetDataProvider(configurations);
     }
 

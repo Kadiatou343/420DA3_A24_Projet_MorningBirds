@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-
-namespace ExtraAdvancedMultiTier.Business.Abstractions;
+﻿namespace ExtraAdvancedMultiTier.Business.Abstractions;
 
 /// <summary>
 /// Interface pour les entités du domaine.

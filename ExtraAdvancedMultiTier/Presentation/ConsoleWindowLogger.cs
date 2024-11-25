@@ -1,15 +1,6 @@
 ﻿using Project_Utilities.Enums;
 using Project_Utilities.Services.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ExtraAdvancedMultiTier.Presentation;
 public partial class ConsoleWindowLogger : Form, ILogger {
