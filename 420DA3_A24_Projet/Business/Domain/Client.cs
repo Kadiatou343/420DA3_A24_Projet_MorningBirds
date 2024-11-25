@@ -206,11 +206,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// Override de la méthode ToString pour afficher les informations d'un client
         /// </summary>
-        /// <returns>un String représentant le client </returns>
-
-        public override string ToString() {
-            return $"#{this.Id} - {this.ClientName}";
-        }
+        /// <returns>un String représentant le client </returns>     
 
         public bool ValidateCLientName(string clientName) 
         { 
