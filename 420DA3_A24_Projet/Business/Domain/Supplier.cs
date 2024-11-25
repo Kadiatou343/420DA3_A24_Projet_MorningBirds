@@ -95,19 +95,19 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         #region METHODES DE VALIDATION
         private static bool ValidateSupplierName(string value) {
-            return value <= SUPPLIER_NAME_MAX_LENGTH;
+            return value.Length <= SUPPLIER_NAME_MAX_LENGTH;
         }
 
         private static bool ValidateContactName(string value) {
-            return value <= CONTACT_NAME_MAX_LENGTH;
+            return value.Length <= CONTACT_NAME_MAX_LENGTH;
         }
 
         private static bool ValidateContactEmail(string value) {
-            return value <= CONTACT_EMAIL_MAX_LENGTH;
+            return value.Length <= CONTACT_EMAIL_MAX_LENGTH;
         }
 
         private static bool ValidateContactPhone(string value) {
-            return value <= CONTACT_PHONE_MAX_LENGTH
+            return value.Length <= CONTACT_PHONE_MAX_LENGTH
         }
         #endregion
 
