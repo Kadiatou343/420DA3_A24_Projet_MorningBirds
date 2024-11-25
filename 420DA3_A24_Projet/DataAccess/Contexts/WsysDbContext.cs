@@ -1080,7 +1080,7 @@ internal class WsysDbContext : DbContext {
            .HasForeignKey<Address>(Adress => Adress.Id)
            .OnDelete(DeleteBehavior.Cascade);
 
-        // Relation un à un entre ShippingOrder et ShippingOrderProduct côté ShippingOrder
+        // Relation un à plusieurs entre ShippingOrder et ShippingOrderProduct côté ShippingOrder
         _ = modelBuilder.Entity<ShippingOrder>()
            .HasOne(ShippingOrder => ShippingOrder.CreatorEmployee)
            .WithMany(ShippingOrderProduct => ShippingOrderProduct.CreatedShipOrders)
