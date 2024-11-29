@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Exe</OutputType>
 	<StartupObject>_420DA3_A24_Exemple_Enseignant.Program</StartupObject>
+	  <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
   <ItemGroup>
