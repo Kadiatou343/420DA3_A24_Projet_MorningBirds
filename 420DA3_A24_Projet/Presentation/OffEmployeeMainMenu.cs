@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _420DA3_A24_Projet.Business;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,8 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation;
-public partial class OffEmployeeMainMenu : Form {
-    public OffEmployeeMainMenu() {
-        InitializeComponent();
+internal partial class OffEmployeeMainMenu : Form {
+    private WsysApplication parentApp;
+    public OffEmployeeMainMenu(WsysApplication parentApp) {
+        this.parentApp = parentApp;
+        this.InitializeComponent();
     }
 }
