@@ -24,7 +24,7 @@ internal partial class LoginWindow : Form {
             this.parentApp.LoginService.TryLogIn(username, password);
             this.DialogResult = DialogResult.OK;
         } catch (Exception ex) {
-            string message = ex.Message;
+            this.parentApp.HandleException(ex);
         }
 
     }

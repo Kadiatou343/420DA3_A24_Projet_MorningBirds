@@ -3,6 +3,7 @@ using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.Presentation;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,4 +70,28 @@ internal class WsysApplication {
             }
         }
     }
+
+    public void HandleException(Exception e) {
+        string? stack = e.StackTrace;
+
+        StringBuilder messageBuilder = new StringBuilder();
+
+        Console.Error.WriteLine(e.Message);
+
+        _ = messageBuilder.Append(e.Message);
+
+        while (e.InnerException != null) {
+            e = e.InnerException;
+            Console.Error.WriteLine(e.Message);
+            _ = messageBuilder.Append(Environment.NewLine + "Causé par : " + e.Message);
+        }
+
+
+        Console.Error.WriteLine("Stack trace : ");
+        Console.Error.WriteLine(stack);
+
+        _ = MessageBox.Show(messageBuilder.ToString(), "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+    }
+
 }
