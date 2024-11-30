@@ -30,7 +30,7 @@ internal class RoleDAO {
                 .SingleOrDefault();
     }
 
-    public List<Role> SearchRoles(string filter, bool excludeDeleted = true) {
+    public List<Role> Search(string filter, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Roles
                 .Where( 

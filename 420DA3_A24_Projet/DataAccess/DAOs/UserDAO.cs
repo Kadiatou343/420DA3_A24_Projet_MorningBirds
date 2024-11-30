@@ -33,35 +33,37 @@ internal class UserDAO {
                 .SingleOrDefault();
     }
 
-    public List<User> SearchUsers(string filter, bool excludeDeleted = true) {
+    public List<User> Search(string filter, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Users.Include(user => user.EmployeeWarehouse)
                 .Where(
-                    user => (
-                        user.Username.ToLower().Contains(filter.ToLower())
-                        || user.EmployeeWarehouse.WareHouseName.ToLower().Contains(filter.ToLower())))
+                    user => user.Username.ToLower().Contains(filter.ToLower()))
                 .ToList()
             : this.context.Users.Include(user => user.EmployeeWarehouse)
                 .Where(
-                    user => (
-                        user.Username.ToLower().Contains(filter.ToLower())
-                        || user.EmployeeWarehouse.WareHouseName.ToLower().Contains(filter.ToLower()))
+                    user => user.Username.ToLower().Contains(filter.ToLower())
                         && user.DateDeleted == null)
                 .ToList();
-    } // TODO Find solution how to deal with possible null references
+    } 
+
+    public List<User> GetByWarehouse(Warehouse warehouse, bool excludeDeleted = true) {
+        return !excludeDeleted
+            ? this.context.Users.Include(user => user.EmployeeWarehouse)
+                .Where(
+                    user => user.EmployeeWarehouse != null && user.EmployeeWarehouse.Equals(warehouse))
+                .ToList()
+            : this.context.Users.Include(user => user.EmployeeWarehouse)
+                .Where(
+                    user => user.EmployeeWarehouse != null && user.EmployeeWarehouse.Equals(warehouse)
+                        && user.DateDeleted == null)
+                .ToList();
+    }
 
     public User? GetByUsername(string username) {
         return this.context.Users
             .Include(user => user.EmployeeWarehouse)
             .Where(user => (user.Username == username && user.DateDeleted == null))
             .SingleOrDefault();
-    }
-
-    public List<User> GetUsersByWarehouse(Warehouse warehouse) {
-        return this.context.Users
-            .Include (user => user.EmployeeWarehouse)
-            .Where(user => (user.EmployeeWarehouse == null && user.EmployeeWarehouseId == warehouse.Id))
-            .ToList();
     }
 
     public User Create(User user) {
@@ -74,7 +76,7 @@ internal class UserDAO {
     public User Update(User user) {
         user.DateModified = DateTime.Now;
         _ = this.context.Users.Update(user);
-        _ = _ = this.context.SaveChanges();
+        _ = this.context.SaveChanges();
 
         return user;
     }
