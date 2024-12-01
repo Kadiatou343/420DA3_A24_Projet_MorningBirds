@@ -16,4 +16,37 @@ internal partial class AdminMainMenu : Form {
         this.parentApp = parentApp;
         this.InitializeComponent();
     }
+
+    private void LogoutButtton_Click(object sender, EventArgs e) {
+        this.parentApp.LoginService.Logout();
+        this.DialogResult = DialogResult.Continue;
+    }
+
+    #region Gestion des utilisateurs
+
+    private void SearchTextBox_TextChanged(object sender, EventArgs e) {
+
+    }
+
+    private void UserListBox_SelectedIndexChanged(object sender, EventArgs e) {
+
+    }
+
+    private void SeeUserDetailsButton_Click(object sender, EventArgs e) {
+
+    }
+
+    private void UpdateUserButton_Click(object sender, EventArgs e) {
+
+    }
+
+    private void DeleteUserButton_Click(object sender, EventArgs e) {
+
+    }
+
+    private void CreateUserButton_Click(object sender, EventArgs e) {
+
+    }
+
+    #endregion
 }
