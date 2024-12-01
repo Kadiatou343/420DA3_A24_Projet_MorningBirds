@@ -71,6 +71,10 @@ internal class WsysApplication {
         }
     }
 
+    public string GetCopyright() {
+        return $"(c) {DateTime.Now.Year} Morning Birds - All Rights reserved";
+    }
+
     public void HandleException(Exception e) {
         string? stack = e.StackTrace;
 

@@ -24,18 +24,414 @@ partial class UserView {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+        this.topBarPanel = new Panel();
+        this.viewModeValueLabel = new Label();
+        this.viewModeLabal = new Label();
+        this.bottomBarPanel = new Panel();
+        this.cancelButton = new Button();
+        this.actionButton = new Button();
+        this.copyrightLabel = new Label();
+        this.mainTableLayout = new TableLayoutPanel();
+        this.mainPanel = new Panel();
+        this.metaDataPanel = new Panel();
+        this.dateCreatedLabel = new Label();
+        this.dateModifiedLabel = new Label();
+        this.dateDeletedLabel = new Label();
+        this.dateDeletedDTPicker = new DateTimePicker();
+        this.dateCreatedDTPicker = new DateTimePicker();
+        this.dateModifiedDTPicker = new DateTimePicker();
+        this.idNumUpDown = new NumericUpDown();
+        this.idLabel = new Label();
+        this.usernameTextBox = new TextBox();
+        this.passwordTextBox = new TextBox();
+        this.usernameLabel = new Label();
+        this.passwordLabel = new Label();
+        this.employeeWhListBox = new ListBox();
+        this.userRolesGroupBox = new GroupBox();
+        this.adminRoleChkBox = new CheckBox();
+        this.whEmpRoleChkBox = new CheckBox();
+        this.officeEmpRoleChkBox = new CheckBox();
+        this.adminRoleLabel = new Label();
+        this.officeEmpRoleLabel = new Label();
+        this.whEmpRoleLabel = new Label();
+        this.topBarPanel.SuspendLayout();
+        this.bottomBarPanel.SuspendLayout();
+        this.mainTableLayout.SuspendLayout();
+        this.mainPanel.SuspendLayout();
+        this.metaDataPanel.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).BeginInit();
+        this.userRolesGroupBox.SuspendLayout();
         this.SuspendLayout();
+        // 
+        // topBarPanel
+        // 
+        this.topBarPanel.Controls.Add(this.viewModeValueLabel);
+        this.topBarPanel.Controls.Add(this.viewModeLabal);
+        this.topBarPanel.Dock = DockStyle.Top;
+        this.topBarPanel.Location = new Point(0, 0);
+        this.topBarPanel.Name = "topBarPanel";
+        this.topBarPanel.Size = new Size(1128, 60);
+        this.topBarPanel.TabIndex = 0;
+        // 
+        // viewModeValueLabel
+        // 
+        this.viewModeValueLabel.AutoSize = true;
+        this.viewModeValueLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.viewModeValueLabel.Location = new Point(168, 19);
+        this.viewModeValueLabel.Margin = new Padding(4, 0, 4, 0);
+        this.viewModeValueLabel.Name = "viewModeValueLabel";
+        this.viewModeValueLabel.Size = new Size(64, 25);
+        this.viewModeValueLabel.TabIndex = 2;
+        this.viewModeValueLabel.Text = "NONE";
+        // 
+        // viewModeLabal
+        // 
+        this.viewModeLabal.AutoSize = true;
+        this.viewModeLabal.Location = new Point(13, 19);
+        this.viewModeLabal.Margin = new Padding(4, 0, 4, 0);
+        this.viewModeLabal.Name = "viewModeLabal";
+        this.viewModeLabal.Size = new Size(137, 25);
+        this.viewModeLabal.TabIndex = 1;
+        this.viewModeLabal.Text = "MODE DE VUE :";
+        // 
+        // bottomBarPanel
+        // 
+        this.bottomBarPanel.Controls.Add(this.cancelButton);
+        this.bottomBarPanel.Controls.Add(this.actionButton);
+        this.bottomBarPanel.Controls.Add(this.copyrightLabel);
+        this.bottomBarPanel.Dock = DockStyle.Bottom;
+        this.bottomBarPanel.Location = new Point(0, 648);
+        this.bottomBarPanel.Name = "bottomBarPanel";
+        this.bottomBarPanel.Size = new Size(1128, 80);
+        this.bottomBarPanel.TabIndex = 1;
+        // 
+        // cancelButton
+        // 
+        this.cancelButton.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
+        this.cancelButton.Location = new Point(972, 13);
+        this.cancelButton.Margin = new Padding(4, 5, 4, 5);
+        this.cancelButton.Name = "cancelButton";
+        this.cancelButton.Size = new Size(143, 53);
+        this.cancelButton.TabIndex = 5;
+        this.cancelButton.Text = "Cancel";
+        this.cancelButton.UseVisualStyleBackColor = true;
+        // 
+        // actionButton
+        // 
+        this.actionButton.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
+        this.actionButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.actionButton.Location = new Point(815, 13);
+        this.actionButton.Margin = new Padding(4, 5, 4, 5);
+        this.actionButton.Name = "actionButton";
+        this.actionButton.Size = new Size(143, 53);
+        this.actionButton.TabIndex = 4;
+        this.actionButton.Text = "ACTION";
+        this.actionButton.UseVisualStyleBackColor = true;
+        // 
+        // copyrightLabel
+        // 
+        this.copyrightLabel.AutoSize = true;
+        this.copyrightLabel.Location = new Point(13, 31);
+        this.copyrightLabel.Margin = new Padding(4, 0, 4, 0);
+        this.copyrightLabel.Name = "copyrightLabel";
+        this.copyrightLabel.Size = new Size(91, 25);
+        this.copyrightLabel.TabIndex = 3;
+        this.copyrightLabel.Text = "Copyright";
+        // 
+        // mainTableLayout
+        // 
+        this.mainTableLayout.ColumnCount = 3;
+        this.mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+        this.mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+        this.mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+        this.mainTableLayout.Controls.Add(this.mainPanel, 1, 0);
+        this.mainTableLayout.Dock = DockStyle.Fill;
+        this.mainTableLayout.Location = new Point(0, 60);
+        this.mainTableLayout.Name = "mainTableLayout";
+        this.mainTableLayout.RowCount = 1;
+        this.mainTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.mainTableLayout.Size = new Size(1128, 588);
+        this.mainTableLayout.TabIndex = 2;
+        // 
+        // mainPanel
+        // 
+        this.mainPanel.Controls.Add(this.userRolesGroupBox);
+        this.mainPanel.Controls.Add(this.employeeWhListBox);
+        this.mainPanel.Controls.Add(this.passwordLabel);
+        this.mainPanel.Controls.Add(this.usernameLabel);
+        this.mainPanel.Controls.Add(this.passwordTextBox);
+        this.mainPanel.Controls.Add(this.usernameTextBox);
+        this.mainPanel.Controls.Add(this.idLabel);
+        this.mainPanel.Controls.Add(this.idNumUpDown);
+        this.mainPanel.Controls.Add(this.metaDataPanel);
+        this.mainPanel.Dock = DockStyle.Fill;
+        this.mainPanel.Location = new Point(115, 3);
+        this.mainPanel.Name = "mainPanel";
+        this.mainPanel.Size = new Size(896, 582);
+        this.mainPanel.TabIndex = 0;
+        // 
+        // metaDataPanel
+        // 
+        this.metaDataPanel.Controls.Add(this.dateCreatedLabel);
+        this.metaDataPanel.Controls.Add(this.dateModifiedLabel);
+        this.metaDataPanel.Controls.Add(this.dateDeletedLabel);
+        this.metaDataPanel.Controls.Add(this.dateDeletedDTPicker);
+        this.metaDataPanel.Controls.Add(this.dateCreatedDTPicker);
+        this.metaDataPanel.Controls.Add(this.dateModifiedDTPicker);
+        this.metaDataPanel.Dock = DockStyle.Bottom;
+        this.metaDataPanel.Location = new Point(0, 452);
+        this.metaDataPanel.Name = "metaDataPanel";
+        this.metaDataPanel.Size = new Size(896, 130);
+        this.metaDataPanel.TabIndex = 3;
+        // 
+        // dateCreatedLabel
+        // 
+        this.dateCreatedLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.dateCreatedLabel.Location = new Point(181, 15);
+        this.dateCreatedLabel.Margin = new Padding(4, 0, 4, 0);
+        this.dateCreatedLabel.Name = "dateCreatedLabel";
+        this.dateCreatedLabel.Size = new Size(286, 31);
+        this.dateCreatedLabel.TabIndex = 9;
+        this.dateCreatedLabel.Text = "Date de création: ";
+        this.dateCreatedLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // dateModifiedLabel
+        // 
+        this.dateModifiedLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.dateModifiedLabel.Location = new Point(181, 52);
+        this.dateModifiedLabel.Margin = new Padding(4, 0, 4, 0);
+        this.dateModifiedLabel.Name = "dateModifiedLabel";
+        this.dateModifiedLabel.Size = new Size(286, 31);
+        this.dateModifiedLabel.TabIndex = 8;
+        this.dateModifiedLabel.Text = "Date de modification: ";
+        this.dateModifiedLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // dateDeletedLabel
+        // 
+        this.dateDeletedLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.dateDeletedLabel.Location = new Point(181, 89);
+        this.dateDeletedLabel.Margin = new Padding(4, 0, 4, 0);
+        this.dateDeletedLabel.Name = "dateDeletedLabel";
+        this.dateDeletedLabel.Size = new Size(286, 31);
+        this.dateDeletedLabel.TabIndex = 7;
+        this.dateDeletedLabel.Text = "Date de suppression: ";
+        this.dateDeletedLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // dateDeletedDTPicker
+        // 
+        this.dateDeletedDTPicker.Location = new Point(495, 87);
+        this.dateDeletedDTPicker.Name = "dateDeletedDTPicker";
+        this.dateDeletedDTPicker.Size = new Size(300, 31);
+        this.dateDeletedDTPicker.TabIndex = 0;
+        // 
+        // dateCreatedDTPicker
+        // 
+        this.dateCreatedDTPicker.Location = new Point(495, 13);
+        this.dateCreatedDTPicker.Name = "dateCreatedDTPicker";
+        this.dateCreatedDTPicker.Size = new Size(300, 31);
+        this.dateCreatedDTPicker.TabIndex = 1;
+        // 
+        // dateModifiedDTPicker
+        // 
+        this.dateModifiedDTPicker.Location = new Point(495, 50);
+        this.dateModifiedDTPicker.Name = "dateModifiedDTPicker";
+        this.dateModifiedDTPicker.Size = new Size(300, 31);
+        this.dateModifiedDTPicker.TabIndex = 2;
+        // 
+        // idNumUpDown
+        // 
+        this.idNumUpDown.Location = new Point(373, 17);
+        this.idNumUpDown.Name = "idNumUpDown";
+        this.idNumUpDown.Size = new Size(350, 31);
+        this.idNumUpDown.TabIndex = 4;
+        // 
+        // idLabel
+        // 
+        this.idLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.idLabel.Location = new Point(53, 6);
+        this.idLabel.Margin = new Padding(4, 0, 4, 0);
+        this.idLabel.Name = "idLabel";
+        this.idLabel.Size = new Size(286, 50);
+        this.idLabel.TabIndex = 5;
+        this.idLabel.Text = "ID: ";
+        this.idLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // usernameTextBox
+        // 
+        this.usernameTextBox.Location = new Point(373, 79);
+        this.usernameTextBox.Name = "usernameTextBox";
+        this.usernameTextBox.Size = new Size(350, 31);
+        this.usernameTextBox.TabIndex = 6;
+        // 
+        // passwordTextBox
+        // 
+        this.passwordTextBox.Location = new Point(373, 142);
+        this.passwordTextBox.Name = "passwordTextBox";
+        this.passwordTextBox.Size = new Size(350, 31);
+        this.passwordTextBox.TabIndex = 7;
+        this.passwordTextBox.UseSystemPasswordChar = true;
+        // 
+        // usernameLabel
+        // 
+        this.usernameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.usernameLabel.Location = new Point(53, 69);
+        this.usernameLabel.Margin = new Padding(4, 0, 4, 0);
+        this.usernameLabel.Name = "usernameLabel";
+        this.usernameLabel.Size = new Size(286, 50);
+        this.usernameLabel.TabIndex = 8;
+        this.usernameLabel.Text = "Nom d'utilisateur:";
+        this.usernameLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // passwordLabel
+        // 
+        this.passwordLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.passwordLabel.Location = new Point(53, 132);
+        this.passwordLabel.Margin = new Padding(4, 0, 4, 0);
+        this.passwordLabel.Name = "passwordLabel";
+        this.passwordLabel.Size = new Size(286, 50);
+        this.passwordLabel.TabIndex = 9;
+        this.passwordLabel.Text = "Mot de passe:";
+        this.passwordLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // employeeWhListBox
+        // 
+        this.employeeWhListBox.FormattingEnabled = true;
+        this.employeeWhListBox.ItemHeight = 25;
+        this.employeeWhListBox.Location = new Point(495, 257);
+        this.employeeWhListBox.Name = "employeeWhListBox";
+        this.employeeWhListBox.Size = new Size(314, 154);
+        this.employeeWhListBox.TabIndex = 10;
+        // 
+        // userRolesGroupBox
+        // 
+        this.userRolesGroupBox.Controls.Add(this.whEmpRoleLabel);
+        this.userRolesGroupBox.Controls.Add(this.officeEmpRoleLabel);
+        this.userRolesGroupBox.Controls.Add(this.adminRoleLabel);
+        this.userRolesGroupBox.Controls.Add(this.officeEmpRoleChkBox);
+        this.userRolesGroupBox.Controls.Add(this.whEmpRoleChkBox);
+        this.userRolesGroupBox.Controls.Add(this.adminRoleChkBox);
+        this.userRolesGroupBox.Location = new Point(53, 244);
+        this.userRolesGroupBox.Name = "userRolesGroupBox";
+        this.userRolesGroupBox.Size = new Size(315, 167);
+        this.userRolesGroupBox.TabIndex = 11;
+        this.userRolesGroupBox.TabStop = false;
+        this.userRolesGroupBox.Text = "Role(s)";
+        // 
+        // adminRoleChkBox
+        // 
+        this.adminRoleChkBox.AutoSize = true;
+        this.adminRoleChkBox.Location = new Point(31, 40);
+        this.adminRoleChkBox.Name = "adminRoleChkBox";
+        this.adminRoleChkBox.Size = new Size(22, 21);
+        this.adminRoleChkBox.TabIndex = 0;
+        this.adminRoleChkBox.UseVisualStyleBackColor = true;
+        // 
+        // whEmpRoleChkBox
+        // 
+        this.whEmpRoleChkBox.AutoSize = true;
+        this.whEmpRoleChkBox.Location = new Point(31, 128);
+        this.whEmpRoleChkBox.Name = "whEmpRoleChkBox";
+        this.whEmpRoleChkBox.Size = new Size(22, 21);
+        this.whEmpRoleChkBox.TabIndex = 1;
+        this.whEmpRoleChkBox.UseVisualStyleBackColor = true;
+        // 
+        // officeEmpRoleChkBox
+        // 
+        this.officeEmpRoleChkBox.AutoSize = true;
+        this.officeEmpRoleChkBox.Location = new Point(31, 84);
+        this.officeEmpRoleChkBox.Name = "officeEmpRoleChkBox";
+        this.officeEmpRoleChkBox.Size = new Size(22, 21);
+        this.officeEmpRoleChkBox.TabIndex = 2;
+        this.officeEmpRoleChkBox.UseVisualStyleBackColor = true;
+        // 
+        // adminRoleLabel
+        // 
+        this.adminRoleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.adminRoleLabel.Location = new Point(81, 34);
+        this.adminRoleLabel.Margin = new Padding(4, 0, 4, 0);
+        this.adminRoleLabel.Name = "adminRoleLabel";
+        this.adminRoleLabel.Size = new Size(218, 31);
+        this.adminRoleLabel.TabIndex = 10;
+        this.adminRoleLabel.Text = "Administrateur";
+        this.adminRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // officeEmpRoleLabel
+        // 
+        this.officeEmpRoleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.officeEmpRoleLabel.Location = new Point(81, 74);
+        this.officeEmpRoleLabel.Margin = new Padding(4, 0, 4, 0);
+        this.officeEmpRoleLabel.Name = "officeEmpRoleLabel";
+        this.officeEmpRoleLabel.Size = new Size(218, 31);
+        this.officeEmpRoleLabel.TabIndex = 11;
+        this.officeEmpRoleLabel.Text = "Employé de bureau";
+        this.officeEmpRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // whEmpRoleLabel
+        // 
+        this.whEmpRoleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.whEmpRoleLabel.Location = new Point(81, 118);
+        this.whEmpRoleLabel.Margin = new Padding(4, 0, 4, 0);
+        this.whEmpRoleLabel.Name = "whEmpRoleLabel";
+        this.whEmpRoleLabel.Size = new Size(218, 31);
+        this.whEmpRoleLabel.TabIndex = 12;
+        this.whEmpRoleLabel.Text = "Employé d'entrepôt";
+        this.whEmpRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // UserView
         // 
         this.AutoScaleDimensions = new SizeF(10F, 25F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(800, 450);
+        this.ClientSize = new Size(1128, 728);
+        this.Controls.Add(this.mainTableLayout);
+        this.Controls.Add(this.bottomBarPanel);
+        this.Controls.Add(this.topBarPanel);
         this.Name = "UserView";
-        this.Text = "UserView";
+        this.Text = "Gestions des utilisateurs";
         this.Load += this.UserView_Load;
+        this.topBarPanel.ResumeLayout(false);
+        this.topBarPanel.PerformLayout();
+        this.bottomBarPanel.ResumeLayout(false);
+        this.bottomBarPanel.PerformLayout();
+        this.mainTableLayout.ResumeLayout(false);
+        this.mainPanel.ResumeLayout(false);
+        this.mainPanel.PerformLayout();
+        this.metaDataPanel.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).EndInit();
+        this.userRolesGroupBox.ResumeLayout(false);
+        this.userRolesGroupBox.PerformLayout();
         this.ResumeLayout(false);
     }
 
     #endregion
+
+    private Panel topBarPanel;
+    private Panel bottomBarPanel;
+    private Label viewModeLabal;
+    private Label viewModeValueLabel;
+    private Label copyrightLabel;
+    private Button actionButton;
+    private Button cancelButton;
+    private TableLayoutPanel mainTableLayout;
+    private Panel mainPanel;
+    private DateTimePicker dateModifiedDTPicker;
+    private DateTimePicker dateCreatedDTPicker;
+    private DateTimePicker dateDeletedDTPicker;
+    private Panel metaDataPanel;
+    private Label dateModifiedLabel;
+    private Label dateDeletedLabel;
+    private Label dateCreatedLabel;
+    private Label idLabel;
+    private NumericUpDown idNumUpDown;
+    private Label passwordLabel;
+    private Label usernameLabel;
+    private TextBox passwordTextBox;
+    private TextBox usernameTextBox;
+    private GroupBox userRolesGroupBox;
+    private ListBox employeeWhListBox;
+    private Label officeEmpRoleLabel;
+    private Label adminRoleLabel;
+    private CheckBox officeEmpRoleChkBox;
+    private CheckBox whEmpRoleChkBox;
+    private CheckBox adminRoleChkBox;
+    private Label whEmpRoleLabel;
 }
