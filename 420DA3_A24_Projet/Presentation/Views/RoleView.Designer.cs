@@ -25,14 +25,20 @@ partial class RoleView {
     /// </summary>
     private void InitializeComponent() {
         this.topBarPanel = new Panel();
-        this.panel1 = new Panel();
-        this.viewModeLabal = new Label();
         this.viewModeValueLabel = new Label();
-        this.copyrightLabel = new Label();
-        this.actionButton = new Button();
+        this.viewModeLabal = new Label();
+        this.panel1 = new Panel();
         this.cancelButton = new Button();
+        this.actionButton = new Button();
+        this.copyrightLabel = new Label();
         this.primaryTableLayout = new TableLayoutPanel();
         this.mainPanel = new Panel();
+        this.roleDescLabel = new Label();
+        this.roleDescRichTextBox = new RichTextBox();
+        this.roleNameLabel = new Label();
+        this.roleNameTextBox = new TextBox();
+        this.idLabel = new Label();
+        this.idNumUpDown = new NumericUpDown();
         this.metaDataPanel = new Panel();
         this.dateCreatedLabel = new Label();
         this.dateModifiedLabel = new Label();
@@ -40,18 +46,12 @@ partial class RoleView {
         this.dateDeletedDTPicker = new DateTimePicker();
         this.dateCreatedDTPicker = new DateTimePicker();
         this.dateModifiedDTPicker = new DateTimePicker();
-        this.idNumUpDown = new NumericUpDown();
-        this.idLabel = new Label();
-        this.roleNameTextBox = new TextBox();
-        this.roleNameLabel = new Label();
-        this.roleDescRichTextBox = new RichTextBox();
-        this.roleDescLabel = new Label();
         this.topBarPanel.SuspendLayout();
         this.panel1.SuspendLayout();
         this.primaryTableLayout.SuspendLayout();
         this.mainPanel.SuspendLayout();
-        this.metaDataPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).BeginInit();
+        this.metaDataPanel.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBarPanel
@@ -64,27 +64,6 @@ partial class RoleView {
         this.topBarPanel.Size = new Size(1024, 60);
         this.topBarPanel.TabIndex = 0;
         // 
-        // panel1
-        // 
-        this.panel1.Controls.Add(this.cancelButton);
-        this.panel1.Controls.Add(this.actionButton);
-        this.panel1.Controls.Add(this.copyrightLabel);
-        this.panel1.Dock = DockStyle.Bottom;
-        this.panel1.Location = new Point(0, 558);
-        this.panel1.Name = "panel1";
-        this.panel1.Size = new Size(1024, 80);
-        this.panel1.TabIndex = 1;
-        // 
-        // viewModeLabal
-        // 
-        this.viewModeLabal.AutoSize = true;
-        this.viewModeLabal.Location = new Point(13, 20);
-        this.viewModeLabal.Margin = new Padding(4, 0, 4, 0);
-        this.viewModeLabal.Name = "viewModeLabal";
-        this.viewModeLabal.Size = new Size(137, 25);
-        this.viewModeLabal.TabIndex = 2;
-        this.viewModeLabal.Text = "MODE DE VUE :";
-        // 
         // viewModeValueLabel
         // 
         this.viewModeValueLabel.AutoSize = true;
@@ -96,15 +75,37 @@ partial class RoleView {
         this.viewModeValueLabel.TabIndex = 3;
         this.viewModeValueLabel.Text = "NONE";
         // 
-        // copyrightLabel
+        // viewModeLabal
         // 
-        this.copyrightLabel.AutoSize = true;
-        this.copyrightLabel.Location = new Point(13, 24);
-        this.copyrightLabel.Margin = new Padding(4, 0, 4, 0);
-        this.copyrightLabel.Name = "copyrightLabel";
-        this.copyrightLabel.Size = new Size(91, 25);
-        this.copyrightLabel.TabIndex = 4;
-        this.copyrightLabel.Text = "Copyright";
+        this.viewModeLabal.AutoSize = true;
+        this.viewModeLabal.Location = new Point(13, 20);
+        this.viewModeLabal.Margin = new Padding(4, 0, 4, 0);
+        this.viewModeLabal.Name = "viewModeLabal";
+        this.viewModeLabal.Size = new Size(137, 25);
+        this.viewModeLabal.TabIndex = 2;
+        this.viewModeLabal.Text = "MODE DE VUE :";
+        // 
+        // panel1
+        // 
+        this.panel1.Controls.Add(this.cancelButton);
+        this.panel1.Controls.Add(this.actionButton);
+        this.panel1.Controls.Add(this.copyrightLabel);
+        this.panel1.Dock = DockStyle.Bottom;
+        this.panel1.Location = new Point(0, 558);
+        this.panel1.Name = "panel1";
+        this.panel1.Size = new Size(1024, 80);
+        this.panel1.TabIndex = 1;
+        // 
+        // cancelButton
+        // 
+        this.cancelButton.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
+        this.cancelButton.Location = new Point(859, 13);
+        this.cancelButton.Margin = new Padding(4, 5, 4, 5);
+        this.cancelButton.Name = "cancelButton";
+        this.cancelButton.Size = new Size(143, 53);
+        this.cancelButton.TabIndex = 6;
+        this.cancelButton.Text = "Cancel";
+        this.cancelButton.UseVisualStyleBackColor = true;
         // 
         // actionButton
         // 
@@ -118,16 +119,15 @@ partial class RoleView {
         this.actionButton.Text = "ACTION";
         this.actionButton.UseVisualStyleBackColor = true;
         // 
-        // cancelButton
+        // copyrightLabel
         // 
-        this.cancelButton.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.cancelButton.Location = new Point(859, 13);
-        this.cancelButton.Margin = new Padding(4, 5, 4, 5);
-        this.cancelButton.Name = "cancelButton";
-        this.cancelButton.Size = new Size(143, 53);
-        this.cancelButton.TabIndex = 6;
-        this.cancelButton.Text = "Cancel";
-        this.cancelButton.UseVisualStyleBackColor = true;
+        this.copyrightLabel.AutoSize = true;
+        this.copyrightLabel.Location = new Point(13, 24);
+        this.copyrightLabel.Margin = new Padding(4, 0, 4, 0);
+        this.copyrightLabel.Name = "copyrightLabel";
+        this.copyrightLabel.Size = new Size(91, 25);
+        this.copyrightLabel.TabIndex = 4;
+        this.copyrightLabel.Text = "Copyright";
         // 
         // primaryTableLayout
         // 
@@ -159,6 +159,61 @@ partial class RoleView {
         this.mainPanel.Size = new Size(813, 492);
         this.mainPanel.TabIndex = 0;
         // 
+        // roleDescLabel
+        // 
+        this.roleDescLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.roleDescLabel.Location = new Point(53, 195);
+        this.roleDescLabel.Margin = new Padding(4, 0, 4, 0);
+        this.roleDescLabel.Name = "roleDescLabel";
+        this.roleDescLabel.Size = new Size(286, 50);
+        this.roleDescLabel.TabIndex = 11;
+        this.roleDescLabel.Text = "Description du rôle:";
+        this.roleDescLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // roleDescRichTextBox
+        // 
+        this.roleDescRichTextBox.Location = new Point(351, 167);
+        this.roleDescRichTextBox.Name = "roleDescRichTextBox";
+        this.roleDescRichTextBox.Size = new Size(350, 115);
+        this.roleDescRichTextBox.TabIndex = 10;
+        this.roleDescRichTextBox.Text = "";
+        // 
+        // roleNameLabel
+        // 
+        this.roleNameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.roleNameLabel.Location = new Point(53, 85);
+        this.roleNameLabel.Margin = new Padding(4, 0, 4, 0);
+        this.roleNameLabel.Name = "roleNameLabel";
+        this.roleNameLabel.Size = new Size(286, 50);
+        this.roleNameLabel.TabIndex = 9;
+        this.roleNameLabel.Text = "Nom du rôle:";
+        this.roleNameLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // roleNameTextBox
+        // 
+        this.roleNameTextBox.Location = new Point(351, 95);
+        this.roleNameTextBox.Name = "roleNameTextBox";
+        this.roleNameTextBox.Size = new Size(350, 31);
+        this.roleNameTextBox.TabIndex = 7;
+        // 
+        // idLabel
+        // 
+        this.idLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.idLabel.Location = new Point(53, 11);
+        this.idLabel.Margin = new Padding(4, 0, 4, 0);
+        this.idLabel.Name = "idLabel";
+        this.idLabel.Size = new Size(286, 50);
+        this.idLabel.TabIndex = 6;
+        this.idLabel.Text = "ID: ";
+        this.idLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // idNumUpDown
+        // 
+        this.idNumUpDown.Location = new Point(351, 22);
+        this.idNumUpDown.Name = "idNumUpDown";
+        this.idNumUpDown.Size = new Size(350, 31);
+        this.idNumUpDown.TabIndex = 5;
+        // 
         // metaDataPanel
         // 
         this.metaDataPanel.Controls.Add(this.dateCreatedLabel);
@@ -176,7 +231,7 @@ partial class RoleView {
         // dateCreatedLabel
         // 
         this.dateCreatedLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.dateCreatedLabel.Location = new Point(181, 15);
+        this.dateCreatedLabel.Location = new Point(64, 13);
         this.dateCreatedLabel.Margin = new Padding(4, 0, 4, 0);
         this.dateCreatedLabel.Name = "dateCreatedLabel";
         this.dateCreatedLabel.Size = new Size(286, 31);
@@ -187,7 +242,7 @@ partial class RoleView {
         // dateModifiedLabel
         // 
         this.dateModifiedLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.dateModifiedLabel.Location = new Point(181, 52);
+        this.dateModifiedLabel.Location = new Point(64, 52);
         this.dateModifiedLabel.Margin = new Padding(4, 0, 4, 0);
         this.dateModifiedLabel.Name = "dateModifiedLabel";
         this.dateModifiedLabel.Size = new Size(286, 31);
@@ -198,7 +253,7 @@ partial class RoleView {
         // dateDeletedLabel
         // 
         this.dateDeletedLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.dateDeletedLabel.Location = new Point(181, 89);
+        this.dateDeletedLabel.Location = new Point(64, 87);
         this.dateDeletedLabel.Margin = new Padding(4, 0, 4, 0);
         this.dateDeletedLabel.Name = "dateDeletedLabel";
         this.dateDeletedLabel.Size = new Size(286, 31);
@@ -208,79 +263,24 @@ partial class RoleView {
         // 
         // dateDeletedDTPicker
         // 
-        this.dateDeletedDTPicker.Location = new Point(495, 87);
+        this.dateDeletedDTPicker.Location = new Point(368, 87);
         this.dateDeletedDTPicker.Name = "dateDeletedDTPicker";
         this.dateDeletedDTPicker.Size = new Size(300, 31);
         this.dateDeletedDTPicker.TabIndex = 0;
         // 
         // dateCreatedDTPicker
         // 
-        this.dateCreatedDTPicker.Location = new Point(495, 13);
+        this.dateCreatedDTPicker.Location = new Point(368, 13);
         this.dateCreatedDTPicker.Name = "dateCreatedDTPicker";
         this.dateCreatedDTPicker.Size = new Size(300, 31);
         this.dateCreatedDTPicker.TabIndex = 1;
         // 
         // dateModifiedDTPicker
         // 
-        this.dateModifiedDTPicker.Location = new Point(495, 50);
+        this.dateModifiedDTPicker.Location = new Point(368, 50);
         this.dateModifiedDTPicker.Name = "dateModifiedDTPicker";
         this.dateModifiedDTPicker.Size = new Size(300, 31);
         this.dateModifiedDTPicker.TabIndex = 2;
-        // 
-        // idNumUpDown
-        // 
-        this.idNumUpDown.Location = new Point(351, 22);
-        this.idNumUpDown.Name = "idNumUpDown";
-        this.idNumUpDown.Size = new Size(350, 31);
-        this.idNumUpDown.TabIndex = 5;
-        // 
-        // idLabel
-        // 
-        this.idLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.idLabel.Location = new Point(53, 11);
-        this.idLabel.Margin = new Padding(4, 0, 4, 0);
-        this.idLabel.Name = "idLabel";
-        this.idLabel.Size = new Size(286, 50);
-        this.idLabel.TabIndex = 6;
-        this.idLabel.Text = "ID: ";
-        this.idLabel.TextAlign = ContentAlignment.MiddleRight;
-        // 
-        // roleNameTextBox
-        // 
-        this.roleNameTextBox.Location = new Point(351, 95);
-        this.roleNameTextBox.Name = "roleNameTextBox";
-        this.roleNameTextBox.Size = new Size(350, 31);
-        this.roleNameTextBox.TabIndex = 7;
-        // 
-        // roleNameLabel
-        // 
-        this.roleNameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.roleNameLabel.Location = new Point(53, 85);
-        this.roleNameLabel.Margin = new Padding(4, 0, 4, 0);
-        this.roleNameLabel.Name = "roleNameLabel";
-        this.roleNameLabel.Size = new Size(286, 50);
-        this.roleNameLabel.TabIndex = 9;
-        this.roleNameLabel.Text = "Nom du rôle:";
-        this.roleNameLabel.TextAlign = ContentAlignment.MiddleRight;
-        // 
-        // roleDescRichTextBox
-        // 
-        this.roleDescRichTextBox.Location = new Point(351, 167);
-        this.roleDescRichTextBox.Name = "roleDescRichTextBox";
-        this.roleDescRichTextBox.Size = new Size(350, 115);
-        this.roleDescRichTextBox.TabIndex = 10;
-        this.roleDescRichTextBox.Text = "";
-        // 
-        // roleDescLabel
-        // 
-        this.roleDescLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.roleDescLabel.Location = new Point(53, 195);
-        this.roleDescLabel.Margin = new Padding(4, 0, 4, 0);
-        this.roleDescLabel.Name = "roleDescLabel";
-        this.roleDescLabel.Size = new Size(286, 50);
-        this.roleDescLabel.TabIndex = 11;
-        this.roleDescLabel.Text = "Description du rôle:";
-        this.roleDescLabel.TextAlign = ContentAlignment.MiddleRight;
         // 
         // RoleView
         // 
@@ -300,8 +300,8 @@ partial class RoleView {
         this.primaryTableLayout.ResumeLayout(false);
         this.mainPanel.ResumeLayout(false);
         this.mainPanel.PerformLayout();
-        this.metaDataPanel.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).EndInit();
+        this.metaDataPanel.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 

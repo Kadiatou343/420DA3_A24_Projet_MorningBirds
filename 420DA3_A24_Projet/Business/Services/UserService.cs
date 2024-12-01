@@ -40,7 +40,11 @@ internal class UserService {
     /// <param name="user">L'utilisateur à créer</param>
     /// <returns>L'utilisateur créé</returns>
     public User CreateUser(User user) {
-        return this.dao.Create(user);
+        try {
+            return this.dao.Create(user);
+        } catch (Exception ex) {
+            throw new Exception("Impossible de créer l'utilisateur.", ex);
+        }
     }
 
     /// <summary>
@@ -49,7 +53,11 @@ internal class UserService {
     /// <param name="user">L'utilisateur à mettre à jour</param>
     /// <returns>L'utilisateur mis à jour</returns>
     public User UpdateUser(User user) {
-        return this.dao.Update(user);
+        try {
+            return this.dao.Update(user);
+        }catch(Exception ex) {
+            throw new Exception("Impossible de mettre à jour l'utilisateur.", ex);
+        }
     }
 
     /// <summary>
@@ -106,7 +114,11 @@ internal class UserService {
     /// <param name="user">L'utilisateur à supprimer</param>
     /// <param name="softDelete">Detail de supprimer durement ou de marquer supprimé</param>
     public void DeleteUser(User user, bool softDelete = true) {
-        this.dao.Delete(user, softDelete);
+        try {
+            this.dao.Delete(user, softDelete);
+        } catch (Exception ex) {
+            throw new Exception("Impossible de supprimer l'utilisateur.", ex);
+        }
     }
 
 

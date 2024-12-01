@@ -24,7 +24,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// Longueur maximale du hash du mot de passe de l'utilisateur 
         /// </summary>
-        public const int PASSWORDHASH_MAX_LENGTH = 128;
+        public const int PASSWORDHASH_MAX_LENGTH = 256;
 
         /// <summary>
         /// Longueur minimale du mot de passe de l'utilisateur
