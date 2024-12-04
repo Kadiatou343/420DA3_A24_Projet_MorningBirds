@@ -306,6 +306,7 @@ partial class UserView {
         // 
         // idNumUpDown
         // 
+        this.idNumUpDown.Enabled = false;
         this.idNumUpDown.Location = new Point(373, 17);
         this.idNumUpDown.Name = "idNumUpDown";
         this.idNumUpDown.Size = new Size(350, 31);
@@ -360,6 +361,7 @@ partial class UserView {
         // 
         // dateDeletedDTPicker
         // 
+        this.dateDeletedDTPicker.Enabled = false;
         this.dateDeletedDTPicker.Location = new Point(442, 89);
         this.dateDeletedDTPicker.Name = "dateDeletedDTPicker";
         this.dateDeletedDTPicker.Size = new Size(300, 31);
@@ -367,6 +369,7 @@ partial class UserView {
         // 
         // dateCreatedDTPicker
         // 
+        this.dateCreatedDTPicker.Enabled = false;
         this.dateCreatedDTPicker.Location = new Point(442, 13);
         this.dateCreatedDTPicker.Name = "dateCreatedDTPicker";
         this.dateCreatedDTPicker.Size = new Size(300, 31);
@@ -374,6 +377,7 @@ partial class UserView {
         // 
         // dateModifiedDTPicker
         // 
+        this.dateModifiedDTPicker.Enabled = false;
         this.dateModifiedDTPicker.Location = new Point(442, 52);
         this.dateModifiedDTPicker.Name = "dateModifiedDTPicker";
         this.dateModifiedDTPicker.Size = new Size(300, 31);

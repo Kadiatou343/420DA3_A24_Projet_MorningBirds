@@ -4,6 +4,7 @@ using Project_Utilities.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -315,7 +316,7 @@ internal partial class UserView : Form {
         }
 
         if (!string.IsNullOrEmpty(message)) {
-            throw new Exception(message);
+            throw new ValidationException(message);
         }
     }
 
