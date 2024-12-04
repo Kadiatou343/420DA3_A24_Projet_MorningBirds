@@ -152,6 +152,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// expedition des produits du fournisseurs vers l'entrepôt
         /// </summary>
         public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
+        public object EmployeeWarehouse { get; internal set; }
 
         /// <summary>
         /// Constructeur 
@@ -228,7 +229,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         }
         public bool ValidateContactTelephone(string contactTelephone) 
         {
-            return  contactTelephone.Length <= ContactEmailMaxLength;        }
+            return  contactTelephone.Length <= ContactEmailMaxLength; 
+        }
 
         #endregion
     }
