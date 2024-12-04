@@ -14,9 +14,23 @@ using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 internal partial class UserView : Form {
+    /// <summary>
+    /// L'application elle-même
+    /// </summary>
     private readonly WsysApplication parentApp;
+    /// <summary>
+    /// L'action de vue pour la fenêtre
+    /// </summary>
     private ViewActionsEnum action;
+    /// <summary>
+    /// L'utilisateur associé à la vue ou null
+    /// </summary>
     private User? userInstance;
+
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// <param name="parentApp">L'application</param>
     public UserView(WsysApplication parentApp) {
         this.parentApp = parentApp;
         action = ViewActionsEnum.Visualization;
@@ -32,6 +46,14 @@ internal partial class UserView : Form {
         return this.userInstance;
     }
 
+    /// <summary>
+    /// Ouvrir la fenêtre courante en fonction de l'action de la vue et d'un utilisateur ou pas
+    /// </summary>
+    /// <param name="action">L'action de la vue pour laquelle la fenêtre doit être ouverte</param>
+    /// <param name="user">Le possible d'un utilisateur pour lequel la fenêtre doit être ouverte</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">L'exception levée si l'utilisateur est null pour certaines actions</exception>
+    /// <exception cref="NotImplementedException">L'exception levée si l'action fournie n'est pas reconnue</exception>
     public DialogResult OpenFor(ViewActionsEnum action, User? user = null) {
         this.action = action;
         this.LoadInstanceInControls(user);
@@ -73,7 +95,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Charger les éléments d'une liste d'entrepôts dans la liste box fait pour dans la fenetre d'affichage
+    /// Charger les éléments d'une liste d'entrepôts dans la liste box fait pour dans la fenetre
     /// </summary>
     /// <param name="warehouses">La liste d'entrepôt</param>
     private void ReloadEmployeeWaherouseList(List<Warehouse> warehouses) {
@@ -87,7 +109,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Charger les informations par defaut d'un utilisateur dans les controls de la fenêtre d'affichage
+    /// Charger les informations par defaut dans les controls en fonction d'un utilisateur ou null
     /// </summary>
     /// <param name="user">L'utilisateur concerné</param>
     /// <exception cref="Exception">L'exception levé si la méthode d'obtention des roles par id retourne un null</exception>
@@ -145,7 +167,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Activer les controls modifiables de la fenetre d'affichage
+    /// Activer les controls modifiables 
     /// </summary>
     private void EnableEditableControls() {
         this.usernameTextBox.Enabled = true;
@@ -157,7 +179,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Desactiver les controls modifiables de la fenêtre d'affichage
+    /// Desactiver les controls modifiables 
     /// </summary>
     private void DisableEditableControls() {
         this.usernameTextBox.Enabled = false;
@@ -169,15 +191,15 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Proceder l'action en cours pour la fenêtre d'affichage
+    /// Proceder l'action en cours
     /// </summary>
     /// <exception cref="Exception">Taille du hash maximale atteinte, Rôles non trouvés</exception>
-    /// <exception cref="NotImplementedException">L'action en cours n'est pas reconnu</exception>
+    /// <exception cref="NotImplementedException">L'action en cours n'est pas reconnue</exception>
     private void ProcessAction() {
         this.ValidateControlsForAction();
         switch (this.action) {
             case ViewActionsEnum.Visualization:
-                // Rien à faire dans le case de visualisation
+                // Rien à faire dans ce case parce que il faut juster visualiser
                 break;
             case ViewActionsEnum.Creation:
                 string passwordHash = this.parentApp.PasswordService.HashPassword(this.passwordTextBox.Text.Trim());
@@ -265,7 +287,7 @@ internal partial class UserView : Form {
     /// <summary>
     /// Valider les données saisis dans les controls faits pour recupérer l'entrée utilisateur
     /// </summary>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="Exception">L'exception levée si le message d'erreur n'est pas vide</exception>
     private void ValidateControlsForAction() {
         string message = string.Empty;
 
@@ -321,7 +343,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Faire une action précise
+    /// Executer une action
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -335,7 +357,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Quitter la fenêtre d'affichage
+    /// Fermer la fenêtre
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

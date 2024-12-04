@@ -55,7 +55,7 @@ internal partial class RoleView : Form {
     /// <param name="role">Le possible rôle pour lequel la fenêtre doit être ouverte</param>
     /// <returns>Le DialogResult de la fenêtre courrante</returns>
     /// <exception cref="ArgumentException">L'exception levée si le rôle est null pour certaines actions</exception>
-    /// <exception cref="NotImplementedException">L'exception levée si l'action fourni n'est pas reconnue</exception>
+    /// <exception cref="NotImplementedException">L'exception levée si l'action fournie n'est pas reconnue</exception>
     public DialogResult OpenFor(ViewActionsEnum action, Role? role = null) {
         this.action = action;
         this.LoadInstanceInControls(role);
@@ -121,7 +121,7 @@ internal partial class RoleView : Form {
     }
 
     /// <summary>
-    /// Activer les controls editables
+    /// Activer les controls modifiables
     /// </summary>
     private void EnableEditableControls() {
         this.roleNameTextBox.Enabled = true;
@@ -129,7 +129,7 @@ internal partial class RoleView : Form {
     }
 
     /// <summary>
-    /// Desactiver les controls editables
+    /// Desactiver les controls modifiables
     /// </summary>
     private void DisableEditableControls() {
         this.roleNameTextBox.Enabled = false;
@@ -174,7 +174,7 @@ internal partial class RoleView : Form {
     }
 
     /// <summary>
-    /// Valider les controls modifiable par l'utilisateur
+    /// Valider les données saisis dans les controls faits pour recupérer l'entrée utilisateur
     /// </summary>
     /// <exception cref="ValidationException">L'exception levée si le message d'erreur n'est pas vide</exception>
     private void ValidateControlsForAction() {
