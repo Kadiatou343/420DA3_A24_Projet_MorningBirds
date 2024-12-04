@@ -2,6 +2,7 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
+using Project_Utilities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace _420DA3_A24_Projet.Business.Services;
 /// </summary>
 internal class UserService {
 
+    private readonly WsysApplication parentApp;
+
     /// <summary>
     /// Le DAO Utilisateur
     /// </summary>
@@ -22,7 +25,7 @@ internal class UserService {
     /// <summary>
     /// La fenetre de vue Utilisateur
     /// </summary>
-    private readonly UserView window;
+    private readonly UserView view;
 
     /// <summary>
     /// Constructeur
@@ -30,8 +33,9 @@ internal class UserService {
     /// <param name="parentApp">L'application elle-même</param>
     /// <param name="context">Le contexte de l'application</param>
     public UserService(WsysApplication parentApp, WsysDbContext context) {
+        this.parentApp = parentApp;
         this.dao = new UserDAO(context);
-        this.window = new UserView(parentApp);
+        this.view = new UserView(parentApp);
     }
 
     /// <summary>
@@ -121,7 +125,24 @@ internal class UserService {
         }
     }
 
+    public User? OpenViewFor(ViewActionsEnum viewAction, User? user = null) {
+        try {
+            DialogResult result = this.view.OpenFor(viewAction, user);
+            if (result == DialogResult.OK) {
+                switch (viewAction) {
+                    case ViewActionsEnum.Creation:
+                    case ViewActionsEnum.Edition:
+                        _ = this.OpenViewFor(ViewActionsEnum.Visualization, this.view.GetUserCurrentInstance());
+                        break;
+                    default:
+                        break;
+                }
+            }
 
-
-
+            return this.view.GetUserCurrentInstance();
+        } catch (Exception ex) {
+            this.parentApp.HandleException(ex);
+            return null;
+        }
+    }
 }

@@ -23,20 +23,73 @@ internal partial class UserView : Form {
         this.copyrightLabel.Text = this.parentApp.GetCopyright();
     }
 
+    /// <summary>
+    /// Obtenir l'utilisateur courant qui est concerné par la vue
+    /// </summary>
+    /// <returns></returns>
     public User? GetUserCurrentInstance() {
         return this.userInstance;
     }
 
+    public DialogResult OpenFor(ViewActionsEnum action, User? user = null) {
+        this.action = action;
+        this.LoadInstanceInControls(user);
+        switch (action) {
+            case ViewActionsEnum.Visualization:
+                if (user == null) {
+                    throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
+                }
+                this.viewModeValue.Text = "Visualisation";
+                this.actionButton.Text = "OK";
+                this.DisableEditableControls();
+
+                break;
+            case ViewActionsEnum.Creation:
+                this.viewModeValue.Text = "Création";
+                this.actionButton.Text = "Créer";
+                this.EnableEditableControls();
+                break;
+            case ViewActionsEnum.Edition:
+                if (user == null) {
+                    throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
+                }
+                this.viewModeValue.Text = "Modification";
+                this.actionButton.Text = "Modifier";
+                this.EnableEditableControls();
+                break;
+            case ViewActionsEnum.Deletion:
+                if (user == null) {
+                    throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
+                }
+                this.viewModeValue.Text = "Suppression";
+                this.actionButton.Text = "Supprimer";
+                this.DisableEditableControls();
+                break;
+            default:
+                throw new NotImplementedException($"L'action [{action}] n'est pas implementée");
+        }
+        return this.ShowDialog();
+    }
+
+    /// <summary>
+    /// Charger les éléments d'une liste d'entrepôts dans la liste box fait pour dans la fenetre d'affichage
+    /// </summary>
+    /// <param name="warehouses">La liste d'entrepôt</param>
     private void ReloadEmployeeWaherouseList(List<Warehouse> warehouses) {
         this.employeeWhListBox.Items.Clear();
         this.employeeWhListBox.SelectedItem = null;
         this.employeeWhListBox.SelectedIndex = -1;
 
-        foreach(Warehouse warehouse in warehouses) {
+        foreach (Warehouse warehouse in warehouses) {
             _ = this.employeeWhListBox.Items.Add(warehouse);
         }
     }
 
+    /// <summary>
+    /// Charger les informations par defaut d'un utilisateur dans les controls de la fenêtre d'affichage
+    /// </summary>
+    /// <param name="user">L'utilisateur concerné</param>
+    /// <exception cref="Exception">L'exception levé si la méthode d'obtention des roles par id retourne un null</exception>
     private void LoadInstanceInControls(User? user) {
         if (user is null) {
             this.idNumUpDown.Value = 0;
@@ -84,12 +137,15 @@ internal partial class UserView : Form {
                 this.employeeWhListBox.SelectedItem = user.EmployeeWarehouse;
             }
 
-            
 
-            
+
+
         }
     }
 
+    /// <summary>
+    /// Activer les controls modifiables de la fenetre d'affichage
+    /// </summary>
     private void EnableEditableControls() {
         this.usernameTextBox.Enabled = true;
         this.passwordTextBox.Enabled = true;
@@ -99,6 +155,9 @@ internal partial class UserView : Form {
         this.employeeWhListBox.Enabled = true;
     }
 
+    /// <summary>
+    /// Desactiver les controls modifiables de la fenêtre d'affichage
+    /// </summary>
     private void DisableEditableControls() {
         this.usernameTextBox.Enabled = false;
         this.passwordTextBox.Enabled = false;
@@ -108,7 +167,12 @@ internal partial class UserView : Form {
         this.employeeWhListBox.Enabled = false;
     }
 
-    private void ExecuteAction() {
+    /// <summary>
+    /// Proceder l'action en cours pour la fenêtre d'affichage
+    /// </summary>
+    /// <exception cref="Exception">Taille du hash maximale atteinte, Rôles non trouvés</exception>
+    /// <exception cref="NotImplementedException">L'action en cours n'est pas reconnu</exception>
+    private void ProcessAction() {
         this.ValidateControlsForAction();
         switch (this.action) {
             case ViewActionsEnum.Visualization:
@@ -128,7 +192,7 @@ internal partial class UserView : Form {
 
                 if (this.adminRoleChkBox.Checked) {
                     newUser.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.ADMIN_ROLE_ID) 
+                        this.parentApp.RoleService.GetRoleById(Role.ADMIN_ROLE_ID)
                         ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.ADMIN_ROLE_ID}].")
                         );
                 }
@@ -158,7 +222,7 @@ internal partial class UserView : Form {
                 this.userInstance.PasswordHash = this.parentApp.PasswordService.HashPassword(
                     this.passwordTextBox.Text.Trim());
                 this.userInstance.EmployeeWarehouseId = (this.employeeWhListBox.SelectedItem as Role)?.Id;
-                
+
                 this.userInstance.Roles.Clear();
 
                 if (this.adminRoleChkBox.Checked) {
@@ -182,7 +246,7 @@ internal partial class UserView : Form {
                         );
                 }
 
-                this.userInstance = this.parentApp.UserService.UpdateUser( this.userInstance );
+                this.userInstance = this.parentApp.UserService.UpdateUser(this.userInstance);
                 break;
             case ViewActionsEnum.Deletion:
                 if (this.userInstance == null) {
@@ -197,6 +261,10 @@ internal partial class UserView : Form {
         }
     }
 
+    /// <summary>
+    /// Valider les données saisis dans les controls faits pour recupérer l'entrée utilisateur
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     private void ValidateControlsForAction() {
         string message = string.Empty;
 
@@ -249,5 +317,28 @@ internal partial class UserView : Form {
         if (!string.IsNullOrEmpty(message)) {
             throw new Exception(message);
         }
+    }
+
+    /// <summary>
+    /// Faire une action précise
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ActionButton_Click(object sender, EventArgs e) {
+        try {
+            this.ProcessAction();
+            this.DialogResult = DialogResult.OK;
+        } catch (Exception ex) {
+            this.parentApp.HandleException(ex);
+        }
+    }
+
+    /// <summary>
+    /// Quitter la fenêtre d'affichage
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void CancelButton_Click(object sender, EventArgs e) {
+        this.DialogResult= DialogResult.Cancel;
     }
 }

@@ -25,8 +25,8 @@ partial class UserView {
     /// </summary>
     private void InitializeComponent() {
         this.topBarPanel = new Panel();
-        this.viewModeValueLabel = new Label();
-        this.viewModeLabal = new Label();
+        this.viewModeValue = new Label();
+        this.viewModeLabel = new Label();
         this.bottomBarPanel = new Panel();
         this.cancelButton = new Button();
         this.actionButton = new Button();
@@ -65,34 +65,34 @@ partial class UserView {
         // 
         // topBarPanel
         // 
-        this.topBarPanel.Controls.Add(this.viewModeValueLabel);
-        this.topBarPanel.Controls.Add(this.viewModeLabal);
+        this.topBarPanel.Controls.Add(this.viewModeValue);
+        this.topBarPanel.Controls.Add(this.viewModeLabel);
         this.topBarPanel.Dock = DockStyle.Top;
         this.topBarPanel.Location = new Point(0, 0);
         this.topBarPanel.Name = "topBarPanel";
         this.topBarPanel.Size = new Size(1128, 60);
         this.topBarPanel.TabIndex = 0;
         // 
-        // viewModeValueLabel
+        // viewModeValue
         // 
-        this.viewModeValueLabel.AutoSize = true;
-        this.viewModeValueLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.viewModeValueLabel.Location = new Point(168, 19);
-        this.viewModeValueLabel.Margin = new Padding(4, 0, 4, 0);
-        this.viewModeValueLabel.Name = "viewModeValueLabel";
-        this.viewModeValueLabel.Size = new Size(64, 25);
-        this.viewModeValueLabel.TabIndex = 2;
-        this.viewModeValueLabel.Text = "NONE";
+        this.viewModeValue.AutoSize = true;
+        this.viewModeValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.viewModeValue.Location = new Point(168, 19);
+        this.viewModeValue.Margin = new Padding(4, 0, 4, 0);
+        this.viewModeValue.Name = "viewModeValue";
+        this.viewModeValue.Size = new Size(64, 25);
+        this.viewModeValue.TabIndex = 2;
+        this.viewModeValue.Text = "NONE";
         // 
-        // viewModeLabal
+        // viewModeLabel
         // 
-        this.viewModeLabal.AutoSize = true;
-        this.viewModeLabal.Location = new Point(13, 19);
-        this.viewModeLabal.Margin = new Padding(4, 0, 4, 0);
-        this.viewModeLabal.Name = "viewModeLabal";
-        this.viewModeLabal.Size = new Size(137, 25);
-        this.viewModeLabal.TabIndex = 1;
-        this.viewModeLabal.Text = "MODE DE VUE :";
+        this.viewModeLabel.AutoSize = true;
+        this.viewModeLabel.Location = new Point(13, 19);
+        this.viewModeLabel.Margin = new Padding(4, 0, 4, 0);
+        this.viewModeLabel.Name = "viewModeLabel";
+        this.viewModeLabel.Size = new Size(137, 25);
+        this.viewModeLabel.TabIndex = 1;
+        this.viewModeLabel.Text = "MODE DE VUE :";
         // 
         // bottomBarPanel
         // 
@@ -115,6 +115,7 @@ partial class UserView {
         this.cancelButton.TabIndex = 5;
         this.cancelButton.Text = "Cancel";
         this.cancelButton.UseVisualStyleBackColor = true;
+        this.cancelButton.Click += this.CancelButton_Click;
         // 
         // actionButton
         // 
@@ -127,6 +128,7 @@ partial class UserView {
         this.actionButton.TabIndex = 4;
         this.actionButton.Text = "ACTION";
         this.actionButton.UseVisualStyleBackColor = true;
+        this.actionButton.Click += this.ActionButton_Click;
         // 
         // copyrightLabel
         // 
@@ -405,8 +407,8 @@ partial class UserView {
 
     private Panel topBarPanel;
     private Panel bottomBarPanel;
-    private Label viewModeLabal;
-    private Label viewModeValueLabel;
+    private Label viewModeLabel;
+    private Label viewModeValue;
     private Label copyrightLabel;
     private Button actionButton;
     private Button cancelButton;
