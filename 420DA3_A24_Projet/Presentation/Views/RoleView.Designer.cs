@@ -106,6 +106,7 @@ partial class RoleView {
         this.cancelButton.TabIndex = 6;
         this.cancelButton.Text = "Cancel";
         this.cancelButton.UseVisualStyleBackColor = true;
+        this.cancelButton.Click += this.CancelButton_Click;
         // 
         // actionButton
         // 
@@ -118,6 +119,7 @@ partial class RoleView {
         this.actionButton.TabIndex = 5;
         this.actionButton.Text = "ACTION";
         this.actionButton.UseVisualStyleBackColor = true;
+        this.actionButton.Click += this.ActionButton_Click;
         // 
         // copyrightLabel
         // 

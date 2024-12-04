@@ -2,6 +2,7 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
+using Project_Utilities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace _420DA3_A24_Projet.Business.Services;
 /// </summary>
 internal class RoleService {
     /// <summary>
+    /// L'application elle-même
+    /// </summary>
+    private readonly WsysApplication parentApp;
+
+    /// <summary>
     /// Le DAO Rôle
     /// </summary>
     private readonly RoleDAO dao;
@@ -21,7 +27,7 @@ internal class RoleService {
     /// <summary>
     /// La fenêtre de vue Rôle
     /// </summary>
-    private readonly RoleView window;
+    private readonly RoleView view;
 
     /// <summary>
     /// Constructeur
@@ -29,8 +35,9 @@ internal class RoleService {
     /// <param name="parentApp">L'application elle-même</param>
     /// <param name="context">Le contexte de l'application</param>
     public RoleService(WsysApplication parentApp, WsysDbContext context) {
+        this.parentApp = parentApp;
         this.dao = new RoleDAO(context);
-        this.window = new RoleView(parentApp);
+        this.view = new RoleView(parentApp);
     }
 
     /// <summary>
@@ -87,6 +94,32 @@ internal class RoleService {
     /// <returns>Liste de roles</returns>
     public List<Role> SearchRoles(string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
+    }
+
+    /// <summary>
+    /// Ouvrir la fenêtre d'affichage Role en fonction de l'action de vue et d'un role précis ou pas
+    /// </summary>
+    /// <param name="viewAction">L'action de la vue pour laquelle la fenêtre doit être ouverte</param>
+    /// <param name="role">Le possible rôle pour lequel la fenêtre doit être ouverte</param>
+    /// <returns></returns>
+    public Role? OpenViewFor(ViewActionsEnum viewAction, Role? role = null) {
+        try {
+            DialogResult result = this.view.OpenFor(viewAction, role);
+            if (result == DialogResult.OK) {
+                switch (viewAction) {
+                    case ViewActionsEnum.Creation:
+                    case ViewActionsEnum.Edition:
+                        _ = this.OpenViewFor(ViewActionsEnum.Visualization, this.view.GetRoleInstance());
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return this.view.GetRoleInstance();
+        } catch (Exception ex) {
+            this.parentApp.HandleException(ex);
+            return null;
+        }
     }
 
 }
