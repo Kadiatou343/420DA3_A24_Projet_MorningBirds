@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using _420DA3_A24_Projet.Business;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 internal class ClientDAO {
 
+    //Contexte utilisé par le DAO
     private readonly WsysDbContext context;
 
+    // Le context de l'application
     public ClientDAO(WsysDbContext context) {
         this.context = context;
     }
@@ -22,7 +25,6 @@ internal class ClientDAO {
         _ = this.context.SaveChanges();
 
         return client;
-
     }
 
     public Client? GetById(int id, bool excludeDeleted = true) {
@@ -87,6 +89,6 @@ internal class ClientDAO {
                 client => client.EmployeeWarehouse != null && client.EmployeeWarehouse.Equals(warehouse) && client.DateDeleted == null)
             .ToList();
     }
-
+  
 }
 
