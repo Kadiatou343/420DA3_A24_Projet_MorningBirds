@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
+/// <summary>
+/// Classe représentant la vue d'un utilisateur
+/// </summary>
 internal partial class UserView : Form {
     /// <summary>
     /// L'application elle-même

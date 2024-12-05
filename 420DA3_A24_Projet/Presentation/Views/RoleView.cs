@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
+
+/// <summary>
+/// Classe représentant la vue d'un rôle
+/// </summary>
 internal partial class RoleView : Form {
     /// <summary>
     /// L'application elle-même

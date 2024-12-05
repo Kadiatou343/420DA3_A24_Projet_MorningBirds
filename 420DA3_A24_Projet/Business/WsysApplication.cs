@@ -39,6 +39,9 @@ internal class WsysApplication {
     /// </summary>
     public PasswordService PasswordService { get; private set; }
 
+    /// <summary>
+    /// Le service d'authentification
+    /// </summary>
     public LoginService LoginService { get; private set; }
 
     /// <summary>
@@ -55,6 +58,10 @@ internal class WsysApplication {
         this.whEmployeeMainMenu = new WhEmployeeMainMenu(this);
     }
 
+    /// <summary>
+    /// Demarrer le système en fonction du rôle de l'utilisateur connecté
+    /// </summary>
+    /// <exception cref="Exception">Au cas où il n'y aucun rôle pour l'utilisateur essayant de se connectter</exception>
     public void Start() {
         Application.Run();// Cette ligne est a tester par le prof 
 
@@ -71,10 +78,18 @@ internal class WsysApplication {
         }
     }
 
+    /// <summary>
+    /// Obtenir les droits d'auteur
+    /// </summary>
+    /// <returns></returns>
     public string GetCopyright() {
         return $"(c) {DateTime.Now.Year} Morning Birds - All Rights reserved";
     }
 
+    /// <summary>
+    /// Méthode de recupération des exceptions 
+    /// </summary>
+    /// <param name="e">L'exception fourni</param>
     public void HandleException(Exception e) {
         string? stack = e.StackTrace;
 
