@@ -50,7 +50,8 @@ internal class AdresseDAO {
                      client => (
                          client.AddressType.ToLower().Contains(filter.ToLower())))
                    .ToList();
-            } else {
+        } else {
+
                 return this.context.Addresses
                 .Where(
                 address=> (
@@ -59,7 +60,7 @@ internal class AdresseDAO {
                 .ToList();
             }
 
-            }
+        }
         public List<Address> GetByWarehouse (Warehouse warehouse, bool excludedDeleted = true) {
 
             return !excludedDeleted
@@ -78,7 +79,7 @@ internal class AdresseDAO {
             return !excludedDeleted
                 ? this.context.Addresses.Include(address => address.OwnerShipOrder)
                    .Where(
-                      address => address.OwnerShipOrder != null && address.OwnerShipOrder.Equals(ShippingOrder))
+                      address => address.OwnerShipOrder != null && address.OwnerShipOrder.Equals(shippingOrder))
                    .ToList()
                 : this.context.Addresses.Include(address => address.OwnerShipOrder)
                 .Where(
