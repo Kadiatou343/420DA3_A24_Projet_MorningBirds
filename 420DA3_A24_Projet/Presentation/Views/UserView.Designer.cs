@@ -33,13 +33,7 @@ partial class UserView {
         this.copyrightLabel = new Label();
         this.mainTableLayout = new TableLayoutPanel();
         this.mainPanel = new Panel();
-        this.userRolesGroupBox = new GroupBox();
-        this.whEmpRoleLabel = new Label();
-        this.officeEmpRoleLabel = new Label();
-        this.adminRoleLabel = new Label();
-        this.officeEmpRoleChkBox = new CheckBox();
-        this.whEmpRoleChkBox = new CheckBox();
-        this.adminRoleChkBox = new CheckBox();
+        this.userRolesListBox = new ListBox();
         this.employeeWhListBox = new ListBox();
         this.passwordLabel = new Label();
         this.usernameLabel = new Label();
@@ -58,7 +52,6 @@ partial class UserView {
         this.bottomBarPanel.SuspendLayout();
         this.mainTableLayout.SuspendLayout();
         this.mainPanel.SuspendLayout();
-        this.userRolesGroupBox.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).BeginInit();
         this.metaDataPanel.SuspendLayout();
         this.SuspendLayout();
@@ -157,7 +150,7 @@ partial class UserView {
         // 
         // mainPanel
         // 
-        this.mainPanel.Controls.Add(this.userRolesGroupBox);
+        this.mainPanel.Controls.Add(this.userRolesListBox);
         this.mainPanel.Controls.Add(this.employeeWhListBox);
         this.mainPanel.Controls.Add(this.passwordLabel);
         this.mainPanel.Controls.Add(this.usernameLabel);
@@ -172,80 +165,15 @@ partial class UserView {
         this.mainPanel.Size = new Size(896, 582);
         this.mainPanel.TabIndex = 0;
         // 
-        // userRolesGroupBox
+        // userRolesListBox
         // 
-        this.userRolesGroupBox.Controls.Add(this.whEmpRoleLabel);
-        this.userRolesGroupBox.Controls.Add(this.officeEmpRoleLabel);
-        this.userRolesGroupBox.Controls.Add(this.adminRoleLabel);
-        this.userRolesGroupBox.Controls.Add(this.officeEmpRoleChkBox);
-        this.userRolesGroupBox.Controls.Add(this.whEmpRoleChkBox);
-        this.userRolesGroupBox.Controls.Add(this.adminRoleChkBox);
-        this.userRolesGroupBox.Location = new Point(53, 244);
-        this.userRolesGroupBox.Name = "userRolesGroupBox";
-        this.userRolesGroupBox.Size = new Size(315, 167);
-        this.userRolesGroupBox.TabIndex = 11;
-        this.userRolesGroupBox.TabStop = false;
-        this.userRolesGroupBox.Text = "Role(s)";
-        // 
-        // whEmpRoleLabel
-        // 
-        this.whEmpRoleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.whEmpRoleLabel.Location = new Point(81, 118);
-        this.whEmpRoleLabel.Margin = new Padding(4, 0, 4, 0);
-        this.whEmpRoleLabel.Name = "whEmpRoleLabel";
-        this.whEmpRoleLabel.Size = new Size(218, 31);
-        this.whEmpRoleLabel.TabIndex = 12;
-        this.whEmpRoleLabel.Text = "Employé d'entrepôt";
-        this.whEmpRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
-        // 
-        // officeEmpRoleLabel
-        // 
-        this.officeEmpRoleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.officeEmpRoleLabel.Location = new Point(81, 74);
-        this.officeEmpRoleLabel.Margin = new Padding(4, 0, 4, 0);
-        this.officeEmpRoleLabel.Name = "officeEmpRoleLabel";
-        this.officeEmpRoleLabel.Size = new Size(218, 31);
-        this.officeEmpRoleLabel.TabIndex = 11;
-        this.officeEmpRoleLabel.Text = "Employé de bureau";
-        this.officeEmpRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
-        // 
-        // adminRoleLabel
-        // 
-        this.adminRoleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-        this.adminRoleLabel.Location = new Point(81, 34);
-        this.adminRoleLabel.Margin = new Padding(4, 0, 4, 0);
-        this.adminRoleLabel.Name = "adminRoleLabel";
-        this.adminRoleLabel.Size = new Size(218, 31);
-        this.adminRoleLabel.TabIndex = 10;
-        this.adminRoleLabel.Text = "Administrateur";
-        this.adminRoleLabel.TextAlign = ContentAlignment.MiddleLeft;
-        // 
-        // officeEmpRoleChkBox
-        // 
-        this.officeEmpRoleChkBox.AutoSize = true;
-        this.officeEmpRoleChkBox.Location = new Point(31, 84);
-        this.officeEmpRoleChkBox.Name = "officeEmpRoleChkBox";
-        this.officeEmpRoleChkBox.Size = new Size(22, 21);
-        this.officeEmpRoleChkBox.TabIndex = 2;
-        this.officeEmpRoleChkBox.UseVisualStyleBackColor = true;
-        // 
-        // whEmpRoleChkBox
-        // 
-        this.whEmpRoleChkBox.AutoSize = true;
-        this.whEmpRoleChkBox.Location = new Point(31, 128);
-        this.whEmpRoleChkBox.Name = "whEmpRoleChkBox";
-        this.whEmpRoleChkBox.Size = new Size(22, 21);
-        this.whEmpRoleChkBox.TabIndex = 1;
-        this.whEmpRoleChkBox.UseVisualStyleBackColor = true;
-        // 
-        // adminRoleChkBox
-        // 
-        this.adminRoleChkBox.AutoSize = true;
-        this.adminRoleChkBox.Location = new Point(31, 40);
-        this.adminRoleChkBox.Name = "adminRoleChkBox";
-        this.adminRoleChkBox.Size = new Size(22, 21);
-        this.adminRoleChkBox.TabIndex = 0;
-        this.adminRoleChkBox.UseVisualStyleBackColor = true;
+        this.userRolesListBox.FormattingEnabled = true;
+        this.userRolesListBox.ItemHeight = 25;
+        this.userRolesListBox.Location = new Point(53, 257);
+        this.userRolesListBox.Name = "userRolesListBox";
+        this.userRolesListBox.SelectionMode = SelectionMode.MultiExtended;
+        this.userRolesListBox.Size = new Size(314, 154);
+        this.userRolesListBox.TabIndex = 11;
         // 
         // employeeWhListBox
         // 
@@ -400,8 +328,6 @@ partial class UserView {
         this.mainTableLayout.ResumeLayout(false);
         this.mainPanel.ResumeLayout(false);
         this.mainPanel.PerformLayout();
-        this.userRolesGroupBox.ResumeLayout(false);
-        this.userRolesGroupBox.PerformLayout();
         ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).EndInit();
         this.metaDataPanel.ResumeLayout(false);
         this.ResumeLayout(false);
@@ -431,12 +357,6 @@ partial class UserView {
     private Label usernameLabel;
     private TextBox passwordTextBox;
     private TextBox usernameTextBox;
-    private GroupBox userRolesGroupBox;
     private ListBox employeeWhListBox;
-    private Label officeEmpRoleLabel;
-    private Label adminRoleLabel;
-    private CheckBox officeEmpRoleChkBox;
-    private CheckBox whEmpRoleChkBox;
-    private CheckBox adminRoleChkBox;
-    private Label whEmpRoleLabel;
+    private ListBox userRolesListBox;
 }
