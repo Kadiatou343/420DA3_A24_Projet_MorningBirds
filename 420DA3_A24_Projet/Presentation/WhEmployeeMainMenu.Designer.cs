@@ -26,47 +26,47 @@ partial class WhEmployeeMainMenu {
     private void InitializeComponent() {
         this.topBarPanel = new Panel();
         this.bottomBarPanel = new Panel();
-        this.primaryTableLayoutPanel = new TableLayoutPanel();
-        this.soUnForWhEmpTableLayoutPanel = new TableLayoutPanel();
-        this.soAssignedProcTableLayoutPanel = new TableLayoutPanel();
-        this.soPackagedTableLayoutPanel = new TableLayoutPanel();
-        this.poTableLayoutPanel = new TableLayoutPanel();
-        this.soAssignedActionTbLytPanel = new TableLayoutPanel();
-        this.soUnassignedRefreshBtnPanel = new Panel();
-        this.soAssignedRefreshBtnPanel = new Panel();
-        this.soPackagedRefreshBtnPanel = new Panel();
-        this.poRefreshBtnPanel = new Panel();
-        this.soUnassignedRefreshBtn = new Button();
-        this.soAssignedRefreshBtn = new Button();
-        this.soPackagedRefreshBtn = new Button();
-        this.poRefreshBtn = new Button();
-        this.seeSoAssignedDetailsBtn = new Button();
-        this.packedSoAssignedBtn = new Button();
-        this.soUnassignedActBtnPanel = new Panel();
-        this.soPackagedActBtnPanel = new Panel();
-        this.poActionBtnPanel = new Panel();
-        this.soUnassignedAssignButton = new Button();
-        this.soPackagedSetShippedButton = new Button();
-        this.poSetReceivedButton = new Button();
-        this.soUnassignedListBox = new ListBox();
-        this.soAssignedProcessingListBox = new ListBox();
-        this.soPackagedListBox = new ListBox();
-        this.newPoListBox = new ListBox();
         this.logout = new Button();
+        this.primaryTableLayoutPanel = new TableLayoutPanel();
+        this.poTableLayoutPanel = new TableLayoutPanel();
+        this.expectedPoListBox = new ListBox();
+        this.poRefreshBtnPanel = new Panel();
+        this.poRefreshBtn = new Button();
+        this.poActionBtnPanel = new Panel();
+        this.setReceivedButton = new Button();
+        this.soPackagedTableLayoutPanel = new TableLayoutPanel();
+        this.packagedSoListBox = new ListBox();
+        this.soPackagedRefreshBtnPanel = new Panel();
+        this.soPackagedRefreshBtn = new Button();
+        this.soPackagedActBtnPanel = new Panel();
+        this.setShippedButton = new Button();
+        this.soAssignedProcTableLayoutPanel = new TableLayoutPanel();
+        this.processingSoListBox = new ListBox();
+        this.soAssignedRefreshBtnPanel = new Panel();
+        this.soAssignedRefreshBtn = new Button();
+        this.soAssignedActionTbLytPanel = new TableLayoutPanel();
+        this.setPackagedButton = new Button();
+        this.seeDetailsButton = new Button();
+        this.soUnForWhEmpTableLayoutPanel = new TableLayoutPanel();
+        this.soUnassignedRefreshBtnPanel = new Panel();
+        this.soUnassignedRefreshBtn = new Button();
+        this.soUnassignedActBtnPanel = new Panel();
+        this.assignToMeButton = new Button();
+        this.unassignedSoListBox = new ListBox();
         this.bottomBarPanel.SuspendLayout();
         this.primaryTableLayoutPanel.SuspendLayout();
-        this.soUnForWhEmpTableLayoutPanel.SuspendLayout();
-        this.soAssignedProcTableLayoutPanel.SuspendLayout();
-        this.soPackagedTableLayoutPanel.SuspendLayout();
         this.poTableLayoutPanel.SuspendLayout();
-        this.soAssignedActionTbLytPanel.SuspendLayout();
-        this.soUnassignedRefreshBtnPanel.SuspendLayout();
-        this.soAssignedRefreshBtnPanel.SuspendLayout();
-        this.soPackagedRefreshBtnPanel.SuspendLayout();
         this.poRefreshBtnPanel.SuspendLayout();
-        this.soUnassignedActBtnPanel.SuspendLayout();
-        this.soPackagedActBtnPanel.SuspendLayout();
         this.poActionBtnPanel.SuspendLayout();
+        this.soPackagedTableLayoutPanel.SuspendLayout();
+        this.soPackagedRefreshBtnPanel.SuspendLayout();
+        this.soPackagedActBtnPanel.SuspendLayout();
+        this.soAssignedProcTableLayoutPanel.SuspendLayout();
+        this.soAssignedRefreshBtnPanel.SuspendLayout();
+        this.soAssignedActionTbLytPanel.SuspendLayout();
+        this.soUnForWhEmpTableLayoutPanel.SuspendLayout();
+        this.soUnassignedRefreshBtnPanel.SuspendLayout();
+        this.soUnassignedActBtnPanel.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBarPanel
@@ -85,6 +85,16 @@ partial class WhEmployeeMainMenu {
         this.bottomBarPanel.Name = "bottomBarPanel";
         this.bottomBarPanel.Size = new Size(1363, 50);
         this.bottomBarPanel.TabIndex = 1;
+        // 
+        // logout
+        // 
+        this.logout.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
+        this.logout.Location = new Point(1198, 6);
+        this.logout.Name = "logout";
+        this.logout.Size = new Size(153, 34);
+        this.logout.TabIndex = 0;
+        this.logout.Text = "Deconnexion";
+        this.logout.UseVisualStyleBackColor = true;
         // 
         // primaryTableLayoutPanel
         // 
@@ -105,62 +115,11 @@ partial class WhEmployeeMainMenu {
         this.primaryTableLayoutPanel.Size = new Size(1363, 642);
         this.primaryTableLayoutPanel.TabIndex = 2;
         // 
-        // soUnForWhEmpTableLayoutPanel
-        // 
-        this.soUnForWhEmpTableLayoutPanel.ColumnCount = 1;
-        this.soUnForWhEmpTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.soUnForWhEmpTableLayoutPanel.Controls.Add(this.soUnassignedRefreshBtnPanel, 0, 0);
-        this.soUnForWhEmpTableLayoutPanel.Controls.Add(this.soUnassignedActBtnPanel, 0, 2);
-        this.soUnForWhEmpTableLayoutPanel.Controls.Add(this.soUnassignedListBox, 0, 1);
-        this.soUnForWhEmpTableLayoutPanel.Dock = DockStyle.Fill;
-        this.soUnForWhEmpTableLayoutPanel.Location = new Point(3, 3);
-        this.soUnForWhEmpTableLayoutPanel.Name = "soUnForWhEmpTableLayoutPanel";
-        this.soUnForWhEmpTableLayoutPanel.RowCount = 3;
-        this.soUnForWhEmpTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
-        this.soUnForWhEmpTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
-        this.soUnForWhEmpTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
-        this.soUnForWhEmpTableLayoutPanel.Size = new Size(334, 636);
-        this.soUnForWhEmpTableLayoutPanel.TabIndex = 0;
-        // 
-        // soAssignedProcTableLayoutPanel
-        // 
-        this.soAssignedProcTableLayoutPanel.ColumnCount = 1;
-        this.soAssignedProcTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.soAssignedProcTableLayoutPanel.Controls.Add(this.soAssignedProcessingListBox, 0, 1);
-        this.soAssignedProcTableLayoutPanel.Controls.Add(this.soAssignedRefreshBtnPanel, 0, 0);
-        this.soAssignedProcTableLayoutPanel.Controls.Add(this.soAssignedActionTbLytPanel, 0, 2);
-        this.soAssignedProcTableLayoutPanel.Dock = DockStyle.Fill;
-        this.soAssignedProcTableLayoutPanel.Location = new Point(343, 3);
-        this.soAssignedProcTableLayoutPanel.Name = "soAssignedProcTableLayoutPanel";
-        this.soAssignedProcTableLayoutPanel.RowCount = 3;
-        this.soAssignedProcTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
-        this.soAssignedProcTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
-        this.soAssignedProcTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
-        this.soAssignedProcTableLayoutPanel.Size = new Size(334, 636);
-        this.soAssignedProcTableLayoutPanel.TabIndex = 1;
-        // 
-        // soPackagedTableLayoutPanel
-        // 
-        this.soPackagedTableLayoutPanel.ColumnCount = 1;
-        this.soPackagedTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.soPackagedTableLayoutPanel.Controls.Add(this.soPackagedListBox, 0, 1);
-        this.soPackagedTableLayoutPanel.Controls.Add(this.soPackagedRefreshBtnPanel, 0, 0);
-        this.soPackagedTableLayoutPanel.Controls.Add(this.soPackagedActBtnPanel, 0, 2);
-        this.soPackagedTableLayoutPanel.Dock = DockStyle.Fill;
-        this.soPackagedTableLayoutPanel.Location = new Point(683, 3);
-        this.soPackagedTableLayoutPanel.Name = "soPackagedTableLayoutPanel";
-        this.soPackagedTableLayoutPanel.RowCount = 3;
-        this.soPackagedTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
-        this.soPackagedTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
-        this.soPackagedTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
-        this.soPackagedTableLayoutPanel.Size = new Size(334, 636);
-        this.soPackagedTableLayoutPanel.TabIndex = 2;
-        // 
         // poTableLayoutPanel
         // 
         this.poTableLayoutPanel.ColumnCount = 1;
         this.poTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.poTableLayoutPanel.Controls.Add(this.newPoListBox, 0, 1);
+        this.poTableLayoutPanel.Controls.Add(this.expectedPoListBox, 0, 1);
         this.poTableLayoutPanel.Controls.Add(this.poRefreshBtnPanel, 0, 0);
         this.poTableLayoutPanel.Controls.Add(this.poActionBtnPanel, 0, 2);
         this.poTableLayoutPanel.Dock = DockStyle.Fill;
@@ -173,47 +132,15 @@ partial class WhEmployeeMainMenu {
         this.poTableLayoutPanel.Size = new Size(337, 636);
         this.poTableLayoutPanel.TabIndex = 3;
         // 
-        // soAssignedActionTbLytPanel
+        // expectedPoListBox
         // 
-        this.soAssignedActionTbLytPanel.ColumnCount = 2;
-        this.soAssignedActionTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.soAssignedActionTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.soAssignedActionTbLytPanel.Controls.Add(this.packedSoAssignedBtn, 1, 0);
-        this.soAssignedActionTbLytPanel.Controls.Add(this.seeSoAssignedDetailsBtn, 0, 0);
-        this.soAssignedActionTbLytPanel.Dock = DockStyle.Fill;
-        this.soAssignedActionTbLytPanel.Location = new Point(3, 584);
-        this.soAssignedActionTbLytPanel.Name = "soAssignedActionTbLytPanel";
-        this.soAssignedActionTbLytPanel.RowCount = 1;
-        this.soAssignedActionTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        this.soAssignedActionTbLytPanel.Size = new Size(328, 49);
-        this.soAssignedActionTbLytPanel.TabIndex = 0;
-        // 
-        // soUnassignedRefreshBtnPanel
-        // 
-        this.soUnassignedRefreshBtnPanel.Controls.Add(this.soUnassignedRefreshBtn);
-        this.soUnassignedRefreshBtnPanel.Dock = DockStyle.Fill;
-        this.soUnassignedRefreshBtnPanel.Location = new Point(3, 3);
-        this.soUnassignedRefreshBtnPanel.Name = "soUnassignedRefreshBtnPanel";
-        this.soUnassignedRefreshBtnPanel.Size = new Size(328, 46);
-        this.soUnassignedRefreshBtnPanel.TabIndex = 0;
-        // 
-        // soAssignedRefreshBtnPanel
-        // 
-        this.soAssignedRefreshBtnPanel.Controls.Add(this.soAssignedRefreshBtn);
-        this.soAssignedRefreshBtnPanel.Dock = DockStyle.Fill;
-        this.soAssignedRefreshBtnPanel.Location = new Point(3, 3);
-        this.soAssignedRefreshBtnPanel.Name = "soAssignedRefreshBtnPanel";
-        this.soAssignedRefreshBtnPanel.Size = new Size(328, 46);
-        this.soAssignedRefreshBtnPanel.TabIndex = 1;
-        // 
-        // soPackagedRefreshBtnPanel
-        // 
-        this.soPackagedRefreshBtnPanel.Controls.Add(this.soPackagedRefreshBtn);
-        this.soPackagedRefreshBtnPanel.Dock = DockStyle.Fill;
-        this.soPackagedRefreshBtnPanel.Location = new Point(3, 3);
-        this.soPackagedRefreshBtnPanel.Name = "soPackagedRefreshBtnPanel";
-        this.soPackagedRefreshBtnPanel.Size = new Size(328, 46);
-        this.soPackagedRefreshBtnPanel.TabIndex = 1;
+        this.expectedPoListBox.Dock = DockStyle.Fill;
+        this.expectedPoListBox.FormattingEnabled = true;
+        this.expectedPoListBox.ItemHeight = 25;
+        this.expectedPoListBox.Location = new Point(3, 55);
+        this.expectedPoListBox.Name = "expectedPoListBox";
+        this.expectedPoListBox.Size = new Size(331, 523);
+        this.expectedPoListBox.TabIndex = 3;
         // 
         // poRefreshBtnPanel
         // 
@@ -223,39 +150,6 @@ partial class WhEmployeeMainMenu {
         this.poRefreshBtnPanel.Name = "poRefreshBtnPanel";
         this.poRefreshBtnPanel.Size = new Size(331, 46);
         this.poRefreshBtnPanel.TabIndex = 1;
-        // 
-        // soUnassignedRefreshBtn
-        // 
-        this.soUnassignedRefreshBtn.Dock = DockStyle.Fill;
-        this.soUnassignedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        this.soUnassignedRefreshBtn.Location = new Point(0, 0);
-        this.soUnassignedRefreshBtn.Name = "soUnassignedRefreshBtn";
-        this.soUnassignedRefreshBtn.Size = new Size(328, 46);
-        this.soUnassignedRefreshBtn.TabIndex = 0;
-        this.soUnassignedRefreshBtn.Text = "Rafraichir";
-        this.soUnassignedRefreshBtn.UseVisualStyleBackColor = true;
-        // 
-        // soAssignedRefreshBtn
-        // 
-        this.soAssignedRefreshBtn.Dock = DockStyle.Fill;
-        this.soAssignedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        this.soAssignedRefreshBtn.Location = new Point(0, 0);
-        this.soAssignedRefreshBtn.Name = "soAssignedRefreshBtn";
-        this.soAssignedRefreshBtn.Size = new Size(328, 46);
-        this.soAssignedRefreshBtn.TabIndex = 1;
-        this.soAssignedRefreshBtn.Text = "Rafraichir";
-        this.soAssignedRefreshBtn.UseVisualStyleBackColor = true;
-        // 
-        // soPackagedRefreshBtn
-        // 
-        this.soPackagedRefreshBtn.Dock = DockStyle.Fill;
-        this.soPackagedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        this.soPackagedRefreshBtn.Location = new Point(0, 0);
-        this.soPackagedRefreshBtn.Name = "soPackagedRefreshBtn";
-        this.soPackagedRefreshBtn.Size = new Size(328, 46);
-        this.soPackagedRefreshBtn.TabIndex = 1;
-        this.soPackagedRefreshBtn.Text = "Rafraichir";
-        this.soPackagedRefreshBtn.UseVisualStyleBackColor = true;
         // 
         // poRefreshBtn
         // 
@@ -268,129 +162,235 @@ partial class WhEmployeeMainMenu {
         this.poRefreshBtn.Text = "Rafraichir";
         this.poRefreshBtn.UseVisualStyleBackColor = true;
         // 
-        // seeSoAssignedDetailsBtn
-        // 
-        this.seeSoAssignedDetailsBtn.Dock = DockStyle.Fill;
-        this.seeSoAssignedDetailsBtn.Location = new Point(3, 3);
-        this.seeSoAssignedDetailsBtn.Name = "seeSoAssignedDetailsBtn";
-        this.seeSoAssignedDetailsBtn.Size = new Size(158, 43);
-        this.seeSoAssignedDetailsBtn.TabIndex = 0;
-        this.seeSoAssignedDetailsBtn.Text = "Voir Détails";
-        this.seeSoAssignedDetailsBtn.UseVisualStyleBackColor = true;
-        // 
-        // packedSoAssignedBtn
-        // 
-        this.packedSoAssignedBtn.Dock = DockStyle.Fill;
-        this.packedSoAssignedBtn.Location = new Point(167, 3);
-        this.packedSoAssignedBtn.Name = "packedSoAssignedBtn";
-        this.packedSoAssignedBtn.Size = new Size(158, 43);
-        this.packedSoAssignedBtn.TabIndex = 1;
-        this.packedSoAssignedBtn.Text = "Mettre emballé";
-        this.packedSoAssignedBtn.UseVisualStyleBackColor = true;
-        // 
-        // soUnassignedActBtnPanel
-        // 
-        this.soUnassignedActBtnPanel.Controls.Add(this.soUnassignedAssignButton);
-        this.soUnassignedActBtnPanel.Dock = DockStyle.Fill;
-        this.soUnassignedActBtnPanel.Location = new Point(3, 584);
-        this.soUnassignedActBtnPanel.Name = "soUnassignedActBtnPanel";
-        this.soUnassignedActBtnPanel.Size = new Size(328, 49);
-        this.soUnassignedActBtnPanel.TabIndex = 1;
-        // 
-        // soPackagedActBtnPanel
-        // 
-        this.soPackagedActBtnPanel.Controls.Add(this.soPackagedSetShippedButton);
-        this.soPackagedActBtnPanel.Dock = DockStyle.Fill;
-        this.soPackagedActBtnPanel.Location = new Point(3, 584);
-        this.soPackagedActBtnPanel.Name = "soPackagedActBtnPanel";
-        this.soPackagedActBtnPanel.Size = new Size(328, 49);
-        this.soPackagedActBtnPanel.TabIndex = 2;
-        // 
         // poActionBtnPanel
         // 
-        this.poActionBtnPanel.Controls.Add(this.poSetReceivedButton);
+        this.poActionBtnPanel.Controls.Add(this.setReceivedButton);
         this.poActionBtnPanel.Dock = DockStyle.Fill;
         this.poActionBtnPanel.Location = new Point(3, 584);
         this.poActionBtnPanel.Name = "poActionBtnPanel";
         this.poActionBtnPanel.Size = new Size(331, 49);
         this.poActionBtnPanel.TabIndex = 2;
         // 
-        // soUnassignedAssignButton
+        // setReceivedButton
         // 
-        this.soUnassignedAssignButton.Location = new Point(80, 3);
-        this.soUnassignedAssignButton.Name = "soUnassignedAssignButton";
-        this.soUnassignedAssignButton.Size = new Size(158, 43);
-        this.soUnassignedAssignButton.TabIndex = 0;
-        this.soUnassignedAssignButton.Text = "M'assigner";
-        this.soUnassignedAssignButton.UseVisualStyleBackColor = true;
+        this.setReceivedButton.Location = new Point(86, 3);
+        this.setReceivedButton.Name = "setReceivedButton";
+        this.setReceivedButton.Size = new Size(158, 43);
+        this.setReceivedButton.TabIndex = 1;
+        this.setReceivedButton.Text = "Mettre reçu";
+        this.setReceivedButton.UseVisualStyleBackColor = true;
         // 
-        // soPackagedSetShippedButton
+        // soPackagedTableLayoutPanel
         // 
-        this.soPackagedSetShippedButton.Location = new Point(85, 3);
-        this.soPackagedSetShippedButton.Name = "soPackagedSetShippedButton";
-        this.soPackagedSetShippedButton.Size = new Size(158, 43);
-        this.soPackagedSetShippedButton.TabIndex = 1;
-        this.soPackagedSetShippedButton.Text = "Mettre Expédié";
-        this.soPackagedSetShippedButton.UseVisualStyleBackColor = true;
+        this.soPackagedTableLayoutPanel.ColumnCount = 1;
+        this.soPackagedTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        this.soPackagedTableLayoutPanel.Controls.Add(this.packagedSoListBox, 0, 1);
+        this.soPackagedTableLayoutPanel.Controls.Add(this.soPackagedRefreshBtnPanel, 0, 0);
+        this.soPackagedTableLayoutPanel.Controls.Add(this.soPackagedActBtnPanel, 0, 2);
+        this.soPackagedTableLayoutPanel.Dock = DockStyle.Fill;
+        this.soPackagedTableLayoutPanel.Location = new Point(683, 3);
+        this.soPackagedTableLayoutPanel.Name = "soPackagedTableLayoutPanel";
+        this.soPackagedTableLayoutPanel.RowCount = 3;
+        this.soPackagedTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
+        this.soPackagedTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
+        this.soPackagedTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
+        this.soPackagedTableLayoutPanel.Size = new Size(334, 636);
+        this.soPackagedTableLayoutPanel.TabIndex = 2;
         // 
-        // poSetReceivedButton
+        // packagedSoListBox
         // 
-        this.poSetReceivedButton.Location = new Point(86, 3);
-        this.poSetReceivedButton.Name = "poSetReceivedButton";
-        this.poSetReceivedButton.Size = new Size(158, 43);
-        this.poSetReceivedButton.TabIndex = 1;
-        this.poSetReceivedButton.Text = "Mettre reçu";
-        this.poSetReceivedButton.UseVisualStyleBackColor = true;
+        this.packagedSoListBox.Dock = DockStyle.Fill;
+        this.packagedSoListBox.FormattingEnabled = true;
+        this.packagedSoListBox.ItemHeight = 25;
+        this.packagedSoListBox.Location = new Point(3, 55);
+        this.packagedSoListBox.Name = "packagedSoListBox";
+        this.packagedSoListBox.Size = new Size(328, 523);
+        this.packagedSoListBox.TabIndex = 3;
         // 
-        // soUnassignedListBox
+        // soPackagedRefreshBtnPanel
         // 
-        this.soUnassignedListBox.Dock = DockStyle.Fill;
-        this.soUnassignedListBox.FormattingEnabled = true;
-        this.soUnassignedListBox.ItemHeight = 25;
-        this.soUnassignedListBox.Location = new Point(3, 55);
-        this.soUnassignedListBox.Name = "soUnassignedListBox";
-        this.soUnassignedListBox.Size = new Size(328, 523);
-        this.soUnassignedListBox.TabIndex = 2;
+        this.soPackagedRefreshBtnPanel.Controls.Add(this.soPackagedRefreshBtn);
+        this.soPackagedRefreshBtnPanel.Dock = DockStyle.Fill;
+        this.soPackagedRefreshBtnPanel.Location = new Point(3, 3);
+        this.soPackagedRefreshBtnPanel.Name = "soPackagedRefreshBtnPanel";
+        this.soPackagedRefreshBtnPanel.Size = new Size(328, 46);
+        this.soPackagedRefreshBtnPanel.TabIndex = 1;
         // 
-        // soAssignedProcessingListBox
+        // soPackagedRefreshBtn
         // 
-        this.soAssignedProcessingListBox.Dock = DockStyle.Fill;
-        this.soAssignedProcessingListBox.FormattingEnabled = true;
-        this.soAssignedProcessingListBox.ItemHeight = 25;
-        this.soAssignedProcessingListBox.Location = new Point(3, 55);
-        this.soAssignedProcessingListBox.Name = "soAssignedProcessingListBox";
-        this.soAssignedProcessingListBox.Size = new Size(328, 523);
-        this.soAssignedProcessingListBox.TabIndex = 3;
+        this.soPackagedRefreshBtn.Dock = DockStyle.Fill;
+        this.soPackagedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        this.soPackagedRefreshBtn.Location = new Point(0, 0);
+        this.soPackagedRefreshBtn.Name = "soPackagedRefreshBtn";
+        this.soPackagedRefreshBtn.Size = new Size(328, 46);
+        this.soPackagedRefreshBtn.TabIndex = 1;
+        this.soPackagedRefreshBtn.Text = "Rafraichir";
+        this.soPackagedRefreshBtn.UseVisualStyleBackColor = true;
         // 
-        // soPackagedListBox
+        // soPackagedActBtnPanel
         // 
-        this.soPackagedListBox.Dock = DockStyle.Fill;
-        this.soPackagedListBox.FormattingEnabled = true;
-        this.soPackagedListBox.ItemHeight = 25;
-        this.soPackagedListBox.Location = new Point(3, 55);
-        this.soPackagedListBox.Name = "soPackagedListBox";
-        this.soPackagedListBox.Size = new Size(328, 523);
-        this.soPackagedListBox.TabIndex = 3;
+        this.soPackagedActBtnPanel.Controls.Add(this.setShippedButton);
+        this.soPackagedActBtnPanel.Dock = DockStyle.Fill;
+        this.soPackagedActBtnPanel.Location = new Point(3, 584);
+        this.soPackagedActBtnPanel.Name = "soPackagedActBtnPanel";
+        this.soPackagedActBtnPanel.Size = new Size(328, 49);
+        this.soPackagedActBtnPanel.TabIndex = 2;
         // 
-        // newPoListBox
+        // setShippedButton
         // 
-        this.newPoListBox.Dock = DockStyle.Fill;
-        this.newPoListBox.FormattingEnabled = true;
-        this.newPoListBox.ItemHeight = 25;
-        this.newPoListBox.Location = new Point(3, 55);
-        this.newPoListBox.Name = "newPoListBox";
-        this.newPoListBox.Size = new Size(331, 523);
-        this.newPoListBox.TabIndex = 3;
+        this.setShippedButton.Location = new Point(85, 3);
+        this.setShippedButton.Name = "setShippedButton";
+        this.setShippedButton.Size = new Size(158, 43);
+        this.setShippedButton.TabIndex = 1;
+        this.setShippedButton.Text = "Mettre Expédié";
+        this.setShippedButton.UseVisualStyleBackColor = true;
         // 
-        // logout
+        // soAssignedProcTableLayoutPanel
         // 
-        this.logout.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.logout.Location = new Point(1198, 6);
-        this.logout.Name = "logout";
-        this.logout.Size = new Size(153, 34);
-        this.logout.TabIndex = 0;
-        this.logout.Text = "Deconnexion";
-        this.logout.UseVisualStyleBackColor = true;
+        this.soAssignedProcTableLayoutPanel.ColumnCount = 1;
+        this.soAssignedProcTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        this.soAssignedProcTableLayoutPanel.Controls.Add(this.processingSoListBox, 0, 1);
+        this.soAssignedProcTableLayoutPanel.Controls.Add(this.soAssignedRefreshBtnPanel, 0, 0);
+        this.soAssignedProcTableLayoutPanel.Controls.Add(this.soAssignedActionTbLytPanel, 0, 2);
+        this.soAssignedProcTableLayoutPanel.Dock = DockStyle.Fill;
+        this.soAssignedProcTableLayoutPanel.Location = new Point(343, 3);
+        this.soAssignedProcTableLayoutPanel.Name = "soAssignedProcTableLayoutPanel";
+        this.soAssignedProcTableLayoutPanel.RowCount = 3;
+        this.soAssignedProcTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
+        this.soAssignedProcTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
+        this.soAssignedProcTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
+        this.soAssignedProcTableLayoutPanel.Size = new Size(334, 636);
+        this.soAssignedProcTableLayoutPanel.TabIndex = 1;
+        // 
+        // processingSoListBox
+        // 
+        this.processingSoListBox.Dock = DockStyle.Fill;
+        this.processingSoListBox.FormattingEnabled = true;
+        this.processingSoListBox.ItemHeight = 25;
+        this.processingSoListBox.Location = new Point(3, 55);
+        this.processingSoListBox.Name = "processingSoListBox";
+        this.processingSoListBox.Size = new Size(328, 523);
+        this.processingSoListBox.TabIndex = 3;
+        // 
+        // soAssignedRefreshBtnPanel
+        // 
+        this.soAssignedRefreshBtnPanel.Controls.Add(this.soAssignedRefreshBtn);
+        this.soAssignedRefreshBtnPanel.Dock = DockStyle.Fill;
+        this.soAssignedRefreshBtnPanel.Location = new Point(3, 3);
+        this.soAssignedRefreshBtnPanel.Name = "soAssignedRefreshBtnPanel";
+        this.soAssignedRefreshBtnPanel.Size = new Size(328, 46);
+        this.soAssignedRefreshBtnPanel.TabIndex = 1;
+        // 
+        // soAssignedRefreshBtn
+        // 
+        this.soAssignedRefreshBtn.Dock = DockStyle.Fill;
+        this.soAssignedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        this.soAssignedRefreshBtn.Location = new Point(0, 0);
+        this.soAssignedRefreshBtn.Name = "soAssignedRefreshBtn";
+        this.soAssignedRefreshBtn.Size = new Size(328, 46);
+        this.soAssignedRefreshBtn.TabIndex = 1;
+        this.soAssignedRefreshBtn.Text = "Rafraichir";
+        this.soAssignedRefreshBtn.UseVisualStyleBackColor = true;
+        // 
+        // soAssignedActionTbLytPanel
+        // 
+        this.soAssignedActionTbLytPanel.ColumnCount = 2;
+        this.soAssignedActionTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.soAssignedActionTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.soAssignedActionTbLytPanel.Controls.Add(this.setPackagedButton, 1, 0);
+        this.soAssignedActionTbLytPanel.Controls.Add(this.seeDetailsButton, 0, 0);
+        this.soAssignedActionTbLytPanel.Dock = DockStyle.Fill;
+        this.soAssignedActionTbLytPanel.Location = new Point(3, 584);
+        this.soAssignedActionTbLytPanel.Name = "soAssignedActionTbLytPanel";
+        this.soAssignedActionTbLytPanel.RowCount = 1;
+        this.soAssignedActionTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.soAssignedActionTbLytPanel.Size = new Size(328, 49);
+        this.soAssignedActionTbLytPanel.TabIndex = 0;
+        // 
+        // setPackagedButton
+        // 
+        this.setPackagedButton.Dock = DockStyle.Fill;
+        this.setPackagedButton.Location = new Point(167, 3);
+        this.setPackagedButton.Name = "setPackagedButton";
+        this.setPackagedButton.Size = new Size(158, 43);
+        this.setPackagedButton.TabIndex = 1;
+        this.setPackagedButton.Text = "Mettre emballé";
+        this.setPackagedButton.UseVisualStyleBackColor = true;
+        // 
+        // seeDetailsButton
+        // 
+        this.seeDetailsButton.Dock = DockStyle.Fill;
+        this.seeDetailsButton.Location = new Point(3, 3);
+        this.seeDetailsButton.Name = "seeDetailsButton";
+        this.seeDetailsButton.Size = new Size(158, 43);
+        this.seeDetailsButton.TabIndex = 0;
+        this.seeDetailsButton.Text = "Voir Détails";
+        this.seeDetailsButton.UseVisualStyleBackColor = true;
+        // 
+        // soUnForWhEmpTableLayoutPanel
+        // 
+        this.soUnForWhEmpTableLayoutPanel.ColumnCount = 1;
+        this.soUnForWhEmpTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        this.soUnForWhEmpTableLayoutPanel.Controls.Add(this.soUnassignedRefreshBtnPanel, 0, 0);
+        this.soUnForWhEmpTableLayoutPanel.Controls.Add(this.soUnassignedActBtnPanel, 0, 2);
+        this.soUnForWhEmpTableLayoutPanel.Controls.Add(this.unassignedSoListBox, 0, 1);
+        this.soUnForWhEmpTableLayoutPanel.Dock = DockStyle.Fill;
+        this.soUnForWhEmpTableLayoutPanel.Location = new Point(3, 3);
+        this.soUnForWhEmpTableLayoutPanel.Name = "soUnForWhEmpTableLayoutPanel";
+        this.soUnForWhEmpTableLayoutPanel.RowCount = 3;
+        this.soUnForWhEmpTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
+        this.soUnForWhEmpTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
+        this.soUnForWhEmpTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333333F));
+        this.soUnForWhEmpTableLayoutPanel.Size = new Size(334, 636);
+        this.soUnForWhEmpTableLayoutPanel.TabIndex = 0;
+        // 
+        // soUnassignedRefreshBtnPanel
+        // 
+        this.soUnassignedRefreshBtnPanel.Controls.Add(this.soUnassignedRefreshBtn);
+        this.soUnassignedRefreshBtnPanel.Dock = DockStyle.Fill;
+        this.soUnassignedRefreshBtnPanel.Location = new Point(3, 3);
+        this.soUnassignedRefreshBtnPanel.Name = "soUnassignedRefreshBtnPanel";
+        this.soUnassignedRefreshBtnPanel.Size = new Size(328, 46);
+        this.soUnassignedRefreshBtnPanel.TabIndex = 0;
+        // 
+        // soUnassignedRefreshBtn
+        // 
+        this.soUnassignedRefreshBtn.Dock = DockStyle.Fill;
+        this.soUnassignedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        this.soUnassignedRefreshBtn.Location = new Point(0, 0);
+        this.soUnassignedRefreshBtn.Name = "soUnassignedRefreshBtn";
+        this.soUnassignedRefreshBtn.Size = new Size(328, 46);
+        this.soUnassignedRefreshBtn.TabIndex = 0;
+        this.soUnassignedRefreshBtn.Text = "Rafraichir";
+        this.soUnassignedRefreshBtn.UseVisualStyleBackColor = true;
+        // 
+        // soUnassignedActBtnPanel
+        // 
+        this.soUnassignedActBtnPanel.Controls.Add(this.assignToMeButton);
+        this.soUnassignedActBtnPanel.Dock = DockStyle.Fill;
+        this.soUnassignedActBtnPanel.Location = new Point(3, 584);
+        this.soUnassignedActBtnPanel.Name = "soUnassignedActBtnPanel";
+        this.soUnassignedActBtnPanel.Size = new Size(328, 49);
+        this.soUnassignedActBtnPanel.TabIndex = 1;
+        // 
+        // assignToMeButton
+        // 
+        this.assignToMeButton.Location = new Point(80, 3);
+        this.assignToMeButton.Name = "assignToMeButton";
+        this.assignToMeButton.Size = new Size(158, 43);
+        this.assignToMeButton.TabIndex = 0;
+        this.assignToMeButton.Text = "M'assigner";
+        this.assignToMeButton.UseVisualStyleBackColor = true;
+        // 
+        // unassignedSoListBox
+        // 
+        this.unassignedSoListBox.Dock = DockStyle.Fill;
+        this.unassignedSoListBox.FormattingEnabled = true;
+        this.unassignedSoListBox.ItemHeight = 25;
+        this.unassignedSoListBox.Location = new Point(3, 55);
+        this.unassignedSoListBox.Name = "unassignedSoListBox";
+        this.unassignedSoListBox.Size = new Size(328, 523);
+        this.unassignedSoListBox.TabIndex = 2;
         // 
         // WhEmployeeMainMenu
         // 
@@ -404,18 +404,18 @@ partial class WhEmployeeMainMenu {
         this.Text = "WhEmployeeMainMenu";
         this.bottomBarPanel.ResumeLayout(false);
         this.primaryTableLayoutPanel.ResumeLayout(false);
-        this.soUnForWhEmpTableLayoutPanel.ResumeLayout(false);
-        this.soAssignedProcTableLayoutPanel.ResumeLayout(false);
-        this.soPackagedTableLayoutPanel.ResumeLayout(false);
         this.poTableLayoutPanel.ResumeLayout(false);
-        this.soAssignedActionTbLytPanel.ResumeLayout(false);
-        this.soUnassignedRefreshBtnPanel.ResumeLayout(false);
-        this.soAssignedRefreshBtnPanel.ResumeLayout(false);
-        this.soPackagedRefreshBtnPanel.ResumeLayout(false);
         this.poRefreshBtnPanel.ResumeLayout(false);
-        this.soUnassignedActBtnPanel.ResumeLayout(false);
-        this.soPackagedActBtnPanel.ResumeLayout(false);
         this.poActionBtnPanel.ResumeLayout(false);
+        this.soPackagedTableLayoutPanel.ResumeLayout(false);
+        this.soPackagedRefreshBtnPanel.ResumeLayout(false);
+        this.soPackagedActBtnPanel.ResumeLayout(false);
+        this.soAssignedProcTableLayoutPanel.ResumeLayout(false);
+        this.soAssignedRefreshBtnPanel.ResumeLayout(false);
+        this.soAssignedActionTbLytPanel.ResumeLayout(false);
+        this.soUnForWhEmpTableLayoutPanel.ResumeLayout(false);
+        this.soUnassignedRefreshBtnPanel.ResumeLayout(false);
+        this.soUnassignedActBtnPanel.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 
@@ -437,17 +437,17 @@ partial class WhEmployeeMainMenu {
     private Button poRefreshBtn;
     private Button soPackagedRefreshBtn;
     private Button soAssignedRefreshBtn;
-    private Button packedSoAssignedBtn;
-    private Button seeSoAssignedDetailsBtn;
+    private Button setPackagedButton;
+    private Button seeDetailsButton;
     private Panel soUnassignedActBtnPanel;
     private Panel poActionBtnPanel;
-    private Button poSetReceivedButton;
+    private Button setReceivedButton;
     private Panel soPackagedActBtnPanel;
-    private Button soPackagedSetShippedButton;
-    private Button soUnassignedAssignButton;
-    private ListBox soUnassignedListBox;
+    private Button setShippedButton;
+    private Button assignToMeButton;
+    private ListBox unassignedSoListBox;
     private Button logout;
-    private ListBox newPoListBox;
-    private ListBox soPackagedListBox;
-    private ListBox soAssignedProcessingListBox;
+    private ListBox expectedPoListBox;
+    private ListBox packagedSoListBox;
+    private ListBox processingSoListBox;
 }

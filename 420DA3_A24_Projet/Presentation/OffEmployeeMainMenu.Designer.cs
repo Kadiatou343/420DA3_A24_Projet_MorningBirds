@@ -32,64 +32,64 @@ partial class OffEmployeeMainMenu {
         this.soListBox = new ListBox();
         this.searchSOTextBox = new TextBox();
         this.createSOPanel = new Panel();
-        this.createSOButton = new Button();
+        this.createSoButton = new Button();
         this.poActionButttonsPanel = new Panel();
         this.containerPanel = new Panel();
-        this.deleteSOButton = new Button();
-        this.seeSODetailsButton = new Button();
-        this.updateSOButtton = new Button();
+        this.soActionTableLayoutPanel = new TableLayoutPanel();
+        this.deleteSoButton = new Button();
+        this.updateSoButtton = new Button();
+        this.seeSoDetailsButton = new Button();
         this.enititesTableLayoutPanel = new TableLayoutPanel();
         this.supplierManagementTbLytPanel = new TableLayoutPanel();
-        this.supplierSearchPanel = new Panel();
-        this.supplierListBox = new ListBox();
-        this.supplierSearchTextBox = new TextBox();
-        this.productManagementTbLytPanel = new TableLayoutPanel();
-        this.productActionBtnPanel = new Panel();
-        this.productSearchPanel = new Panel();
-        this.productListBox = new ListBox();
-        this.productSearchTextBox = new TextBox();
-        this.clientManagementTbLytPanel = new TableLayoutPanel();
-        this.clientActionBtnPanel = new Panel();
-        this.clientSearchPanel = new Panel();
-        this.clientListBox = new ListBox();
-        this.clientSearchTextBox = new TextBox();
         this.supplierActionBtnPanel = new Panel();
-        this.clientActionBtnTbLytPanel = new TableLayoutPanel();
-        this.createClientButton = new Button();
-        this.seeClientDetailsButton = new Button();
-        this.updateClientButton = new Button();
-        this.deleteClientButton = new Button();
-        this.tableLayoutPanel1 = new TableLayoutPanel();
-        this.deleteProductButton = new Button();
-        this.updateProductButton = new Button();
-        this.createProductButton = new Button();
-        this.seeProductDetailsButton = new Button();
         this.tableLayoutPanel2 = new TableLayoutPanel();
         this.deleteSupplierButton = new Button();
         this.updateSupplierButton = new Button();
         this.createSupplierButton = new Button();
         this.seeSupplierDetailsButton = new Button();
-        this.soActionTableLayoutPanel = new TableLayoutPanel();
+        this.supplierSearchPanel = new Panel();
+        this.supplierListBox = new ListBox();
+        this.supplierSearchTextBox = new TextBox();
+        this.productManagementTbLytPanel = new TableLayoutPanel();
+        this.productActionBtnPanel = new Panel();
+        this.tableLayoutPanel1 = new TableLayoutPanel();
+        this.deleteProductButton = new Button();
+        this.updateProductButton = new Button();
+        this.createProductButton = new Button();
+        this.seeProductDetailsButton = new Button();
+        this.productSearchPanel = new Panel();
+        this.productListBox = new ListBox();
+        this.productSearchTextBox = new TextBox();
+        this.clientManagementTbLytPanel = new TableLayoutPanel();
+        this.clientActionBtnPanel = new Panel();
+        this.clientActionBtnTbLytPanel = new TableLayoutPanel();
+        this.deleteClientButton = new Button();
+        this.updateClientButton = new Button();
+        this.createClientButton = new Button();
+        this.seeClientDetailsButton = new Button();
+        this.clientSearchPanel = new Panel();
+        this.clientListBox = new ListBox();
+        this.clientSearchTextBox = new TextBox();
         this.botttomBarPanel.SuspendLayout();
         this.primaryTableLayoutPanel.SuspendLayout();
         this.soManagementPanel.SuspendLayout();
         this.createSOPanel.SuspendLayout();
         this.poActionButttonsPanel.SuspendLayout();
         this.containerPanel.SuspendLayout();
+        this.soActionTableLayoutPanel.SuspendLayout();
         this.enititesTableLayoutPanel.SuspendLayout();
         this.supplierManagementTbLytPanel.SuspendLayout();
+        this.supplierActionBtnPanel.SuspendLayout();
+        this.tableLayoutPanel2.SuspendLayout();
         this.supplierSearchPanel.SuspendLayout();
         this.productManagementTbLytPanel.SuspendLayout();
         this.productActionBtnPanel.SuspendLayout();
+        this.tableLayoutPanel1.SuspendLayout();
         this.productSearchPanel.SuspendLayout();
         this.clientManagementTbLytPanel.SuspendLayout();
         this.clientActionBtnPanel.SuspendLayout();
-        this.clientSearchPanel.SuspendLayout();
-        this.supplierActionBtnPanel.SuspendLayout();
         this.clientActionBtnTbLytPanel.SuspendLayout();
-        this.tableLayoutPanel1.SuspendLayout();
-        this.tableLayoutPanel2.SuspendLayout();
-        this.soActionTableLayoutPanel.SuspendLayout();
+        this.clientSearchPanel.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBarPanel
@@ -167,21 +167,21 @@ partial class OffEmployeeMainMenu {
         // 
         // createSOPanel
         // 
-        this.createSOPanel.Controls.Add(this.createSOButton);
+        this.createSOPanel.Controls.Add(this.createSoButton);
         this.createSOPanel.Dock = DockStyle.Top;
         this.createSOPanel.Location = new Point(0, 0);
         this.createSOPanel.Name = "createSOPanel";
         this.createSOPanel.Size = new Size(675, 50);
         this.createSOPanel.TabIndex = 1;
         // 
-        // createSOButton
+        // createSoButton
         // 
-        this.createSOButton.Location = new Point(225, 5);
-        this.createSOButton.Name = "createSOButton";
-        this.createSOButton.Size = new Size(243, 40);
-        this.createSOButton.TabIndex = 2;
-        this.createSOButton.Text = "Créer un ordre d'expédition";
-        this.createSOButton.UseVisualStyleBackColor = true;
+        this.createSoButton.Location = new Point(225, 5);
+        this.createSoButton.Name = "createSoButton";
+        this.createSoButton.Size = new Size(243, 40);
+        this.createSoButton.TabIndex = 2;
+        this.createSoButton.Text = "Créer un ordre d'expédition";
+        this.createSoButton.UseVisualStyleBackColor = true;
         // 
         // poActionButttonsPanel
         // 
@@ -201,38 +201,55 @@ partial class OffEmployeeMainMenu {
         this.containerPanel.Size = new Size(354, 145);
         this.containerPanel.TabIndex = 0;
         // 
-        // deleteSOButton
+        // soActionTableLayoutPanel
         // 
-        this.deleteSOButton.Dock = DockStyle.Fill;
-        this.deleteSOButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.deleteSOButton.Location = new Point(3, 99);
-        this.deleteSOButton.Name = "deleteSOButton";
-        this.deleteSOButton.Size = new Size(348, 43);
-        this.deleteSOButton.TabIndex = 2;
-        this.deleteSOButton.Text = "Supprimer ordre d'expédition";
-        this.deleteSOButton.UseVisualStyleBackColor = true;
+        this.soActionTableLayoutPanel.ColumnCount = 1;
+        this.soActionTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        this.soActionTableLayoutPanel.Controls.Add(this.deleteSoButton, 0, 2);
+        this.soActionTableLayoutPanel.Controls.Add(this.updateSoButtton, 0, 1);
+        this.soActionTableLayoutPanel.Controls.Add(this.seeSoDetailsButton, 0, 0);
+        this.soActionTableLayoutPanel.Dock = DockStyle.Fill;
+        this.soActionTableLayoutPanel.Location = new Point(0, 0);
+        this.soActionTableLayoutPanel.Name = "soActionTableLayoutPanel";
+        this.soActionTableLayoutPanel.RowCount = 3;
+        this.soActionTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+        this.soActionTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+        this.soActionTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+        this.soActionTableLayoutPanel.Size = new Size(354, 145);
+        this.soActionTableLayoutPanel.TabIndex = 0;
         // 
-        // seeSODetailsButton
+        // deleteSoButton
         // 
-        this.seeSODetailsButton.Dock = DockStyle.Fill;
-        this.seeSODetailsButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.seeSODetailsButton.Location = new Point(3, 3);
-        this.seeSODetailsButton.Name = "seeSODetailsButton";
-        this.seeSODetailsButton.Size = new Size(348, 42);
-        this.seeSODetailsButton.TabIndex = 0;
-        this.seeSODetailsButton.Text = "Voir ordre d'expédition détails";
-        this.seeSODetailsButton.UseVisualStyleBackColor = true;
+        this.deleteSoButton.Dock = DockStyle.Fill;
+        this.deleteSoButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.deleteSoButton.Location = new Point(3, 99);
+        this.deleteSoButton.Name = "deleteSoButton";
+        this.deleteSoButton.Size = new Size(348, 43);
+        this.deleteSoButton.TabIndex = 2;
+        this.deleteSoButton.Text = "Supprimer ordre d'expédition";
+        this.deleteSoButton.UseVisualStyleBackColor = true;
         // 
-        // updateSOButtton
+        // updateSoButtton
         // 
-        this.updateSOButtton.Dock = DockStyle.Fill;
-        this.updateSOButtton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.updateSOButtton.Location = new Point(3, 51);
-        this.updateSOButtton.Name = "updateSOButtton";
-        this.updateSOButtton.Size = new Size(348, 42);
-        this.updateSOButtton.TabIndex = 1;
-        this.updateSOButtton.Text = "Modifier ordre d'expédition";
-        this.updateSOButtton.UseVisualStyleBackColor = true;
+        this.updateSoButtton.Dock = DockStyle.Fill;
+        this.updateSoButtton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.updateSoButtton.Location = new Point(3, 51);
+        this.updateSoButtton.Name = "updateSoButtton";
+        this.updateSoButtton.Size = new Size(348, 42);
+        this.updateSoButtton.TabIndex = 1;
+        this.updateSoButtton.Text = "Modifier ordre d'expédition";
+        this.updateSoButtton.UseVisualStyleBackColor = true;
+        // 
+        // seeSoDetailsButton
+        // 
+        this.seeSoDetailsButton.Dock = DockStyle.Fill;
+        this.seeSoDetailsButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.seeSoDetailsButton.Location = new Point(3, 3);
+        this.seeSoDetailsButton.Name = "seeSoDetailsButton";
+        this.seeSoDetailsButton.Size = new Size(348, 42);
+        this.seeSoDetailsButton.TabIndex = 0;
+        this.seeSoDetailsButton.Text = "Voir ordre d'expédition détails";
+        this.seeSoDetailsButton.UseVisualStyleBackColor = true;
         // 
         // enititesTableLayoutPanel
         // 
@@ -266,141 +283,6 @@ partial class OffEmployeeMainMenu {
         this.supplierManagementTbLytPanel.Size = new Size(670, 206);
         this.supplierManagementTbLytPanel.TabIndex = 2;
         // 
-        // supplierSearchPanel
-        // 
-        this.supplierSearchPanel.Controls.Add(this.supplierListBox);
-        this.supplierSearchPanel.Controls.Add(this.supplierSearchTextBox);
-        this.supplierSearchPanel.Dock = DockStyle.Fill;
-        this.supplierSearchPanel.Location = new Point(3, 3);
-        this.supplierSearchPanel.Name = "supplierSearchPanel";
-        this.supplierSearchPanel.Size = new Size(329, 200);
-        this.supplierSearchPanel.TabIndex = 1;
-        // 
-        // supplierListBox
-        // 
-        this.supplierListBox.Dock = DockStyle.Fill;
-        this.supplierListBox.FormattingEnabled = true;
-        this.supplierListBox.ItemHeight = 25;
-        this.supplierListBox.Location = new Point(0, 31);
-        this.supplierListBox.Name = "supplierListBox";
-        this.supplierListBox.Size = new Size(329, 169);
-        this.supplierListBox.TabIndex = 2;
-        // 
-        // supplierSearchTextBox
-        // 
-        this.supplierSearchTextBox.Dock = DockStyle.Top;
-        this.supplierSearchTextBox.Location = new Point(0, 0);
-        this.supplierSearchTextBox.Name = "supplierSearchTextBox";
-        this.supplierSearchTextBox.PlaceholderText = "Rechercher un fournisseur";
-        this.supplierSearchTextBox.Size = new Size(329, 31);
-        this.supplierSearchTextBox.TabIndex = 1;
-        // 
-        // productManagementTbLytPanel
-        // 
-        this.productManagementTbLytPanel.ColumnCount = 2;
-        this.productManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.productManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.productManagementTbLytPanel.Controls.Add(this.productActionBtnPanel, 1, 0);
-        this.productManagementTbLytPanel.Controls.Add(this.productSearchPanel, 0, 0);
-        this.productManagementTbLytPanel.Dock = DockStyle.Fill;
-        this.productManagementTbLytPanel.Location = new Point(3, 215);
-        this.productManagementTbLytPanel.Name = "productManagementTbLytPanel";
-        this.productManagementTbLytPanel.RowCount = 1;
-        this.productManagementTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-        this.productManagementTbLytPanel.Size = new Size(670, 206);
-        this.productManagementTbLytPanel.TabIndex = 1;
-        // 
-        // productActionBtnPanel
-        // 
-        this.productActionBtnPanel.Controls.Add(this.tableLayoutPanel1);
-        this.productActionBtnPanel.Dock = DockStyle.Fill;
-        this.productActionBtnPanel.Location = new Point(338, 3);
-        this.productActionBtnPanel.Name = "productActionBtnPanel";
-        this.productActionBtnPanel.Size = new Size(329, 200);
-        this.productActionBtnPanel.TabIndex = 2;
-        // 
-        // productSearchPanel
-        // 
-        this.productSearchPanel.Controls.Add(this.productListBox);
-        this.productSearchPanel.Controls.Add(this.productSearchTextBox);
-        this.productSearchPanel.Dock = DockStyle.Fill;
-        this.productSearchPanel.Location = new Point(3, 3);
-        this.productSearchPanel.Name = "productSearchPanel";
-        this.productSearchPanel.Size = new Size(329, 200);
-        this.productSearchPanel.TabIndex = 1;
-        // 
-        // productListBox
-        // 
-        this.productListBox.Dock = DockStyle.Fill;
-        this.productListBox.FormattingEnabled = true;
-        this.productListBox.ItemHeight = 25;
-        this.productListBox.Location = new Point(0, 31);
-        this.productListBox.Name = "productListBox";
-        this.productListBox.Size = new Size(329, 169);
-        this.productListBox.TabIndex = 2;
-        // 
-        // productSearchTextBox
-        // 
-        this.productSearchTextBox.Dock = DockStyle.Top;
-        this.productSearchTextBox.Location = new Point(0, 0);
-        this.productSearchTextBox.Name = "productSearchTextBox";
-        this.productSearchTextBox.PlaceholderText = "Rechercher un produit";
-        this.productSearchTextBox.Size = new Size(329, 31);
-        this.productSearchTextBox.TabIndex = 1;
-        // 
-        // clientManagementTbLytPanel
-        // 
-        this.clientManagementTbLytPanel.ColumnCount = 2;
-        this.clientManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.clientManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.clientManagementTbLytPanel.Controls.Add(this.clientActionBtnPanel, 1, 0);
-        this.clientManagementTbLytPanel.Controls.Add(this.clientSearchPanel, 0, 0);
-        this.clientManagementTbLytPanel.Dock = DockStyle.Fill;
-        this.clientManagementTbLytPanel.Location = new Point(3, 3);
-        this.clientManagementTbLytPanel.Name = "clientManagementTbLytPanel";
-        this.clientManagementTbLytPanel.RowCount = 1;
-        this.clientManagementTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-        this.clientManagementTbLytPanel.Size = new Size(670, 206);
-        this.clientManagementTbLytPanel.TabIndex = 0;
-        // 
-        // clientActionBtnPanel
-        // 
-        this.clientActionBtnPanel.Controls.Add(this.clientActionBtnTbLytPanel);
-        this.clientActionBtnPanel.Dock = DockStyle.Fill;
-        this.clientActionBtnPanel.Location = new Point(338, 3);
-        this.clientActionBtnPanel.Name = "clientActionBtnPanel";
-        this.clientActionBtnPanel.Size = new Size(329, 200);
-        this.clientActionBtnPanel.TabIndex = 1;
-        // 
-        // clientSearchPanel
-        // 
-        this.clientSearchPanel.Controls.Add(this.clientListBox);
-        this.clientSearchPanel.Controls.Add(this.clientSearchTextBox);
-        this.clientSearchPanel.Dock = DockStyle.Fill;
-        this.clientSearchPanel.Location = new Point(3, 3);
-        this.clientSearchPanel.Name = "clientSearchPanel";
-        this.clientSearchPanel.Size = new Size(329, 200);
-        this.clientSearchPanel.TabIndex = 0;
-        // 
-        // clientListBox
-        // 
-        this.clientListBox.Dock = DockStyle.Fill;
-        this.clientListBox.FormattingEnabled = true;
-        this.clientListBox.ItemHeight = 25;
-        this.clientListBox.Location = new Point(0, 31);
-        this.clientListBox.Name = "clientListBox";
-        this.clientListBox.Size = new Size(329, 169);
-        this.clientListBox.TabIndex = 1;
-        // 
-        // clientSearchTextBox
-        // 
-        this.clientSearchTextBox.Dock = DockStyle.Top;
-        this.clientSearchTextBox.Location = new Point(0, 0);
-        this.clientSearchTextBox.Name = "clientSearchTextBox";
-        this.clientSearchTextBox.PlaceholderText = "Rechercher un client";
-        this.clientSearchTextBox.Size = new Size(329, 31);
-        this.clientSearchTextBox.TabIndex = 0;
-        // 
         // supplierActionBtnPanel
         // 
         this.supplierActionBtnPanel.Controls.Add(this.tableLayoutPanel2);
@@ -409,132 +291,6 @@ partial class OffEmployeeMainMenu {
         this.supplierActionBtnPanel.Name = "supplierActionBtnPanel";
         this.supplierActionBtnPanel.Size = new Size(329, 200);
         this.supplierActionBtnPanel.TabIndex = 3;
-        // 
-        // clientActionBtnTbLytPanel
-        // 
-        this.clientActionBtnTbLytPanel.ColumnCount = 1;
-        this.clientActionBtnTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.clientActionBtnTbLytPanel.Controls.Add(this.deleteClientButton, 0, 3);
-        this.clientActionBtnTbLytPanel.Controls.Add(this.updateClientButton, 0, 2);
-        this.clientActionBtnTbLytPanel.Controls.Add(this.createClientButton, 0, 0);
-        this.clientActionBtnTbLytPanel.Controls.Add(this.seeClientDetailsButton, 0, 1);
-        this.clientActionBtnTbLytPanel.Dock = DockStyle.Fill;
-        this.clientActionBtnTbLytPanel.Location = new Point(0, 0);
-        this.clientActionBtnTbLytPanel.Name = "clientActionBtnTbLytPanel";
-        this.clientActionBtnTbLytPanel.RowCount = 4;
-        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.clientActionBtnTbLytPanel.Size = new Size(329, 200);
-        this.clientActionBtnTbLytPanel.TabIndex = 0;
-        // 
-        // createClientButton
-        // 
-        this.createClientButton.Dock = DockStyle.Fill;
-        this.createClientButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.createClientButton.Location = new Point(3, 3);
-        this.createClientButton.Name = "createClientButton";
-        this.createClientButton.Size = new Size(323, 44);
-        this.createClientButton.TabIndex = 0;
-        this.createClientButton.Text = "Créer un client";
-        this.createClientButton.UseVisualStyleBackColor = true;
-        // 
-        // seeClientDetailsButton
-        // 
-        this.seeClientDetailsButton.Dock = DockStyle.Fill;
-        this.seeClientDetailsButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.seeClientDetailsButton.Location = new Point(3, 53);
-        this.seeClientDetailsButton.Name = "seeClientDetailsButton";
-        this.seeClientDetailsButton.Size = new Size(323, 44);
-        this.seeClientDetailsButton.TabIndex = 1;
-        this.seeClientDetailsButton.Text = "Voir client détails";
-        this.seeClientDetailsButton.UseVisualStyleBackColor = true;
-        // 
-        // updateClientButton
-        // 
-        this.updateClientButton.Dock = DockStyle.Fill;
-        this.updateClientButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.updateClientButton.Location = new Point(3, 103);
-        this.updateClientButton.Name = "updateClientButton";
-        this.updateClientButton.Size = new Size(323, 44);
-        this.updateClientButton.TabIndex = 2;
-        this.updateClientButton.Text = "Modifier client";
-        this.updateClientButton.UseVisualStyleBackColor = true;
-        // 
-        // deleteClientButton
-        // 
-        this.deleteClientButton.Dock = DockStyle.Fill;
-        this.deleteClientButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.deleteClientButton.Location = new Point(3, 153);
-        this.deleteClientButton.Name = "deleteClientButton";
-        this.deleteClientButton.Size = new Size(323, 44);
-        this.deleteClientButton.TabIndex = 3;
-        this.deleteClientButton.Text = "Supprimer client";
-        this.deleteClientButton.UseVisualStyleBackColor = true;
-        // 
-        // tableLayoutPanel1
-        // 
-        this.tableLayoutPanel1.ColumnCount = 1;
-        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.tableLayoutPanel1.Controls.Add(this.deleteProductButton, 0, 3);
-        this.tableLayoutPanel1.Controls.Add(this.updateProductButton, 0, 2);
-        this.tableLayoutPanel1.Controls.Add(this.createProductButton, 0, 0);
-        this.tableLayoutPanel1.Controls.Add(this.seeProductDetailsButton, 0, 1);
-        this.tableLayoutPanel1.Dock = DockStyle.Fill;
-        this.tableLayoutPanel1.Location = new Point(0, 0);
-        this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-        this.tableLayoutPanel1.RowCount = 4;
-        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        this.tableLayoutPanel1.Size = new Size(329, 200);
-        this.tableLayoutPanel1.TabIndex = 1;
-        // 
-        // deleteProductButton
-        // 
-        this.deleteProductButton.Dock = DockStyle.Fill;
-        this.deleteProductButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.deleteProductButton.Location = new Point(3, 153);
-        this.deleteProductButton.Name = "deleteProductButton";
-        this.deleteProductButton.Size = new Size(323, 44);
-        this.deleteProductButton.TabIndex = 3;
-        this.deleteProductButton.Text = "Supprimer produit";
-        this.deleteProductButton.UseVisualStyleBackColor = true;
-        // 
-        // updateProductButton
-        // 
-        this.updateProductButton.Dock = DockStyle.Fill;
-        this.updateProductButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.updateProductButton.Location = new Point(3, 103);
-        this.updateProductButton.Name = "updateProductButton";
-        this.updateProductButton.Size = new Size(323, 44);
-        this.updateProductButton.TabIndex = 2;
-        this.updateProductButton.Text = "Modifier produit";
-        this.updateProductButton.UseVisualStyleBackColor = true;
-        // 
-        // createProductButton
-        // 
-        this.createProductButton.Dock = DockStyle.Fill;
-        this.createProductButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.createProductButton.Location = new Point(3, 3);
-        this.createProductButton.Name = "createProductButton";
-        this.createProductButton.Size = new Size(323, 44);
-        this.createProductButton.TabIndex = 0;
-        this.createProductButton.Text = "Créer un produit";
-        this.createProductButton.UseVisualStyleBackColor = true;
-        // 
-        // seeProductDetailsButton
-        // 
-        this.seeProductDetailsButton.Dock = DockStyle.Fill;
-        this.seeProductDetailsButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.seeProductDetailsButton.Location = new Point(3, 53);
-        this.seeProductDetailsButton.Name = "seeProductDetailsButton";
-        this.seeProductDetailsButton.Size = new Size(323, 44);
-        this.seeProductDetailsButton.TabIndex = 1;
-        this.seeProductDetailsButton.Text = "Voir produit détails";
-        this.seeProductDetailsButton.UseVisualStyleBackColor = true;
         // 
         // tableLayoutPanel2
         // 
@@ -599,22 +355,266 @@ partial class OffEmployeeMainMenu {
         this.seeSupplierDetailsButton.Text = "Voir fournisseur détails";
         this.seeSupplierDetailsButton.UseVisualStyleBackColor = true;
         // 
-        // soActionTableLayoutPanel
+        // supplierSearchPanel
         // 
-        this.soActionTableLayoutPanel.ColumnCount = 1;
-        this.soActionTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        this.soActionTableLayoutPanel.Controls.Add(this.deleteSOButton, 0, 2);
-        this.soActionTableLayoutPanel.Controls.Add(this.updateSOButtton, 0, 1);
-        this.soActionTableLayoutPanel.Controls.Add(this.seeSODetailsButton, 0, 0);
-        this.soActionTableLayoutPanel.Dock = DockStyle.Fill;
-        this.soActionTableLayoutPanel.Location = new Point(0, 0);
-        this.soActionTableLayoutPanel.Name = "soActionTableLayoutPanel";
-        this.soActionTableLayoutPanel.RowCount = 3;
-        this.soActionTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-        this.soActionTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-        this.soActionTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-        this.soActionTableLayoutPanel.Size = new Size(354, 145);
-        this.soActionTableLayoutPanel.TabIndex = 0;
+        this.supplierSearchPanel.Controls.Add(this.supplierListBox);
+        this.supplierSearchPanel.Controls.Add(this.supplierSearchTextBox);
+        this.supplierSearchPanel.Dock = DockStyle.Fill;
+        this.supplierSearchPanel.Location = new Point(3, 3);
+        this.supplierSearchPanel.Name = "supplierSearchPanel";
+        this.supplierSearchPanel.Size = new Size(329, 200);
+        this.supplierSearchPanel.TabIndex = 1;
+        // 
+        // supplierListBox
+        // 
+        this.supplierListBox.Dock = DockStyle.Fill;
+        this.supplierListBox.FormattingEnabled = true;
+        this.supplierListBox.ItemHeight = 25;
+        this.supplierListBox.Location = new Point(0, 31);
+        this.supplierListBox.Name = "supplierListBox";
+        this.supplierListBox.Size = new Size(329, 169);
+        this.supplierListBox.TabIndex = 2;
+        // 
+        // supplierSearchTextBox
+        // 
+        this.supplierSearchTextBox.Dock = DockStyle.Top;
+        this.supplierSearchTextBox.Location = new Point(0, 0);
+        this.supplierSearchTextBox.Name = "supplierSearchTextBox";
+        this.supplierSearchTextBox.PlaceholderText = "Rechercher un fournisseur";
+        this.supplierSearchTextBox.Size = new Size(329, 31);
+        this.supplierSearchTextBox.TabIndex = 1;
+        // 
+        // productManagementTbLytPanel
+        // 
+        this.productManagementTbLytPanel.ColumnCount = 2;
+        this.productManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.productManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.productManagementTbLytPanel.Controls.Add(this.productActionBtnPanel, 1, 0);
+        this.productManagementTbLytPanel.Controls.Add(this.productSearchPanel, 0, 0);
+        this.productManagementTbLytPanel.Dock = DockStyle.Fill;
+        this.productManagementTbLytPanel.Location = new Point(3, 215);
+        this.productManagementTbLytPanel.Name = "productManagementTbLytPanel";
+        this.productManagementTbLytPanel.RowCount = 1;
+        this.productManagementTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+        this.productManagementTbLytPanel.Size = new Size(670, 206);
+        this.productManagementTbLytPanel.TabIndex = 1;
+        // 
+        // productActionBtnPanel
+        // 
+        this.productActionBtnPanel.Controls.Add(this.tableLayoutPanel1);
+        this.productActionBtnPanel.Dock = DockStyle.Fill;
+        this.productActionBtnPanel.Location = new Point(338, 3);
+        this.productActionBtnPanel.Name = "productActionBtnPanel";
+        this.productActionBtnPanel.Size = new Size(329, 200);
+        this.productActionBtnPanel.TabIndex = 2;
+        // 
+        // tableLayoutPanel1
+        // 
+        this.tableLayoutPanel1.ColumnCount = 1;
+        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel1.Controls.Add(this.deleteProductButton, 0, 3);
+        this.tableLayoutPanel1.Controls.Add(this.updateProductButton, 0, 2);
+        this.tableLayoutPanel1.Controls.Add(this.createProductButton, 0, 0);
+        this.tableLayoutPanel1.Controls.Add(this.seeProductDetailsButton, 0, 1);
+        this.tableLayoutPanel1.Dock = DockStyle.Fill;
+        this.tableLayoutPanel1.Location = new Point(0, 0);
+        this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+        this.tableLayoutPanel1.RowCount = 4;
+        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.tableLayoutPanel1.Size = new Size(329, 200);
+        this.tableLayoutPanel1.TabIndex = 1;
+        // 
+        // deleteProductButton
+        // 
+        this.deleteProductButton.Dock = DockStyle.Fill;
+        this.deleteProductButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.deleteProductButton.Location = new Point(3, 153);
+        this.deleteProductButton.Name = "deleteProductButton";
+        this.deleteProductButton.Size = new Size(323, 44);
+        this.deleteProductButton.TabIndex = 3;
+        this.deleteProductButton.Text = "Supprimer produit";
+        this.deleteProductButton.UseVisualStyleBackColor = true;
+        // 
+        // updateProductButton
+        // 
+        this.updateProductButton.Dock = DockStyle.Fill;
+        this.updateProductButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.updateProductButton.Location = new Point(3, 103);
+        this.updateProductButton.Name = "updateProductButton";
+        this.updateProductButton.Size = new Size(323, 44);
+        this.updateProductButton.TabIndex = 2;
+        this.updateProductButton.Text = "Modifier produit";
+        this.updateProductButton.UseVisualStyleBackColor = true;
+        // 
+        // createProductButton
+        // 
+        this.createProductButton.Dock = DockStyle.Fill;
+        this.createProductButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.createProductButton.Location = new Point(3, 3);
+        this.createProductButton.Name = "createProductButton";
+        this.createProductButton.Size = new Size(323, 44);
+        this.createProductButton.TabIndex = 0;
+        this.createProductButton.Text = "Créer un produit";
+        this.createProductButton.UseVisualStyleBackColor = true;
+        // 
+        // seeProductDetailsButton
+        // 
+        this.seeProductDetailsButton.Dock = DockStyle.Fill;
+        this.seeProductDetailsButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.seeProductDetailsButton.Location = new Point(3, 53);
+        this.seeProductDetailsButton.Name = "seeProductDetailsButton";
+        this.seeProductDetailsButton.Size = new Size(323, 44);
+        this.seeProductDetailsButton.TabIndex = 1;
+        this.seeProductDetailsButton.Text = "Voir produit détails";
+        this.seeProductDetailsButton.UseVisualStyleBackColor = true;
+        // 
+        // productSearchPanel
+        // 
+        this.productSearchPanel.Controls.Add(this.productListBox);
+        this.productSearchPanel.Controls.Add(this.productSearchTextBox);
+        this.productSearchPanel.Dock = DockStyle.Fill;
+        this.productSearchPanel.Location = new Point(3, 3);
+        this.productSearchPanel.Name = "productSearchPanel";
+        this.productSearchPanel.Size = new Size(329, 200);
+        this.productSearchPanel.TabIndex = 1;
+        // 
+        // productListBox
+        // 
+        this.productListBox.Dock = DockStyle.Fill;
+        this.productListBox.FormattingEnabled = true;
+        this.productListBox.ItemHeight = 25;
+        this.productListBox.Location = new Point(0, 31);
+        this.productListBox.Name = "productListBox";
+        this.productListBox.Size = new Size(329, 169);
+        this.productListBox.TabIndex = 2;
+        // 
+        // productSearchTextBox
+        // 
+        this.productSearchTextBox.Dock = DockStyle.Top;
+        this.productSearchTextBox.Location = new Point(0, 0);
+        this.productSearchTextBox.Name = "productSearchTextBox";
+        this.productSearchTextBox.PlaceholderText = "Rechercher un produit";
+        this.productSearchTextBox.Size = new Size(329, 31);
+        this.productSearchTextBox.TabIndex = 1;
+        // 
+        // clientManagementTbLytPanel
+        // 
+        this.clientManagementTbLytPanel.ColumnCount = 2;
+        this.clientManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.clientManagementTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.clientManagementTbLytPanel.Controls.Add(this.clientActionBtnPanel, 1, 0);
+        this.clientManagementTbLytPanel.Controls.Add(this.clientSearchPanel, 0, 0);
+        this.clientManagementTbLytPanel.Dock = DockStyle.Fill;
+        this.clientManagementTbLytPanel.Location = new Point(3, 3);
+        this.clientManagementTbLytPanel.Name = "clientManagementTbLytPanel";
+        this.clientManagementTbLytPanel.RowCount = 1;
+        this.clientManagementTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+        this.clientManagementTbLytPanel.Size = new Size(670, 206);
+        this.clientManagementTbLytPanel.TabIndex = 0;
+        // 
+        // clientActionBtnPanel
+        // 
+        this.clientActionBtnPanel.Controls.Add(this.clientActionBtnTbLytPanel);
+        this.clientActionBtnPanel.Dock = DockStyle.Fill;
+        this.clientActionBtnPanel.Location = new Point(338, 3);
+        this.clientActionBtnPanel.Name = "clientActionBtnPanel";
+        this.clientActionBtnPanel.Size = new Size(329, 200);
+        this.clientActionBtnPanel.TabIndex = 1;
+        // 
+        // clientActionBtnTbLytPanel
+        // 
+        this.clientActionBtnTbLytPanel.ColumnCount = 1;
+        this.clientActionBtnTbLytPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        this.clientActionBtnTbLytPanel.Controls.Add(this.deleteClientButton, 0, 3);
+        this.clientActionBtnTbLytPanel.Controls.Add(this.updateClientButton, 0, 2);
+        this.clientActionBtnTbLytPanel.Controls.Add(this.createClientButton, 0, 0);
+        this.clientActionBtnTbLytPanel.Controls.Add(this.seeClientDetailsButton, 0, 1);
+        this.clientActionBtnTbLytPanel.Dock = DockStyle.Fill;
+        this.clientActionBtnTbLytPanel.Location = new Point(0, 0);
+        this.clientActionBtnTbLytPanel.Name = "clientActionBtnTbLytPanel";
+        this.clientActionBtnTbLytPanel.RowCount = 4;
+        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.clientActionBtnTbLytPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+        this.clientActionBtnTbLytPanel.Size = new Size(329, 200);
+        this.clientActionBtnTbLytPanel.TabIndex = 0;
+        // 
+        // deleteClientButton
+        // 
+        this.deleteClientButton.Dock = DockStyle.Fill;
+        this.deleteClientButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.deleteClientButton.Location = new Point(3, 153);
+        this.deleteClientButton.Name = "deleteClientButton";
+        this.deleteClientButton.Size = new Size(323, 44);
+        this.deleteClientButton.TabIndex = 3;
+        this.deleteClientButton.Text = "Supprimer client";
+        this.deleteClientButton.UseVisualStyleBackColor = true;
+        // 
+        // updateClientButton
+        // 
+        this.updateClientButton.Dock = DockStyle.Fill;
+        this.updateClientButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.updateClientButton.Location = new Point(3, 103);
+        this.updateClientButton.Name = "updateClientButton";
+        this.updateClientButton.Size = new Size(323, 44);
+        this.updateClientButton.TabIndex = 2;
+        this.updateClientButton.Text = "Modifier client";
+        this.updateClientButton.UseVisualStyleBackColor = true;
+        // 
+        // createClientButton
+        // 
+        this.createClientButton.Dock = DockStyle.Fill;
+        this.createClientButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.createClientButton.Location = new Point(3, 3);
+        this.createClientButton.Name = "createClientButton";
+        this.createClientButton.Size = new Size(323, 44);
+        this.createClientButton.TabIndex = 0;
+        this.createClientButton.Text = "Créer un client";
+        this.createClientButton.UseVisualStyleBackColor = true;
+        // 
+        // seeClientDetailsButton
+        // 
+        this.seeClientDetailsButton.Dock = DockStyle.Fill;
+        this.seeClientDetailsButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.seeClientDetailsButton.Location = new Point(3, 53);
+        this.seeClientDetailsButton.Name = "seeClientDetailsButton";
+        this.seeClientDetailsButton.Size = new Size(323, 44);
+        this.seeClientDetailsButton.TabIndex = 1;
+        this.seeClientDetailsButton.Text = "Voir client détails";
+        this.seeClientDetailsButton.UseVisualStyleBackColor = true;
+        // 
+        // clientSearchPanel
+        // 
+        this.clientSearchPanel.Controls.Add(this.clientListBox);
+        this.clientSearchPanel.Controls.Add(this.clientSearchTextBox);
+        this.clientSearchPanel.Dock = DockStyle.Fill;
+        this.clientSearchPanel.Location = new Point(3, 3);
+        this.clientSearchPanel.Name = "clientSearchPanel";
+        this.clientSearchPanel.Size = new Size(329, 200);
+        this.clientSearchPanel.TabIndex = 0;
+        // 
+        // clientListBox
+        // 
+        this.clientListBox.Dock = DockStyle.Fill;
+        this.clientListBox.FormattingEnabled = true;
+        this.clientListBox.ItemHeight = 25;
+        this.clientListBox.Location = new Point(0, 31);
+        this.clientListBox.Name = "clientListBox";
+        this.clientListBox.Size = new Size(329, 169);
+        this.clientListBox.TabIndex = 1;
+        // 
+        // clientSearchTextBox
+        // 
+        this.clientSearchTextBox.Dock = DockStyle.Top;
+        this.clientSearchTextBox.Location = new Point(0, 0);
+        this.clientSearchTextBox.Name = "clientSearchTextBox";
+        this.clientSearchTextBox.PlaceholderText = "Rechercher un client";
+        this.clientSearchTextBox.Size = new Size(329, 31);
+        this.clientSearchTextBox.TabIndex = 0;
         // 
         // OffEmployeeMainMenu
         // 
@@ -633,23 +633,23 @@ partial class OffEmployeeMainMenu {
         this.createSOPanel.ResumeLayout(false);
         this.poActionButttonsPanel.ResumeLayout(false);
         this.containerPanel.ResumeLayout(false);
+        this.soActionTableLayoutPanel.ResumeLayout(false);
         this.enititesTableLayoutPanel.ResumeLayout(false);
         this.supplierManagementTbLytPanel.ResumeLayout(false);
+        this.supplierActionBtnPanel.ResumeLayout(false);
+        this.tableLayoutPanel2.ResumeLayout(false);
         this.supplierSearchPanel.ResumeLayout(false);
         this.supplierSearchPanel.PerformLayout();
         this.productManagementTbLytPanel.ResumeLayout(false);
         this.productActionBtnPanel.ResumeLayout(false);
+        this.tableLayoutPanel1.ResumeLayout(false);
         this.productSearchPanel.ResumeLayout(false);
         this.productSearchPanel.PerformLayout();
         this.clientManagementTbLytPanel.ResumeLayout(false);
         this.clientActionBtnPanel.ResumeLayout(false);
+        this.clientActionBtnTbLytPanel.ResumeLayout(false);
         this.clientSearchPanel.ResumeLayout(false);
         this.clientSearchPanel.PerformLayout();
-        this.supplierActionBtnPanel.ResumeLayout(false);
-        this.clientActionBtnTbLytPanel.ResumeLayout(false);
-        this.tableLayoutPanel1.ResumeLayout(false);
-        this.tableLayoutPanel2.ResumeLayout(false);
-        this.soActionTableLayoutPanel.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 
@@ -662,12 +662,12 @@ partial class OffEmployeeMainMenu {
     private Panel soManagementPanel;
     private TableLayoutPanel enititesTableLayoutPanel;
     private Panel poActionButttonsPanel;
-    private Button deleteSOButton;
-    private Button updateSOButtton;
-    private Button seeSODetailsButton;
+    private Button deleteSoButton;
+    private Button updateSoButtton;
+    private Button seeSoDetailsButton;
     private Panel containerPanel;
     private Panel createSOPanel;
-    private Button createSOButton;
+    private Button createSoButton;
     private ListBox soListBox;
     private TextBox searchSOTextBox;
     private TableLayoutPanel supplierManagementTbLytPanel;
