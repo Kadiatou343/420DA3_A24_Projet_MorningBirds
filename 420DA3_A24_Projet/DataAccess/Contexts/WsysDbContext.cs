@@ -9,8 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
+
+/// <summary>
+/// Classe contexte de l'application (Conteneur pour la représentation de la base de données)
+/// </summary>
 internal class WsysDbContext : DbContext {
+
+    /// <summary>
+    /// Propriété faisant le pont entre l'entité User et la table Users dans la base de données par EF Core
+    /// </summary>
     public DbSet<User> Users { get; set; }
+
+    /// <summary>
+    /// Propriété faisant le pont entre l'entité Role et la table Roles dans la base de données par EF Core
+    /// </summary>
     public DbSet<Role> Roles { get; set; }
 
     public DbSet<Product> Products { get; set; }
@@ -18,7 +30,11 @@ internal class WsysDbContext : DbContext {
      
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
-    
+
+    /// <summary>
+    /// Override de OnConfiguring de DbContext pour spécifier les options de connexion à la base de données
+    /// </summary>
+    /// <param name="optionsBuilder">Objet pour configuer les options de connexion</param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
@@ -29,6 +45,10 @@ internal class WsysDbContext : DbContext {
             .UseSqlServer(connectionString);
     }
 
+    /// <summary>
+    /// Override de OnModelCreating de DbContext pour configurer les classes entités
+    /// </summary>
+    /// <param name="modelBuilder">Objet pour configurer avec la Fluent API</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
 

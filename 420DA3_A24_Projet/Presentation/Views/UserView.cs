@@ -37,8 +37,10 @@ internal partial class UserView : Form {
     public UserView(WsysApplication parentApp) {
         this.parentApp = parentApp;
         action = ViewActionsEnum.Visualization;
-        this.InitializeComponent();
         this.copyrightLabel.Text = this.parentApp.GetCopyright();
+        // Loder tous les rôles du sysème à l'ouverture de la vue
+        this.LoadUserRolesInListBox(this.parentApp.RoleService.GetAllRoles());
+        this.InitializeComponent();
     }
 
     /// <summary>
@@ -112,7 +114,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Charger une liste des rôles dans la list box fait pour
+    /// Charger une liste de rôles dans la list box fait pour
     /// </summary>
     /// <param name="roles">La liste de rôles à charger</param>
     private void LoadUserRolesInListBox(List<Role> roles) {
