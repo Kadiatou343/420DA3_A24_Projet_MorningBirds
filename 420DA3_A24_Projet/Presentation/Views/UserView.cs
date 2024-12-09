@@ -38,8 +38,6 @@ internal partial class UserView : Form {
         this.parentApp = parentApp;
         action = ViewActionsEnum.Visualization;
         this.copyrightLabel.Text = this.parentApp.GetCopyright();
-        // Loder tous les rôles du sysème à l'ouverture de la vue
-        this.LoadUserRolesInListBox(this.parentApp.RoleService.GetAllRoles());
         this.InitializeComponent();
     }
 
@@ -67,12 +65,14 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Visualisation";
                 this.actionButton.Text = "OK";
                 this.DisableEditableControls();
 
                 break;
             case ViewActionsEnum.Creation:
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Création";
                 this.actionButton.Text = "Créer";
                 this.EnableEditableControls();
@@ -81,6 +81,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Modification";
                 this.actionButton.Text = "Modifier";
                 this.EnableEditableControls();
@@ -89,6 +90,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Suppression";
                 this.actionButton.Text = "Supprimer";
                 this.DisableEditableControls();
@@ -114,10 +116,10 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Charger une liste de rôles dans la list box fait pour
+    /// Charger les rôles du système dans la list box fait pour
     /// </summary>
-    /// <param name="roles">La liste de rôles à charger</param>
-    private void LoadUserRolesInListBox(List<Role> roles) {
+    private void LoadUserRolesInListBox() {
+        List<Role> roles = this.parentApp.RoleService.GetAllRoles();
         this.userRolesListBox.Items.Clear();
         this.userRolesListBox.SelectedItems.Clear();
         
