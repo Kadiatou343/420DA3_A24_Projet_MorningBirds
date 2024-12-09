@@ -74,8 +74,9 @@ internal class WsysDbContext : DbContext {
             .Property(user => user.Id)      // A sa propriété Id
             .HasColumnName("Id")            // Lié à une colonne du nom 'Id' dans la table
             .HasColumnOrder(0)              // Qui est la premiere colonne dans la table
-            .HasColumnType("int");          // Et de type int 
-        
+            .HasColumnType("int")           // Et de type int 
+            .UseIdentityColumn(1, 1);       // S'auto-incrémente
+
         _ = modelBuilder.Entity<User>()
             .Property(user => user.Username)
             .HasColumnName("Username")
