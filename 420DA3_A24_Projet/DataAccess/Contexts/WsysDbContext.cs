@@ -18,6 +18,10 @@ internal class WsysDbContext : DbContext {
      
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<ShippingOrder> ShippingOrders { get; set; }
+    public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+
+
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
