@@ -1122,6 +1122,25 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
+        #region RELATION COTE SHIPPINGORDERPRODUCT 
+
+        // Entité pivot entre ShippingOrder et Product
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasKey(sop => new { sop.ShippingOrderId, sop.ProductId });
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasOne<ShippingOrder>(sop => sop.ShippingOrder)
+            .WithMany(so => so.ShippingOrderProducts)
+            .HasForeignKey(sop => sop.ShippingOrderId);
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasOne<Product>(sop => sop.Product)
+            .WithMany(product => product.ShippingOrderProducts)
+            .HasForeignKey(sop => sop.ProductId);
+
+        #endregion
+
         #endregion
 
         // Note de Kadiatou : On peut tous mettre les données d'insertion dans cette region
