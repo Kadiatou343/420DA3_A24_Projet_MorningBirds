@@ -155,7 +155,10 @@ internal class WsysDbContext : DbContext {
             .Property(role => role.Id)      // A sa propriété Id
             .HasColumnName("Id")            // Lié a la colonne de nom 'Id' dans la table
             .HasColumnOrder(0)              // Qui est la première colonne
-            .HasColumnType("int");          // Et de type int
+            .HasColumnType("int")          // Et de type int
+            .IsRequired(true)
+            .UseIdentityColumn(1, 1);
+
 
         _ = modelBuilder.Entity<Role>()
             .Property(role => role.RoleName)
