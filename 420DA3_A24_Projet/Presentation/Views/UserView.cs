@@ -37,8 +37,8 @@ internal partial class UserView : Form {
     public UserView(WsysApplication parentApp) {
         this.parentApp = parentApp;
         action = ViewActionsEnum.Visualization;
-        this.InitializeComponent();
         this.copyrightLabel.Text = this.parentApp.GetCopyright();
+        this.InitializeComponent();
     }
 
     /// <summary>
@@ -65,12 +65,14 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Visualisation";
                 this.actionButton.Text = "OK";
                 this.DisableEditableControls();
 
                 break;
             case ViewActionsEnum.Creation:
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Création";
                 this.actionButton.Text = "Créer";
                 this.EnableEditableControls();
@@ -79,6 +81,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Modification";
                 this.actionButton.Text = "Modifier";
                 this.EnableEditableControls();
@@ -87,6 +90,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Suppression";
                 this.actionButton.Text = "Supprimer";
                 this.DisableEditableControls();
@@ -112,6 +116,20 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
+    /// Charger les rôles du système dans la list box fait pour
+    /// </summary>
+    private void LoadUserRolesInListBox() {
+        List<Role> roles = this.parentApp.RoleService.GetAllRoles();
+        this.userRolesListBox.Items.Clear();
+        this.userRolesListBox.SelectedItems.Clear();
+        
+        foreach (Role role in roles) {
+            _ = this.userRolesListBox.Items.Add(role);
+        }
+
+    }
+
+    /// <summary>
     /// Charger les informations par defaut dans les controls en fonction d'un utilisateur ou null
     /// </summary>
     /// <param name="user">L'utilisateur concerné</param>
@@ -121,9 +139,6 @@ internal partial class UserView : Form {
             this.idNumUpDown.Value = 0;
             this.usernameTextBox.Text = null;
             this.passwordTextBox.Text = null;
-            this.adminRoleChkBox.Checked = false;
-            this.officeEmpRoleChkBox.Checked = false;
-            this.whEmpRoleChkBox.Checked = false;
             this.dateCreatedDTPicker.Value = DateTime.Now;
             this.dateModifiedDTPicker.Value = DateTime.Now;
             this.dateDeletedDTPicker.Value = DateTime.Now;
@@ -138,33 +153,8 @@ internal partial class UserView : Form {
             this.dateModifiedDTPicker.Value = user.DateModified ?? DateTime.Now;
             this.dateDeletedDTPicker.Value = user.DateDeleted ?? DateTime.Now;
 
-            if (user.Roles.Contains(
-                this.parentApp.RoleService.GetRoleById(Role.ADMIN_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.ADMIN_ROLE_ID}].")
-                        )) {
-                this.adminRoleChkBox.Checked = true;
-            }
-
-            if (user.Roles.Contains(
-                this.parentApp.RoleService.GetRoleById(Role.OFFICE_EMPLOYEE_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.OFFICE_EMPLOYEE_ROLE_ID}].")
-                        )) {
-                this.officeEmpRoleChkBox.Checked = true;
-            }
-
             //got to wait for warehouse service
             //this.ReloadEmployeeWaherouseList(this.parentApp.WarehouseService.getAllWarehouses());
-
-            if (user.Roles.Contains(
-                this.parentApp.RoleService.GetRoleById(Role.WH_EMPLOYEE_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.WH_EMPLOYEE_ROLE_ID}].")
-                        )) {
-                this.whEmpRoleChkBox.Checked = true;
-                this.employeeWhListBox.SelectedItem = user.EmployeeWarehouse;
-            }
-
-
-
 
         }
     }
@@ -175,9 +165,7 @@ internal partial class UserView : Form {
     private void EnableEditableControls() {
         this.usernameTextBox.Enabled = true;
         this.passwordTextBox.Enabled = true;
-        this.adminRoleChkBox.Enabled = true;
-        this.officeEmpRoleChkBox.Enabled = true;
-        this.whEmpRoleChkBox.Enabled = true;
+        this.userRolesListBox.Enabled = true;
         this.employeeWhListBox.Enabled = true;
     }
 
@@ -187,9 +175,7 @@ internal partial class UserView : Form {
     private void DisableEditableControls() {
         this.usernameTextBox.Enabled = false;
         this.passwordTextBox.Enabled = false;
-        this.adminRoleChkBox.Enabled = false;
-        this.officeEmpRoleChkBox.Enabled = false;
-        this.whEmpRoleChkBox.Enabled = false;
+        this.userRolesListBox.Enabled = false;
         this.employeeWhListBox.Enabled = false;
     }
 
@@ -216,25 +202,8 @@ internal partial class UserView : Form {
                     (this.employeeWhListBox.SelectedItem as Role)?.Id
                     );
 
-                if (this.adminRoleChkBox.Checked) {
-                    newUser.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.ADMIN_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.ADMIN_ROLE_ID}].")
-                        );
-                }
-
-                if (this.officeEmpRoleChkBox.Checked) {
-                    newUser.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.OFFICE_EMPLOYEE_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.OFFICE_EMPLOYEE_ROLE_ID}].")
-                        );
-                }
-
-                if (this.whEmpRoleChkBox.Checked) {
-                    newUser.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.WH_EMPLOYEE_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.WH_EMPLOYEE_ROLE_ID}].")
-                        );
+                foreach (Role role in this.userRolesListBox.SelectedItems.Cast<Role>().ToList()) {
+                    newUser.Roles.Add(role);
                 }
 
                 this.userInstance = this.parentApp.UserService.CreateUser(newUser);
@@ -251,25 +220,8 @@ internal partial class UserView : Form {
 
                 this.userInstance.Roles.Clear();
 
-                if (this.adminRoleChkBox.Checked) {
-                    this.userInstance.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.ADMIN_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.ADMIN_ROLE_ID}].")
-                        );
-                }
-
-                if (this.officeEmpRoleChkBox.Checked) {
-                    this.userInstance.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.OFFICE_EMPLOYEE_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.OFFICE_EMPLOYEE_ROLE_ID}].")
-                        );
-                }
-
-                if (this.whEmpRoleChkBox.Checked) {
-                    this.userInstance.Roles.Add(
-                        this.parentApp.RoleService.GetRoleById(Role.WH_EMPLOYEE_ROLE_ID)
-                        ?? throw new Exception($"Aucun rôle trouvé pour l'identifiant de rôle [{Role.WH_EMPLOYEE_ROLE_ID}].")
-                        );
+                foreach (Role role in this.userRolesListBox.SelectedItems.Cast<Role>().ToList()) {
+                    this.userInstance.Roles.Add(role);
                 }
 
                 this.userInstance = this.parentApp.UserService.UpdateUser(this.userInstance);
@@ -330,14 +282,16 @@ internal partial class UserView : Form {
                     + $" ou inférieure à {User.PASSWORD_MIN_LENGTH} caractères.";
             }
 
-            if (!this.adminRoleChkBox.Checked && !this.officeEmpRoleChkBox.Checked
-                && !this.whEmpRoleChkBox.Checked) {
+            if (this.userRolesListBox.SelectedItems.Count <= 0) {
                 message += Environment.NewLine + "\t- Au moins un role doit être associé à l'utilisateur.";
             }
 
-            if (this.whEmpRoleChkBox.Checked && this.employeeWhListBox.SelectedItem == null) {
-                message += Environment.NewLine + "\t- Un entrepôt doit être choisi pour un employé d'entrepôt.";
-            }
+            // Si le rôle d'employé est selectionné mais qu'aucun entrepôt n'est selectionné 
+            this.userRolesListBox.SelectedItems.Cast<Role>().ToList().ForEach(role => {
+                if (role.Id == Role.WH_EMPLOYEE_ROLE_ID && this.employeeWhListBox.SelectedItem == null) {
+                    message += Environment.NewLine + "\t- Un entrepôt doit être associé à un employé d'entrepôt";
+                }
+            });
         }
 
         if (!string.IsNullOrEmpty(message)) {

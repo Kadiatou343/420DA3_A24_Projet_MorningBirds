@@ -9,8 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
+
+/// <summary>
+/// Classe contexte de l'application (Conteneur pour la représentation de la base de données)
+/// </summary>
 internal class WsysDbContext : DbContext {
+
+    /// <summary>
+    /// Propriété faisant le pont entre l'entité User et la table Users dans la base de données par EF Core
+    /// </summary>
     public DbSet<User> Users { get; set; }
+
+    /// <summary>
+    /// Propriété faisant le pont entre l'entité Role et la table Roles dans la base de données par EF Core
+    /// </summary>
     public DbSet<Role> Roles { get; set; }
 
     public DbSet<Product> Products { get; set; }
@@ -23,6 +35,11 @@ internal class WsysDbContext : DbContext {
 
 
     
+
+    /// <summary>
+    /// Override de OnConfiguring de DbContext pour spécifier les options de connexion à la base de données
+    /// </summary>
+    /// <param name="optionsBuilder">Objet pour configuer les options de connexion</param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
@@ -33,6 +50,10 @@ internal class WsysDbContext : DbContext {
             .UseSqlServer(connectionString);
     }
 
+    /// <summary>
+    /// Override de OnModelCreating de DbContext pour configurer les classes entités
+    /// </summary>
+    /// <param name="modelBuilder">Objet pour configurer avec la Fluent API</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
 
@@ -58,7 +79,8 @@ internal class WsysDbContext : DbContext {
             .Property(user => user.Id)      // A sa propriété Id
             .HasColumnName("Id")            // Lié à une colonne du nom 'Id' dans la table
             .HasColumnOrder(0)              // Qui est la premiere colonne dans la table
-            .HasColumnType("int");          // Et de type int 
+            .HasColumnType("int")           // Et de type int 
+            .UseIdentityColumn(1, 1);       // S'auto-incrémente
 
         _ = modelBuilder.Entity<User>()
             .Property(user => user.Username)
@@ -66,6 +88,11 @@ internal class WsysDbContext : DbContext {
             .HasColumnOrder(1)
             .HasColumnType($"nvarchar({User.USERNAME_MAX_LENGTH})")
             .IsRequired(true);  // Colonne NOT NULL
+
+        _ = modelBuilder.Entity<User>()
+            .HasIndex(user => user.Username)
+            .IsUnique()
+            .HasDatabaseName("unique_index_username");
 
         _ = modelBuilder.Entity<User>()
             .Property(user => user.PasswordHash)
@@ -1100,21 +1127,46 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
+        #region RELATION COTE SHIPPINGORDERPRODUCT 
+
+        // Entité pivot entre ShippingOrder et Product
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasKey(sop => new { sop.ShippingOrderId, sop.ProductId });
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasOne<ShippingOrder>(sop => sop.ShippingOrder)
+            .WithMany(so => so.ShippingOrderProducts)
+            .HasForeignKey(sop => sop.ShippingOrderId);
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasOne<Product>(sop => sop.Product)
+            .WithMany(product => product.ShippingOrderProducts)
+            .HasForeignKey(sop => sop.ProductId);
+
+        #endregion
+
         #endregion
 
         // Note de Kadiatou : On peut tous mettre les données d'insertion dans cette region
         #region INSERTION DE DONNEES INITIALES 
 
+        #region User et Role 
+
         Role role1 = new Role("Administrateur", "Les supers utilisateurs") {
             Id = 1
         };
 
-        Role role2 = new Role("Employés de bureau", "Boss of paperwork") {
+        Role role2 = new Role("Employé de bureau", "Boss of paperwork") {
             Id = 2
         };
 
+        Role role3 = new Role("Employé d'entrepôt", "Les masters du lourd") {
+            Id = 3
+        };
+
         _ = modelBuilder.Entity<Role>()
-            .HasData(role1, role2);
+            .HasData(role1, role2, role3);
 
         User user1 = new User("hunter", "7761467A80A38D8429C0B80898FE3047F1E85E1C0CB2A9304FF72D028D39FF4D:" +
             "8C68F80262A76FDB8E595A6212B3545A:100000:SHA256") { // Mdp non hashé : ILoveEFCore
@@ -1131,8 +1183,34 @@ internal class WsysDbContext : DbContext {
 
         user2.Roles.Add(role2);
 
+        // Pour un employé d'entrepôt, je dois lui associer un entrepôt qui lui doit avoir une adresse
+        Address address1 = new Address("We Store You Sell Inc Entrepot 0001", "entrepot",
+            "7777", "Destiny Street", "Montreal", "Quebec", "Canada", "H0E 1H1") {
+            Id = 1
+        };
+
+        Warehouse warehouse1 = new Warehouse("Entrepot For Bessy", 1) {
+            Id = 1
+        };
+
+        User user3 = new User("maximus", "6A8EFEE80A6B9FE951105B1105A01E9BDC17BBA64ED70E36C6499713641CF6D4:" +
+            "172AAB90868D82E03834D8C43F6799B0:100000:SHA256", 1) { // Mdp non hashé : warehouse
+            Id = 3
+        };
+
+        user3.Roles.Add(role3);
+        user3.EmployeeWarehouse = warehouse1;
+
+        _ = modelBuilder.Entity<Address>()
+            .HasData(address1);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .HasData(warehouse1);
+
         _ = modelBuilder.Entity<User>()
-            .HasData(user1, user2);
+            .HasData(user1, user2, user3);
+
+        #endregion 
 
         // Ajout des données de Supplier 
         Supplier sup1 = new Supplier("THE ULTIMATE SUPPLIER", "Test", "Jonhy", "jonhytest@gmail.com", "4503497684") { SupplierId = 1 };
