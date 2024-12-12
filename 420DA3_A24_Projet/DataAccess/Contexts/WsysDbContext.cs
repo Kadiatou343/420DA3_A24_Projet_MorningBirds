@@ -31,6 +31,10 @@ internal class WsysDbContext : DbContext {
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
 
+    public DbSet<Warehouse> Warehouses { get; set; }
+
+    public DbSet<Shipment> Shipments { get; set; }
+
     /// <summary>
     /// Override de OnConfiguring de DbContext pour spécifier les options de connexion à la base de données
     /// </summary>
