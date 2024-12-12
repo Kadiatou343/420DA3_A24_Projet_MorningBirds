@@ -36,6 +36,10 @@ internal class WsysDbContext : DbContext {
 
     
 
+    public DbSet<Warehouse> Warehouses { get; set; }
+
+    public DbSet<Shipment> Shipments { get; set; }
+
     /// <summary>
     /// Override de OnConfiguring de DbContext pour spécifier les options de connexion à la base de données
     /// </summary>
@@ -160,7 +164,10 @@ internal class WsysDbContext : DbContext {
             .Property(role => role.Id)      // A sa propriété Id
             .HasColumnName("Id")            // Lié a la colonne de nom 'Id' dans la table
             .HasColumnOrder(0)              // Qui est la première colonne
-            .HasColumnType("int");          // Et de type int
+            .HasColumnType("int")          // Et de type int
+            .IsRequired(true)
+            .UseIdentityColumn(1, 1);
+
 
         _ = modelBuilder.Entity<Role>()
             .Property(role => role.RoleName)
