@@ -59,6 +59,7 @@ internal partial class UserView : Form {
     /// <exception cref="NotImplementedException">L'exception levée si l'action fournie n'est pas reconnue</exception>
     public DialogResult OpenFor(ViewActionsEnum action, User? user = null) {
         this.action = action;
+        this.userInstance = user;
         this.LoadInstanceInControls(user);
         switch (action) {
             case ViewActionsEnum.Visualization:

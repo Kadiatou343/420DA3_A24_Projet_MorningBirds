@@ -62,6 +62,7 @@ internal partial class RoleView : Form {
     /// <exception cref="NotImplementedException">L'exception levée si l'action fournie n'est pas reconnue</exception>
     public DialogResult OpenFor(ViewActionsEnum action, Role? role = null) {
         this.action = action;
+        this.roleInstance = role;
         this.LoadInstanceInControls(role);
         switch (action) {
             case ViewActionsEnum.Visualization:
