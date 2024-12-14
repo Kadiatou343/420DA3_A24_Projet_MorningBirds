@@ -10,7 +10,7 @@ namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
 /// Classe représentant la classe d'accès aux données d'un Shipment
 /// </summary>
-internal class ShipementDAO {
+internal class ShipmentDAO {
 
     /// <summary>
     /// Le contexte utilisé par le DAO
@@ -21,7 +21,7 @@ internal class ShipementDAO {
     /// Constructeur
     /// </summary>
     /// <param name="context">Contexte de l'app</param>
-    public ShipementDAO(WsysDbContext context) {
+    public ShipmentDAO(WsysDbContext context) {
         this.context = context;
     }
 
@@ -30,7 +30,7 @@ internal class ShipementDAO {
     /// </summary>
     /// <param name="shipment">Shipment à créer</param>
     /// <returns>Le shipment créé</returns>
-    public Shipment create(Shipment shipment) {
+    public Shipment Create(Shipment shipment) {
         _ = this.context.Shipments.Add(shipment);
         _ = this.context.SaveChanges();
 
@@ -42,7 +42,7 @@ internal class ShipementDAO {
     /// </summary>
     /// <param name="shipment">Shiment à modifier</param>
     /// <returns>Le shipment mis à jour</returns>
-    public Shipment update(Shipment shipment) {
+    public Shipment Update(Shipment shipment) {
         shipment.DateModified = DateTime.Now;
         _ = this.context.Shipments.Update(shipment);
         _ = this.context.SaveChanges();
