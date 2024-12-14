@@ -87,4 +87,46 @@ internal class SupplierService {
     public Supplier? GetSupplierById(int id, bool excludeDeleted = true) { 
         return this.dao.GetById(id, excludeDeleted);    
     }
+
+    // fonctions pour ouvrir les fenêtres
+
+    /// <summary>
+    /// Ouvre la vue pour la création d'un nouveau supplier
+    /// </summary>
+    /// <returns>La vue ou null</returns>
+    public Supplier? OpenViewForCreation() {
+        Supplier supplier = new Supplier();
+        DialogResult result = this.view.OpenForCreation(supplier);
+        return result == DialogResult.OK ? supplier : null;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour voir un supplier
+    /// </summary>
+    /// <param name="supplier">le supplier à voir</param>
+    /// <returns>le supplier</returns>
+    public Supplier OpenViewForView(Supplier supplier) {
+        _ = this.view.OpenForView(supplier);
+        return supplier;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour modifier un supplier
+    /// </summary>
+    /// <param name="supplier">le supplier à modifier</param>
+    /// <returns>la vue ou null</returns>
+    public Supplier? OpenViewForModification(Supplier supplier) {
+        DialogResult result = this.view.OpenForModification(supplier);
+        return result == DialogResult.OK ? supplier : null;
+    }
+
+    /// <summary>
+    /// ouvre la vue pour supprimer un supplier
+    /// </summary>
+    /// <param name="supplier">Le supplier a supprimer</param>
+    /// <returns>la vue ou null</returns>
+    public Supplier? OpenViewForDeletion(Supplier supplier) {
+        DialogResult result = this.view.OpenForDeletion(supplier);
+        return result == DialogResult.OK ? supplier : null;
+    }
 }

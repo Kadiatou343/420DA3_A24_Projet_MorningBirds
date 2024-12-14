@@ -48,8 +48,6 @@ partial class ProductView {
         this.idLabel = new Label();
         this.middleTLP = new TableLayoutPanel();
         this.midPanel = new Panel();
-        this.actionBtn = new Button();
-        this.cancelBtn = new Button();
         this.panelButtom = new Panel();
         this.btnAction = new Button();
         this.btnCancel = new Button();
@@ -303,32 +301,10 @@ partial class ProductView {
         this.midPanel.Size = new Size(694, 403);
         this.midPanel.TabIndex = 0;
         // 
-        // actionBtn
-        // 
-        this.actionBtn.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.actionBtn.Location = new Point(1268, -19);
-        this.actionBtn.Name = "actionBtn";
-        this.actionBtn.Size = new Size(129, 57);
-        this.actionBtn.TabIndex = 3;
-        this.actionBtn.Text = "ACTION";
-        this.actionBtn.UseVisualStyleBackColor = true;
-        // 
-        // cancelBtn
-        // 
-        this.cancelBtn.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.cancelBtn.Location = new Point(1403, -19);
-        this.cancelBtn.Name = "cancelBtn";
-        this.cancelBtn.Size = new Size(129, 57);
-        this.cancelBtn.TabIndex = 2;
-        this.cancelBtn.Text = "Cancel";
-        this.cancelBtn.UseVisualStyleBackColor = true;
-        // 
         // panelButtom
         // 
         this.panelButtom.Controls.Add(this.btnAction);
         this.panelButtom.Controls.Add(this.btnCancel);
-        this.panelButtom.Controls.Add(this.actionBtn);
-        this.panelButtom.Controls.Add(this.cancelBtn);
         this.panelButtom.Dock = DockStyle.Bottom;
         this.panelButtom.Location = new Point(0, 484);
         this.panelButtom.Name = "panelButtom";
@@ -412,8 +388,6 @@ partial class ProductView {
     private Label idLabel;
     private TableLayoutPanel middleTLP;
     private Panel midPanel;
-    private Button actionBtn;
-    private Button cancelBtn;
     private Panel panelButtom;
     private Panel panelTop;
     private Button btnAction;

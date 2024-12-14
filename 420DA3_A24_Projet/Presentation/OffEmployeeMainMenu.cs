@@ -254,6 +254,81 @@ internal partial class OffEmployeeMainMenu : Form {
         this.deleteSupplierButton.Enabled = false;
     }
 
+    /// <summary>
+    /// Effectuer une recherche d'un supplier
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void supplierSearchTextBox_TextChanged(object sender, EventArgs e) {
+        List<Supplier> results = this.parentApp.SupplierService.SearchSupplier(this.supplierSearchTextBox.Text.Trim());
+        this.LoadSuppliersInListBox(results);
+    }
+
+    /// <summary>
+    /// Load une liste de supplier que l'on peut sélectionner pour effectuer des actions
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void supplierListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+        if (selectedSupplier != null) {
+            this.ActivateSupplierActionButton();
+        } else {
+            this.DeactivateSupplierActionButton();
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue de création de supplier et l'ajout a la liste par la suite
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void createSupplierButton_Click(object sender, EventArgs e) {
+        Supplier? supplier = this.parentApp.SupplierService.OpenViewForCreation();
+        if (supplier != null) {
+            _ = this.productListBox.Items.Add(supplier);
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue de visualisation d'un supplier
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void seeSupplierDetailsButton_Click(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+        if (selectedSupplier != null) {
+            _ = this.parentApp.SupplierService.OpenViewForView(selectedSupplier);
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue de modification d'un supplier
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void updateSupplierButton_Click(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+        if (selectedSupplier != null) {
+            _ = this.parentApp.SupplierService.OpenViewForModification(selectedSupplier);
+            this.supplierListBox.Refresh();
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour supprimer un supplier
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void deleteSupplierButton_Click(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+        if (selectedSupplier != null) {
+            _ = this.parentApp.SupplierService.OpenViewForDeletion(selectedSupplier);
+            this.supplierListBox.Refresh();
+        }
+    }
+
+
     #endregion
 
     private void logoutButton_Click(object sender, EventArgs e) {

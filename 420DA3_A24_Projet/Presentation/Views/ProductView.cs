@@ -13,15 +13,6 @@ using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 
-/// <summary>
-/// Enum pour diriger les view dépendemment de l'action souhaité
-/// </summary>
-public enum ViewActionEnum {
-    View,
-    Create,
-    Update,
-    Delete
-}
 internal partial class ProductView : Form {
 
     private WsysApplication parentApp;

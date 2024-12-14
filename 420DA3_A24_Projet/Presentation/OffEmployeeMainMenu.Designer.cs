@@ -342,6 +342,7 @@ partial class OffEmployeeMainMenu {
         this.deleteSupplierButton.TabIndex = 3;
         this.deleteSupplierButton.Text = "Supprimer fournisseur";
         this.deleteSupplierButton.UseVisualStyleBackColor = true;
+        this.deleteSupplierButton.Click += this.deleteSupplierButton_Click;
         // 
         // updateSupplierButton
         // 
@@ -354,6 +355,7 @@ partial class OffEmployeeMainMenu {
         this.updateSupplierButton.TabIndex = 2;
         this.updateSupplierButton.Text = "Modifier fournisseur";
         this.updateSupplierButton.UseVisualStyleBackColor = true;
+        this.updateSupplierButton.Click += this.updateSupplierButton_Click;
         // 
         // createSupplierButton
         // 
@@ -366,6 +368,7 @@ partial class OffEmployeeMainMenu {
         this.createSupplierButton.TabIndex = 0;
         this.createSupplierButton.Text = "Créer un fournisseur";
         this.createSupplierButton.UseVisualStyleBackColor = true;
+        this.createSupplierButton.Click += this.createSupplierButton_Click;
         // 
         // seeSupplierDetailsButton
         // 
@@ -378,6 +381,7 @@ partial class OffEmployeeMainMenu {
         this.seeSupplierDetailsButton.TabIndex = 1;
         this.seeSupplierDetailsButton.Text = "Voir fournisseur détails";
         this.seeSupplierDetailsButton.UseVisualStyleBackColor = true;
+        this.seeSupplierDetailsButton.Click += this.seeSupplierDetailsButton_Click;
         // 
         // supplierSearchPanel
         // 
@@ -400,6 +404,7 @@ partial class OffEmployeeMainMenu {
         this.supplierListBox.Name = "supplierListBox";
         this.supplierListBox.Size = new Size(264, 135);
         this.supplierListBox.TabIndex = 2;
+        this.supplierListBox.SelectedIndexChanged += this.supplierListBox_SelectedIndexChanged;
         // 
         // supplierSearchTextBox
         // 
@@ -410,6 +415,7 @@ partial class OffEmployeeMainMenu {
         this.supplierSearchTextBox.PlaceholderText = "Rechercher un fournisseur";
         this.supplierSearchTextBox.Size = new Size(264, 27);
         this.supplierSearchTextBox.TabIndex = 1;
+        this.supplierSearchTextBox.TextChanged += this.supplierSearchTextBox_TextChanged;
         // 
         // productManagementTbLytPanel
         // 
