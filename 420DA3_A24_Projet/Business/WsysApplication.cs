@@ -45,12 +45,24 @@ internal class WsysApplication {
     public LoginService LoginService { get; private set; }
 
     /// <summary>
+    /// Le service Product
+    /// </summary>
+    public ProductService ProductService { get; private set; }
+
+    /// <summary>
+    /// Le service Supplier
+    /// </summary>
+    public SupplierService SupplierService { get; private set; }
+
+    /// <summary>
     /// Constructeur
     /// </summary>
     public WsysApplication() {
         context = new WsysDbContext();
         this.UserService = new UserService(this, context);
         this.RoleService = new RoleService(this, context);
+        this.SupplierService = new SupplierService(this, context);
+        this.ProductService = new ProductService(this, context);
         this.PasswordService = PasswordService.GetInstance();
         this.LoginService = new LoginService(this);
         this.adminMainMenu = new AdminMainMenu(this);

@@ -109,6 +109,80 @@ internal partial class OffEmployeeMainMenu : Form {
     #region Product
 
     /// <summary>
+    /// Effectuer une recherche d'un produit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void productSearchTextBox_TextChanged(object sender, EventArgs e) {
+        List<Product> results = this.parentApp.ProductService.SearchProduct(this.productSearchTextBox.Text.Trim());
+        this.LoadProductsInListBox(results);
+    }
+
+    /// <summary>
+    /// Load une liste de product que l'on peut sélectionner pour effectuer des actions
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void productListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        Product? selectedProduct = this.productListBox.SelectedItem as Product;
+        if (selectedProduct != null) {
+            this.ActivateProductActionButtons();
+        } else {
+            this.DeactivateProductActionButtons();
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue de création de produit et l'ajout a la liste par la suite
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void createProductButton_Click(object sender, EventArgs e) {
+        Product? product = this.parentApp.ProductService.OpenViewForCreation();
+        if (product != null) {
+            _ = this.productListBox.Items.Add(product);
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue de visualisation d'un produit sélectionné
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void seeProductDetailsButton_Click(object sender, EventArgs e) {
+        Product? selectedProduct = this.productListBox.SelectedItem as Product;
+        if (selectedProduct != null) {
+            _ = this.parentApp.ProductService.OpenViewForView(selectedProduct);
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue de modification d'un produit sélectionné
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void updateProductButton_Click(object sender, EventArgs e) {
+        Product? selectedProduct = this.productListBox.SelectedItem as Product;
+        if (selectedProduct != null) {
+            _ = this.parentApp.ProductService.OpenViewForModification(selectedProduct);
+            this.productListBox.Refresh();
+        }
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour supprimer un produit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void deleteProductButton_Click(object sender, EventArgs e) {
+        Product? selectedProduct = this.productListBox.SelectedItem as Product;
+        if (selectedProduct != null) {
+            _ = this.parentApp.ProductService.OpenViewForDeletion(selectedProduct);
+            this.productListBox.Refresh();
+        }
+    }
+
+    /// <summary>
     /// Charger une liste de produits dans la list box fait pour
     /// </summary>
     /// <param name="products">La liste de produits à charger</param>
@@ -181,4 +255,10 @@ internal partial class OffEmployeeMainMenu : Form {
     }
 
     #endregion
+
+    private void logoutButton_Click(object sender, EventArgs e) {
+
+    }
+
+
 }

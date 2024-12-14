@@ -105,6 +105,9 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.RowVersion = rowVersion;
         }
 
+        // Constructeur vide
+        public Product() { }
+
         #region METHODES DE VERIFICATION
         static private bool ValidateProductName(string value) {
             return value.Length <= PRODUCT_NAME_MAX_LENGTH;
