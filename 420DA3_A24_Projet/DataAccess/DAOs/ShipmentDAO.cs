@@ -97,6 +97,11 @@ internal class ShipmentDAO {
                 .ToList();
     }
 
+    /// <summary>
+    /// Obtenir touts les shipments
+    /// </summary>
+    /// <param name="excludeDeleted">Detail d'exclure les utilisateurs marqués supprimés ou non</param>
+    /// <returns>Liste de shipment</returns>
     public List<Shipment> GetAll(bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Shipments.ToList()
