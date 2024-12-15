@@ -19,6 +19,7 @@ internal partial class OffEmployeeMainMenu : Form {
     public OffEmployeeMainMenu(WsysApplication parentApp) {
         this.parentApp = parentApp;
         this.InitializeComponent();
+        this.greetingLabel.Text = "Bonjour " + (this.parentApp.LoginService.LoggedInUser)?.Username;
     }
 
     #region Shipping Order

@@ -53,6 +53,8 @@ partial class WhEmployeeMainMenu {
         this.soUnassignedActBtnPanel = new Panel();
         this.assignToMeButton = new Button();
         this.unassignedSoListBox = new ListBox();
+        this.greetingLabel = new Label();
+        this.topBarPanel.SuspendLayout();
         this.bottomBarPanel.SuspendLayout();
         this.primaryTableLayoutPanel.SuspendLayout();
         this.poTableLayoutPanel.SuspendLayout();
@@ -71,6 +73,7 @@ partial class WhEmployeeMainMenu {
         // 
         // topBarPanel
         // 
+        this.topBarPanel.Controls.Add(this.greetingLabel);
         this.topBarPanel.Dock = DockStyle.Top;
         this.topBarPanel.Location = new Point(0, 0);
         this.topBarPanel.Name = "topBarPanel";
@@ -393,6 +396,16 @@ partial class WhEmployeeMainMenu {
         this.unassignedSoListBox.Size = new Size(328, 523);
         this.unassignedSoListBox.TabIndex = 2;
         // 
+        // greetingLabel
+        // 
+        this.greetingLabel.AutoSize = true;
+        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.greetingLabel.Location = new Point(579, 11);
+        this.greetingLabel.Name = "greetingLabel";
+        this.greetingLabel.Size = new Size(205, 28);
+        this.greetingLabel.TabIndex = 1;
+        this.greetingLabel.Text = "Bonjour UtilisateurX";
+        // 
         // WhEmployeeMainMenu
         // 
         this.AutoScaleDimensions = new SizeF(10F, 25F);
@@ -403,6 +416,8 @@ partial class WhEmployeeMainMenu {
         this.Controls.Add(this.topBarPanel);
         this.Name = "WhEmployeeMainMenu";
         this.Text = "WhEmployeeMainMenu";
+        this.topBarPanel.ResumeLayout(false);
+        this.topBarPanel.PerformLayout();
         this.bottomBarPanel.ResumeLayout(false);
         this.primaryTableLayoutPanel.ResumeLayout(false);
         this.poTableLayoutPanel.ResumeLayout(false);
@@ -451,4 +466,5 @@ partial class WhEmployeeMainMenu {
     private ListBox expectedPoListBox;
     private ListBox packagedSoListBox;
     private ListBox processingSoListBox;
+    private Label greetingLabel;
 }
