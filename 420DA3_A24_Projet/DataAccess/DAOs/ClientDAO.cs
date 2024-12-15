@@ -1,13 +1,6 @@
-﻿using _420DA3_A24_Projet.DataAccess.Contexts;
-using _420DA3_A24_Projet.Business.Domain;
-using Azure.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
-using _420DA3_A24_Projet.Business;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 
@@ -114,7 +107,7 @@ internal class ClientDAO {
             .Where (
             client => (
             client.ClientName.ToLower().Contains(filter.ToLower())
-            && client.DateDeleted == null))
+            && client.DateDeleted == null)
             .ToList();
 
     }
@@ -130,14 +123,14 @@ internal class ClientDAO {
 
         return !excludedDeleted
             ? this.context.Clients.Include(client => client.EmployeeWarehouse)
-               .Where (
+               .Where(
                   client => client.EmployeeWarehouse != null && client.EmployeeWarehouse.Equals(warehouse))
                .ToList()
-            :this.context.Clients.Include(client => client.EmployeeWarehouse)
+            : this.context.Clients.Include(client => client.EmployeeWarehouse)
             .Where(
                 client => client.EmployeeWarehouse != null && client.EmployeeWarehouse.Equals(warehouse) && client.DateDeleted == null)
             .ToList();
     }
-  
+
 }
 

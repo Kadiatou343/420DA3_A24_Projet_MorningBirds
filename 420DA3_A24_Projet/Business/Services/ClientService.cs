@@ -2,13 +2,6 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
-using Project_Utilities.Enums;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 
@@ -61,7 +54,7 @@ internal class ClientService {
     public Client CreateClient(Client client) {
         try {
             return this.dao.Create(client);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             throw new Exception("Impossible de créer le client.", ex);
         }
     }
@@ -76,7 +69,7 @@ internal class ClientService {
     public Client UpdateClient(Client client) {
         try {
             return this.dao.Update(client);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             throw new Exception("Impossible de mettre à jour le client.", ex);
         }
     }

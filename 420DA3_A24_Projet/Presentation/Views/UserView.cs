@@ -1,16 +1,8 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
 using Project_Utilities.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 /// <summary>
@@ -36,9 +28,9 @@ internal partial class UserView : Form {
     /// <param name="parentApp">L'application</param>
     public UserView(WsysApplication parentApp) {
         this.parentApp = parentApp;
-        action = ViewActionsEnum.Visualization;
-        this.InitializeComponent();
+        this.action = ViewActionsEnum.Visualization;
         this.copyrightLabel.Text = this.parentApp.GetCopyright();
+        this.InitializeComponent();
     }
 
     /// <summary>
@@ -59,18 +51,21 @@ internal partial class UserView : Form {
     /// <exception cref="NotImplementedException">L'exception levée si l'action fournie n'est pas reconnue</exception>
     public DialogResult OpenFor(ViewActionsEnum action, User? user = null) {
         this.action = action;
+        this.userInstance = user;
         this.LoadInstanceInControls(user);
         switch (action) {
             case ViewActionsEnum.Visualization:
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Visualisation";
                 this.actionButton.Text = "OK";
                 this.DisableEditableControls();
 
                 break;
             case ViewActionsEnum.Creation:
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Création";
                 this.actionButton.Text = "Créer";
                 this.EnableEditableControls();
@@ -79,6 +74,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Modification";
                 this.actionButton.Text = "Modifier";
                 this.EnableEditableControls();
@@ -87,6 +83,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
+                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Suppression";
                 this.actionButton.Text = "Supprimer";
                 this.DisableEditableControls();
@@ -112,13 +109,13 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Charger une liste des rôles dans la list box fait pour
+    /// Charger les rôles du système dans la list box fait pour
     /// </summary>
-    /// <param name="roles">La liste de rôles à charger</param>
-    private void LoadUserRolesInListBox(List<Role> roles) {
+    private void LoadUserRolesInListBox() {
+        List<Role> roles = this.parentApp.RoleService.GetAllRoles();
         this.userRolesListBox.Items.Clear();
         this.userRolesListBox.SelectedItems.Clear();
-        
+
         foreach (Role role in roles) {
             _ = this.userRolesListBox.Items.Add(role);
         }
@@ -315,6 +312,6 @@ internal partial class UserView : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void CancelButton_Click(object sender, EventArgs e) {
-        this.DialogResult= DialogResult.Cancel;
+        this.DialogResult = DialogResult.Cancel;
     }
 }

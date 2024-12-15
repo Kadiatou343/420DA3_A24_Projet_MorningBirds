@@ -1,10 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
@@ -47,7 +42,7 @@ internal class RoleDAO {
                 .Where(role => role.Id == id)
                 .SingleOrDefault()
             : this.context.Roles
-                .Where(role => (role.Id == id && role.DateDeleted == null))
+                .Where(role => role.Id == id && role.DateDeleted == null)
                 .SingleOrDefault();
     }
 
@@ -60,10 +55,10 @@ internal class RoleDAO {
     public List<Role> Search(string filter, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Roles
-                .Where( 
-                    role => (
+                .Where(
+                    role =>
                          role.RoleName.ToLower().Contains(filter.ToLower())
-                         || role.RoleDescription.ToLower().Contains(filter.ToLower())))
+                         || role.RoleDescription.ToLower().Contains(filter.ToLower()))
                 .ToList()
             : this.context.Roles
                 .Where(
@@ -113,5 +108,5 @@ internal class RoleDAO {
             _ = this.context.Roles.Remove(role);
             _ = this.context.SaveChanges();
         }
-    } 
+    }
 }

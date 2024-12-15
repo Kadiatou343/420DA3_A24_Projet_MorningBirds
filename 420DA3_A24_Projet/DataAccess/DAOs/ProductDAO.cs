@@ -1,10 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 internal class ProductDAO {
@@ -60,9 +55,9 @@ internal class ProductDAO {
         return !excludeDeleted
             ? this.context.Products
                 .Where(
-                    product => (
+                    product =>
                          product.ProductName.ToLower().Contains(filter.ToLower())
-                         || product.Desc.ToLower().Contains(filter.ToLower())))
+                         || product.Desc.ToLower().Contains(filter.ToLower()))
                 .ToList()
             : this.context.Products
                 .Where(

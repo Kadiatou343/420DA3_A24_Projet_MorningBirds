@@ -1,11 +1,6 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
@@ -43,14 +38,14 @@ internal class UserDAO {
     /// <param name="excludeDeleted">Detail d'exclure les utilisateurs marqués supprimés ou non</param>
     /// <returns>L'utilisateur avec cet identifiant</returns>
     public User? GetById(int id, bool excludeDeleted = true) {
-        return !excludeDeleted 
+        return !excludeDeleted
             ? this.context.Users
                 .Include(user => user.EmployeeWarehouse)
                 .Where(user => user.Id == id)
                 .SingleOrDefault()
             : this.context.Users
-                .Include (user => user.EmployeeWarehouse)
-                .Where(user => (user.Id == id && user.DateDeleted == null))
+                .Include(user => user.EmployeeWarehouse)
+                .Where(user => user.Id == id && user.DateDeleted == null)
                 .SingleOrDefault();
     }
 
@@ -100,7 +95,7 @@ internal class UserDAO {
     public User? GetByUsername(string username) {
         return this.context.Users
             .Include(user => user.EmployeeWarehouse)
-            .Where(user => (user.Username == username && user.DateDeleted == null))
+            .Where(user => user.Username == username && user.DateDeleted == null)
             .SingleOrDefault();
     }
 
