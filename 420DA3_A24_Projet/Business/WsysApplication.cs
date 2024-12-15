@@ -79,6 +79,12 @@ internal class WsysApplication {
     /// Constructeur
     /// </summary>
     /// 
+    public WarehouseService WarehouseService { get; private set; }
+
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// 
 
 
     public WsysApplication() {
@@ -94,6 +100,7 @@ internal class WsysApplication {
         this.whEmployeeMainMenu = new WhEmployeeMainMenu(this);
         this.ClientService = new ClientService(this, context);
         this.AdresseService = new AdresseService(this, context);
+        this.WarehouseService = new WarehouseService(this, context);
         this.PurchaseOrderServices = new PurchaseOrderServices(this, context);
         this.ShippingOrderServices = new ShippingOrderServices(this, context);
     }

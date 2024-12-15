@@ -838,7 +838,8 @@ internal class WsysDbContext : DbContext {
             .Property(ShippingOrder => ShippingOrder.Id)
             .HasColumnName("Id")
             .HasColumnOrder(0)
-            .HasColumnType("int");
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
 
         _ = modelBuilder.Entity<ShippingOrder>()
            .Property(ShippingOrder => ShippingOrder.Status)

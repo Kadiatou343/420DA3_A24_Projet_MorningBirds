@@ -25,8 +25,9 @@ internal partial class ShippingOrderView : Form {
     private ViewAEnum currentAction;
     private ShippingOrder currentInstance = null!;
     private bool isInitialize = false; // Si les données ont été initialisées
-    public ShippingOrderView() {
-        InitializeComponent();
+    public ShippingOrderView(WsysApplication parentApp) {
+        this.parentApp = parentApp;
+        this.InitializeComponent();
     }
     /// <param name="newShippingOrder">The new product that will be added</param>
     /// <returns>the view or abort if error</returns>
@@ -83,7 +84,7 @@ internal partial class ShippingOrderView : Form {
 
         List<Shipment> shipments = this.parentApp.ShipmentService.GetAllShipment();
         foreach (Shipment shipment in shipments) {
-            if (shipment.Id == shippingOrder.shipmentId) {
+            if (shipment.Id == shippingOrder.ShipmentId) {
                 this.shipmentValue.SelectedItems.Add(shipment);
             }
         }

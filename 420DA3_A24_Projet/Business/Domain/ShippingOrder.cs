@@ -8,17 +8,20 @@ public class ShippingOrder {
 
     public int SourceClientId { get; set; }
 
-    public int shipmentId { get; set; }
+    public int? ShipmentId { get; set; }
     public int CreatorEmployeeId { get; set; }
     public int DestinationAdressId { get; set; }
     public int? FulfillerEmployeeId { get; set; }
     public DateTime? ShippingDate { get; set; }
-    public DateTime? DateCreated { get; set; }
-    public DateTime DateDeleted { get; set; }
+    public DateTime DateCreated { get; set; }
+    public DateTime? DateDeleted { get; set; }
     public DateTime? DateModified { get; set; }
+    public byte[] RowVersion { get; set; }
+
+
     public virtual Client SourceClient { get; set; }
-    public virtual Shipment Shipment { get; set; }
-    public virtual User? CreatorEmployee { get; set; }
+    public virtual User CreatorEmployee { get; set; }
+    public virtual Shipment? Shipment { get; set; }
     public virtual User? FulfillerEmployee { get; set; }
     public virtual Address DestinationAddress { get; set; }
     public virtual List<ShippingOrderProduct> ShippingOrderProducts { get; set; }
@@ -32,31 +35,31 @@ public class ShippingOrder {
     }
     //constructeur base de donnée
 
-    public ShippingOrder(int id, int CreatorEmployeeId, int SourceClientId, int DestinationAdressId,
-        int FulfillerEmployeeId, DateTime ShippingDate, DateTime DateCreated, DateTime DateDeleted,
-         DateTime DateModified, Client SourceClient, User CreatorEmployee,
-        User FulfillerEmployee, Address DestinationAddress) {
+    protected ShippingOrder(int id, ShippingOrderStatusEnum status, int? shipmentId, int creatorEmployeeId, 
+        int sourceClientId, int destinationAdressId,
+        int fulfillerEmployeeId, DateTime? shippingDate, DateTime dateCreated, DateTime? dateDeleted,
+         DateTime? dateModified, byte[] rowVersion) {
         this.Id = id;
-        this.SourceClient = SourceClient;
-        this.CreatorEmployeeId = CreatorEmployeeId;
-        this.DestinationAdressId = DestinationAdressId;
-        this.FulfillerEmployeeId = FulfillerEmployeeId;
-        this.ShippingDate = ShippingDate;
-        this.DateDeleted = DateDeleted;
-        this.DateCreated = DateCreated;
-        this.DateModified = DateModified;
-        this.SourceClient = SourceClient;
-        this.CreatorEmployee = CreatorEmployee;
-        this.FulfillerEmployee = FulfillerEmployee;
-        this.DestinationAddress = DestinationAddress;
+        this.Status = ShippingOrderStatusEnum.New;
+        this.SourceClientId = sourceClientId;
+        this.CreatorEmployeeId = creatorEmployeeId;
+        this.DestinationAdressId = destinationAdressId;
+        this.FulfillerEmployeeId = fulfillerEmployeeId;
+        this.ShippingDate = shippingDate;
+        this.DateDeleted = dateDeleted;
+        this.DateCreated = dateCreated;
+        this.DateModified = dateModified;
+        this.RowVersion = rowVersion;
     }
 
     public ShippingOrder() {
+        this.Status = ShippingOrderStatusEnum.New;
     }
     public ShippingOrder(int id, int sourceClientId,int shipmentId, int creatorEmployeeId, int destinationAdressId, int? fulfillerEmployeeId) { 
         this.Id= id;
+        this.Status = ShippingOrderStatusEnum.New;
         this.SourceClientId = sourceClientId;
-        this.shipmentId = shipmentId;
+        this.ShipmentId = shipmentId;
         this.CreatorEmployeeId = creatorEmployeeId;
         this.DestinationAdressId = destinationAdressId;
         this.FulfillerEmployeeId = fulfillerEmployeeId;

@@ -8,24 +8,25 @@ public class PurchaseOrder {
     public int ProductId { get; set; }
     public int WarehouseId { get; set; }
     public int Quantity { get; set; }
-    public DateTime CompletionDate { get; set; }
-    public DateTime? DateCreated { get; set; }
+    public DateTime? CompletionDate { get; set; }
+    public DateTime DateCreated { get; set; }
     public DateTime? DateDeleted { get; set; }
     public DateTime? DateModified { get; set; }
+    public byte[] RowVersion { get; set; }
     public virtual Product OrderedProduct { get; set; }
     public virtual Warehouse Warehouse { get; set; }
 
     //constructeur de l'App
-    public PurchaseOrder(int id,int ProductId, int WarehouseId, int Quantity) {
-        this.Id = id;
+    public PurchaseOrder(int ProductId, int WarehouseId, int Quantity) {
+       this.Status = PurchaseOrderStatusEnum.New;
         this.ProductId = ProductId;
         this.WarehouseId = WarehouseId;
         this.Quantity = Quantity;
     }
     //constructeur base de donnée
     public PurchaseOrder(int id, PurchaseOrderStatusEnum status, int productId,
-        int warehouseId, int quantity, DateTime completionDate, DateTime? dateCreated, DateTime? dateDeleted
-        , DateTime? dateModified, Product orderedProduct, Warehouse warehouse) {
+        int warehouseId, int quantity, DateTime? completionDate, DateTime dateCreated, DateTime? dateDeleted
+        , DateTime? dateModified) {
         this.Id = id;
         this.Status = status;
         this.ProductId = productId;
@@ -35,8 +36,10 @@ public class PurchaseOrder {
         this.DateCreated = dateCreated;
         this.DateDeleted = dateDeleted;
         this.DateModified = dateModified;
-        this.OrderedProduct = orderedProduct;
-        this.Warehouse = warehouse;
+      
+    }
+
+    public PurchaseOrder() {
     }
 
     public void Complete() {

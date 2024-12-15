@@ -97,9 +97,7 @@ internal class ShipmentService {
     /// </summary>
     /// <param name="excludeDeleted">Detail d'exclure les utilisateurs marqués supprimés ou non</param>
     /// <returns>Liste de shipment</returns>
-    public List<Shipment> GetAllShipment(bool excludeDeleted = true) {
-        return this.dao.GetAll(excludeDeleted);
-    }
+   
 
     // TODO: OpenFor ShipmentService
 }

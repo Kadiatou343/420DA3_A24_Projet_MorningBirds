@@ -66,7 +66,7 @@ partial class ProductView {
         this.clientIdValue.FormattingEnabled = true;
         this.clientIdValue.ItemHeight = 32;
         this.clientIdValue.Location = new Point(574, 350);
-        this.clientIdValue.Margin = new Padding(5, 5, 5, 5);
+        this.clientIdValue.Margin = new Padding(5);
         this.clientIdValue.Name = "clientIdValue";
         this.clientIdValue.Size = new Size(547, 260);
         this.clientIdValue.TabIndex = 23;
@@ -87,7 +87,7 @@ partial class ProductView {
         this.supplierIdValue.FormattingEnabled = true;
         this.supplierIdValue.ItemHeight = 32;
         this.supplierIdValue.Location = new Point(574, 69);
-        this.supplierIdValue.Margin = new Padding(5, 5, 5, 5);
+        this.supplierIdValue.Margin = new Padding(5);
         this.supplierIdValue.Name = "supplierIdValue";
         this.supplierIdValue.Size = new Size(547, 228);
         this.supplierIdValue.TabIndex = 21;
@@ -106,7 +106,7 @@ partial class ProductView {
         // pictureNameValue
         // 
         this.pictureNameValue.Location = new Point(205, 578);
-        this.pictureNameValue.Margin = new Padding(5, 5, 5, 5);
+        this.pictureNameValue.Margin = new Padding(5);
         this.pictureNameValue.Name = "pictureNameValue";
         this.pictureNameValue.PlaceholderText = "Picture of the product";
         this.pictureNameValue.Size = new Size(342, 39);
@@ -115,7 +115,7 @@ partial class ProductView {
         // supplierCodeValue
         // 
         this.supplierCodeValue.Location = new Point(205, 280);
-        this.supplierCodeValue.Margin = new Padding(5, 5, 5, 5);
+        this.supplierCodeValue.Margin = new Padding(5);
         this.supplierCodeValue.Name = "supplierCodeValue";
         this.supplierCodeValue.PlaceholderText = "Code of the Supplier";
         this.supplierCodeValue.Size = new Size(342, 39);
@@ -124,7 +124,7 @@ partial class ProductView {
         // codeUpcValue
         // 
         this.codeUpcValue.Location = new Point(205, 213);
-        this.codeUpcValue.Margin = new Padding(5, 5, 5, 5);
+        this.codeUpcValue.Margin = new Padding(5);
         this.codeUpcValue.Name = "codeUpcValue";
         this.codeUpcValue.PlaceholderText = "Code UPC of product";
         this.codeUpcValue.Size = new Size(342, 39);
@@ -133,7 +133,7 @@ partial class ProductView {
         // descValue
         // 
         this.descValue.Location = new Point(205, 150);
-        this.descValue.Margin = new Padding(5, 5, 5, 5);
+        this.descValue.Margin = new Padding(5);
         this.descValue.Name = "descValue";
         this.descValue.PlaceholderText = "Description of product";
         this.descValue.Size = new Size(342, 39);
@@ -142,7 +142,7 @@ partial class ProductView {
         // nameValue
         // 
         this.nameValue.Location = new Point(205, 90);
-        this.nameValue.Margin = new Padding(5, 5, 5, 5);
+        this.nameValue.Margin = new Padding(5);
         this.nameValue.Name = "nameValue";
         this.nameValue.PlaceholderText = "Name of product";
         this.nameValue.Size = new Size(342, 39);
@@ -152,7 +152,7 @@ partial class ProductView {
         // 
         this.weightValue.Enabled = false;
         this.weightValue.Location = new Point(205, 504);
-        this.weightValue.Margin = new Padding(5, 5, 5, 5);
+        this.weightValue.Margin = new Padding(5);
         this.weightValue.Maximum = new decimal(new int[] { 30000000, 0, 0, 0 });
         this.weightValue.Name = "weightValue";
         this.weightValue.Size = new Size(344, 39);
@@ -162,7 +162,7 @@ partial class ProductView {
         // 
         this.aimQuantityValue.Enabled = false;
         this.aimQuantityValue.Location = new Point(205, 419);
-        this.aimQuantityValue.Margin = new Padding(5, 5, 5, 5);
+        this.aimQuantityValue.Margin = new Padding(5);
         this.aimQuantityValue.Maximum = new decimal(new int[] { 30000000, 0, 0, 0 });
         this.aimQuantityValue.Name = "aimQuantityValue";
         this.aimQuantityValue.Size = new Size(344, 39);
@@ -172,17 +172,18 @@ partial class ProductView {
         // 
         this.quantityValue.Enabled = false;
         this.quantityValue.Location = new Point(205, 352);
-        this.quantityValue.Margin = new Padding(5, 5, 5, 5);
+        this.quantityValue.Margin = new Padding(5);
         this.quantityValue.Maximum = new decimal(new int[] { 30000000, 0, 0, 0 });
         this.quantityValue.Name = "quantityValue";
         this.quantityValue.Size = new Size(344, 39);
         this.quantityValue.TabIndex = 12;
+        this.quantityValue.ValueChanged += this.quantityValue_ValueChanged;
         // 
         // idValue
         // 
         this.idValue.Enabled = false;
         this.idValue.Location = new Point(205, 26);
-        this.idValue.Margin = new Padding(5, 5, 5, 5);
+        this.idValue.Margin = new Padding(5);
         this.idValue.Maximum = new decimal(new int[] { 30000000, 0, 0, 0 });
         this.idValue.Name = "idValue";
         this.idValue.Size = new Size(344, 39);
@@ -288,7 +289,7 @@ partial class ProductView {
         this.middleTLP.Controls.Add(this.midPanel, 1, 0);
         this.middleTLP.Dock = DockStyle.Fill;
         this.middleTLP.Location = new Point(0, 120);
-        this.middleTLP.Margin = new Padding(5, 5, 5, 5);
+        this.middleTLP.Margin = new Padding(5);
         this.middleTLP.Name = "middleTLP";
         this.middleTLP.RowCount = 1;
         this.middleTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -321,7 +322,7 @@ partial class ProductView {
         this.midPanel.Controls.Add(this.idLabel);
         this.midPanel.Dock = DockStyle.Fill;
         this.midPanel.Location = new Point(160, 5);
-        this.midPanel.Margin = new Padding(5, 5, 5, 5);
+        this.midPanel.Margin = new Padding(5);
         this.midPanel.Name = "midPanel";
         this.midPanel.Size = new Size(1128, 644);
         this.midPanel.TabIndex = 0;
@@ -332,7 +333,7 @@ partial class ProductView {
         this.panelButtom.Controls.Add(this.btnCancel);
         this.panelButtom.Dock = DockStyle.Bottom;
         this.panelButtom.Location = new Point(0, 774);
-        this.panelButtom.Margin = new Padding(5, 5, 5, 5);
+        this.panelButtom.Margin = new Padding(5);
         this.panelButtom.Name = "panelButtom";
         this.panelButtom.Size = new Size(1448, 120);
         this.panelButtom.TabIndex = 4;
@@ -342,7 +343,7 @@ partial class ProductView {
         // 
         this.btnAction.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
         this.btnAction.Location = new Point(999, 10);
-        this.btnAction.Margin = new Padding(5, 5, 5, 5);
+        this.btnAction.Margin = new Padding(5);
         this.btnAction.Name = "btnAction";
         this.btnAction.Size = new Size(210, 91);
         this.btnAction.TabIndex = 5;
@@ -354,7 +355,7 @@ partial class ProductView {
         // 
         this.btnCancel.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
         this.btnCancel.Location = new Point(1219, 10);
-        this.btnCancel.Margin = new Padding(5, 5, 5, 5);
+        this.btnCancel.Margin = new Padding(5);
         this.btnCancel.Name = "btnCancel";
         this.btnCancel.Size = new Size(210, 91);
         this.btnCancel.TabIndex = 4;
@@ -366,7 +367,7 @@ partial class ProductView {
         // 
         this.panelTop.Dock = DockStyle.Top;
         this.panelTop.Location = new Point(0, 0);
-        this.panelTop.Margin = new Padding(5, 5, 5, 5);
+        this.panelTop.Margin = new Padding(5);
         this.panelTop.Name = "panelTop";
         this.panelTop.Size = new Size(1448, 120);
         this.panelTop.TabIndex = 3;
@@ -379,7 +380,7 @@ partial class ProductView {
         this.Controls.Add(this.middleTLP);
         this.Controls.Add(this.panelButtom);
         this.Controls.Add(this.panelTop);
-        this.Margin = new Padding(5, 5, 5, 5);
+        this.Margin = new Padding(5);
         this.Name = "ProductView";
         this.Text = "ProductView";
         ((System.ComponentModel.ISupportInitialize) this.weightValue).EndInit();
