@@ -331,8 +331,9 @@ internal partial class OffEmployeeMainMenu : Form {
 
     #endregion
 
-    private void logoutButton_Click(object sender, EventArgs e) {
-
+    private void LogoutButton_Click(object sender, EventArgs e) {
+        this.parentApp.LoginService.Logout();
+        this.DialogResult = DialogResult.Continue;
     }
 
 

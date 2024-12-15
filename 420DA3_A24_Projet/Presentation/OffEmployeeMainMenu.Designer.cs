@@ -121,7 +121,7 @@ partial class OffEmployeeMainMenu {
         this.logoutButton.TabIndex = 0;
         this.logoutButton.Text = "Deconnexion";
         this.logoutButton.UseVisualStyleBackColor = true;
-        this.logoutButton.Click += this.logoutButton_Click;
+        this.logoutButton.Click += this.LogoutButton_Click;
         // 
         // primaryTableLayoutPanel
         // 

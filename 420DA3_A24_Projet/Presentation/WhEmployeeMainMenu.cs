@@ -225,4 +225,8 @@ internal partial class WhEmployeeMainMenu : Form {
 
     #endregion
 
+    private void Logout_Click(object sender, EventArgs e) {
+        this.parentApp.LoginService.Logout();
+        this.DialogResult = DialogResult.Continue;
+    }
 }
