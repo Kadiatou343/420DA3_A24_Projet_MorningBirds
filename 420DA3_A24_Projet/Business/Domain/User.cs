@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _420DA3_A24_Projet.Business.Domain
-{
+namespace _420DA3_A24_Projet.Business.Domain {
     /// <summary>
     /// Classe représentant un utilisateur 
     /// </summary>
-    public class User
-    {
+    public class User {
         /// <summary>
         /// Longueur maximale du nom d'utilisateur
         /// </summary>
@@ -49,7 +47,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <summary>
         /// L'identifiant de l'utilisateur
         /// </summary>
-        public int Id {  get; set; }
+        public int Id { get; set; }
 
         // Données de l'utilisateur 
 
@@ -80,7 +78,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         }
 
         /// <summary>
-        /// L'id de l'entrepôt associé à l'utilisateur s'il est un employé d'entrepôt
+        /// L'identifiant de l'entrepôt associé à l'utilisateur s'il est un employé d'entrepôt
         /// </summary>
         public int? EmployeeWarehouseId { get; set; }
 
@@ -117,7 +115,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         public virtual List<Role> Roles { get; set; } = new List<Role>();
 
         /// <summary>
-        /// Les commandes d'expédition crées pas cet utilisateur s'il est employé de bureau ou admin
+        /// Les commandes d'expédition crées par cet utilisateur s'il est employé de bureau ou admin
         /// </summary>
         public virtual List<ShippingOrder> CreatedShipOrders { get; set; } = new List<ShippingOrder>();
 
@@ -134,8 +132,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="passwordHash">Le Hash du mot de passe de l'utilisateur</param>
         /// <param name="employeeWarehouseId">L'identifiant de l'entrepôt associé à l'utilisateur s'il est un employé d'entrepot</param>
 
-        public User(string username, string passwordHash, int? employeeWarehouseId = null)
-        {
+        public User(string username, string passwordHash, int? employeeWarehouseId = null) {
             this.Username = username;
             this.PasswordHash = passwordHash;
             this.EmployeeWarehouseId = employeeWarehouseId;
@@ -159,8 +156,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             DateTime dateCreated,
             DateTime? dateModified,
             DateTime? dateDeleted,
-            byte[] rowVersion) : this(username, passwordHash, employeeWarehouseId)
-        {
+            byte[] rowVersion) : this(username, passwordHash, employeeWarehouseId) {
             this.Id = id;
             this.DateCreated = dateCreated;
             this.DateModified = dateModified;
@@ -183,9 +179,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// </summary>
         /// <param name="username">La chaine à faire valider</param>
         /// <returns>Le résultat de la validation en bool</returns>
-        public bool ValidateUsername(string username)
-        {
-            return username.Length <= USERNAME_MAX_LENGTH 
+        public bool ValidateUsername(string username) {
+            return username.Length <= USERNAME_MAX_LENGTH
                 && username.Length >= USERNAME_MIN_LENGTH;
         }
 
@@ -194,8 +189,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// </summary>
         /// <param name="passwordHash">Le hash du mot de passe à faire valider</param>
         /// <returns>Le résultat de la validation en bool</returns>
-        public bool ValidatePasswordHash(string passwordHash)
-        {
+        public bool ValidatePasswordHash(string passwordHash) {
             return passwordHash.Length <= PASSWORDHASH_MAX_LENGTH;
         }
 
@@ -205,12 +199,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// Determiner si l'utilisateur possède le rôle d'administrateur
         /// </summary>
         /// <returns>Le résultat de la verification en bool</returns>
-        public bool IsAdministrator()
-        {
-            foreach (Role role in this.Roles)
-            {
-                if (role.Id == Role.ADMIN_ROLE_ID)
-                {
+        public bool IsAdministrator() {
+            foreach (Role role in this.Roles) {
+                if (role.Id == Role.ADMIN_ROLE_ID) {
                     return true;
                 }
             }
@@ -221,12 +212,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// Determiner si l'utilisateur possède le rôle d'employé de bureau
         /// </summary>
         /// <returns>Le résultat de la verification en bool</returns>
-        public bool IsOfficeEmployee()
-        {
-            foreach(Role role in this.Roles)
-            {
-                if(role.Id == Role.OFFICE_EMPLOYEE_ROLE_ID)
-                {
+        public bool IsOfficeEmployee() {
+            foreach (Role role in this.Roles) {
+                if (role.Id == Role.OFFICE_EMPLOYEE_ROLE_ID) {
                     return true;
                 }
             }
@@ -237,12 +225,9 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// Determiner si l'utilisateur possède le rôle d'employé d'entrepôt
         /// </summary>
         /// <returns>Le résultat de la verification en bool</returns>
-        public bool IsWarehouseEmployee()
-        {
-            foreach (Role role in this.Roles)
-            {
-                if(role.Id == Role.WH_EMPLOYEE_ROLE_ID)
-                {
+        public bool IsWarehouseEmployee() {
+            foreach (Role role in this.Roles) {
+                if (role.Id == Role.WH_EMPLOYEE_ROLE_ID) {
                     return true;
                 }
             }
