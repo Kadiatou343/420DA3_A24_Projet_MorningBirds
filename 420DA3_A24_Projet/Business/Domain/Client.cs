@@ -1,54 +1,57 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace _420DA3_A24_Projet.Business.Domain
-{
+namespace _420DA3_A24_Projet.Business.Domain;
 
-    /// <summary>
-    ///  Classe représentant l'entreprise cliente
-    /// </summary>
-    public class Client
-    {
+
+/// <summary>
+///  Classe représentant l'entreprise cliente
+/// </summary>
+public class Client {
+        // Constants pour les longueurs maximales et minimales des propriétés
+
         /// <summary>
-        /// Longueur maxiamle du nom de l'entreprise
+        /// Longueur maximale du nom de l'entreprise.
         /// </summary>
         public const int ClientNameMaxLength = 128;
 
         /// <summary>
-        /// Longueur maxiamle du nom de la personne à contacter au dans de l'entrprise
+        /// Longueur minimale du nom de l'entreprise.
         /// </summary>
         public const int ClientNameMinLength = 5;
 
         /// <summary>
-        /// Longueur maximale du nom de la personne à contacter au dans de l'entrprise
+        /// Longueur maximale du prénom de la personne à contacter.
+        /// </summary>
         public const int ContactFirstNameMaxLength = 32;
 
         /// <summary>
-        ///  Longueur maximale du prenom  de la personne à contacter au dans de l'entrprise
+        /// Longueur maximale du nom de la personne à contacter.
         /// </summary>
         public const int ContactLastNameMaxLength = 32;
 
         /// <summary>
-        /// Longueur de l'email de l'entreprise
+        /// Longueur maximale de l'adresse e-mail du contact.
         /// </summary>
         public const int ContactEmailMaxLength = 128;
 
         /// <summary>
-        /// Longueur du numéro de télephone de l'entreprise
+        /// Longueur maximale du numéro de téléphone de l'entreprise.
         /// </summary>
         public const int ContactTelephoneMaxLength = 15;
 
-       // Identifiants
+        // Propriétés principales
+
+        /// <summary>
+        /// Identifiant unique du client (clé primaire).
+        /// </summary>
+        [Key]
         public int Id { get; set; }
 
-        // Donnée entrée par l'utiliateur
+        /// <summary>
+        /// Nom de l'entreprise cliente.
+        /// </summary>
         public string ClientName { 
+
             get
             {
                 return this.ClientName;
@@ -57,105 +60,143 @@ namespace _420DA3_A24_Projet.Business.Domain
             set 
             {
                 if (!this.ValidateCLientName(value)) {
+
                     throw new ArgumentException("ClientName", $"La longueur de ClientName doit entre{ClientNameMinLength} et {ClientNameMaxLength}");
                 }  
-                
                 this.ClientName = value;
             } 
         }
 
+        /// <summary>
+        /// Identifiant de l'entrepôt associé au client.
+        /// </summary>
         public int WarehouseId { get; set; }
-   
+
+
+        /// <summary>
+        /// Prénom de la personne à contacter dans l'entreprise cliente.
+        /// </summary>
         public string ContactFirstName {
             get {
                 return this.ContactFirstName;
 
+        }
+        set {
+            if (!this.ValidateContactFirstName(value)) {
+                throw new ArgumentException("ContactFirstName", $"La longueur de ContactFirstName doit être inférieur à {ContactFirstNameMaxLength}");
             }
-            set {
-                if (!this.ValidateContactFirstName(value)) {
-                    throw new ArgumentException("ContactFirstName", $"La longueur de ContactFirstName doit être inférieur à {ContactFirstNameMaxLength}");
-                }
 
                 this.ContactFirstName = value;
             }
         }
+
+        /// <summary>
+        /// Prénom de la personne à contacter dans l'entreprise cliente.
+        /// </summary>
         public string ContactLastName {
             get {
                 return this.ContactLastName;
 
-            }
-            set {
-                if (!this.ValidateContactLastName(value)) {
-                    throw new ArgumentException("ContactLastName", $"La longueur de ContactLastName doit être inférieur à {ContactLastNameMaxLength}");
-                }
-
-                this.ContactLastName = value;
-            }
         }
+        set {
+            if (!this.ValidateContactLastName(value)) {
+                throw new ArgumentException("ContactLastName", $"La longueur de ContactLastName doit être inférieur à {ContactLastNameMaxLength}");
+            }
 
+            this.ContactLastName = value;
+        }
+    }
+
+        /// <summary>
+        /// Adresse e-mail du contact de l'entreprise cliente.
+        /// </summary>
         public string ContactEmail {
             get {
                 return this.ContactEmail;
 
-            }
-            set {
-                if (!this.ValidateContactEmail(value)) {
-                    throw new ArgumentException("ContactEmail", $"La longueur de l'email doit être inférieur à {ContactEmailMaxLength}");
-                }
-
-                this.ContactEmail = value;
-            }
         }
+        set {
+            if (!this.ValidateContactEmail(value)) {
+                throw new ArgumentException("ContactEmail", $"La longueur de l'email doit être inférieur à {ContactEmailMaxLength}");
+            }
 
+            this.ContactEmail = value;
+        }
+    }
+
+        /// <summary>
+        /// Numéro de téléphone du contact de l'entreprise cliente.
+        /// </summary>
         public string ContactTelephone {
             get {
                 return this.ContactTelephone;
 
-            }
-            set {
-                if (!this.ValidateContactTelephone(value)) {
-                    throw new ArgumentException("ContactTelephone", $"La longueur ddu numéro de téléphone doit être inférieur à {ContactTelephoneMaxLength}");
-                }
-
-                this.ContactTelephone = value;
-            }
         }
+        set {
+            if (!this.ValidateContactTelephone(value)) {
+                throw new ArgumentException("ContactTelephone", $"La longueur ddu numéro de téléphone doit être inférieur à {ContactTelephoneMaxLength}");
+            }
+
+            this.ContactTelephone = value;
+        }
+    }
 
         //Meta-données
-        public DateTime DateCreated { get; set; }
 
+        /// <summary>
+        /// Date de création de l'enregistrement.
+        /// </summary>
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+
+
+        /// <summary>
+        /// Date de dernière modification (nullable).
+        /// </summary>
         public DateTime? DateModified { get; set; }
 
+
+        /// <summary>
+        /// Date de suppression logique (nullable).
+        /// </summary>
         public DateTime? DateDeleted { get; set; }
 
+
+        /// <summary>
+        /// Version de ligne pour la gestion des concurrences.
+        /// </summary>
         public byte[] RowVersion { get; set; } = null!;
 
 
-        // Propriétés de navigation EF Core
+    // Propriétés de navigation EF Core
+
+    /// <summary>
+    /// Entrepôt assigné au client
+    /// </summary>
+    public virtual Warehouse AssignedWarehouse { get; set; } = null!;
 
         /// <summary>
-        /// Entrepôt assigné au client
-        /// </summary>
-        public virtual Warehouse AssignedWarehouse { get; set; } = null!;
-
-        /// <summary>
-        /// Addresses d'entreprises clientes
+        /// Liste des adresses associées à l'entreprise cliente.
         /// </summary>
         public virtual List<Address> Addresses { get; set; } = new List<Address>();
 
         /// <summary>
-        /// Produits appartenant à l'entreprise 
+        /// Liste des produits appartenant au client.
         /// </summary>
         public virtual List<Product> Products { get; set; } = new List<Product>();
-         
-        /// <summary>
-        /// expedition des produits du fournisseurs vers l'entrepôt
-        /// </summary>
-        public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
-        public object EmployeeWarehouse { get; internal set; }
 
         /// <summary>
-        /// Constructeur 
+        /// Liste des commandes d'expédition associées au client.
+        /// </summary>
+        public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
+
+        /// <summary>
+        /// Entrepôt assigné à l'employé, qui peut être nul si aucun entrepôt n'est associé.
+        /// </summary>
+        public virtual Warehouse? EmployeeWarehouse { get; internal set; }
+
+
+        /// <summary>
+        /// Constructeur principal pour initialiser un client.
         /// </summary>
         /// <param name="clientName"> Nom de l'entreprise</param>
         /// <param name="contactFirstName">Nom de celui à contacter dans l'entrepise</param>
@@ -163,7 +204,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="contactEmail">Boite mail de l'entreprise</param>
         /// <param name="contactTelephone">Numéro de téléphone de l'entraprise</param>
         /// <param name="warehouseId">Identifienat du fournisseur associé aux client</param>
-        public Client (string clientName, string contactFirstName, string contactLastName,
+        public Client(string clientName, string contactFirstName, string contactLastName,
             string contactEmail, string contactTelephone, int warehouseId)
         {
             this.ClientName = clientName;
@@ -174,6 +215,10 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.WarehouseId = warehouseId;
         }
 
+
+        /// <summary>
+        /// Constructeur protégé utilisé pour des scénarios avancés (ex. : chargement depuis la base de données).
+        /// </summary>
         protected Client(
             int id, 
             string clientName, 
@@ -188,13 +233,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             byte[] rowVersion)
             : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,assignedwarehouseId)
         {
-            this.Id = id;
-            this.ClientName = clientName;
-            this.WarehouseId = assignedwarehouseId;
-            this.ContactFirstName = contactFirstName;
-            this.ContactLastName = contactLastName;
-            this.ContactEmail = contactEmail;
-            this.ContactTelephone = contactTelephone;
+            this.Id = id;          
             this.DateCreated = dateCreated;
             this.DateModified = dateModified;
             this.DateDeleted = dateDeleted;
@@ -202,38 +241,35 @@ namespace _420DA3_A24_Projet.Business.Domain
             
         }
 
-        #region Methodes
+    #region Methodes de validation et utilitaires
 
-        /// <summary>
-        /// Override de la méthode ToString pour afficher les informations d'un client
-        /// </summary>
-        /// <returns>un String représentant le client </returns>     
+    /// <summary>
+    /// Redéfinition de la méthode ToString pour afficher les informations d'un client
+    /// </summary>
+    /// <returns>un String représentant le client </returns>     
 
-        public bool ValidateCLientName(string clientName) 
-        { 
-            return clientName.Length <= ClientNameMaxLength && clientName.Length >= ClientNameMinLength;
-        }
-
-        public bool ValidateContactFirstName(string contactFirstName) 
-        {
-            return contactFirstName.Length <= ContactFirstNameMaxLength && contactFirstName.Length >= ClientNameMinLength;
-        } 
-        public bool ValidateContactLastName(string contactLastName) 
-        {
-            return  contactLastName.Length <= ContactLastNameMaxLength && contactLastName.Length >= ClientNameMinLength;
-        }
-         
-        public bool ValidateContactEmail(string contactEmail) 
-        {
-            return  contactEmail.Length <= ContactEmailMaxLength;
-        }
-        public bool ValidateContactTelephone(string contactTelephone) 
-        {
-            return  contactTelephone.Length <= ContactEmailMaxLength; 
-        }
-
-        #endregion
+    public bool ValidateCLientName(string clientName)
+    {
+        return clientName.Length <= ClientNameMaxLength && clientName.Length >= ClientNameMinLength;
     }
 
+    public bool ValidateContactFirstName(string contactFirstName)
+    {
+        return contactFirstName.Length <= ContactFirstNameMaxLength && contactFirstName.Length >= ClientNameMinLength;
+    }
+    public bool ValidateContactLastName(string contactLastName)
+    {
+        return contactLastName.Length <= ContactLastNameMaxLength && contactLastName.Length >= ClientNameMinLength;
+    }
 
+    public bool ValidateContactEmail(string contactEmail)
+    {
+        return contactEmail.Length <= ContactEmailMaxLength;
+    }
+    public bool ValidateContactTelephone(string contactTelephone)
+    {
+        return contactTelephone.Length <= ContactEmailMaxLength;
+    }
+
+    #endregion
 }

@@ -1,12 +1,7 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
 
@@ -34,17 +29,11 @@ internal class WsysDbContext : DbContext {
     /// Propriété faisant le pont entre l'entité Supplier et la table Suppliers dans la base de données par EF Core
     /// </summary>
     public DbSet<Supplier> Suppliers { get; set; }
-     
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<ShippingOrder> ShippingOrders { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
-
-
-    
-
     public DbSet<Warehouse> Warehouses { get; set; }
-
     public DbSet<Shipment> Shipments { get; set; }
 
     /// <summary>
@@ -412,7 +401,7 @@ internal class WsysDbContext : DbContext {
         .HasConversion(utcDateTimeConverter)
         .IsRequired(false);
 
-      
+
         #endregion
 
         #region CONFIGURATION DE LA LIAISON ENTITE Product A TABLE 'Products'
@@ -835,7 +824,7 @@ internal class WsysDbContext : DbContext {
            .HasConversion(utcDateTimeConverter)
            .IsRequired(false);
 
-        
+
 
         #endregion
 
@@ -1040,7 +1029,7 @@ internal class WsysDbContext : DbContext {
         // Relation un à plusieurs entre Client et Produit coté Client
         _ = modelBuilder.Entity<Client>()
             .HasMany(client => client.Products)
-            .WithOne(product => product.Client)            
+            .WithOne(product => product.Client)
             .HasForeignKey(product => product.ClientId)
             .OnDelete(DeleteBehavior.Cascade);
 

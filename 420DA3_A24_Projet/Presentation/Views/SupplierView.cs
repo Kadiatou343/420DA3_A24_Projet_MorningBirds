@@ -1,14 +1,6 @@
-﻿using _420DA3_A24_Projet.Business.Domain;
-using _420DA3_A24_Projet.Business;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using _420DA3_A24_Projet.Business;
+using _420DA3_A24_Projet.Business.Domain;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 
@@ -23,7 +15,7 @@ public enum ViewActionEnum {
 }
 internal partial class SupplierView : Form {
 
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
     private ViewActionEnum currentAction;
     private Supplier currentInstance = null!;
     private bool isInitialize = false; // Si les données ont été initialisées

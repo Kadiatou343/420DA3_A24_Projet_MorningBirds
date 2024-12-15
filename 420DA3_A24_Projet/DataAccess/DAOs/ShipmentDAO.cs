@@ -1,10 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
@@ -73,7 +68,7 @@ internal class ShipmentDAO {
     /// <param name="id">Id du shipment à chercher</param>
     /// <param name="excludeDeleted">Detail d'exclure les utilisateurs marqués supprimés ou non</param>
     /// <returns>Le warehouse avec cet id</returns>
-    public Shipment? GetById(int id, bool excludeDeleted = true) { 
+    public Shipment? GetById(int id, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Shipments
                 .Where(shipment => shipment.Id == id)
@@ -92,7 +87,7 @@ internal class ShipmentDAO {
     public List<Shipment> Search(string filter, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Shipments
-                .Where(shipment => 
+                .Where(shipment =>
                     shipment.TrackingNumber.ToLower().Contains(filter.ToLower()))
                 .ToList()
             : this.context.Shipments

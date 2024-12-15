@@ -2,11 +2,6 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 /// <summary>
@@ -16,11 +11,11 @@ internal class SupplierService {
     /// <summary>
     /// Le dao du supplier
     /// </summary>
-    private SupplierDAO dao;
+    private readonly SupplierDAO dao;
     /// <summary>
     /// La view associer a ce service de supplier 
     /// </summary>
-    private SupplierView view;
+    private readonly SupplierView view;
 
     /// <summary>
     /// Constructeur de la class
@@ -38,7 +33,7 @@ internal class SupplierService {
     /// <param name="searchElement">the search element</param>
     /// <param name="excludeDeleted">exclude deleted supplier ?</param>
     /// <returns>A list of supplier</returns>
-    public List<Supplier> SearchSupplier(string searchElement, bool excludeDeleted = true) { 
+    public List<Supplier> SearchSupplier(string searchElement, bool excludeDeleted = true) {
         return this.dao.Search(searchElement, excludeDeleted);
     }
 
@@ -47,8 +42,8 @@ internal class SupplierService {
     /// </summary>
     /// <param name="supplier">The new supplier to create</param>
     /// <returns>the new supplier created </returns>
-    public Supplier CreateSupplier(Supplier supplier) { 
-        return this.dao.Create(supplier);   
+    public Supplier CreateSupplier(Supplier supplier) {
+        return this.dao.Create(supplier);
     }
 
     /// <summary>
@@ -56,7 +51,7 @@ internal class SupplierService {
     /// </summary>
     /// <param name="supplier">The supplier to update</param>
     /// <returns>the updated supplier </returns>
-    public Supplier UpdateSupplier(Supplier supplier) { 
+    public Supplier UpdateSupplier(Supplier supplier) {
         return this.dao.Update(supplier);
     }
 
@@ -65,7 +60,7 @@ internal class SupplierService {
     /// </summary>
     /// <param name="supplier">The supplier to delete</param>
     /// <param name="softDelete">DO we soft delete of no ?</param>
-    public void DeleteSupplier(Supplier supplier, bool softDelete = true) { 
+    public void DeleteSupplier(Supplier supplier, bool softDelete = true) {
         this.dao.Delete(supplier, softDelete);
     }
 
@@ -74,7 +69,7 @@ internal class SupplierService {
     /// </summary>
     /// <param name="excludeDeleted">do we pass deleted supplier ?</param>
     /// <returns>a list of supplier</returns>
-    public List<Supplier> GetAllSupplier(bool excludeDeleted = true) { 
+    public List<Supplier> GetAllSupplier(bool excludeDeleted = true) {
         return this.dao.GetAll(excludeDeleted);
     }
 
@@ -84,8 +79,8 @@ internal class SupplierService {
     /// <param name="id">the id of the supplier</param>
     /// <param name="excludeDeleted">Exclude deleted supplier ?</param>
     /// <returns>the supplier found</returns>
-    public Supplier? GetSupplierById(int id, bool excludeDeleted = true) { 
-        return this.dao.GetById(id, excludeDeleted);    
+    public Supplier? GetSupplierById(int id, bool excludeDeleted = true) {
+        return this.dao.GetById(id, excludeDeleted);
     }
 
     // fonctions pour ouvrir les fenêtres

@@ -2,26 +2,21 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 
 /// <summary>
 /// Class représentant le service d'un product
 /// </summary>
-internal class ProductService{
+internal class ProductService {
     /// <summary>
     /// le dao du product
     /// </summary>
-    private ProductDAO dao;
+    private readonly ProductDAO dao;
     /// <summary>
     /// la view associer a ce service
     /// </summary>
-    private ProductView view;
+    private readonly ProductView view;
 
     /// <summary>
     /// Constructeur du service de product
@@ -39,7 +34,7 @@ internal class ProductService{
     /// <param name="searchElement">the search element</param>
     /// <param name="excludeDeleted">exclude deleted supplier ?</param>
     /// <returns>A list of product</returns>
-    public List<Product> SearchProduct(string searchElement, bool excludeDeleted = true) { 
+    public List<Product> SearchProduct(string searchElement, bool excludeDeleted = true) {
         return this.dao.Search(searchElement, excludeDeleted);
     }
 
@@ -57,8 +52,8 @@ internal class ProductService{
     /// </summary>
     /// <param name="product">the product to update</param>
     /// <returns>the updated product</returns>
-    public Product UpdateProduct(Product product) { 
-        return this.dao.Update(product);    
+    public Product UpdateProduct(Product product) {
+        return this.dao.Update(product);
     }
 
     /// <summary>
@@ -66,7 +61,7 @@ internal class ProductService{
     /// </summary>
     /// <param name="product">the product to delete</param>
     /// <param name="softDelete">do we soft delete ?</param>
-    public void DeleteProduct(Product product, bool softDelete = true) { 
+    public void DeleteProduct(Product product, bool softDelete = true) {
         this.dao.Delete(product, softDelete);
     }
 
@@ -85,7 +80,7 @@ internal class ProductService{
     /// <param name="id">le id du produit</param>
     /// <param name="excludeDeleted">on exclus les product deleted ?</param>
     /// <returns>the product object</returns>
-    public Product? GetProductById(int id, bool excludeDeleted = true) { 
+    public Product? GetProductById(int id, bool excludeDeleted = true) {
         return this.dao.GetById(id, excludeDeleted);
     }
 
@@ -98,7 +93,7 @@ internal class ProductService{
     public Product? OpenViewForCreation() {
         Product product = new Product();
         DialogResult result = this.view.OpenForCreation(product);
-        return result == DialogResult.OK ? product :  null;
+        return result == DialogResult.OK ? product : null;
     }
 
     /// <summary>
@@ -118,7 +113,7 @@ internal class ProductService{
     /// <returns>la vue ou null</returns>
     public Product? OpenViewForModification(Product product) {
         DialogResult result = this.view.OpenForModification(product);
-        return result == DialogResult.OK ? product :  null;
+        return result == DialogResult.OK ? product : null;
     }
 
     /// <summary>
@@ -128,6 +123,6 @@ internal class ProductService{
     /// <returns>la vue ou null</returns>
     public Product? OpenViewForDeletion(Product product) {
         DialogResult result = this.view.OpenForDeletion(product);
-        return result == DialogResult.OK ? product :  null;
+        return result == DialogResult.OK ? product : null;
     }
 }

@@ -1,16 +1,8 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
 using Project_Utilities.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 /// <summary>
@@ -36,7 +28,7 @@ internal partial class UserView : Form {
     /// <param name="parentApp">L'application</param>
     public UserView(WsysApplication parentApp) {
         this.parentApp = parentApp;
-        action = ViewActionsEnum.Visualization;
+        this.action = ViewActionsEnum.Visualization;
         this.copyrightLabel.Text = this.parentApp.GetCopyright();
         this.InitializeComponent();
     }
@@ -123,7 +115,7 @@ internal partial class UserView : Form {
         List<Role> roles = this.parentApp.RoleService.GetAllRoles();
         this.userRolesListBox.Items.Clear();
         this.userRolesListBox.SelectedItems.Clear();
-        
+
         foreach (Role role in roles) {
             _ = this.userRolesListBox.Items.Add(role);
         }
@@ -189,7 +181,7 @@ internal partial class UserView : Form {
         this.ValidateControlsForAction();
         switch (this.action) {
             case ViewActionsEnum.Visualization:
-                // Rien à faire dans ce case parce que il faut juster visualiser
+                // Rien à faire dans ce case parce qu'il faut juster visualiser
                 break;
             case ViewActionsEnum.Creation:
                 string passwordHash = this.parentApp.PasswordService.HashPassword(this.passwordTextBox.Text.Trim());
@@ -203,9 +195,7 @@ internal partial class UserView : Form {
                     (this.employeeWhListBox.SelectedItem as Role)?.Id
                     );
 
-                foreach (Role role in this.userRolesListBox.SelectedItems.Cast<Role>().ToList()) {
-                    newUser.Roles.Add(role);
-                }
+                newUser.Roles = this.userRolesListBox.SelectedItems.Cast<Role>().ToList();
 
                 this.userInstance = this.parentApp.UserService.CreateUser(newUser);
                 break;
@@ -219,11 +209,7 @@ internal partial class UserView : Form {
                     this.passwordTextBox.Text.Trim());
                 this.userInstance.EmployeeWarehouseId = (this.employeeWhListBox.SelectedItem as Role)?.Id;
 
-                this.userInstance.Roles.Clear();
-
-                foreach (Role role in this.userRolesListBox.SelectedItems.Cast<Role>().ToList()) {
-                    this.userInstance.Roles.Add(role);
-                }
+                this.userInstance.Roles = this.userRolesListBox.SelectedItems.Cast<Role>().ToList();
 
                 this.userInstance = this.parentApp.UserService.UpdateUser(this.userInstance);
                 break;
@@ -320,6 +306,6 @@ internal partial class UserView : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void CancelButton_Click(object sender, EventArgs e) {
-        this.DialogResult= DialogResult.Cancel;
+        this.DialogResult = DialogResult.Cancel;
     }
 }

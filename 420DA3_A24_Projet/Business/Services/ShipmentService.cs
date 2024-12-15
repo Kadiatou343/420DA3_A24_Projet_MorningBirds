@@ -2,12 +2,6 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
-using Project_Utilities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 /// <summary>
@@ -44,7 +38,7 @@ internal class ShipmentService {
     public Shipment CreateShipment(Shipment shipment) {
         try {
             return this.dao.Create(shipment);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             throw new Exception("Impossible de créer le shipment.", ex);
         }
     }
@@ -69,7 +63,7 @@ internal class ShipmentService {
     /// <param name="softDelete">Detail de supprimer durement ou de marquer supprimé</param>
     public void DeleteShipment(Shipment shipment, bool softDelete = true) {
         try {
-             this.dao.Delete(shipment, softDelete);
+            this.dao.Delete(shipment, softDelete);
         } catch (Exception ex) {
             throw new Exception("Impossible de supprimer le shipment.", ex);
         }

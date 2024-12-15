@@ -1,14 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation;
 
@@ -19,7 +10,7 @@ internal partial class WhEmployeeMainMenu : Form {
     /// <summary>
     /// L'application elle-même
     /// </summary>
-    WsysApplication parentApp;
+    readonly WsysApplication parentApp;
 
     /// <summary>
     /// Constructeur
@@ -34,6 +25,7 @@ internal partial class WhEmployeeMainMenu : Form {
         this.LoadExpectedPurchaseOrdersInListBox(this.parentApp.PurchaseOrderService.methodFor);
         */
         this.InitializeComponent();
+        this.greetingLabel.Text = "Bonjour " + (this.parentApp.LoginService.LoggedInUser)?.Username;
     }
 
     #region Shipping Order Non Assignés
@@ -225,4 +217,8 @@ internal partial class WhEmployeeMainMenu : Form {
 
     #endregion
 
+    private void Logout_Click(object sender, EventArgs e) {
+        this.parentApp.LoginService.Logout();
+        this.DialogResult = DialogResult.Continue;
+    }
 }

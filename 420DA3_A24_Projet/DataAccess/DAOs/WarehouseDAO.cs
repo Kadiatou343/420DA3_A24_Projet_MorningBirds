@@ -1,10 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
@@ -15,7 +10,7 @@ internal class WarehouseDAO {
     /// Le contexte utilisé par le DAO
     /// </summary>
     private readonly WsysDbContext context;
-    
+
     /// <summary>
     /// Constructeur
     /// </summary>
@@ -91,12 +86,12 @@ internal class WarehouseDAO {
         return !excludeDeleted
             ? this.context.Warehouses
                 .Where(
-                    warehouse => 
+                    warehouse =>
                         warehouse.WareHouseName.ToLower().Contains(filter.ToLower()))
                 .ToList()
             : this.context.Warehouses
                 .Where(
-                    warehouse => 
+                    warehouse =>
                         warehouse.WareHouseName.ToLower().Contains(filter.ToLower())
                         && warehouse.DateDeleted == null)
                 .ToList();

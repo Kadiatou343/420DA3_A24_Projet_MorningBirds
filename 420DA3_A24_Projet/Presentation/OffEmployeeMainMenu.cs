@@ -1,14 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation;
 
@@ -19,7 +10,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// <summary>
     /// L'application elle-même
     /// </summary>
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
 
     /// <summary>
     /// Constructeur
@@ -28,6 +19,7 @@ internal partial class OffEmployeeMainMenu : Form {
     public OffEmployeeMainMenu(WsysApplication parentApp) {
         this.parentApp = parentApp;
         this.InitializeComponent();
+        this.greetingLabel.Text = "Bonjour " + (this.parentApp.LoginService.LoggedInUser)?.Username;
     }
 
     #region Shipping Order
@@ -331,8 +323,9 @@ internal partial class OffEmployeeMainMenu : Form {
 
     #endregion
 
-    private void logoutButton_Click(object sender, EventArgs e) {
-
+    private void LogoutButton_Click(object sender, EventArgs e) {
+        this.parentApp.LoginService.Logout();
+        this.DialogResult = DialogResult.Continue;
     }
 
 

@@ -1,14 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation;
 /// <summary>
@@ -19,7 +10,7 @@ internal partial class RoleSelectionWindow : Form {
     /// <summary>
     /// L'application elle-même
     /// </summary>
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
 
     /// <summary>
     /// Le rôle choisi lors de la connexion d'un utilisateur
@@ -39,10 +30,9 @@ internal partial class RoleSelectionWindow : Form {
     public Role OpenRoleSelectionWindowForUser(User user) {
         this.ReloadUserRolesList(user.Roles);
         DialogResult result = this.ShowDialog();
-        if (result != DialogResult.OK) {
-            throw new Exception("Impossible de compléter le login : aucun role selectionné");
-        }
-        return this.SelectedRole;
+        return result != DialogResult.OK
+            ? throw new Exception("Impossible de compléter le login : aucun role selectionné")
+            : this.SelectedRole;
 
     }
 
@@ -91,6 +81,6 @@ internal partial class RoleSelectionWindow : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void CancelButton_Click(object sender, EventArgs e) {
-        this.DialogResult= DialogResult.Cancel;
+        this.DialogResult = DialogResult.Cancel;
     }
 }

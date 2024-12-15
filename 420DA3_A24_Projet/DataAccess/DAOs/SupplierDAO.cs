@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _420DA3_A24_Projet.Business.Domain;
+﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
@@ -23,7 +18,7 @@ internal class SupplierDAO {
     /// </summary>
     /// <param name="supplier">The supplier to add</param>
     /// <returns>the supplier added</returns>
-    public Supplier Create(Supplier supplier) { 
+    public Supplier Create(Supplier supplier) {
         _ = this.context.Suppliers.Add(supplier);
         _ = this.context.SaveChanges();
 
@@ -35,7 +30,7 @@ internal class SupplierDAO {
     /// </summary>
     /// <param name="supplier">the supplier to update</param>
     /// <returns>the updated supplier</returns>
-    public Supplier Update(Supplier supplier) { 
+    public Supplier Update(Supplier supplier) {
         supplier.DateModified = DateTime.Now;
         _ = this.context.Suppliers.Update(supplier);
         _ = this.context.SaveChanges();
@@ -53,7 +48,7 @@ internal class SupplierDAO {
             supplier.DateDeleted = DateTime.Now;
             _ = this.context.Suppliers.Update(supplier);
             _ = this.context.SaveChanges();
-        } else { 
+        } else {
             _ = this.context.Suppliers.Remove(supplier);
             _ = this.context.SaveChanges();
         }
@@ -96,10 +91,10 @@ internal class SupplierDAO {
         return !excludeDeleted
             ? this.context.Suppliers
                 .Where(
-                    supplier => (
+                    supplier =>
                          supplier.SupplierName.ToLower().Contains(filter.ToLower())
                          || supplier.ContactFirstName.ToLower().Contains(filter.ToLower())
-                         || supplier.ContactLastName.ToLower().Contains(filter.ToLower())))
+                         || supplier.ContactLastName.ToLower().Contains(filter.ToLower()))
                 .ToList()
             : this.context.Suppliers
                 .Where(
