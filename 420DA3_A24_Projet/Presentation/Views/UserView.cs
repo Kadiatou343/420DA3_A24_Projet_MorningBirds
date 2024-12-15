@@ -181,7 +181,7 @@ internal partial class UserView : Form {
         this.ValidateControlsForAction();
         switch (this.action) {
             case ViewActionsEnum.Visualization:
-                // Rien à faire dans ce case parce que il faut juster visualiser
+                // Rien à faire dans ce case parce qu'il faut juster visualiser
                 break;
             case ViewActionsEnum.Creation:
                 string passwordHash = this.parentApp.PasswordService.HashPassword(this.passwordTextBox.Text.Trim());
@@ -195,9 +195,7 @@ internal partial class UserView : Form {
                     (this.employeeWhListBox.SelectedItem as Role)?.Id
                     );
 
-                foreach (Role role in this.userRolesListBox.SelectedItems.Cast<Role>().ToList()) {
-                    newUser.Roles.Add(role);
-                }
+                newUser.Roles = this.userRolesListBox.SelectedItems.Cast<Role>().ToList();
 
                 this.userInstance = this.parentApp.UserService.CreateUser(newUser);
                 break;
@@ -211,11 +209,7 @@ internal partial class UserView : Form {
                     this.passwordTextBox.Text.Trim());
                 this.userInstance.EmployeeWarehouseId = (this.employeeWhListBox.SelectedItem as Role)?.Id;
 
-                this.userInstance.Roles.Clear();
-
-                foreach (Role role in this.userRolesListBox.SelectedItems.Cast<Role>().ToList()) {
-                    this.userInstance.Roles.Add(role);
-                }
+                this.userInstance.Roles = this.userRolesListBox.SelectedItems.Cast<Role>().ToList();
 
                 this.userInstance = this.parentApp.UserService.UpdateUser(this.userInstance);
                 break;
