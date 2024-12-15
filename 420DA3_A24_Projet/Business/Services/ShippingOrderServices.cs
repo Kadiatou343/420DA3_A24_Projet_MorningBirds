@@ -82,4 +82,17 @@ internal class ShippingOrderServices {
         return result == DialogResult.OK ? shippingOrder : null;
     }
 
-}
+
+    public List<ShippingOrder> GetUnassignedSoForWhEmp(User user) {
+        return this.dao.GetUnassignedSoForWhEmp(user);
+    }
+
+    public List<ShippingOrder> GetPackagedSoForWhEmp(User user) {
+        return this.dao.GetPackagedSoForWhEmp(user);
+    }
+
+    public List<ShippingOrder> GetFulfilledSoForWhEmp(User user) {
+        return this.dao.GetFulfilledSoForWhEmp(user);
+    }
+
+    }

@@ -1,6 +1,7 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 internal class ShippingOrderDAO {
@@ -55,6 +56,40 @@ internal class ShippingOrderDAO {
                 shippingOrder => shippingOrder.SourceClient != null && shippingOrder.SourceClient.Equals(shippingOrder) && shippingOrder.DateDeleted == null)
             .ToList();
     }
+
+    public List<ShippingOrder> GetUnassignedSoForWhEmp(User user) {
+        return this.context.ShippingOrders
+            .Include(so => so.SourceClient)
+            .Where(so => (
+            so.Status == ShippingOrderStatusEnum.Unassigned
+            && so.SourceClient.AssignedWarehouse.Equals(user.EmployeeWarehouse)
+            ))
+            .ToList();
+
+    }
+
+    public List<ShippingOrder> GetFulfilledSoForWhEmp(User user) {
+        return this.context.ShippingOrders
+            .Include(so => so.FulfillerEmployee)
+            .Where(so => (
+            so.Status == ShippingOrderStatusEnum.Processing
+            && user.Equals(so.FulfillerEmployee)
+            ))
+            .ToList();
+
+    }
+
+    public List<ShippingOrder> GetPackagedSoForWhEmp(User user) {
+        return this.context.ShippingOrders
+            .Include(so => so.SourceClient)
+            .Where(so => (
+            so.Status == ShippingOrderStatusEnum.Packaged
+            && so.SourceClient.AssignedWarehouse.Equals(user.EmployeeWarehouse)
+            ))
+            .ToList();
+
+    }
+
 
 
 }

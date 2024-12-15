@@ -82,4 +82,14 @@ internal class PurchaseOrderServices {
         DialogResult result = this.view.OpenForDeletion(purchaseOrder);
         return result == DialogResult.OK ? purchaseOrder : null;
     }
+
+    /// <summary>
+    /// Obtenir les ordres de restockage ayant le statut
+    /// new pour l'employé d'entrepôt connecté
+    /// </summary>
+    /// <param name="user">L'employé d'entrepôt connecté</param>
+    /// <returns>La liste de résultats obtenus</returns>
+    public List<PurchaseOrder> GetNewPoForWhEmp(User user) {
+        return this.dao.GetNewPoForWhEmp(user);
+    }
 }

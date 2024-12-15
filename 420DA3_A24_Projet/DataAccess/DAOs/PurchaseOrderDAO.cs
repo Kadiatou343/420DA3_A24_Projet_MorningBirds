@@ -1,6 +1,7 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 internal class PurchaseOrderDAO {
@@ -53,6 +54,22 @@ internal class PurchaseOrderDAO {
             _ = this.context.PurchaseOrders.Remove(purchaseOrder);
             _ = this.context.SaveChanges();
         }
+    }
+
+    /// <summary>
+    /// Obtenir les ordres de restockage ayant le statut
+    /// new et dont l'entrépot de destination est le même que l'employé d'entrepôt connecté
+    /// </summary>
+    /// <param name="user">L'employé d'entrepôt connecté</param>
+    /// <returns>La liste de résultats obtenus</returns>
+    public List<PurchaseOrder> GetNewPoForWhEmp(User user) {
+        return this.context.PurchaseOrders
+            .Include(po => po.OrderedProduct)
+            .Where(po => (
+            po.Status == PurchaseOrderStatusEnum.New
+            && po.Warehouse.Equals(user.EmployeeWarehouse)
+            ))
+            .ToList();
     }
 
 }
