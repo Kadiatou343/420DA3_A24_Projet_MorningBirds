@@ -171,7 +171,7 @@ partial class UserView {
         this.userRolesListBox.ItemHeight = 25;
         this.userRolesListBox.Location = new Point(53, 257);
         this.userRolesListBox.Name = "userRolesListBox";
-        this.userRolesListBox.SelectionMode = SelectionMode.MultiExtended;
+        this.userRolesListBox.SelectionMode = SelectionMode.MultiSimple;
         this.userRolesListBox.Size = new Size(314, 154);
         this.userRolesListBox.TabIndex = 11;
         // 
