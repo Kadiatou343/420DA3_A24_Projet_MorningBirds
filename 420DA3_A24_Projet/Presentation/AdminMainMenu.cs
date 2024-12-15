@@ -16,6 +16,7 @@ internal partial class AdminMainMenu : Form {
     public AdminMainMenu(WsysApplication parentApp) {
         this.parentApp = parentApp;
         this.InitializeComponent();
+        this.greetingLabel.Text = "Bonjour " + (this.parentApp.LoginService.LoggedInUser)?.Username;
     }
 
 
