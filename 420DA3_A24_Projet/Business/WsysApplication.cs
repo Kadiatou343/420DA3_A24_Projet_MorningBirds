@@ -47,6 +47,17 @@ internal class WsysApplication {
     /// <summary>
     /// Constructeur
     /// </summary>
+    /// 
+    public PurchaseOrderServices PurchaseOrderServices { get; private set; }
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    public ShippingOrderServices ShippingOrderServices { get; private set; }
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// 
+    /// 
     public WsysApplication() {
         context = new WsysDbContext();
         this.UserService = new UserService(this, context);
@@ -56,6 +67,8 @@ internal class WsysApplication {
         this.adminMainMenu = new AdminMainMenu(this);
         this.offEmployeeMainMenu = new OffEmployeeMainMenu(this);
         this.whEmployeeMainMenu = new WhEmployeeMainMenu(this);
+        this.PurchaseOrderServices = new PurchaseOrderServices(this, context);
+        this.ShippingOrderServices = new ShippingOrderServices(this, context);
     }
 
     /// <summary>
