@@ -1,4 +1,5 @@
-﻿using Project_Utilities.Enums;
+﻿using _420DA3_A24_Projet.DataAccess.Contexts;
+using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Projet.Business.Domain;
 
@@ -12,6 +13,8 @@ public class Shipment {
     /// </summary>
     public const int TRACKING_NUMBER_MAX_LENGTH = 32;
     private readonly string trackingnumber = null!;
+    private WsysApplication wsysApplication;
+    private WsysDbContext context;
 
     //Attributs
 
@@ -87,6 +90,8 @@ public class Shipment {
         this.DateModified = dateModified;
         this.RowVersion = rowVersion;
     }
+
+   
 
     #region Methodes
 

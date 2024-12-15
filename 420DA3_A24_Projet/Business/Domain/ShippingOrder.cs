@@ -7,6 +7,8 @@ public class ShippingOrder {
     public ShippingOrderStatusEnum Status { get; set; }
 
     public int SourceClientId { get; set; }
+
+    public int shipmentId { get; set; }
     public int CreatorEmployeeId { get; set; }
     public int DestinationAdressId { get; set; }
     public int? FulfillerEmployeeId { get; set; }
@@ -47,5 +49,17 @@ public class ShippingOrder {
         this.CreatorEmployee = CreatorEmployee;
         this.FulfillerEmployee = FulfillerEmployee;
         this.DestinationAddress = DestinationAddress;
+    }
+
+    public ShippingOrder() {
+    }
+    public ShippingOrder(int id, int sourceClientId,int shipmentId, int creatorEmployeeId, int destinationAdressId, int? fulfillerEmployeeId) { 
+        this.Id= id;
+        this.SourceClientId = sourceClientId;
+        this.shipmentId = shipmentId;
+        this.CreatorEmployeeId = creatorEmployeeId;
+        this.DestinationAdressId = destinationAdressId;
+        this.FulfillerEmployeeId = fulfillerEmployeeId;
+  
     }
 }

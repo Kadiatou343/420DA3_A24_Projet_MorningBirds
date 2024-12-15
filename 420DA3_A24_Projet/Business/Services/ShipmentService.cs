@@ -88,6 +88,9 @@ internal class ShipmentService {
     public List<Shipment> SearchShipment(string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
     }
+    public List<Shipment> GetAllShipment(bool excludeDeleted = true) {
+        return this.dao.GetAll(excludeDeleted);
+    }
 
     // TODO: OpenFor ShipmentService
 }

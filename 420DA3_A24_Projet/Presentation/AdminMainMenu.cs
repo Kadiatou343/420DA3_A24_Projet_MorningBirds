@@ -248,4 +248,19 @@ internal partial class AdminMainMenu : Form {
     }
 
     #endregion
+
+    private void deleteSoButton_Click(object sender, EventArgs e) {
+        _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Deletion,
+           this.userListBox.SelectedItem as User);
+
+        this.userListBox.Refresh();
+    }
+
+    private void deleteProdButton_Click(object sender, EventArgs e) {
+
+    }
+
+    private void deleteClientButton_Click(object sender, EventArgs e) {
+
+    }
 }

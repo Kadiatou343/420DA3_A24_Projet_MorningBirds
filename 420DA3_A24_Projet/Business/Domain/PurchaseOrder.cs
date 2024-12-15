@@ -16,7 +16,8 @@ public class PurchaseOrder {
     public virtual Warehouse Warehouse { get; set; }
 
     //constructeur de l'App
-    public PurchaseOrder(int ProductId, int WarehouseId, int Quantity) {
+    public PurchaseOrder(int id,int ProductId, int WarehouseId, int Quantity) {
+        this.Id = id;
         this.ProductId = ProductId;
         this.WarehouseId = WarehouseId;
         this.Quantity = Quantity;

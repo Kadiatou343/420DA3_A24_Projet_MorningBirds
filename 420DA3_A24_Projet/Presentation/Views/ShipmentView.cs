@@ -19,4 +19,8 @@ internal partial class ShipmentView : Form {
         DialogResult result = DialogResult.Cancel; //Ce juste temporal
         return result;
     }
+
+    private void ShipmentView_Load(object sender, EventArgs e) {
+
+    }
 }

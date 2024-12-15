@@ -147,7 +147,7 @@ internal partial class ProductView : Form {
             }
 
             // le ClientService ne compose pas de function GetAll Pour l'instant.
-            List<Client> clients = this.parentApp.ClientService.GetAllClients();
+            List<Client> clients = this.parentApp.ClientService.GetAllClient();
             foreach (Client client in clients) {
                 _ = this.clientIdValue.Items.Add(client);
             }
@@ -267,5 +267,13 @@ internal partial class ProductView : Form {
 
     private void clientIdValue_SelectedIndexChanged(object sender, EventArgs e) {
         // ignorer
+    }
+
+    private void idValue_ValueChanged(object sender, EventArgs e) {
+
+    }
+
+    private void panelButtom_Paint(object sender, PaintEventArgs e) {
+
     }
 }

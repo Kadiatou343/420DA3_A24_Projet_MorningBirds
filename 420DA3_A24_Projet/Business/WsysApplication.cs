@@ -73,6 +73,15 @@ internal class WsysApplication {
     /// <summary>
     /// Constructeur
     /// </summary>
+    /// 
+    public ShipmentService ShipmentService { get; private set; }
+
+    /// <summary>
+    /// Constructeur
+    /// </summary>
+    /// 
+
+
     public WsysApplication() {
         this.context = new WsysDbContext();
         this.UserService = new UserService(this, this.context);
@@ -88,6 +97,7 @@ internal class WsysApplication {
         this.AdresseService = new AdresseService(this, context);
         this.PurchaseOrderServices = new PurchaseOrderServices(this, context);
         this.ShippingOrderServices = new ShippingOrderServices(this, context);
+        this.ShipmentService = new ShipmentService(this, context);
     }
 
     /// <summary>

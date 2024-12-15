@@ -37,7 +37,7 @@ internal class ClientService {
     public ClientService(WsysApplication parentApp , WsysDbContext context) {
         this.parentApp = parentApp;
         this.dao = new ClientDAO(context);
-        this.view = new ClientView(parentApp);
+        //this.view = new ClientView(parentApp);
     }
 
     /// <summary>
@@ -102,6 +102,10 @@ internal class ClientService {
     /// <returns>Une liste de clients correspondant au critère de recherche.</returns>
     public List<Client> Search (string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
+    }
+
+    public List<Client> GetAllClient(bool excludeDeleted = true) {
+        return this.dao.GetAll(excludeDeleted);
     }
 
 }

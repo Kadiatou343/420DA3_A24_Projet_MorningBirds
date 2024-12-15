@@ -131,6 +131,11 @@ internal class ClientDAO {
                 client => client.EmployeeWarehouse != null && client.EmployeeWarehouse.Equals(warehouse) && client.DateDeleted == null)
             .ToList();
     }
+    public List<Client> GetAll(bool excludeDeleted = true) {
+        return !excludeDeleted
+            ? this.context.Clients.ToList()
+            : this.context.Clients.Where(clients => clients.DateDeleted == null).ToList();
+    }
 
 }
 

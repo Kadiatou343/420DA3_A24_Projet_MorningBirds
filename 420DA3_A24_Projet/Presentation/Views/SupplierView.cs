@@ -211,4 +211,8 @@ internal partial class SupplierView : Form {
         }
         this.DialogResult = DialogResult.OK;
     }
+
+    private void productsValue_SelectedIndexChanged(object sender, EventArgs e) {
+
+    }
 }

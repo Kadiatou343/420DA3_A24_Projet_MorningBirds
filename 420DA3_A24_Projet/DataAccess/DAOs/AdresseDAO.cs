@@ -127,5 +127,10 @@ internal class AdresseDAO {
                 address=> address.OwnerShipOrder!= null && address.OwnerShipOrder.Equals(shippingOrder) && address.DateDeleted == null)
             .ToList();
     }
+    public List<Address> GetAll(bool excludeDeleted = true) {
+        return !excludeDeleted
+            ? this.context.Addresses.ToList()
+            : this.context.Addresses.Where(adress => adress.DateDeleted == null).ToList();
+    }
 
 }

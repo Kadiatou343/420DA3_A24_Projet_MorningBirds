@@ -97,4 +97,7 @@ internal class AdresseService {
     public List<Address> GetAddressByShippingorder (ShippingOrder shippingorder, bool excludedDeleted = true) {
         return this.dao.GetByShippingOrder(shippingorder, excludedDeleted);
     }
+    public List<Address> GetAllAddress(bool excludeDeleted = true) {
+        return this.dao.GetAll(excludeDeleted);
+    }
 }
