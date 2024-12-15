@@ -94,20 +94,6 @@ internal class WsysApplication {
     /// Constructeur
     /// </summary>
     /// 
-    public ShipmentService ShipmentService { get; private set; }
-
-    /// <summary>
-    /// Constructeur
-    /// </summary>
-    /// 
-    public WarehouseService WarehouseService { get; private set; }
-
-    /// <summary>
-    /// Constructeur
-    /// </summary>
-    /// 
-
-
     public WsysApplication() {
         this.context = new WsysDbContext();
         this.UserService = new UserService(this, this.context);
