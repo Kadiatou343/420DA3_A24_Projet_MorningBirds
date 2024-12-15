@@ -1,5 +1,6 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
+using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Projet.Presentation;
 
@@ -238,27 +239,58 @@ internal partial class WhEmployeeMainMenu : Form {
 
     #endregion
 
+    /// <summary>
+    /// Declencher le processus de deconnexion
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Logout_Click(object sender, EventArgs e) {
         this.parentApp.LoginService.Logout();
         this.DialogResult = DialogResult.Continue;
     }
 
+    /// <summary>
+    /// Rafraichir la liste des ordres d'expédition non assignés
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SoUnassignedRefreshBtn_Click(object sender, EventArgs e) {
         this.ReloadUnassignedShippingOrders();
     }
 
+    /// <summary>
+    /// Rafraichir la liste des ordres d'expédition emballés
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SoPackagedRefreshBtn_Click(object sender, EventArgs e) {
         this.ReloadPackagedShippingOrders();
     }
 
+    /// <summary>
+    /// Rafraichir la liste des ordres de restockage
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void PoRefreshBtn_Click(object sender, EventArgs e) {
         this.ReloadExpectedPurchaseOrders();
     }
 
+    /// <summary>
+    /// Rafraichir la liste des ordres d'expédition en cours de traitement
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SoProcessingRefreshBtn_Click(object sender, EventArgs e) {
         this.ReloadProcessingShippingOrders();
     }
 
+    /// <summary>
+    /// Activer le bouton d'action si un item est selectionné, dans le cas contraire le desactiver 
+    /// dans la list box des ordres d'expéditions non assignés
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void UnassignedSoListBox_SelectedIndexChanged(object sender, EventArgs e) {
         ShippingOrder? selectedSo = this.unassignedSoListBox.SelectedItem as ShippingOrder;
 
@@ -269,6 +301,12 @@ internal partial class WhEmployeeMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Activer les boutons d'action si un item est selectionné, dans le cas contraire le desactiver 
+    /// dans la list box des ordres d'expéditions en cours de traitement
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ProcessingSoListBox_SelectedIndexChanged(object sender, EventArgs e) {
         ShippingOrder? selectedSo = this.processingSoListBox.SelectedItem as ShippingOrder;
 
@@ -281,6 +319,12 @@ internal partial class WhEmployeeMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Activer le bouton d'action si un item est selectionné, dans le cas contraire le desactiver 
+    /// dans la list box des ordres d'expéditions emballées
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void PackagedSoListBox_SelectedIndexChanged(object sender, EventArgs e) {
         ShippingOrder? selectedSo = this.packagedSoListBox.SelectedItem as ShippingOrder;
 
@@ -291,27 +335,94 @@ internal partial class WhEmployeeMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Activer le bouton d'action si un item est selectionné, dans le cas contraire le desactiver 
+    /// dans la list box des ordres de restockage
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ExpectedPoListBox_SelectedIndexChanged(object sender, EventArgs e) {
-        
+        PurchaseOrder? selectedPo = this.expectedPoListBox.SelectedItem as PurchaseOrder;
+
+        if (selectedPo != null) {
+            this.ActivateSetReceivedButton();
+        } else {
+            this.DeactivateSetReceivedButton();
+        }
     }
 
+    /// <summary>
+    /// Declencher le processus d'assignation d'un ordre d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void AssignToMeButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.unassignedSoListBox.SelectedItem as ShippingOrder;
 
+        if (selectedSo != null) {
+            selectedSo.Status = ShippingOrderStatusEnum.Processing;
+            selectedSo.FulfillerEmployeeId = this.warehouseEmployeeLoggedIn.Id;
+            selectedSo.FulfillerEmployee = this.warehouseEmployeeLoggedIn;
+
+            _ = this.parentApp.ShippingOrderServices.UpdateShippingOrder(selectedSo);
+            
+        }
     }
 
+    /// <summary>
+    /// Declencher l'ouverture de la vue de SO en mode visualisation pour ordre d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SeeDetailsButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.processingSoListBox.SelectedItem as ShippingOrder;
 
+        if (selectedSo != null) {
+            // Ouvrir la vue de SO en mode visualisation 
+        }
     }
 
+    /// <summary>
+    /// Declencher le processus de mise en emballage d'un ordre d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SetPackagedButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.processingSoListBox.SelectedItem as ShippingOrder;
 
+        if (selectedSo != null) {
+            selectedSo.Status = ShippingOrderStatusEnum.Packaged;
+            _ = this.parentApp.ShippingOrderServices.UpdateShippingOrder(selectedSo);
+        }
     }
 
+    /// <summary>
+    /// Declencher le processus de completion de l'expédition d'un ordre d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SetShippedButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.packagedSoListBox.SelectedItem as ShippingOrder;
 
+        if (selectedSo != null) {
+            selectedSo.Status = ShippingOrderStatusEnum.Shipped;
+
+            _ = this.parentApp.ShippingOrderServices.UpdateShippingOrder(selectedSo);
+        }
     }
 
+    /// <summary>
+    /// Declencher le processus de reception d'un ordre de restockage
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SetReceivedButton_Click(object sender, EventArgs e) {
+        PurchaseOrder? selectedPo = this.expectedPoListBox.SelectedItem as PurchaseOrder;
 
+        if (selectedPo != null) {
+            selectedPo.Status = PurchaseOrderStatusEnum.Completed;
+            
+            _ = this.parentApp.PurchaseOrderServices.UpdatePurchaseOrder(selectedPo);
+        }
     }
 }
