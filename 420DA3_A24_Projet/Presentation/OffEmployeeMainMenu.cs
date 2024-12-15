@@ -19,7 +19,15 @@ internal partial class OffEmployeeMainMenu : Form {
     public OffEmployeeMainMenu(WsysApplication parentApp) {
         this.parentApp = parentApp;
         this.InitializeComponent();
+    }
+
+    /// <summary>
+    /// Remplissage du label de salutation de l'utilisateur connecté et ouverture de la vue en mode modal
+    /// </summary>
+    /// <returns>Le résultat de l'ouverture de la vue</returns>
+    public DialogResult OpenView() {
         this.greetingLabel.Text = "Bonjour " + this.parentApp.LoginService.LoggedInUser?.Username;
+        return this.ShowDialog();
     }
 
     #region Shipping Order

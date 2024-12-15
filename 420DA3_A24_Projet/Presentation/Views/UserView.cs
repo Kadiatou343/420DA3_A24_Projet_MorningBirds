@@ -23,6 +23,16 @@ internal partial class UserView : Form {
     private User? userInstance;
 
     /// <summary>
+    /// Le flag pour le load des entrepôts dans la list box fait pour 
+    /// </summary>
+    private bool isLoaded = false;
+
+    /// <summary>
+    /// Le flag pour le load des rôles de l'utilisateur dans la list box fait pour 
+    /// </summary>
+    private bool isLoadedForUserRole = false;
+
+    /// <summary>
     /// Constructeur
     /// </summary>
     /// <param name="parentApp">L'application</param>
@@ -52,20 +62,21 @@ internal partial class UserView : Form {
     public DialogResult OpenFor(ViewActionsEnum action, User? user = null) {
         this.action = action;
         this.userInstance = user;
+        this.LoadEmployeeWaherouseList();
+        this.LoadUserRolesInListBox();
         this.LoadInstanceInControls(user);
         switch (action) {
             case ViewActionsEnum.Visualization:
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
-                this.LoadUserRolesInListBox();
                 this.viewModeValue.Text = "Visualisation";
                 this.actionButton.Text = "OK";
                 this.DisableEditableControls();
 
                 break;
             case ViewActionsEnum.Creation:
-                this.LoadUserRolesInListBox();
+                
                 this.viewModeValue.Text = "Création";
                 this.actionButton.Text = "Créer";
                 this.EnableEditableControls();
@@ -74,7 +85,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
-                this.LoadUserRolesInListBox();
+                
                 this.viewModeValue.Text = "Modification";
                 this.actionButton.Text = "Modifier";
                 this.EnableEditableControls();
@@ -83,7 +94,7 @@ internal partial class UserView : Form {
                 if (user == null) {
                     throw new ArgumentException($"L'utilisateur ne peut pas être null pour l'action [{action}].");
                 }
-                this.LoadUserRolesInListBox();
+                
                 this.viewModeValue.Text = "Suppression";
                 this.actionButton.Text = "Supprimer";
                 this.DisableEditableControls();
@@ -95,16 +106,19 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Charger les éléments d'une liste d'entrepôts dans la liste box fait pour dans la fenetre
+    /// Charger les entrepôts dans la liste box fait pour
     /// </summary>
-    /// <param name="warehouses">La liste d'entrepôt</param>
-    private void ReloadEmployeeWaherouseList(List<Warehouse> warehouses) {
-        this.employeeWhListBox.Items.Clear();
-        this.employeeWhListBox.SelectedItem = null;
-        this.employeeWhListBox.SelectedIndex = -1;
+    private void LoadEmployeeWaherouseList() {
+        if (!this.isLoaded) {
+            List<Warehouse> warehouses = this.parentApp.WarehouseService.GetAllWarehouse();
+            this.employeeWhListBox.Items.Clear();
+            this.employeeWhListBox.SelectedItem = null;
+            this.employeeWhListBox.SelectedIndex = -1;
 
-        foreach (Warehouse warehouse in warehouses) {
-            _ = this.employeeWhListBox.Items.Add(warehouse);
+            foreach (Warehouse warehouse in warehouses) {
+                _ = this.employeeWhListBox.Items.Add(warehouse);
+            }
+            this.isLoaded = true;
         }
     }
 
@@ -112,12 +126,16 @@ internal partial class UserView : Form {
     /// Charger les rôles du système dans la list box fait pour
     /// </summary>
     private void LoadUserRolesInListBox() {
-        List<Role> roles = this.parentApp.RoleService.GetAllRoles();
-        this.userRolesListBox.Items.Clear();
-        this.userRolesListBox.SelectedItems.Clear();
+        if (!this.isLoadedForUserRole) {
+            List<Role> roles = this.parentApp.RoleService.GetAllRoles();
+            this.userRolesListBox.Items.Clear();
+            this.userRolesListBox.SelectedItems.Clear();
 
-        foreach (Role role in roles) {
-            _ = this.userRolesListBox.Items.Add(role);
+            foreach (Role role in roles) {
+                _ = this.userRolesListBox.Items.Add(role);
+            }
+
+            this.isLoadedForUserRole = true;
         }
 
     }
@@ -135,9 +153,8 @@ internal partial class UserView : Form {
             this.dateCreatedDTPicker.Value = DateTime.Now;
             this.dateModifiedDTPicker.Value = DateTime.Now;
             this.dateDeletedDTPicker.Value = DateTime.Now;
-
-            //got to wait for warehouse service
-            //this.ReloadEmployeeWaherouseList(this.parentApp.WarehouseService.getAllWarehouses());
+            this.userRolesListBox.SelectedItems.Clear();
+            this.employeeWhListBox.SelectedItem = null;
         } else {
             this.idNumUpDown.Value = user.Id;
             this.usernameTextBox.Text = user.Username;
@@ -146,8 +163,16 @@ internal partial class UserView : Form {
             this.dateModifiedDTPicker.Value = user.DateModified ?? DateTime.Now;
             this.dateDeletedDTPicker.Value = user.DateDeleted ?? DateTime.Now;
 
-            //got to wait for warehouse service
-            //this.ReloadEmployeeWaherouseList(this.parentApp.WarehouseService.getAllWarehouses());
+            this.userRolesListBox.SelectedItem = null;
+            this.userRolesListBox.SelectedIndex = -1;
+            this.userRolesListBox.SelectedItems.Clear();
+            foreach(Role role in user.Roles) {
+                this.userRolesListBox.SelectedItems.Add(role);
+            }
+
+            this.employeeWhListBox.SelectedItem = null;
+            this.employeeWhListBox.SelectedIndex = -1;
+            this.employeeWhListBox.SelectedItem = user.EmployeeWarehouse;
 
         }
     }
@@ -173,7 +198,7 @@ internal partial class UserView : Form {
     }
 
     /// <summary>
-    /// Proceder l'action en cours
+    /// Procéder l'action en cours
     /// </summary>
     /// <exception cref="Exception">Taille du hash maximale atteinte, Rôles non trouvés</exception>
     /// <exception cref="NotImplementedException">L'action en cours n'est pas reconnue</exception>

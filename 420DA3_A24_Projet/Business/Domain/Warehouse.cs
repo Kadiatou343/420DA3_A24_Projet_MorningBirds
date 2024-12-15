@@ -43,7 +43,6 @@ public class Warehouse {
     /// <summary>
     /// Objet de class Address associé à chaque entrepôt
     /// </summary>
-
     public virtual Address Adresse { get; set; }
     /// <summary>
     /// Liste de PurchaseOrder assocìé à l'entrepôt
@@ -60,7 +59,6 @@ public class Warehouse {
     /// </summary>
     /// <param name="wareHouseName">Nom de l'entrepôt</param>
     /// <param name="adressId">L'identification de l'addresse associé à l'entrepôt</param>
-
     public Warehouse(string wareHouseName, int adressId) {
         this.WareHouseName = wareHouseName;
         this.AddressId = adressId;
@@ -76,7 +74,6 @@ public class Warehouse {
     /// <param name="dateModified">Date de modification de l'entrepôt dans la BD</param>
     /// <param name="dateDeleted">Date de suppresion de l'entrepôt dans la BD</param>
     /// <param name="rowVersion">Valeur anti-concurrence de la base de données</param>
-
     protected Warehouse(
         int id,
         string wareHouseName,
