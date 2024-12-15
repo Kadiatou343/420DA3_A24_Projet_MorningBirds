@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project_Utilities.Presentation;
+﻿namespace Project_Utilities.Presentation;
 public static class SelectorExtensions {
 
     /// <summary>
@@ -13,7 +7,7 @@ public static class SelectorExtensions {
     /// <param name="combobox"></param>
     public static void RefreshDisplay(this ComboBox combobox) {
         List<object> items = new List<object>();
-        foreach (object item in combobox.Items) { 
+        foreach (object item in combobox.Items) {
             items.Add(item);
         }
         object selectedItem = combobox.SelectedItem;

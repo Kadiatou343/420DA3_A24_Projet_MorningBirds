@@ -1,12 +1,7 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
 
@@ -27,14 +22,14 @@ internal class WsysDbContext : DbContext {
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
-     
+
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<ShippingOrder> ShippingOrders { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
 
 
-    
+
 
     public DbSet<Warehouse> Warehouses { get; set; }
 
@@ -405,7 +400,7 @@ internal class WsysDbContext : DbContext {
         .HasConversion(utcDateTimeConverter)
         .IsRequired(false);
 
-      
+
         #endregion
 
         #region CONFIGURATION DE LA LIAISON ENTITE Product A TABLE 'Products'
@@ -828,7 +823,7 @@ internal class WsysDbContext : DbContext {
            .HasConversion(utcDateTimeConverter)
            .IsRequired(false);
 
-        
+
 
         #endregion
 
@@ -910,7 +905,7 @@ internal class WsysDbContext : DbContext {
            .HasConversion(utcDateTimeConverter)
            .IsRequired(false);
 
-        
+
 
         #endregion
 
@@ -1030,7 +1025,7 @@ internal class WsysDbContext : DbContext {
         // Relation un à plusieurs entre Client et Produit coté Client
         _ = modelBuilder.Entity<Client>()
             .HasMany(client => client.Products)
-            .WithOne(product => product.Client)            
+            .WithOne(product => product.Client)
             .HasForeignKey(product => product.ClientId)
             .OnDelete(DeleteBehavior.Cascade);
 
@@ -1223,10 +1218,10 @@ internal class WsysDbContext : DbContext {
         Supplier sup1 = new Supplier("THE ULTIMATE SUPPLIER", "Test", "Jonhy", "jonhytest@gmail.com", "4503497684") { SupplierId = 1 };
 
         // Ajout des données de Clients 
-        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450",10) { Id = 1 };
+        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450", 10) { Id = 1 };
 
         // Ajout des données de Product
-        Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) { ProductId= 1 };
+        Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) { ProductId = 1 };
 
         #endregion
 

@@ -1,21 +1,12 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
-using _420DA3_A24_Projet.DataAccess.Contexts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 
 internal partial class ProductView : Form {
 
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
     private ViewActionEnum currentAction;
     private Product currentInstance = null!;
     private bool isInitialize = false; // Si les données ont été initialisées
@@ -154,10 +145,10 @@ internal partial class ProductView : Form {
             foreach (Supplier supplier in suppliers) {
                 _ = this.supplierIdValue.Items.Add(supplier);
             }
-            
+
             // le ClientService ne compose pas de function GetAll Pour l'instant.
             List<Client> clients = this.parentApp.ClientService.GetAllClients();
-            foreach (Client client in clients) { 
+            foreach (Client client in clients) {
                 _ = this.clientIdValue.Items.Add(client);
             }
         }
@@ -179,7 +170,7 @@ internal partial class ProductView : Form {
         this.quantityValue.Value = product.Quantity;
         this.aimQuantityValue.Value = product.AimQuantity;
         this.weightValue.Value = (decimal) product.Weight;
-        this.pictureNameValue.Text = product.PictureName;   
+        this.pictureNameValue.Text = product.PictureName;
 
         this.supplierIdValue.SelectedItem = null;
         this.supplierIdValue.SelectedIndex = -1;
@@ -217,16 +208,16 @@ internal partial class ProductView : Form {
                 this.currentInstance.Supplier = (Supplier) this.supplierIdValue.SelectedItems.Cast<Supplier>();
                 this.currentInstance.Client = (Client) this.clientIdValue.SelectedItems.Cast<Client>();
 
-                this.currentInstance.ProductId = (int)this.idValue.Value;
+                this.currentInstance.ProductId = (int) this.idValue.Value;
                 this.currentInstance.ProductName = this.nameValue.Text;
                 this.currentInstance.Desc = this.descValue.Text;
                 this.currentInstance.CodeUPC = this.codeUpcValue.Text;
                 this.currentInstance.SupplierId = this.currentInstance.Supplier.SupplierId;
                 this.currentInstance.ClientId = this.currentInstance.Client.Id;
                 this.currentInstance.SupplierCode = this.supplierCodeValue.Text;
-                this.currentInstance.Quantity = (int)this.quantityValue.Value;
-                this.currentInstance.AimQuantity = (int)this.aimQuantityValue.Value;
-                this.currentInstance.Weight = (double)this.weightValue.Value;
+                this.currentInstance.Quantity = (int) this.quantityValue.Value;
+                this.currentInstance.AimQuantity = (int) this.aimQuantityValue.Value;
+                this.currentInstance.Weight = (double) this.weightValue.Value;
                 this.currentInstance.PictureName = this.pictureNameValue.Text;
 
                 _ = this.parentApp.ProductService.CreateProduct(this.currentInstance);
@@ -250,7 +241,7 @@ internal partial class ProductView : Form {
                 this.currentInstance.AimQuantity = (int) this.aimQuantityValue.Value;
                 this.currentInstance.Weight = (double) this.weightValue.Value;
                 this.currentInstance.PictureName = this.pictureNameValue.Text;
-                
+
                 _ = this.parentApp.ProductService.UpdateProduct(this.currentInstance);
                 break;
             case ViewActionEnum.View:

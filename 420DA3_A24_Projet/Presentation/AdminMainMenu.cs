@@ -1,22 +1,13 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
 using Project_Utilities.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation;
 internal partial class AdminMainMenu : Form {
     /// <summary>
     /// L'application elle-même
     /// </summary>
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
 
     /// <summary>
     /// Constructeur
@@ -58,7 +49,7 @@ internal partial class AdminMainMenu : Form {
     /// Activer les boutons d'action pour les utilisateurs
     /// </summary>
     private void ActivateUserActionButtons() {
-        this.seeUserDetailsButton.Enabled = true;  
+        this.seeUserDetailsButton.Enabled = true;
         this.updateUserButton.Enabled = true;
         this.deleteUserButton.Enabled = true;
     }
@@ -93,8 +84,8 @@ internal partial class AdminMainMenu : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void SeeUserDetailsButton_Click(object sender, EventArgs e) {
-       _ =  this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Visualization,
-            this.userListBox.SelectedItem as User);
+        _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Visualization,
+             this.userListBox.SelectedItem as User);
     }
 
     /// <summary>
@@ -103,8 +94,8 @@ internal partial class AdminMainMenu : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void UpdateUserButton_Click(object sender, EventArgs e) {
-       _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Edition,
-            this.userListBox.SelectedItem as User);
+        _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Edition,
+             this.userListBox.SelectedItem as User);
 
         this.userListBox.Refresh();
     }
@@ -115,7 +106,7 @@ internal partial class AdminMainMenu : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void DeleteUserButton_Click(object sender, EventArgs e) {
-        _ =this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Deletion,
+        _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Deletion,
             this.userListBox.SelectedItem as User);
 
         this.userListBox.Refresh();

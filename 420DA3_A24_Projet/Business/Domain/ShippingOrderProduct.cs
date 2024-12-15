@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _420DA3_A24_Projet.Business.Domain;
+﻿namespace _420DA3_A24_Projet.Business.Domain;
 
 /// <summary>
 /// Classe représentant l'entité pivot entre ShippingOrder et Product
@@ -54,8 +48,8 @@ public class ShippingOrderProduct {
     /// <param name="product">Le produit lui-même</param>
     /// <param name="shippingOrder">L'ordre d'expédition lui-même</param>
     /// <param name="rowVersion">Valeur anti-concurence EF Core</param>
-    protected ShippingOrderProduct(int shippingOrderId, int productId, 
-        int quantity, Product product, ShippingOrder shippingOrder, 
+    protected ShippingOrderProduct(int shippingOrderId, int productId,
+        int quantity, Product product, ShippingOrder shippingOrder,
         byte[] rowVersion) {
         this.ShippingOrderId = shippingOrderId;
         this.ProductId = productId;
