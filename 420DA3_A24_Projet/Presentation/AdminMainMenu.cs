@@ -277,7 +277,7 @@ internal partial class AdminMainMenu : Form {
         this.deleteProdButton.Enabled = true;
     }
 
-    private void DectivateProductActionButtons() {
+    private void DeactivateProductActionButtons() {
         this.seePoDetailsButton.Enabled = false;
         this.updateProdButton.Enabled = false;
         this.deleteProdButton.Enabled = false;
@@ -309,7 +309,7 @@ internal partial class AdminMainMenu : Form {
         if (selectedProd != null) {
             this.ActivateProductActionButtons();
         } else {
-            this.DectivateProductActionButtons();
+            this.DeactivateProductActionButtons();
         }
     }
 
@@ -334,6 +334,76 @@ internal partial class AdminMainMenu : Form {
 
         if (selectedProd != null) {
             _ = this.parentApp.ProductService.OpenViewForDeletion(selectedProd);
+        }
+    }
+
+    #endregion
+
+    #region Gestion des fournisseurs
+
+    private void LoadSuppliersInListBox(List<Supplier> suppliers) {
+        this.supplierListBox.Items.Clear();
+        this.supplierListBox.SelectedItem = null;
+        this.supplierListBox.SelectedIndex = -1;
+
+        foreach (Supplier supplier in suppliers) {
+            _ = this.supplierListBox.Items.Add(supplier);
+        }
+    }
+
+    private void ActivateSupplierActionButton() {
+        this.seeSupplierDetailsBtn.Enabled = true;
+        this.updateSupplierButton.Enabled = true;
+        this.deleteSupllierButton.Enabled = true;
+    }
+
+    private void DeactivateSupplierActionButton() {
+        this.seeSupplierDetailsBtn.Enabled = false;
+        this.updateSupplierButton.Enabled = false;
+        this.deleteSupllierButton.Enabled = false;
+    }
+
+    private void CreateSupplierButton_Click(object sender, EventArgs e) {
+        _ = this.parentApp.SupplierService.OpenViewForCreation();
+    }
+
+    private void SearchSupplierTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchSupplierTextBox.Text.Trim();
+
+        this.LoadSuppliersInListBox(this.parentApp.SupplierService.SearchSupplier(filter));
+    }
+
+    private void SupplierListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+
+        if (selectedSupplier != null) {
+            this.ActivateSupplierActionButton();
+        } else {
+            this.DeactivateSupplierActionButton();
+        }
+    }
+
+    private void SeeSupplierDetailsBtn_Click(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+
+        if (selectedSupplier != null) {
+            _ = this.parentApp.SupplierService.OpenViewForView(selectedSupplier);
+        }
+    }
+
+    private void UpdateSupplierButton_Click(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+
+        if (selectedSupplier != null) {
+            _ = this.parentApp.SupplierService.OpenViewForModification(selectedSupplier);
+        }
+    }
+
+    private void DeleteSupllierButton_Click(object sender, EventArgs e) {
+        Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
+
+        if (selectedSupplier != null) {
+            _ = this.parentApp.SupplierService.OpenViewForDeletion(selectedSupplier);
         }
     }
 

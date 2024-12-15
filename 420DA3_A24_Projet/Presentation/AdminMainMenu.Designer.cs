@@ -973,6 +973,7 @@ partial class AdminMainMenu {
         this.supplierListBox.Name = "supplierListBox";
         this.supplierListBox.Size = new Size(265, 135);
         this.supplierListBox.TabIndex = 6;
+        this.supplierListBox.SelectedIndexChanged += this.SupplierListBox_SelectedIndexChanged;
         // 
         // supplierActionTableLayout
         // 
@@ -1011,6 +1012,7 @@ partial class AdminMainMenu {
         this.seeSupplierDetailsBtn.Text = "Voir details";
         this.seeSupplierDetailsBtn.TextAlign = ContentAlignment.TopCenter;
         this.seeSupplierDetailsBtn.UseVisualStyleBackColor = true;
+        this.seeSupplierDetailsBtn.Click += this.SeeSupplierDetailsBtn_Click;
         // 
         // updateSupplierButton
         // 
@@ -1022,6 +1024,7 @@ partial class AdminMainMenu {
         this.updateSupplierButton.Text = "Modifier";
         this.updateSupplierButton.TextAlign = ContentAlignment.TopCenter;
         this.updateSupplierButton.UseVisualStyleBackColor = true;
+        this.updateSupplierButton.Click += this.UpdateSupplierButton_Click;
         // 
         // deleteSupllierButton
         // 
@@ -1034,6 +1037,7 @@ partial class AdminMainMenu {
         this.deleteSupllierButton.Text = "Supprimer";
         this.deleteSupllierButton.TextAlign = ContentAlignment.TopCenter;
         this.deleteSupllierButton.UseVisualStyleBackColor = true;
+        this.deleteSupllierButton.Click += this.DeleteSupllierButton_Click;
         // 
         // searchSupplierTextBox
         // 
@@ -1044,6 +1048,7 @@ partial class AdminMainMenu {
         this.searchSupplierTextBox.PlaceholderText = "Rechercher un fournisseur";
         this.searchSupplierTextBox.Size = new Size(265, 31);
         this.searchSupplierTextBox.TabIndex = 4;
+        this.searchSupplierTextBox.TextChanged += this.SearchSupplierTextBox_TextChanged;
         // 
         // supplierCreateTableLayout
         // 
@@ -1069,6 +1074,7 @@ partial class AdminMainMenu {
         this.createSupplierButton.TabIndex = 0;
         this.createSupplierButton.Text = "Créer fournisseur";
         this.createSupplierButton.UseVisualStyleBackColor = true;
+        this.createSupplierButton.Click += this.CreateSupplierButton_Click;
         // 
         // supplierPanelHeader
         // 
