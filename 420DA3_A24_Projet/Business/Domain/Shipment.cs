@@ -13,8 +13,6 @@ public class Shipment {
     /// </summary>
     public const int TRACKING_NUMBER_MAX_LENGTH = 32;
     private readonly string trackingnumber = null!;
-    private WsysApplication wsysApplication;
-    private WsysDbContext context;
 
     //Attributs
 
@@ -90,6 +88,11 @@ public class Shipment {
         this.DateModified = dateModified;
         this.RowVersion = rowVersion;
     }
+
+    /// <summary>
+    /// Constructeur par default
+    /// </summary>
+    public Shipment() { }
 
    
 

@@ -88,16 +88,56 @@ internal class ShipmentService {
     public List<Shipment> SearchShipment(string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
     }
-    public List<Shipment> GetAllShipment(bool excludeDeleted = true) {
-        return this.dao.GetAll(excludeDeleted);
-    }
 
     /// <summary>
     /// Obtenir touts les shipments
     /// </summary>
     /// <param name="excludeDeleted">Detail d'exclure les utilisateurs marqués supprimés ou non</param>
     /// <returns>Liste de shipment</returns>
+    public List<Shipment> GetAllShipment(bool excludeDeleted = true) {
+        return this.dao.GetAll(excludeDeleted);
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour la création d'un nouveau shipment
+    /// </summary>
+    /// <returns>La vue or null</returns>
+    public Shipment? OpenViewForCreation() {
+        Shipment shipment = new Shipment();
+        DialogResult result = this.view.OpenForCreation(shipment);
+        return result == DialogResult.OK ? shipment : null;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour la modification d'un shipment
+    /// </summary>
+    /// <param name="shipment">L'objet à modifier</param>
+    /// <returns>La vue or null</returns>
+    public Shipment? OpenViewForUpdate(Shipment shipment) {
+        DialogResult result = this.view.OpenForModification(shipment);
+        return result == DialogResult.OK ? shipment : null;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour la visaulization d'un shipment
+    /// </summary>
+    /// <param name="shipment">L'objet à visualiser</param>
+    /// <returns>La vue or null</returns>
+    public Shipment? OpenViewForView(Shipment shipment) {
+        _ = this.view.OpenForView(shipment);
+        return shipment;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour supprimer d'un shipment
+    /// </summary>
+    /// <param name="shipment">L'objet à supprimer</param>
+    /// <returns>La vue or null</returns>
+    public Shipment? OpenViewForDelete(Shipment shipment) {
+        DialogResult result = this.view.OpenForDelete(shipment);
+        return result == DialogResult.OK ? shipment : null;
+    }
    
 
-    // TODO: OpenFor ShipmentService
+    
 }

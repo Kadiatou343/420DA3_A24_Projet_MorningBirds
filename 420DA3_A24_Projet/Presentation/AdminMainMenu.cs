@@ -257,6 +257,7 @@ internal partial class AdminMainMenu : Form {
 
     #endregion
 
+
     private void deleteSoButton_Click(object sender, EventArgs e) {
         _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Deletion,
            this.userListBox.SelectedItem as User);
