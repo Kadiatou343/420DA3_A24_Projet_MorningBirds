@@ -1,7 +1,6 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation;
 using System.Text;
 
@@ -97,7 +96,6 @@ internal class WsysApplication {
         this.AdresseService = new AdresseService(this, context);
         this.PurchaseOrderServices = new PurchaseOrderServices(this, context);
         this.ShippingOrderServices = new ShippingOrderServices(this, context);
-        this.ShipmentService = new ShipmentService(this, context);
     }
 
     /// <summary>

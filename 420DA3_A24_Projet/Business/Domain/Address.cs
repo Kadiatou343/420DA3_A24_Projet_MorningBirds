@@ -8,8 +8,7 @@ namespace _420DA3_A24_Projet.Business.Domain;
 /// les détails spécifiques à l'adresse (numéro civique, rue, ville, etc.), ainsi que des métadonnées 
 /// pour la gestion des enregistrements.
 /// </summary>
-public class Address
-{
+public class Address {
     /// <summary>
     /// Longueur maximale de l'adresse
     /// </summary>
@@ -218,19 +217,18 @@ public class Address
     /// <param name="state"> État de l'adresse </param>
     /// <param name="country"> Pays de l'adresse </param>
     /// <param name="postalCode"> Code Postal de l'addresse</param>
-    public Address(AddressTypeEnum addressType, string addresse, string civicNumber, 
+    public Address(AddressTypeEnum addressType, string addresse, string civicNumber,
         string street, string city, string state,
-        string country, string postalCode)
-    {
+        string country, string postalCode) {
         this.AddressType = addressType;
-        this.Addresse = addresse;        
+        this.Addresse = addresse;
         this.CivicNumber = civicNumber;
         this.Street = street;
         this.City = city;
         this.State = state;
         this.Country = country;
         this.PostalCode = postalCode;
-            
+
     }
 
     protected Address(
@@ -238,8 +236,8 @@ public class Address
         AddressTypeEnum addressType,
         string addresse,
         string civicNumber,
-        string street, 
-        string city, 
+        string street,
+        string city,
         string state,
         string country,
         string postalCode,
@@ -247,14 +245,14 @@ public class Address
         DateTime? dateModified,
         DateTime? dateDeleted,
         byte[] rowVersion)
-        :this(addressType, addresse, civicNumber, street, city, state, country, postalCode) {
-        
-        this.Id = id;        
+        : this(addressType, addresse, civicNumber, street, city, state, country, postalCode) {
+
+        this.Id = id;
         this.DateCreated = dateCreated;
         this.DateModified = dateModified;
         this.DateDeleted = dateDeleted;
         this.RowVersion = rowVersion;
-           
+
     }
 
     /// <summary>
@@ -279,56 +277,49 @@ public class Address
     /// <summary>
     /// Valide la longueur de l'adresse.
     /// </summary
-    public bool ValidateAddresse(String address)    
-    {
+    public bool ValidateAddresse(string address) {
         return address.Length <= AddresseeMaxLength;
     }
 
     /// <summary>
     /// Valide la longueur du numéro civique.
     /// </summary>
-    public bool ValidateCivicNumber(string civicNumber) 
-    {
+    public bool ValidateCivicNumber(string civicNumber) {
         return civicNumber.Length <= CivicNumberMaxLength;
     }
 
     /// <summary>
     /// Valide la longueur du numéro civique.
     /// </summary>
-    public bool ValidateStreet(string street) 
-    {
+    public bool ValidateStreet(string street) {
         return street.Length <= StreetMaxLength;
     }
 
     /// <summary>
     /// Valide la longueur du numéro civique.
     /// </summary>
-    public bool ValidateCity(string city)
-    {
+    public bool ValidateCity(string city) {
         return city.Length <= CityMaxLength;
     }
 
     /// <summary>
     /// Valide la longueur de l'état.
     /// </summary>
-    public bool ValidateState(string state) 
-    {
+    public bool ValidateState(string state) {
         return state.Length <= StateMaxLength;
     }
 
     /// <summary>
     /// Valide la longueur du pays.
     /// </summary>
-    public bool ValidateCountry(string country) 
-    {
+    public bool ValidateCountry(string country) {
         return country.Length <= CountryMaxLength;
     }
 
     /// <summary>
     /// Valide la longueur du code postal.
     /// </summary>
-    public bool ValidatePostalCode (string postalCode) 
-    {
+    public bool ValidatePostalCode(string postalCode) {
         return postalCode.Length <= PostalCodeMaxLength;
     }
     #endregion

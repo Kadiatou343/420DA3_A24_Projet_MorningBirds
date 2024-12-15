@@ -46,7 +46,7 @@ internal class ShipmentService {
     /// <summary>
     /// Modification shipment
     /// </summary>
-    /// <param name="shipment">Shiment à modifier</param>
+    /// <param name="shipment">Shipment à modifier</param>
     /// <returns>Le shipment mis à jour</returns>
     public Shipment UpdateShipment(Shipment shipment) {
         try {
@@ -88,6 +88,15 @@ internal class ShipmentService {
     public List<Shipment> SearchShipment(string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
     }
+    public List<Shipment> GetAllShipment(bool excludeDeleted = true) {
+        return this.dao.GetAll(excludeDeleted);
+    }
+
+    /// <summary>
+    /// Obtenir touts les shipments
+    /// </summary>
+    /// <param name="excludeDeleted">Detail d'exclure les utilisateurs marqués supprimés ou non</param>
+    /// <returns>Liste de shipment</returns>
     public List<Shipment> GetAllShipment(bool excludeDeleted = true) {
         return this.dao.GetAll(excludeDeleted);
     }

@@ -4,24 +4,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 
-    /// <summary>
-    /// Data Access Object (DAO) pour la gestion des données des clients dans la base de données.
-    /// Cette classe interagit avec la base de données via Entity Framework et fournit des méthodes pour
-    /// créer, récupérer, mettre à jour, supprimer et rechercher des clients.
-    /// </summary>
+/// <summary>
+/// Data Access Object (DAO) pour la gestion des données des clients dans la base de données.
+/// Cette classe interagit avec la base de données via Entity Framework et fournit des méthodes pour
+/// créer, récupérer, mettre à jour, supprimer et rechercher des clients.
+/// </summary>
 internal class ClientDAO {
 
     /// <summary>
     /// Le contexte de base de données utilisé pour interagir avec la base de données.
     /// </summary>
-   
+
     private readonly WsysDbContext context;
 
     /// <summary>
     /// Constructeur du DAO pour initialiser le contexte de base de données.
     /// </summary>
     /// <param name="context">Contexte de la base de données utilisé pour interagir avec la base.</param>
- 
+
     public ClientDAO(WsysDbContext context) {
         this.context = context;
     }
@@ -31,8 +31,8 @@ internal class ClientDAO {
     /// </summary>
     /// <param name="client">L'objet client à créer.</param>
     /// <returns>Le client créé avec son ID généré dans la base de données.</returns>
-    
-    public Client Create (Client client) {
+
+    public Client Create(Client client) {
         _ = this.context.Clients.Add(client);
         _ = this.context.SaveChanges();
 
@@ -45,7 +45,7 @@ internal class ClientDAO {
     /// <param name="id">L'identifiant du client à récupérer.</param>
     /// <param name="excludeDeleted">Indique si les clients supprimés doivent être exclus de la recherche.</param>
     /// <returns>Le client avec l'identifiant spécifié, ou null si le client n'est pas trouvé.</returns>
-   
+
     public Client? GetById(int id, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Clients
@@ -61,8 +61,8 @@ internal class ClientDAO {
     /// </summary>
     /// <param name="client">L'objet client à mettre à jour.</param>
     /// <returns>Le client mis à jour.</returns>
-    
-    public Client Update (Client client) {
+
+    public Client Update(Client client) {
         client.DateModified = DateTime.Now;
         _ = this.context.Clients.Update(client);
         _ = this.context.SaveChanges();
@@ -76,9 +76,8 @@ internal class ClientDAO {
     /// </summary>
     /// <param name="client">L'objet client à supprimer.</param>
     /// <param name="softDeleted">Indique si la suppression est logique (soft delete) ou physique (hard delete).</param>
-    
-    public void Delete (Client client, bool softDeleted = true) 
-    {
+
+    public void Delete(Client client, bool softDeleted = true) {
         if (softDeleted) {
             client.DateDeleted = DateTime.Now;
             _ = this.context.Clients.Update(client);
@@ -94,17 +93,16 @@ internal class ClientDAO {
     /// </summary>
     /// <param name="filter">Le critère de recherche pour filtrer les clients.</param>
     /// <param name="excludeDeleted">Indique si les clients supprimés doivent être exclus de la recherche.</param>
-    
-    public List <Client> Search (string filter, bool excludeDeleted = true)
-    {
+
+    public List<Client> Search(string filter, bool excludeDeleted = true) {
         return !excludeDeleted
             ? this.context.Clients
-               .Where (
-                 client => (
-                     client.ClientName.ToLower().Contains(filter.ToLower())))
+               .Where(
+                 client =>
+                     client.ClientName.ToLower().Contains(filter.ToLower()))
                .ToList()
             : this.context.Clients
-            .Where (
+            .Where(
             client => (
             client.ClientName.ToLower().Contains(filter.ToLower())
             && client.DateDeleted == null)
@@ -118,8 +116,8 @@ internal class ClientDAO {
     /// <param name="warehouse">L'entrepôt auquel les clients sont associés.</param>
     /// <param name="excludedDeleted">Indique si les clients supprimés doivent être exclus de la recherche.</param>
     /// <returns>Une liste de clients associés à l'entrepôt spécifié.</returns>
-    
-    public List<Client> GetByWH (Warehouse warehouse, bool excludedDeleted = true ) {
+
+    public List<Client> GetByWH(Warehouse warehouse, bool excludedDeleted = true) {
 
         return !excludedDeleted
             ? this.context.Clients.Include(client => client.EmployeeWarehouse)

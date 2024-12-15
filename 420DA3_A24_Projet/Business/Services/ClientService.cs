@@ -5,11 +5,11 @@ using _420DA3_A24_Projet.Presentation.Views;
 
 namespace _420DA3_A24_Projet.Business.Services;
 
-    /// <summary>
-    /// Service métier pour gérer les opérations liées aux clients. 
-    /// Ce service utilise le DAO pour interagir avec la base de données et fournit des méthodes 
-    /// pour créer, mettre à jour, supprimer et récupérer des clients.
-    /// </summary>
+/// <summary>
+/// Service métier pour gérer les opérations liées aux clients. 
+/// Ce service utilise le DAO pour interagir avec la base de données et fournit des méthodes 
+/// pour créer, mettre à jour, supprimer et récupérer des clients.
+/// </summary>
 internal class ClientService {
 
     /// <summary>
@@ -34,7 +34,7 @@ internal class ClientService {
     /// </summary>
     /// <param name="parentApp">L'application parente qui gère l'exécution du système.</param>
     /// <param name="context">Le contexte de base de données pour interagir avec la base de données.</param>
-    public ClientService(WsysApplication parentApp , WsysDbContext context) {
+    public ClientService(WsysApplication parentApp, WsysDbContext context) {
         this.parentApp = parentApp;
         this.dao = new ClientDAO(context);
         //this.view = new ClientView(parentApp);
@@ -100,7 +100,7 @@ internal class ClientService {
     /// <param name="filter">Le critère de recherche pour filtrer les clients.</param>
     /// <param name="excludeDeleted">Indique si les clients supprimés (logiquement) doivent être exclus de la recherche.</param>
     /// <returns>Une liste de clients correspondant au critère de recherche.</returns>
-    public List<Client> Search (string filter, bool excludeDeleted = true) {
+    public List<Client> Search(string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
     }
 
