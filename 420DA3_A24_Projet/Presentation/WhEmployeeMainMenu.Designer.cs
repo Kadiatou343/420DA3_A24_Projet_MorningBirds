@@ -25,6 +25,7 @@ partial class WhEmployeeMainMenu {
     /// </summary>
     private void InitializeComponent() {
         this.topBarPanel = new Panel();
+        this.greetingLabel = new Label();
         this.bottomBarPanel = new Panel();
         this.logout = new Button();
         this.primaryTableLayoutPanel = new TableLayoutPanel();
@@ -43,7 +44,7 @@ partial class WhEmployeeMainMenu {
         this.soAssignedProcTableLayoutPanel = new TableLayoutPanel();
         this.processingSoListBox = new ListBox();
         this.soAssignedRefreshBtnPanel = new Panel();
-        this.soAssignedRefreshBtn = new Button();
+        this.soProcessingRefreshBtn = new Button();
         this.soAssignedActionTbLytPanel = new TableLayoutPanel();
         this.setPackagedButton = new Button();
         this.seeDetailsButton = new Button();
@@ -53,7 +54,6 @@ partial class WhEmployeeMainMenu {
         this.soUnassignedActBtnPanel = new Panel();
         this.assignToMeButton = new Button();
         this.unassignedSoListBox = new ListBox();
-        this.greetingLabel = new Label();
         this.topBarPanel.SuspendLayout();
         this.bottomBarPanel.SuspendLayout();
         this.primaryTableLayoutPanel.SuspendLayout();
@@ -79,6 +79,16 @@ partial class WhEmployeeMainMenu {
         this.topBarPanel.Name = "topBarPanel";
         this.topBarPanel.Size = new Size(1363, 50);
         this.topBarPanel.TabIndex = 0;
+        // 
+        // greetingLabel
+        // 
+        this.greetingLabel.AutoSize = true;
+        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.greetingLabel.Location = new Point(579, 11);
+        this.greetingLabel.Name = "greetingLabel";
+        this.greetingLabel.Size = new Size(205, 28);
+        this.greetingLabel.TabIndex = 1;
+        this.greetingLabel.Text = "Bonjour UtilisateurX";
         // 
         // bottomBarPanel
         // 
@@ -145,6 +155,7 @@ partial class WhEmployeeMainMenu {
         this.expectedPoListBox.Name = "expectedPoListBox";
         this.expectedPoListBox.Size = new Size(331, 523);
         this.expectedPoListBox.TabIndex = 3;
+        this.expectedPoListBox.SelectedIndexChanged += this.ExpectedPoListBox_SelectedIndexChanged;
         // 
         // poRefreshBtnPanel
         // 
@@ -165,6 +176,7 @@ partial class WhEmployeeMainMenu {
         this.poRefreshBtn.TabIndex = 1;
         this.poRefreshBtn.Text = "Rafraichir";
         this.poRefreshBtn.UseVisualStyleBackColor = true;
+        this.poRefreshBtn.Click += this.PoRefreshBtn_Click;
         // 
         // poActionBtnPanel
         // 
@@ -183,6 +195,7 @@ partial class WhEmployeeMainMenu {
         this.setReceivedButton.TabIndex = 1;
         this.setReceivedButton.Text = "Mettre reçu";
         this.setReceivedButton.UseVisualStyleBackColor = true;
+        this.setReceivedButton.Click += this.SetReceivedButton_Click;
         // 
         // soPackagedTableLayoutPanel
         // 
@@ -210,6 +223,7 @@ partial class WhEmployeeMainMenu {
         this.packagedSoListBox.Name = "packagedSoListBox";
         this.packagedSoListBox.Size = new Size(328, 523);
         this.packagedSoListBox.TabIndex = 3;
+        this.packagedSoListBox.SelectedIndexChanged += this.PackagedSoListBox_SelectedIndexChanged;
         // 
         // soPackagedRefreshBtnPanel
         // 
@@ -230,6 +244,7 @@ partial class WhEmployeeMainMenu {
         this.soPackagedRefreshBtn.TabIndex = 1;
         this.soPackagedRefreshBtn.Text = "Rafraichir";
         this.soPackagedRefreshBtn.UseVisualStyleBackColor = true;
+        this.soPackagedRefreshBtn.Click += this.SoPackagedRefreshBtn_Click;
         // 
         // soPackagedActBtnPanel
         // 
@@ -248,6 +263,7 @@ partial class WhEmployeeMainMenu {
         this.setShippedButton.TabIndex = 1;
         this.setShippedButton.Text = "Mettre Expédié";
         this.setShippedButton.UseVisualStyleBackColor = true;
+        this.setShippedButton.Click += this.SetShippedButton_Click;
         // 
         // soAssignedProcTableLayoutPanel
         // 
@@ -275,26 +291,28 @@ partial class WhEmployeeMainMenu {
         this.processingSoListBox.Name = "processingSoListBox";
         this.processingSoListBox.Size = new Size(328, 523);
         this.processingSoListBox.TabIndex = 3;
+        this.processingSoListBox.SelectedIndexChanged += this.ProcessingSoListBox_SelectedIndexChanged;
         // 
         // soAssignedRefreshBtnPanel
         // 
-        this.soAssignedRefreshBtnPanel.Controls.Add(this.soAssignedRefreshBtn);
+        this.soAssignedRefreshBtnPanel.Controls.Add(this.soProcessingRefreshBtn);
         this.soAssignedRefreshBtnPanel.Dock = DockStyle.Fill;
         this.soAssignedRefreshBtnPanel.Location = new Point(3, 3);
         this.soAssignedRefreshBtnPanel.Name = "soAssignedRefreshBtnPanel";
         this.soAssignedRefreshBtnPanel.Size = new Size(328, 46);
         this.soAssignedRefreshBtnPanel.TabIndex = 1;
         // 
-        // soAssignedRefreshBtn
+        // soProcessingRefreshBtn
         // 
-        this.soAssignedRefreshBtn.Dock = DockStyle.Fill;
-        this.soAssignedRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        this.soAssignedRefreshBtn.Location = new Point(0, 0);
-        this.soAssignedRefreshBtn.Name = "soAssignedRefreshBtn";
-        this.soAssignedRefreshBtn.Size = new Size(328, 46);
-        this.soAssignedRefreshBtn.TabIndex = 1;
-        this.soAssignedRefreshBtn.Text = "Rafraichir";
-        this.soAssignedRefreshBtn.UseVisualStyleBackColor = true;
+        this.soProcessingRefreshBtn.Dock = DockStyle.Fill;
+        this.soProcessingRefreshBtn.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        this.soProcessingRefreshBtn.Location = new Point(0, 0);
+        this.soProcessingRefreshBtn.Name = "soProcessingRefreshBtn";
+        this.soProcessingRefreshBtn.Size = new Size(328, 46);
+        this.soProcessingRefreshBtn.TabIndex = 1;
+        this.soProcessingRefreshBtn.Text = "Rafraichir";
+        this.soProcessingRefreshBtn.UseVisualStyleBackColor = true;
+        this.soProcessingRefreshBtn.Click += this.SoProcessingRefreshBtn_Click;
         // 
         // soAssignedActionTbLytPanel
         // 
@@ -320,6 +338,7 @@ partial class WhEmployeeMainMenu {
         this.setPackagedButton.TabIndex = 1;
         this.setPackagedButton.Text = "Mettre emballé";
         this.setPackagedButton.UseVisualStyleBackColor = true;
+        this.setPackagedButton.Click += this.SetPackagedButton_Click;
         // 
         // seeDetailsButton
         // 
@@ -330,6 +349,7 @@ partial class WhEmployeeMainMenu {
         this.seeDetailsButton.TabIndex = 0;
         this.seeDetailsButton.Text = "Voir Détails";
         this.seeDetailsButton.UseVisualStyleBackColor = true;
+        this.seeDetailsButton.Click += this.SeeDetailsButton_Click;
         // 
         // soUnForWhEmpTableLayoutPanel
         // 
@@ -367,6 +387,7 @@ partial class WhEmployeeMainMenu {
         this.soUnassignedRefreshBtn.TabIndex = 0;
         this.soUnassignedRefreshBtn.Text = "Rafraichir";
         this.soUnassignedRefreshBtn.UseVisualStyleBackColor = true;
+        this.soUnassignedRefreshBtn.Click += this.SoUnassignedRefreshBtn_Click;
         // 
         // soUnassignedActBtnPanel
         // 
@@ -385,6 +406,7 @@ partial class WhEmployeeMainMenu {
         this.assignToMeButton.TabIndex = 0;
         this.assignToMeButton.Text = "M'assigner";
         this.assignToMeButton.UseVisualStyleBackColor = true;
+        this.assignToMeButton.Click += this.AssignToMeButton_Click;
         // 
         // unassignedSoListBox
         // 
@@ -395,16 +417,7 @@ partial class WhEmployeeMainMenu {
         this.unassignedSoListBox.Name = "unassignedSoListBox";
         this.unassignedSoListBox.Size = new Size(328, 523);
         this.unassignedSoListBox.TabIndex = 2;
-        // 
-        // greetingLabel
-        // 
-        this.greetingLabel.AutoSize = true;
-        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.greetingLabel.Location = new Point(579, 11);
-        this.greetingLabel.Name = "greetingLabel";
-        this.greetingLabel.Size = new Size(205, 28);
-        this.greetingLabel.TabIndex = 1;
-        this.greetingLabel.Text = "Bonjour UtilisateurX";
+        this.unassignedSoListBox.SelectedIndexChanged += this.UnassignedSoListBox_SelectedIndexChanged;
         // 
         // WhEmployeeMainMenu
         // 
@@ -452,7 +465,7 @@ partial class WhEmployeeMainMenu {
     private Button soUnassignedRefreshBtn;
     private Button poRefreshBtn;
     private Button soPackagedRefreshBtn;
-    private Button soAssignedRefreshBtn;
+    private Button soProcessingRefreshBtn;
     private Button setPackagedButton;
     private Button seeDetailsButton;
     private Panel soUnassignedActBtnPanel;
