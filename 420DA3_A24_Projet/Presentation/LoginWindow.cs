@@ -1,13 +1,4 @@
 ﻿using _420DA3_A24_Projet.Business;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation;
 /// <summary>
@@ -17,7 +8,7 @@ internal partial class LoginWindow : Form {
     /// <summary>
     /// L'application elle-même
     /// </summary>
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
 
     /// <summary>
     /// Constructeur
@@ -53,7 +44,7 @@ internal partial class LoginWindow : Form {
     private void CancelButton_Click(object sender, EventArgs e) {
         DialogResult result = MessageBox.Show("Vous devez vous connectez pour continuer l'utilisation ! Est-vous sur de quitter ?",
             "Confirmation",
-            MessageBoxButtons.YesNo, 
+            MessageBoxButtons.YesNo,
             MessageBoxIcon.Question);
         if (result == DialogResult.Yes) {
             Application.Exit();

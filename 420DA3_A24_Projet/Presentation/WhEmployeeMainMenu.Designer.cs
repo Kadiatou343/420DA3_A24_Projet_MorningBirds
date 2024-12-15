@@ -95,6 +95,7 @@ partial class WhEmployeeMainMenu {
         this.logout.TabIndex = 0;
         this.logout.Text = "Deconnexion";
         this.logout.UseVisualStyleBackColor = true;
+        this.logout.Click += this.Logout_Click;
         // 
         // primaryTableLayoutPanel
         // 

@@ -4,7 +4,7 @@ using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Exemple_Enseignant.Presentation;
 internal partial class MainMenu : Form {
-    private ExempleApplication app;
+    private readonly ExempleApplication app;
 
     public MainMenu(ExempleApplication app) {
         this.app = app;
