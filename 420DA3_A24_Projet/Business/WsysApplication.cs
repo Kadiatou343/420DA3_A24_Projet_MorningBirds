@@ -1,7 +1,6 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation;
 using System.Text;
 
@@ -84,10 +83,10 @@ internal class WsysApplication {
         this.adminMainMenu = new AdminMainMenu(this);
         this.offEmployeeMainMenu = new OffEmployeeMainMenu(this);
         this.whEmployeeMainMenu = new WhEmployeeMainMenu(this);
-        this.ClientService = new ClientService(this, context);
-        this.AdresseService = new AdresseService(this, context);
-        this.PurchaseOrderServices = new PurchaseOrderServices(this, context);
-        this.ShippingOrderServices = new ShippingOrderServices(this, context);
+        this.ClientService = new ClientService(this, this.context);
+        this.AdresseService = new AdresseService(this, this.context);
+        this.PurchaseOrderServices = new PurchaseOrderServices(this, this.context);
+        this.ShippingOrderServices = new ShippingOrderServices(this, this.context);
     }
 
     /// <summary>

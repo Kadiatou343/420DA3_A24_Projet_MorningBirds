@@ -1,23 +1,13 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
 using Project_Utilities.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Metrics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
 internal partial class ClientView : Form {
 
     private readonly WsysApplication parentApp;
     private bool isInitialize = false;
-    private Client currentInstance = null!;
+    private readonly Client currentInstance = null!;
     private ViewActionsEnum currentAction;
     public ClientView(WsysApplication parentApp) {
         this.parentApp = parentApp;
@@ -123,7 +113,7 @@ internal partial class ClientView : Form {
     }
 
     private void Initialize() {
-       
+
         this.isInitialize = true;
     }
 

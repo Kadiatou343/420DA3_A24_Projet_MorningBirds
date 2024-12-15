@@ -2,11 +2,6 @@
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 
@@ -15,7 +10,7 @@ namespace _420DA3_A24_Projet.Business.Services;
 /// pour les adresses, ainsi que des recherches spécifiques basées sur l'entrepôt ou l'ordre d'expédition.
 /// </summary
 internal class AdresseService {
-    
+
     // Déclaration des dépendances utilisées par le service.
 
     private readonly WsysApplication parentApp; // Application principale
@@ -39,11 +34,11 @@ internal class AdresseService {
     /// <param name="address">L'objet Address à créer dans la base de données.</param>
     /// <returns>L'adresse créée.</returns>
     /// <exception cref="Exception">Lance une exception si la création échoue.</exception>
-    
-    public Address CreateAddress (Address address) {
+
+    public Address CreateAddress(Address address) {
         try {
             return this.dao.Create(address);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             throw new Exception("Impossible de créer l'adresse", ex);
         }
 
@@ -55,8 +50,8 @@ internal class AdresseService {
     /// <param name="address">L'objet Address avec les nouvelles informations à mettre à jour.</param>
     /// <returns>L'adresse mise à jour.</returns>
     /// <exception cref="Exception">Lance une exception si la mise à jour échoue.</exception>
-   
-    public Address UpdateAdresse (Address address) {
+
+    public Address UpdateAdresse(Address address) {
         try {
             return this.dao.Update(address);
         } catch (Exception ex) {
@@ -70,7 +65,7 @@ internal class AdresseService {
     /// <param name="filter">Critère de recherche pour filtrer les adresses.</param>
     /// <param name="excludeDeleted">Indique si les adresses supprimées doivent être exclues de la recherche.</param>
     /// <returns>Une liste d'adresses correspondant aux critères de recherche.</returns>
-    
+
     public List<Address> Search(string filter, bool excludeDeleted = true) {
         return this.dao.Search(filter, excludeDeleted);
     }
@@ -83,7 +78,7 @@ internal class AdresseService {
     /// <param name="excludedDeleted">Indique si les adresses supprimées doivent être exclues.</param>
     /// <returns>Une liste d'adresses associées à l'entrepôt spécifié.</returns>
 
-    public List<Address> GetAddresseByWarehouse (Warehouse warehouse, bool excludedDeleted = true) {
+    public List<Address> GetAddresseByWarehouse(Warehouse warehouse, bool excludedDeleted = true) {
         return this.dao.GetByWarehouse(warehouse, excludedDeleted);
     }
 
@@ -94,7 +89,7 @@ internal class AdresseService {
     /// <param name="excludedDeleted">Indique si les adresses supprimées doivent être exclues.</param>
     /// <returns>Une liste d'adresses associées à l'ordre d'expédition spécifié.</returns>
 
-    public List<Address> GetAddressByShippingorder (ShippingOrder shippingorder, bool excludedDeleted = true) {
+    public List<Address> GetAddressByShippingorder(ShippingOrder shippingorder, bool excludedDeleted = true) {
         return this.dao.GetByShippingOrder(shippingorder, excludedDeleted);
     }
 }

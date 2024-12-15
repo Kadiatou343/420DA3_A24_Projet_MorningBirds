@@ -25,7 +25,7 @@ internal partial class WhEmployeeMainMenu : Form {
         this.LoadExpectedPurchaseOrdersInListBox(this.parentApp.PurchaseOrderService.methodFor);
         */
         this.InitializeComponent();
-        this.greetingLabel.Text = "Bonjour " + (this.parentApp.LoginService.LoggedInUser)?.Username;
+        this.greetingLabel.Text = "Bonjour " + this.parentApp.LoginService.LoggedInUser?.Username;
     }
 
     #region Shipping Order Non Assignés

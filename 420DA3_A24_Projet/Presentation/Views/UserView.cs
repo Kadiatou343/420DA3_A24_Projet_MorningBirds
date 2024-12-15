@@ -193,9 +193,9 @@ internal partial class UserView : Form {
                     this.usernameTextBox.Text.Trim(),
                     passwordHash,
                     (this.employeeWhListBox.SelectedItem as Role)?.Id
-                    );
-
-                newUser.Roles = this.userRolesListBox.SelectedItems.Cast<Role>().ToList();
+                    ) {
+                    Roles = this.userRolesListBox.SelectedItems.Cast<Role>().ToList()
+                };
 
                 this.userInstance = this.parentApp.UserService.CreateUser(newUser);
                 break;
