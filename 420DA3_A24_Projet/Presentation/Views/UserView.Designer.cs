@@ -48,12 +48,18 @@ partial class UserView {
         this.dateDeletedDTPicker = new DateTimePicker();
         this.dateCreatedDTPicker = new DateTimePicker();
         this.dateModifiedDTPicker = new DateTimePicker();
+        this.listBoxPanel = new Panel();
+        this.listBoxTableLayout = new TableLayoutPanel();
+        this.userRolesLabel = new Label();
+        this.whListLabel = new Label();
         this.topBarPanel.SuspendLayout();
         this.bottomBarPanel.SuspendLayout();
         this.mainTableLayout.SuspendLayout();
         this.mainPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).BeginInit();
         this.metaDataPanel.SuspendLayout();
+        this.listBoxPanel.SuspendLayout();
+        this.listBoxTableLayout.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBarPanel
@@ -150,8 +156,7 @@ partial class UserView {
         // 
         // mainPanel
         // 
-        this.mainPanel.Controls.Add(this.userRolesListBox);
-        this.mainPanel.Controls.Add(this.employeeWhListBox);
+        this.mainPanel.Controls.Add(this.listBoxPanel);
         this.mainPanel.Controls.Add(this.passwordLabel);
         this.mainPanel.Controls.Add(this.usernameLabel);
         this.mainPanel.Controls.Add(this.passwordTextBox);
@@ -167,21 +172,23 @@ partial class UserView {
         // 
         // userRolesListBox
         // 
+        this.userRolesListBox.Dock = DockStyle.Fill;
         this.userRolesListBox.FormattingEnabled = true;
         this.userRolesListBox.ItemHeight = 25;
-        this.userRolesListBox.Location = new Point(53, 257);
+        this.userRolesListBox.Location = new Point(3, 44);
         this.userRolesListBox.Name = "userRolesListBox";
         this.userRolesListBox.SelectionMode = SelectionMode.MultiSimple;
-        this.userRolesListBox.Size = new Size(314, 154);
+        this.userRolesListBox.Size = new Size(442, 203);
         this.userRolesListBox.TabIndex = 11;
         // 
         // employeeWhListBox
         // 
+        this.employeeWhListBox.Dock = DockStyle.Fill;
         this.employeeWhListBox.FormattingEnabled = true;
         this.employeeWhListBox.ItemHeight = 25;
-        this.employeeWhListBox.Location = new Point(495, 257);
+        this.employeeWhListBox.Location = new Point(451, 44);
         this.employeeWhListBox.Name = "employeeWhListBox";
-        this.employeeWhListBox.Size = new Size(314, 154);
+        this.employeeWhListBox.Size = new Size(442, 203);
         this.employeeWhListBox.TabIndex = 10;
         // 
         // passwordLabel
@@ -311,6 +318,55 @@ partial class UserView {
         this.dateModifiedDTPicker.Size = new Size(300, 31);
         this.dateModifiedDTPicker.TabIndex = 2;
         // 
+        // listBoxPanel
+        // 
+        this.listBoxPanel.Controls.Add(this.listBoxTableLayout);
+        this.listBoxPanel.Dock = DockStyle.Bottom;
+        this.listBoxPanel.Location = new Point(0, 202);
+        this.listBoxPanel.Name = "listBoxPanel";
+        this.listBoxPanel.Size = new Size(896, 250);
+        this.listBoxPanel.TabIndex = 10;
+        // 
+        // listBoxTableLayout
+        // 
+        this.listBoxTableLayout.ColumnCount = 2;
+        this.listBoxTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.listBoxTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.listBoxTableLayout.Controls.Add(this.whListLabel, 1, 0);
+        this.listBoxTableLayout.Controls.Add(this.userRolesListBox, 0, 1);
+        this.listBoxTableLayout.Controls.Add(this.employeeWhListBox, 1, 1);
+        this.listBoxTableLayout.Controls.Add(this.userRolesLabel, 0, 0);
+        this.listBoxTableLayout.Dock = DockStyle.Fill;
+        this.listBoxTableLayout.Location = new Point(0, 0);
+        this.listBoxTableLayout.Name = "listBoxTableLayout";
+        this.listBoxTableLayout.RowCount = 2;
+        this.listBoxTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+        this.listBoxTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
+        this.listBoxTableLayout.Size = new Size(896, 250);
+        this.listBoxTableLayout.TabIndex = 0;
+        // 
+        // userRolesLabel
+        // 
+        this.userRolesLabel.Dock = DockStyle.Fill;
+        this.userRolesLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.userRolesLabel.Location = new Point(3, 0);
+        this.userRolesLabel.Name = "userRolesLabel";
+        this.userRolesLabel.Size = new Size(442, 41);
+        this.userRolesLabel.TabIndex = 13;
+        this.userRolesLabel.Text = "Liste des rôles de l'utilisateur";
+        this.userRolesLabel.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // whListLabel
+        // 
+        this.whListLabel.Dock = DockStyle.Fill;
+        this.whListLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        this.whListLabel.Location = new Point(451, 0);
+        this.whListLabel.Name = "whListLabel";
+        this.whListLabel.Size = new Size(442, 41);
+        this.whListLabel.TabIndex = 14;
+        this.whListLabel.Text = "Siège pour l'employé d'entrepôt ";
+        this.whListLabel.TextAlign = ContentAlignment.MiddleCenter;
+        // 
         // UserView
         // 
         this.AutoScaleDimensions = new SizeF(10F, 25F);
@@ -330,6 +386,8 @@ partial class UserView {
         this.mainPanel.PerformLayout();
         ((System.ComponentModel.ISupportInitialize) this.idNumUpDown).EndInit();
         this.metaDataPanel.ResumeLayout(false);
+        this.listBoxPanel.ResumeLayout(false);
+        this.listBoxTableLayout.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 
@@ -359,4 +417,8 @@ partial class UserView {
     private TextBox usernameTextBox;
     private ListBox employeeWhListBox;
     private ListBox userRolesListBox;
+    private Panel listBoxPanel;
+    private TableLayoutPanel listBoxTableLayout;
+    private Label userRolesLabel;
+    private Label whListLabel;
 }
