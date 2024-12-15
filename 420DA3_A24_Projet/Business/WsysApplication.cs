@@ -7,7 +7,7 @@ using System.Text;
 namespace _420DA3_A24_Projet.Business;
 
 /// <summary>
-/// Classe représentant le point de depart de l'application
+/// Classe représentant le point de départ de l'application
 /// </summary>
 internal class WsysApplication {
     /// <summary>
@@ -15,8 +15,19 @@ internal class WsysApplication {
     /// </summary>
     private readonly WsysDbContext context;
 
+    /// <summary>
+    /// La vue du menu principal de l'administrateur
+    /// </summary>
     private readonly AdminMainMenu adminMainMenu;
+
+    /// <summary>
+    /// La vue du menu principal de l'employé de bureau
+    /// </summary>
     private readonly OffEmployeeMainMenu offEmployeeMainMenu;
+
+    /// <summary>
+    /// La vue du menu principal de l'employé d'entrepôt
+    /// </summary>
     private readonly WhEmployeeMainMenu whEmployeeMainMenu;
 
     /// <summary>
@@ -98,11 +109,11 @@ internal class WsysApplication {
 
         while (this.LoginService.RequireLoggedInUser()) {
             _ = this.LoginService.UserLoggedInRole?.Id == Role.ADMIN_ROLE_ID
-                ? this.adminMainMenu.ShowDialog()
+                ? this.adminMainMenu.OpenView()
                 : this.LoginService.UserLoggedInRole?.Id == Role.OFFICE_EMPLOYEE_ROLE_ID
-                    ? this.offEmployeeMainMenu.ShowDialog()
+                    ? this.offEmployeeMainMenu.OpenView()
                     : this.LoginService.UserLoggedInRole?.Id == Role.WH_EMPLOYEE_ROLE_ID
-                                    ? this.whEmployeeMainMenu.ShowDialog()
+                                    ? this.whEmployeeMainMenu.OpenView()
                                     : throw new Exception("Impossible de demarrer l'application : Role non implémenté!");
         }
     }
@@ -112,7 +123,7 @@ internal class WsysApplication {
     /// </summary>
     /// <returns></returns>
     public string GetCopyright() {
-        return $"(c) {DateTime.Now.Year} Morning Birds - All Rights reserved";
+        return $"(c) {DateTime.Now.Year} Morning Birds, Marc-Eric Boury - All Rights reserved";
     }
 
     /// <summary>

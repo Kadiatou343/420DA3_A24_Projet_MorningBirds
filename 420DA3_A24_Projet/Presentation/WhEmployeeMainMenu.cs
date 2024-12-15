@@ -25,7 +25,15 @@ internal partial class WhEmployeeMainMenu : Form {
         this.LoadExpectedPurchaseOrdersInListBox(this.parentApp.PurchaseOrderService.methodFor);
         */
         this.InitializeComponent();
+    }
+
+    /// <summary>
+    /// Remplissage du label de salutation de l'utilisateur connecté et ouverture de la vue en mode modal
+    /// </summary>
+    /// <returns>Le résultat de l'ouverture de la vue</returns>
+    public DialogResult OpenView() {
         this.greetingLabel.Text = "Bonjour " + this.parentApp.LoginService.LoggedInUser?.Username;
+        return this.ShowDialog();
     }
 
     #region Shipping Order Non Assignés
