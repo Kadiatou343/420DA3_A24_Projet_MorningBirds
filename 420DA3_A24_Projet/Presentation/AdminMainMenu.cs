@@ -258,18 +258,84 @@ internal partial class AdminMainMenu : Form {
     #endregion
 
 
-    private void deleteSoButton_Click(object sender, EventArgs e) {
+    private void DeleteSoButton_Click(object sender, EventArgs e) {
         _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Deletion,
            this.userListBox.SelectedItem as User);
 
         this.userListBox.Refresh();
     }
 
-    private void deleteProdButton_Click(object sender, EventArgs e) {
+    private void DeleteClientButton_Click(object sender, EventArgs e) {
 
     }
 
-    private void deleteClientButton_Click(object sender, EventArgs e) {
+    #region Gestion des produits 
 
+    private void ActivateProductActionButtons() {
+        this.seePoDetailsButton.Enabled = true;
+        this.updateProdButton.Enabled = true;
+        this.deleteProdButton.Enabled = true;
     }
+
+    private void DectivateProductActionButtons() {
+        this.seePoDetailsButton.Enabled = false;
+        this.updateProdButton.Enabled = false;
+        this.deleteProdButton.Enabled = false;
+    }
+
+    private void LoadProductsInListBox(List<Product> products) {
+        this.prodListBox.Items.Clear();
+        this.prodListBox.SelectedItem = null;
+        this.prodListBox.SelectedIndex = -1;
+
+        foreach (Product product in products) {
+            _ = this.prodListBox.Items.Add(product);
+        }
+    }
+
+    private void CreateProductButton_Click(object sender, EventArgs e) {
+        _ = this.parentApp.ProductService.OpenViewForCreation();
+    }
+
+    private void SearchProdTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchProdTextBox.Text.Trim();
+
+        this.LoadProductsInListBox(this.parentApp.ProductService.SearchProduct(filter));
+    }
+
+    private void ProdListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        Product? selectedProd = this.prodListBox.SelectedItem as Product;
+
+        if (selectedProd != null) {
+            this.ActivateProductActionButtons();
+        } else {
+            this.DectivateProductActionButtons();
+        }
+    }
+
+    private void SeeProdDetailsButton_Click(object sender, EventArgs e) {
+        Product? selectedProd = this.prodListBox.SelectedItem as Product;
+
+        if (selectedProd != null) {
+            _ = this.parentApp.ProductService.OpenViewForView(selectedProd);
+        }
+    }
+
+    private void UpdateProdButton_Click(object sender, EventArgs e) {
+        Product? selectedProd = this.prodListBox.SelectedItem as Product;
+
+        if (selectedProd != null) {
+            _ = this.parentApp.ProductService.OpenViewForModification(selectedProd);
+        }
+    }
+
+    private void DeleteProdButton_Click(object sender, EventArgs e) {
+        Product? selectedProd = this.prodListBox.SelectedItem as Product;
+
+        if (selectedProd != null) {
+            _ = this.parentApp.ProductService.OpenViewForDeletion(selectedProd);
+        }
+    }
+
+    #endregion
 }
