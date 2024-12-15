@@ -19,11 +19,4 @@ internal partial class AddressView : Form {
         this.InitializeComponent();
     }
 
-    private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {
-
-    }
-
-    private void AddressView_Load(object sender, EventArgs e) {
-
-    }
 }

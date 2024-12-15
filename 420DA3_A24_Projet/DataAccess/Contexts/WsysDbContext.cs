@@ -19,20 +19,13 @@ internal class WsysDbContext : DbContext {
     /// Propriété faisant le pont entre l'entité Role et la table Roles dans la base de données par EF Core
     /// </summary>
     public DbSet<Role> Roles { get; set; }
-
     public DbSet<Product> Products { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
-
     public DbSet<Client> Clients { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<ShippingOrder> ShippingOrders { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
-
-
-
-
     public DbSet<Warehouse> Warehouses { get; set; }
-
     public DbSet<Shipment> Shipments { get; set; }
 
     /// <summary>

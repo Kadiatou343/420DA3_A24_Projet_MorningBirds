@@ -1,4 +1,6 @@
-﻿namespace _420DA3_A24_Projet.Business.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace _420DA3_A24_Projet.Business.Domain;
 
 /// <summary>
 /// Représente l'adresse des entrepôts ou des entreprises clientes.

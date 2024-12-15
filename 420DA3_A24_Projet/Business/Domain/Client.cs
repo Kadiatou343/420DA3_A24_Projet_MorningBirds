@@ -1,19 +1,12 @@
-﻿namespace _420DA3_A24_Projet.Business.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace _420DA3_A24_Projet.Business.Domain;
 
 
 /// <summary>
 ///  Classe représentant l'entreprise cliente
 /// </summary>
 public class Client {
-    /// <summary>
-    /// Longueur maxiamle du nom de l'entreprise
-    /// </summary>
-    public const int ClientNameMaxLength = 128;
-    /// <summary>
-    /// Classe représentant un client, qui correspond à une entreprise ayant des relations commerciales.
-    /// </summary>
-    public class Client
-    {
         // Constants pour les longueurs maximales et minimales des propriétés
 
         /// <summary>
@@ -51,14 +44,12 @@ public class Client {
         /// <summary>
         /// Identifiant unique du client (clé primaire).
         /// </summary>
-        
         [Key]
         public int Id { get; set; }
 
-        // <summary>
+        /// <summary>
         /// Nom de l'entreprise cliente.
         /// </summary>
-        /// 
         public string ClientName { 
 
             get

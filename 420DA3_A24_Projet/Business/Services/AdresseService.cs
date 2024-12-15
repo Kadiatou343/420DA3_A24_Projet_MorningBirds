@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
-    /// <summary>
-    /// Service de gestion des adresses, responsable des opérations CRUD (création, mise à jour, recherche)
-    /// pour les adresses, ainsi que des recherches spécifiques basées sur l'entrepôt ou l'ordre d'expédition.
-    /// </summary
+
+/// <summary>
+/// Service de gestion des adresses, responsable des opérations CRUD (création, mise à jour, recherche)
+/// pour les adresses, ainsi que des recherches spécifiques basées sur l'entrepôt ou l'ordre d'expédition.
+/// </summary
 internal class AdresseService {
     
     // Déclaration des dépendances utilisées par le service.
