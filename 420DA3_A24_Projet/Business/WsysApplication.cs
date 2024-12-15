@@ -1,6 +1,7 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
+using _420DA3_A24_Projet.DataAccess.DAOs;
 using _420DA3_A24_Projet.Presentation;
 using System;
 using System.Collections;
@@ -45,6 +46,16 @@ internal class WsysApplication {
     public LoginService LoginService { get; private set; }
 
     /// <summary>
+    /// Le service de Client
+    /// </summary> 
+    public ClientService ClientService { get; private set; }
+
+    /// <summary>
+    /// Le service d'addresse
+    /// </summary> 
+    public AdresseService AdresseService { get; private set; }
+
+    /// <summary>
     /// Constructeur
     /// </summary>
     public WsysApplication() {
@@ -56,6 +67,8 @@ internal class WsysApplication {
         this.adminMainMenu = new AdminMainMenu(this);
         this.offEmployeeMainMenu = new OffEmployeeMainMenu(this);
         this.whEmployeeMainMenu = new WhEmployeeMainMenu(this);
+        this.ClientService = new ClientService(this, context);
+        this.AdresseService = new AdresseService(this, context);
     }
 
     /// <summary>

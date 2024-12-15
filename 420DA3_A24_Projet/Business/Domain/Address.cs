@@ -7,10 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace _420DA3_A24_Projet.Business.Domain
 {
     /// <summary>
-    /// Classe représentant l'adresse des entrepôts, de l'entreprise Cliente
+    /// Représente l'adresse des entrepôts ou des entreprises clientes.
+    /// Cette classe contient des informations sur l'adresse physique, notamment le type d'adresse, 
+    /// les détails spécifiques à l'adresse (numéro civique, rue, ville, etc.), ainsi que des métadonnées 
+    /// pour la gestion des enregistrements.
     /// </summary>
     public class Address
     {
@@ -49,14 +53,19 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// </summary>
         public const int PostalCodeMaxLength = 64 ;
 
-       // Identifiants
+        // Identifiants et données de l'adresse
+        [Key]
         public int Id { get; set; }
 
-        // Donnée entrée par l'utiliasteur
-         // en cours ...
-              
-        public string AddressType { get; set; }
+        // Type de l'adresse (résidentielle, commerciale, etc.)
+        [Required]
+        public AddressTypeEnum AddressType { get; set; }
 
+        // Données entrées par l'utilisateur
+
+
+        // Adresse physique
+        [MaxLength(AddresseeMaxLength)]
         public string Addresse {
             get {
                 return this.Addresse;
@@ -71,9 +80,9 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
 
         }
+        [MaxLength(CivicNumberMaxLength)]
 
-      
-
+        // Numéro civique 
         public string CivicNumber {
             get {
                 return this.CivicNumber;
@@ -89,8 +98,9 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         }
 
-    
+        // Rue
 
+        [MaxLength(StreetMaxLength)]
         public string Street {
             get {
                 return this.Street;
@@ -105,7 +115,9 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
-    
+        // Ville
+
+        [MaxLength(CityMaxLength)]
         public string City{
             get {
                 return this.City;
@@ -120,7 +132,9 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
-     
+        // État ou province 
+
+        [MaxLength(StateMaxLength)]
         public string State {
             get {
                 return this.State;
@@ -135,8 +149,8 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
-     
-
+        // Pays
+        [MaxLength(CountryMaxLength)]
         public string Country {
             get {
                 return this.Country;
@@ -151,7 +165,8 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
-   
+        // Code postal
+        [MaxLength(PostalCodeMaxLength)]
         public string PostalCode {
             get {
                 return this.PostalCode;
@@ -166,52 +181,57 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
-     
+        // Métadonnées pour la gestion des enregistrements
 
-        //Meta-données
-        public DateTime DateCreated { get; set; }
+        // Date de création de l'adresse
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+
+        // Date de modification de l'adresse
 
         public DateTime? DateModified { get; set; }
 
+        // Date de suppression de l'adresse
         public DateTime? DateDeleted { get; set; }
 
+        // Version de ligne pour le contrôle de la concurrence optimiste
+        [Timestamp]
         public byte[] RowVersion { get; set; } = null!;
-              
+
 
         // Propriétés de navigation EF Core
 
         /// <summary>
-        ///  Addresse des clients
+        ///  Liste des clients associés à cette adresse
         /// </summary>
         public List<Client> Clients { get; set; } = new List<Client>();
 
         /// <summary>
-        /// Addresse des entrepots
+        /// Entrepôt propriétaire de cette adresse
         /// </summary>
         public virtual Warehouse OwnerWarehouse { get; set; } = null!;
 
         /// <summary>
-        ///  Addresse d'expédition
+        ///  Commande d'expédition associée à l'adresse
         /// </summary>
         public virtual ShippingOrder OwnerShipOrder { get; set; } = null!;
 
         /// <summary>
-        /// Constructeur
+        /// Constructeur pour créer une adresse avec les détails fournis.
         /// </summary>
-        /// <param name="addresse"> Addresse de l'emplacement </param>
-        /// <param name="addresstype">Type d'addresse </param>
-        /// <param name="civicNumber"> Numéro civique </param>
+        /// /// <param name="addressType">Type d'addresse </param>
+        /// <param name="addresse"> L'addresse de l'emplacement </param>      
+        /// <param name="civicNumber"> Numéro civique  de l'adresse</param>
         /// <param name="street"> Rue de l'addresse </param>
         /// <param name="city"> Ville de l'addresse </param>
         /// <param name="state"> État de l'adresse </param>
         /// <param name="country"> Pays de l'adresse </param>
         /// <param name="postalCode"> Code Postal de l'addresse</param>
-        public Address(string addresse,string addresstype, string civicNumber, 
+        public Address(AddressTypeEnum addressType, string addresse, string civicNumber, 
            string street, string city, string state,
            string country, string postalCode)
         {
-            this.Addresse = addresse;
-            this.AddressType = addresstype;
+            this.AddressType = addressType;
+            this.Addresse = addresse;        
             this.CivicNumber = civicNumber;
             this.Street = street;
             this.City = city;
@@ -223,8 +243,8 @@ namespace _420DA3_A24_Projet.Business.Domain
 
       protected Address(
           int id,
+          AddressTypeEnum addressType,
           string addresse,
-          string addresstype,
           string civicNumber,
           string street, 
           string city, 
@@ -235,56 +255,85 @@ namespace _420DA3_A24_Projet.Business.Domain
           DateTime? dateModified,
           DateTime? dateDeleted,
           byte[] rowVersion)
-          :this(addresse, addresstype, civicNumber, street, city, state, country, postalCode)
+          :this(addressType, addresse, civicNumber, street, city, state, country, postalCode)
       {
-            this.Id = id;
-            this.Addresse = addresse;
-            this.AddressType = addresstype;
-            this.CivicNumber = civicNumber;
-            this.Street = street;
-            this.City = city;
-            this.State = state;
-            this.Country = country;
-            this.PostalCode = postalCode;
+            this.Id = id;        
             this.DateCreated = dateCreated;
             this.DateModified = dateModified;
             this.DateDeleted = dateDeleted;
-            this.RowVersion = rowVersion;      
+            this.RowVersion = rowVersion;
+           
         }
-        #region Methodes
+
         /// <summary>
-        /// Override de la méthode ToString pour afficher les details d'une addresse 
+        /// Enum pour représenter les types d'adresses
         /// </summary>
-        /// <returns></returns>
+        public enum AddressTypeEnum {
+            Residential, // Adresse résidentielle
+            Commercial, // Adresse commerciale
+            Shipping,   // Adresse d'expédition
+            Billing     // Adresse de facturation
+        }
+        #region Methodes de validation et utilitaires
+        /// <summary>
+        /// Redéfinition de la méthode ToString pour afficher les détails d'une adresse.
+        /// </summary>
+        /// <returns>Une chaîne contenant l'ID et l'adresse.</returns>
         public override string ToString() {
             return $"#{this.Id} - {this.Addresse}";
         }
 
+        /// <summary>
+        /// Valide la longueur de l'adresse.
+        /// </summary
         public bool ValidateAddresse(String address)    
         {
             return address.Length <= AddresseeMaxLength;
         }
+
+        /// <summary>
+        /// Valide la longueur du numéro civique.
+        /// </summary>
         public bool ValidateCivicNumber(string civicNumber) 
         {
            return civicNumber.Length <= CivicNumberMaxLength;
         }
 
+        /// <summary>
+        /// Valide la longueur du numéro civique.
+        /// </summary>
         public bool ValidateStreet(string street) 
         {
             return street.Length <= StreetMaxLength;
-        } 
+        }
+
+        /// <summary>
+        /// Valide la longueur du numéro civique.
+        /// </summary>
         public bool ValidateCity(string city)
         {
             return city.Length <= CityMaxLength;
         }
+
+        /// <summary>
+        /// Valide la longueur de l'état.
+        /// </summary>
         public bool ValidateState(string state) 
         {
             return state.Length <= StateMaxLength;
         }
+
+        /// <summary>
+        /// Valide la longueur du pays.
+        /// </summary>
         public bool ValidateCountry(string country) 
         {
             return country.Length <= CountryMaxLength;
         }
+
+        /// <summary>
+        /// Valide la longueur du code postal.
+        /// </summary>
         public bool ValidatePostalCode (string postalCode) 
         {
             return postalCode.Length <= PostalCodeMaxLength;

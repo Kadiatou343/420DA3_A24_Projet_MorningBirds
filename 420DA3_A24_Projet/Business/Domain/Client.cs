@@ -11,44 +11,57 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
 
     /// <summary>
-    ///  Classe représentant l'entreprise cliente
+    /// Classe représentant un client, qui correspond à une entreprise ayant des relations commerciales.
     /// </summary>
     public class Client
     {
+        // Constants pour les longueurs maximales et minimales des propriétés
+
         /// <summary>
-        /// Longueur maxiamle du nom de l'entreprise
+        /// Longueur maximale du nom de l'entreprise.
         /// </summary>
         public const int ClientNameMaxLength = 128;
 
         /// <summary>
-        /// Longueur maxiamle du nom de la personne à contacter au dans de l'entrprise
+        /// Longueur minimale du nom de l'entreprise.
         /// </summary>
         public const int ClientNameMinLength = 5;
 
         /// <summary>
-        /// Longueur maximale du nom de la personne à contacter au dans de l'entrprise
+        /// Longueur maximale du prénom de la personne à contacter.
+        /// </summary>
         public const int ContactFirstNameMaxLength = 32;
 
         /// <summary>
-        ///  Longueur maximale du prenom  de la personne à contacter au dans de l'entrprise
+        /// Longueur maximale du nom de la personne à contacter.
         /// </summary>
         public const int ContactLastNameMaxLength = 32;
 
         /// <summary>
-        /// Longueur de l'email de l'entreprise
+        /// Longueur maximale de l'adresse e-mail du contact.
         /// </summary>
         public const int ContactEmailMaxLength = 128;
 
         /// <summary>
-        /// Longueur du numéro de télephone de l'entreprise
+        /// Longueur maximale du numéro de téléphone de l'entreprise.
         /// </summary>
         public const int ContactTelephoneMaxLength = 15;
 
-       // Identifiants
+        // Propriétés principales
+
+        /// <summary>
+        /// Identifiant unique du client (clé primaire).
+        /// </summary>
+        
+        [Key]
         public int Id { get; set; }
 
-        // Donnée entrée par l'utiliateur
+        // <summary>
+        /// Nom de l'entreprise cliente.
+        /// </summary>
+        /// 
         public string ClientName { 
+
             get
             {
                 return this.ClientName;
@@ -57,15 +70,22 @@ namespace _420DA3_A24_Projet.Business.Domain
             set 
             {
                 if (!this.ValidateCLientName(value)) {
+
                     throw new ArgumentException("ClientName", $"La longueur de ClientName doit entre{ClientNameMinLength} et {ClientNameMaxLength}");
                 }  
-                
                 this.ClientName = value;
             } 
         }
 
+        /// <summary>
+        /// Identifiant de l'entrepôt associé au client.
+        /// </summary>
         public int WarehouseId { get; set; }
-   
+
+
+        /// <summary>
+        /// Prénom de la personne à contacter dans l'entreprise cliente.
+        /// </summary>
         public string ContactFirstName {
             get {
                 return this.ContactFirstName;
@@ -79,6 +99,10 @@ namespace _420DA3_A24_Projet.Business.Domain
                 this.ContactFirstName = value;
             }
         }
+
+        /// <summary>
+        /// Prénom de la personne à contacter dans l'entreprise cliente.
+        /// </summary>
         public string ContactLastName {
             get {
                 return this.ContactLastName;
@@ -93,6 +117,9 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
+        /// <summary>
+        /// Adresse e-mail du contact de l'entreprise cliente.
+        /// </summary>
         public string ContactEmail {
             get {
                 return this.ContactEmail;
@@ -107,6 +134,9 @@ namespace _420DA3_A24_Projet.Business.Domain
             }
         }
 
+        /// <summary>
+        /// Numéro de téléphone du contact de l'entreprise cliente.
+        /// </summary>
         public string ContactTelephone {
             get {
                 return this.ContactTelephone;
@@ -122,12 +152,28 @@ namespace _420DA3_A24_Projet.Business.Domain
         }
 
         //Meta-données
-        public DateTime DateCreated { get; set; }
 
+        /// <summary>
+        /// Date de création de l'enregistrement.
+        /// </summary>
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+
+
+        /// <summary>
+        /// Date de dernière modification (nullable).
+        /// </summary>
         public DateTime? DateModified { get; set; }
 
+
+        /// <summary>
+        /// Date de suppression logique (nullable).
+        /// </summary>
         public DateTime? DateDeleted { get; set; }
 
+
+        /// <summary>
+        /// Version de ligne pour la gestion des concurrences.
+        /// </summary>
         public byte[] RowVersion { get; set; } = null!;
 
 
@@ -139,23 +185,28 @@ namespace _420DA3_A24_Projet.Business.Domain
         public virtual Warehouse AssignedWarehouse { get; set; } = null!;
 
         /// <summary>
-        /// Addresses d'entreprises clientes
+        /// Liste des adresses associées à l'entreprise cliente.
         /// </summary>
         public virtual List<Address> Addresses { get; set; } = new List<Address>();
 
         /// <summary>
-        /// Produits appartenant à l'entreprise 
+        /// Liste des produits appartenant au client.
         /// </summary>
         public virtual List<Product> Products { get; set; } = new List<Product>();
-         
-        /// <summary>
-        /// expedition des produits du fournisseurs vers l'entrepôt
-        /// </summary>
-        public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
-        public object EmployeeWarehouse { get; internal set; }
 
         /// <summary>
-        /// Constructeur 
+        /// Liste des commandes d'expédition associées au client.
+        /// </summary>
+        public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
+
+        /// <summary>
+        /// Entrepôt assigné à l'employé, qui peut être nul si aucun entrepôt n'est associé.
+        /// </summary>
+        public virtual Warehouse? EmployeeWarehouse { get; internal set; }
+
+
+        /// <summary>
+        /// Constructeur principal pour initialiser un client.
         /// </summary>
         /// <param name="clientName"> Nom de l'entreprise</param>
         /// <param name="contactFirstName">Nom de celui à contacter dans l'entrepise</param>
@@ -163,7 +214,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         /// <param name="contactEmail">Boite mail de l'entreprise</param>
         /// <param name="contactTelephone">Numéro de téléphone de l'entraprise</param>
         /// <param name="warehouseId">Identifienat du fournisseur associé aux client</param>
-        public Client (string clientName, string contactFirstName, string contactLastName,
+        public Client(string clientName, string contactFirstName, string contactLastName,
             string contactEmail, string contactTelephone, int warehouseId)
         {
             this.ClientName = clientName;
@@ -174,6 +225,10 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.WarehouseId = warehouseId;
         }
 
+
+        /// <summary>
+        /// Constructeur protégé utilisé pour des scénarios avancés (ex. : chargement depuis la base de données).
+        /// </summary>
         protected Client(
             int id, 
             string clientName, 
@@ -188,13 +243,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             byte[] rowVersion)
             : this(clientName,contactFirstName,contactLastName,contactEmail, contactTelephone,assignedwarehouseId)
         {
-            this.Id = id;
-            this.ClientName = clientName;
-            this.WarehouseId = assignedwarehouseId;
-            this.ContactFirstName = contactFirstName;
-            this.ContactLastName = contactLastName;
-            this.ContactEmail = contactEmail;
-            this.ContactTelephone = contactTelephone;
+            this.Id = id;          
             this.DateCreated = dateCreated;
             this.DateModified = dateModified;
             this.DateDeleted = dateDeleted;
@@ -202,10 +251,10 @@ namespace _420DA3_A24_Projet.Business.Domain
             
         }
 
-        #region Methodes
+        #region Methodes de validation et utilitaires
 
         /// <summary>
-        /// Override de la méthode ToString pour afficher les informations d'un client
+        /// Redéfinition de la méthode ToString pour afficher les informations d'un client
         /// </summary>
         /// <returns>un String représentant le client </returns>     
 
