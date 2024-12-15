@@ -30,26 +30,26 @@ partial class ShipmentView {
         cancelBtn = new Button();
         centreTLP = new TableLayoutPanel();
         mainPanel = new Panel();
-        metaDataPanel = new Panel();
-        idLabel = new Label();
-        statusLabel = new Label();
-        serviceLabel = new Label();
-        trackingNumberLabel = new Label();
-        shippingOrderIdLabel = new Label();
-        dateCreationLabel = new Label();
-        dateModificationLabel = new Label();
-        dateCreationPicker = new DateTimePicker();
-        dateModificationPicker = new DateTimePicker();
-        trackingNumberValue = new TextBox();
-        shippinOrderIdValue = new TextBox();
-        idValue = new NumericUpDown();
+        shippingServiceValue = new ComboBox();
         statusValue = new ComboBox();
-        shippinServiceValue = new ComboBox();
+        idValue = new NumericUpDown();
+        shippinOrderIdValue = new TextBox();
+        trackingNumberValue = new TextBox();
+        shippingOrderIdLabel = new Label();
+        trackingNumberLabel = new Label();
+        serviceLabel = new Label();
+        statusLabel = new Label();
+        idLabel = new Label();
+        metaDataPanel = new Panel();
+        dateModificationPicker = new DateTimePicker();
+        dateCreationPicker = new DateTimePicker();
+        dateModificationLabel = new Label();
+        dateCreationLabel = new Label();
         panel1.SuspendLayout();
         centreTLP.SuspendLayout();
         mainPanel.SuspendLayout();
-        metaDataPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize) idValue).BeginInit();
+        metaDataPanel.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBarPanel
@@ -79,6 +79,7 @@ partial class ShipmentView {
         actionBtn.TabIndex = 1;
         actionBtn.Text = "PLACEHOLDER";
         actionBtn.UseVisualStyleBackColor = true;
+        actionBtn.Click += this.actionBtn_Click;
         // 
         // cancelBtn
         // 
@@ -89,6 +90,7 @@ partial class ShipmentView {
         cancelBtn.TabIndex = 0;
         cancelBtn.Text = "Cancel";
         cancelBtn.UseVisualStyleBackColor = true;
+        cancelBtn.Click += this.cancelBtn_Click;
         // 
         // centreTLP
         // 
@@ -107,7 +109,7 @@ partial class ShipmentView {
         // 
         // mainPanel
         // 
-        mainPanel.Controls.Add(shippinServiceValue);
+        mainPanel.Controls.Add(shippingServiceValue);
         mainPanel.Controls.Add(statusValue);
         mainPanel.Controls.Add(idValue);
         mainPanel.Controls.Add(shippinOrderIdValue);
@@ -124,6 +126,92 @@ partial class ShipmentView {
         mainPanel.Size = new Size(614, 305);
         mainPanel.TabIndex = 0;
         // 
+        // shippingServiceValue
+        // 
+        shippingServiceValue.FormattingEnabled = true;
+        shippingServiceValue.Items.AddRange(new object[] { "    FedEx", "    Purolator", "    PostesCanada" });
+        shippingServiceValue.Location = new Point(219, 91);
+        shippingServiceValue.Name = "shippingServiceValue";
+        shippingServiceValue.Size = new Size(220, 23);
+        shippingServiceValue.TabIndex = 13;
+        // 
+        // statusValue
+        // 
+        statusValue.FormattingEnabled = true;
+        statusValue.Items.AddRange(new object[] { "    New", "    PickedUp", "    Delivered" });
+        statusValue.Location = new Point(219, 55);
+        statusValue.Name = "statusValue";
+        statusValue.Size = new Size(220, 23);
+        statusValue.TabIndex = 12;
+        // 
+        // idValue
+        // 
+        idValue.Location = new Point(219, 20);
+        idValue.Name = "idValue";
+        idValue.Size = new Size(220, 23);
+        idValue.TabIndex = 9;
+        // 
+        // shippinOrderIdValue
+        // 
+        shippinOrderIdValue.Location = new Point(219, 160);
+        shippinOrderIdValue.Name = "shippinOrderIdValue";
+        shippinOrderIdValue.PlaceholderText = "Shipping Order Id";
+        shippinOrderIdValue.Size = new Size(220, 23);
+        shippinOrderIdValue.TabIndex = 8;
+        // 
+        // trackingNumberValue
+        // 
+        trackingNumberValue.Location = new Point(219, 125);
+        trackingNumberValue.Name = "trackingNumberValue";
+        trackingNumberValue.PlaceholderText = "Shipment Tracking Number";
+        trackingNumberValue.Size = new Size(220, 23);
+        trackingNumberValue.TabIndex = 7;
+        // 
+        // shippingOrderIdLabel
+        // 
+        shippingOrderIdLabel.Location = new Point(3, 161);
+        shippingOrderIdLabel.Name = "shippingOrderIdLabel";
+        shippingOrderIdLabel.Size = new Size(210, 25);
+        shippingOrderIdLabel.TabIndex = 6;
+        shippingOrderIdLabel.Text = "Shipping Order Id:";
+        shippingOrderIdLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // trackingNumberLabel
+        // 
+        trackingNumberLabel.Location = new Point(3, 125);
+        trackingNumberLabel.Name = "trackingNumberLabel";
+        trackingNumberLabel.Size = new Size(210, 25);
+        trackingNumberLabel.TabIndex = 5;
+        trackingNumberLabel.Text = "Tracking Number:";
+        trackingNumberLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // serviceLabel
+        // 
+        serviceLabel.Location = new Point(3, 89);
+        serviceLabel.Name = "serviceLabel";
+        serviceLabel.Size = new Size(210, 25);
+        serviceLabel.TabIndex = 4;
+        serviceLabel.Text = "Shipping Service:";
+        serviceLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // statusLabel
+        // 
+        statusLabel.Location = new Point(3, 53);
+        statusLabel.Name = "statusLabel";
+        statusLabel.Size = new Size(210, 25);
+        statusLabel.TabIndex = 3;
+        statusLabel.Text = "Status:";
+        statusLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
+        // idLabel
+        // 
+        idLabel.Location = new Point(3, 17);
+        idLabel.Name = "idLabel";
+        idLabel.Size = new Size(210, 25);
+        idLabel.TabIndex = 2;
+        idLabel.Text = "Id:";
+        idLabel.TextAlign = ContentAlignment.MiddleRight;
+        // 
         // metaDataPanel
         // 
         metaDataPanel.Controls.Add(dateModificationPicker);
@@ -135,59 +223,19 @@ partial class ShipmentView {
         metaDataPanel.Size = new Size(608, 99);
         metaDataPanel.TabIndex = 1;
         // 
-        // idLabel
+        // dateModificationPicker
         // 
-        idLabel.Location = new Point(3, 17);
-        idLabel.Name = "idLabel";
-        idLabel.Size = new Size(210, 25);
-        idLabel.TabIndex = 2;
-        idLabel.Text = "Id:";
-        idLabel.TextAlign = ContentAlignment.MiddleRight;
+        dateModificationPicker.Location = new Point(216, 59);
+        dateModificationPicker.Name = "dateModificationPicker";
+        dateModificationPicker.Size = new Size(220, 23);
+        dateModificationPicker.TabIndex = 10;
         // 
-        // statusLabel
+        // dateCreationPicker
         // 
-        statusLabel.Location = new Point(3, 53);
-        statusLabel.Name = "statusLabel";
-        statusLabel.Size = new Size(210, 25);
-        statusLabel.TabIndex = 3;
-        statusLabel.Text = "Status:";
-        statusLabel.TextAlign = ContentAlignment.MiddleRight;
-        // 
-        // serviceLabel
-        // 
-        serviceLabel.Location = new Point(3, 89);
-        serviceLabel.Name = "serviceLabel";
-        serviceLabel.Size = new Size(210, 25);
-        serviceLabel.TabIndex = 4;
-        serviceLabel.Text = "Shipping Service:";
-        serviceLabel.TextAlign = ContentAlignment.MiddleRight;
-        // 
-        // trackingNumberLabel
-        // 
-        trackingNumberLabel.Location = new Point(3, 125);
-        trackingNumberLabel.Name = "trackingNumberLabel";
-        trackingNumberLabel.Size = new Size(210, 25);
-        trackingNumberLabel.TabIndex = 5;
-        trackingNumberLabel.Text = "Tracking Number:";
-        trackingNumberLabel.TextAlign = ContentAlignment.MiddleRight;
-        // 
-        // shippingOrderIdLabel
-        // 
-        shippingOrderIdLabel.Location = new Point(3, 161);
-        shippingOrderIdLabel.Name = "shippingOrderIdLabel";
-        shippingOrderIdLabel.Size = new Size(210, 25);
-        shippingOrderIdLabel.TabIndex = 6;
-        shippingOrderIdLabel.Text = "Shipping Order Id:";
-        shippingOrderIdLabel.TextAlign = ContentAlignment.MiddleRight;
-        // 
-        // dateCreationLabel
-        // 
-        dateCreationLabel.Location = new Point(3, 14);
-        dateCreationLabel.Name = "dateCreationLabel";
-        dateCreationLabel.Size = new Size(207, 25);
-        dateCreationLabel.TabIndex = 7;
-        dateCreationLabel.Text = "Date Creation:";
-        dateCreationLabel.TextAlign = ContentAlignment.MiddleRight;
+        dateCreationPicker.Location = new Point(216, 16);
+        dateCreationPicker.Name = "dateCreationPicker";
+        dateCreationPicker.Size = new Size(220, 23);
+        dateCreationPicker.TabIndex = 9;
         // 
         // dateModificationLabel
         // 
@@ -198,60 +246,14 @@ partial class ShipmentView {
         dateModificationLabel.Text = "Date Modification:";
         dateModificationLabel.TextAlign = ContentAlignment.MiddleRight;
         // 
-        // dateCreationPicker
+        // dateCreationLabel
         // 
-        dateCreationPicker.Location = new Point(216, 16);
-        dateCreationPicker.Name = "dateCreationPicker";
-        dateCreationPicker.Size = new Size(220, 23);
-        dateCreationPicker.TabIndex = 9;
-        // 
-        // dateModificationPicker
-        // 
-        dateModificationPicker.Location = new Point(216, 59);
-        dateModificationPicker.Name = "dateModificationPicker";
-        dateModificationPicker.Size = new Size(220, 23);
-        dateModificationPicker.TabIndex = 10;
-        // 
-        // trackingNumberValue
-        // 
-        trackingNumberValue.Location = new Point(219, 125);
-        trackingNumberValue.Name = "trackingNumberValue";
-        trackingNumberValue.PlaceholderText = "Shipment Tracking Number";
-        trackingNumberValue.Size = new Size(220, 23);
-        trackingNumberValue.TabIndex = 7;
-        // 
-        // shippinOrderIdValue
-        // 
-        shippinOrderIdValue.Location = new Point(219, 160);
-        shippinOrderIdValue.Name = "shippinOrderIdValue";
-        shippinOrderIdValue.PlaceholderText = "Shipping Order Id";
-        shippinOrderIdValue.Size = new Size(220, 23);
-        shippinOrderIdValue.TabIndex = 8;
-        // 
-        // idValue
-        // 
-        idValue.Location = new Point(219, 20);
-        idValue.Name = "idValue";
-        idValue.Size = new Size(220, 23);
-        idValue.TabIndex = 9;
-        // 
-        // statusValue
-        // 
-        statusValue.FormattingEnabled = true;
-        statusValue.Items.AddRange(new object[] { "New", "PickedUp", "Delivered" });
-        statusValue.Location = new Point(219, 55);
-        statusValue.Name = "statusValue";
-        statusValue.Size = new Size(220, 23);
-        statusValue.TabIndex = 10;
-        // 
-        // shippinServiceValue
-        // 
-        shippinServiceValue.FormattingEnabled = true;
-        shippinServiceValue.Items.AddRange(new object[] { "FedEx", "Purolator", "PostesCanada" });
-        shippinServiceValue.Location = new Point(219, 90);
-        shippinServiceValue.Name = "shippinServiceValue";
-        shippinServiceValue.Size = new Size(220, 23);
-        shippinServiceValue.TabIndex = 11;
+        dateCreationLabel.Location = new Point(3, 14);
+        dateCreationLabel.Name = "dateCreationLabel";
+        dateCreationLabel.Size = new Size(207, 25);
+        dateCreationLabel.TabIndex = 7;
+        dateCreationLabel.Text = "Date Creation:";
+        dateCreationLabel.TextAlign = ContentAlignment.MiddleRight;
         // 
         // ShipmentView
         // 
@@ -268,8 +270,8 @@ partial class ShipmentView {
         centreTLP.ResumeLayout(false);
         mainPanel.ResumeLayout(false);
         mainPanel.PerformLayout();
-        metaDataPanel.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize) idValue).EndInit();
+        metaDataPanel.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 
@@ -295,5 +297,5 @@ partial class ShipmentView {
     private TextBox shippinOrderIdValue;
     private NumericUpDown idValue;
     private ComboBox statusValue;
-    private ComboBox shippinServiceValue;
+    private ComboBox shippingServiceValue;
 }
