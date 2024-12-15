@@ -25,7 +25,14 @@ internal class WsysDbContext : DbContext {
     /// </summary>
     public DbSet<Role> Roles { get; set; }
 
+    /// <summary>
+    /// Propriété faisant le pont entre l'entité Product et la table Products dans la base de données par EF Core
+    /// </summary>
     public DbSet<Product> Products { get; set; }
+
+    /// <summary>
+    /// Propriété faisant le pont entre l'entité Supplier et la table Suppliers dans la base de données par EF Core
+    /// </summary>
     public DbSet<Supplier> Suppliers { get; set; }
      
     public DbSet<Client> Clients { get; set; }
@@ -910,7 +917,7 @@ internal class WsysDbContext : DbContext {
            .HasConversion(utcDateTimeConverter)
            .IsRequired(false);
 
-        
+
 
         #endregion
 
@@ -918,12 +925,14 @@ internal class WsysDbContext : DbContext {
         #region CONFIGURATION DES RELATIONS ENTRE ENTITES
 
         #region RELATION COTÉ PRODUCT
+        // Relation un à plusieurs entre Product et Client coté Product
         _ = modelBuilder.Entity<Product>()
             .HasOne(product => product.Client)
             .WithMany(client => client.Products)
             .HasForeignKey(product => product.ClientId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        // Relation un à plusieurs entre Product et Supplier coté Product
         _ = modelBuilder.Entity<Product>()
             .HasOne(product => product.Supplier)
             .WithMany(supplier => supplier.Products)
@@ -933,6 +942,7 @@ internal class WsysDbContext : DbContext {
         # endregion
 
         #region RELATION COTÉ SUPPLIER
+        // Relation plusieurs à un entre Supplier et Product coté Supplier
         _ = modelBuilder.Entity<Supplier>()
             .HasMany(supplier => supplier.Products)
             .WithOne(product => product.Supplier)
@@ -1217,16 +1227,26 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<User>()
             .HasData(user1, user2, user3);
 
-        #endregion 
+        #endregion
 
+        #region Product et Supplier
         // Ajout des données de Supplier 
         Supplier sup1 = new Supplier("THE ULTIMATE SUPPLIER", "Test", "Jonhy", "jonhytest@gmail.com", "4503497684") { SupplierId = 1 };
 
+        // Ajout des données de Product
+        Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) { ProductId = 1 };
+
+        pro1.Supplier = sup1;
+        sup1.Products.Add(pro1);
+
+        _ = modelBuilder.Entity<Product>().HasData(pro1);
+        _ = modelBuilder.Entity<Supplier>().HasData(sup1);
+
+        #endregion
+
+
         // Ajout des données de Clients 
         Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450",10) { Id = 1 };
-
-        // Ajout des données de Product
-        Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) { ProductId= 1 };
 
         #endregion
 

@@ -8,23 +8,64 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain
 {
+    /// <summary>
+    /// Class représentant un Product
+    /// </summary>
     public class Product
     {
         // Constants 
+        /// <summary>
+        /// Longueur Maximale du Product Name
+        /// </summary>
         public const int PRODUCT_NAME_MAX_LENGTH = 50;
+        /// <summary>
+        /// Longueur Maximale de la description du produit
+        /// </summary>
         public const int DESC_MAX_LENGTH = 256;
+        /// <summary>
+        /// Longueur Maximale du code UPC du produit
+        /// </summary>
         public const int CODE_UPC_MAX_LENGTH = 12;
+        /// <summary>
+        /// Longueur Maximale du Picture Name du produit
+        /// </summary>
         public const int PICTURE_NAME_MAX_LENGTH = 256;
+        /// <summary>
+        /// Longueur Maximale du supplier code du produit
+        /// </summary>
         public const int SUPPLIER_CODE_MAX_LENGTH = 128;
 
         // Private properties 
+
+        /// <summary>
+        /// Champ privé pour le product name
+        /// </summary>
         private string productName = null!;
+        /// <summary>
+        /// Champ privé pour la description du produit
+        /// </summary>
         private string desc = null!;
+        /// <summary>
+        /// Champ privé pour le code UPC du produit
+        /// </summary>
         private string codeUPC = null!;
+        /// <summary>
+        /// Champ privé pour le picture name du produit
+        /// </summary>
         private string pictureName = null!;
+        /// <summary>
+        /// Champ privé pour le code du supplier
+        /// </summary>
         private string supplierCode = null!;
 
+        /// <summary>
+        /// Le id du product
+        /// </summary>
         public int ProductId { get; set; }
+
+        /// <summary>
+        /// Le nom du produit
+        /// </summary>
         public string ProductName { get {
                 return this.productName;
             } set {
@@ -32,6 +73,10 @@ namespace _420DA3_A24_Projet.Business.Domain
                     ? throw new ArgumentOutOfRangeException($"Product Name must be under {PRODUCT_NAME_MAX_LENGTH} character!")
                     : value;
             } }
+        
+        /// <summary>
+        /// La description du produit
+        /// </summary>
         public string Desc { get {
                 return this.desc;
             } set {
@@ -39,6 +84,10 @@ namespace _420DA3_A24_Projet.Business.Domain
                     ? throw new ArgumentOutOfRangeException($"Product Desc must be under {DESC_MAX_LENGTH} characters!")
                     : value;
             } }
+        
+        /// <summary>
+        /// le code UPC du produit
+        /// </summary>
         public string CodeUPC { get {
                 return this.codeUPC;
             } set {
@@ -46,6 +95,10 @@ namespace _420DA3_A24_Projet.Business.Domain
                     ? throw new ArgumentOutOfRangeException($"Product Code UPC must be exactly {CODE_UPC_MAX_LENGTH} characters!")
                     : value;
             } }
+        
+        /// <summary>
+        /// Picture name du produit
+        /// </summary>
         public String? PictureName { get {
                 return this.pictureName;
             } set {
@@ -53,7 +106,15 @@ namespace _420DA3_A24_Projet.Business.Domain
                     ? throw new ArgumentOutOfRangeException($"Product Picture Name must be under {PICTURE_NAME_MAX_LENGTH} characters!")
                     : value;
             } }
+        
+        /// <summary>
+        /// Le id du client
+        /// </summary>
         public int ClientId { get; set; }
+
+        /// <summary>
+        /// Le id du supplier 
+        /// </summary>
         public int SupplierId { get; set; }
         public string SupplierCode { get {
                 return this.supplierCode;
