@@ -95,5 +95,43 @@ internal class WarehouseService {
         return this.dao.GetAll(excludeDeleted);
     }
 
-    // TODO: OpenFor WarehouseService
+    /// <summary>
+    /// Ouvre la vue pour la création d'un nouveau warehouse
+    /// </summary>
+    /// <returns></returns>
+    public Warehouse? OpenViewForCreation() {
+        Warehouse warehouse = new Warehouse();
+        DialogResult result = this.view.OpenForCreaton(warehouse);
+        return result == DialogResult.OK ? warehouse : null;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour la modification d'un warehouse
+    /// </summary>
+    /// <param name="warehouse">L'objet à modifier</param>
+    /// <returns>La vue or null</returns>
+    public Warehouse? OpenViewForUpdate(Warehouse warehouse) {
+        DialogResult result = this.view.OpenForModification(warehouse);
+        return result == DialogResult.OK ? warehouse : null;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour la visaulization d'un warehouse
+    /// </summary>
+    /// <param name="warehouse">L'objet à visualiser</param>
+    /// <returns>La vue or null</returns>
+    public Warehouse? OpenForView(Warehouse warehouse) {
+        _ = this.view.OpenForView(warehouse);
+        return warehouse;
+    }
+
+    /// <summary>
+    /// Ouvre la vue pour supprimer d'un warehouse
+    /// </summary>
+    /// <param name="warehouse">L'objet à supprimer</param>
+    /// <returns>La vue or null</returns>
+    public Warehouse? OpenViewForDelete(Warehouse warehouse) {
+        DialogResult result = this.view.OpenForDelete(warehouse);
+        return result == DialogResult.OK ? warehouse: null;
+    }
 }
