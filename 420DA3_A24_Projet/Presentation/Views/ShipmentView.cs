@@ -139,15 +139,15 @@ internal partial class ShipmentView : Form {
     private void actionBtn_Click(object sender, EventArgs e) {
         switch (action) {
             case ViewActionsEnum.Creation:
-                this.currentInstance.Status = Enum.Parse<ShipmentStatusEnum>(statusValue.SelectedItem.ToString());
+                this.currentInstance.Status = Enum.Parse<ShipmentStatusEnum>(this.statusValue.SelectedItem.ToString());
                 this.currentInstance.ShippingService = Enum.Parse<ShippingProvidersEnum>(shippingServiceValue.SelectedItem.ToString());
                 this.currentInstance.TrackingNumber = this.trackingNumberValue.Text;
                 this.currentInstance.ShippingOrderId = int.Parse(this.shippingOrderIdLabel.Text);
-                this.parentApp.ShipmentService.CreateShipment(this.currentInstance);
+                _ = this.parentApp.ShipmentService.CreateShipment(this.currentInstance);
                 break;
             case ViewActionsEnum.Edition:
-                this.currentInstance.Status = Enum.Parse<ShipmentStatusEnum>(statusValue.SelectedItem.ToString());
-                this.currentInstance.ShippingService = Enum.Parse<ShippingProvidersEnum>(shippingServiceValue.SelectedItem.ToString());
+                this.currentInstance.Status = Enum.Parse<ShipmentStatusEnum>(this.statusValue.SelectedItem.ToString());
+                this.currentInstance.ShippingService = Enum.Parse<ShippingProvidersEnum>(this.shippingServiceValue.SelectedItem.ToString());
                 this.currentInstance.TrackingNumber = this.trackingNumberValue.Text;
                 this.currentInstance.ShippingOrderId = int.Parse(this.shippingOrderIdLabel.Text);
                 _ = this.parentApp.ShipmentService.UpdateShipment(this.currentInstance);

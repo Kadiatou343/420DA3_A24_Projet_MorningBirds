@@ -25,6 +25,7 @@ partial class OffEmployeeMainMenu {
     /// </summary>
     private void InitializeComponent() {
         this.topBarPanel = new Panel();
+        this.greetingLabel = new Label();
         this.botttomBarPanel = new Panel();
         this.logoutButton = new Button();
         this.primaryTableLayoutPanel = new TableLayoutPanel();
@@ -70,7 +71,6 @@ partial class OffEmployeeMainMenu {
         this.clientSearchPanel = new Panel();
         this.clientListBox = new ListBox();
         this.clientSearchTextBox = new TextBox();
-        this.greetingLabel = new Label();
         this.topBarPanel.SuspendLayout();
         this.botttomBarPanel.SuspendLayout();
         this.primaryTableLayoutPanel.SuspendLayout();
@@ -103,6 +103,16 @@ partial class OffEmployeeMainMenu {
         this.topBarPanel.Name = "topBarPanel";
         this.topBarPanel.Size = new Size(1362, 50);
         this.topBarPanel.TabIndex = 0;
+        // 
+        // greetingLabel
+        // 
+        this.greetingLabel.AutoSize = true;
+        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.greetingLabel.Location = new Point(579, 11);
+        this.greetingLabel.Name = "greetingLabel";
+        this.greetingLabel.Size = new Size(205, 28);
+        this.greetingLabel.TabIndex = 1;
+        this.greetingLabel.Text = "Bonjour UtilisateurX";
         // 
         // botttomBarPanel
         // 
@@ -165,6 +175,7 @@ partial class OffEmployeeMainMenu {
         this.soListBox.Name = "soListBox";
         this.soListBox.Size = new Size(677, 407);
         this.soListBox.TabIndex = 3;
+        this.soListBox.SelectedIndexChanged += this.SoListBox_SelectedIndexChanged;
         // 
         // searchSOTextBox
         // 
@@ -175,6 +186,7 @@ partial class OffEmployeeMainMenu {
         this.searchSOTextBox.PlaceholderText = "Rechercher un ordre d'expédition";
         this.searchSOTextBox.Size = new Size(677, 31);
         this.searchSOTextBox.TabIndex = 2;
+        this.searchSOTextBox.TextChanged += this.SearchSOTextBox_TextChanged;
         // 
         // createSOPanel
         // 
@@ -195,6 +207,7 @@ partial class OffEmployeeMainMenu {
         this.createSoButton.TabIndex = 2;
         this.createSoButton.Text = "Créer un ordre d'expédition";
         this.createSoButton.UseVisualStyleBackColor = true;
+        this.createSoButton.Click += this.CreateSoButton_Click;
         // 
         // poActionButttonsPanel
         // 
@@ -245,6 +258,7 @@ partial class OffEmployeeMainMenu {
         this.deleteSoButton.TabIndex = 2;
         this.deleteSoButton.Text = "Supprimer ordre d'expédition";
         this.deleteSoButton.UseVisualStyleBackColor = true;
+        this.deleteSoButton.Click += this.DeleteSoButton_Click;
         // 
         // updateSoButtton
         // 
@@ -257,6 +271,7 @@ partial class OffEmployeeMainMenu {
         this.updateSoButtton.TabIndex = 1;
         this.updateSoButtton.Text = "Modifier ordre d'expédition";
         this.updateSoButtton.UseVisualStyleBackColor = true;
+        this.updateSoButtton.Click += this.UpdateSoButtton_Click;
         // 
         // seeSoDetailsButton
         // 
@@ -269,6 +284,7 @@ partial class OffEmployeeMainMenu {
         this.seeSoDetailsButton.TabIndex = 0;
         this.seeSoDetailsButton.Text = "Voir ordre d'expédition détails";
         this.seeSoDetailsButton.UseVisualStyleBackColor = true;
+        this.seeSoDetailsButton.Click += this.SeeSoDetailsButton_Click;
         // 
         // enititesTableLayoutPanel
         // 
@@ -345,7 +361,7 @@ partial class OffEmployeeMainMenu {
         this.deleteSupplierButton.TabIndex = 3;
         this.deleteSupplierButton.Text = "Supprimer fournisseur";
         this.deleteSupplierButton.UseVisualStyleBackColor = true;
-        this.deleteSupplierButton.Click += this.deleteSupplierButton_Click;
+        this.deleteSupplierButton.Click += this.DeleteSupplierButton_Click;
         // 
         // updateSupplierButton
         // 
@@ -358,7 +374,7 @@ partial class OffEmployeeMainMenu {
         this.updateSupplierButton.TabIndex = 2;
         this.updateSupplierButton.Text = "Modifier fournisseur";
         this.updateSupplierButton.UseVisualStyleBackColor = true;
-        this.updateSupplierButton.Click += this.updateSupplierButton_Click;
+        this.updateSupplierButton.Click += this.UpdateSupplierButton_Click;
         // 
         // createSupplierButton
         // 
@@ -371,7 +387,7 @@ partial class OffEmployeeMainMenu {
         this.createSupplierButton.TabIndex = 0;
         this.createSupplierButton.Text = "Créer un fournisseur";
         this.createSupplierButton.UseVisualStyleBackColor = true;
-        this.createSupplierButton.Click += this.createSupplierButton_Click;
+        this.createSupplierButton.Click += this.CreateSupplierButton_Click;
         // 
         // seeSupplierDetailsButton
         // 
@@ -384,7 +400,7 @@ partial class OffEmployeeMainMenu {
         this.seeSupplierDetailsButton.TabIndex = 1;
         this.seeSupplierDetailsButton.Text = "Voir fournisseur détails";
         this.seeSupplierDetailsButton.UseVisualStyleBackColor = true;
-        this.seeSupplierDetailsButton.Click += this.seeSupplierDetailsButton_Click;
+        this.seeSupplierDetailsButton.Click += this.SeeSupplierDetailsButton_Click;
         // 
         // supplierSearchPanel
         // 
@@ -407,7 +423,7 @@ partial class OffEmployeeMainMenu {
         this.supplierListBox.Name = "supplierListBox";
         this.supplierListBox.Size = new Size(332, 175);
         this.supplierListBox.TabIndex = 2;
-        this.supplierListBox.SelectedIndexChanged += this.supplierListBox_SelectedIndexChanged;
+        this.supplierListBox.SelectedIndexChanged += this.SupplierListBox_SelectedIndexChanged;
         // 
         // supplierSearchTextBox
         // 
@@ -418,7 +434,7 @@ partial class OffEmployeeMainMenu {
         this.supplierSearchTextBox.PlaceholderText = "Rechercher un fournisseur";
         this.supplierSearchTextBox.Size = new Size(332, 31);
         this.supplierSearchTextBox.TabIndex = 1;
-        this.supplierSearchTextBox.TextChanged += this.supplierSearchTextBox_TextChanged;
+        this.supplierSearchTextBox.TextChanged += this.SupplierSearchTextBox_TextChanged;
         // 
         // productManagementTbLytPanel
         // 
@@ -477,7 +493,7 @@ partial class OffEmployeeMainMenu {
         this.deleteProductButton.TabIndex = 3;
         this.deleteProductButton.Text = "Supprimer produit";
         this.deleteProductButton.UseVisualStyleBackColor = true;
-        this.deleteProductButton.Click += this.deleteProductButton_Click;
+        this.deleteProductButton.Click += this.DeleteProductButton_Click;
         // 
         // updateProductButton
         // 
@@ -490,7 +506,7 @@ partial class OffEmployeeMainMenu {
         this.updateProductButton.TabIndex = 2;
         this.updateProductButton.Text = "Modifier produit";
         this.updateProductButton.UseVisualStyleBackColor = true;
-        this.updateProductButton.Click += this.updateProductButton_Click;
+        this.updateProductButton.Click += this.UpdateProductButton_Click;
         // 
         // createProductButton
         // 
@@ -503,7 +519,7 @@ partial class OffEmployeeMainMenu {
         this.createProductButton.TabIndex = 0;
         this.createProductButton.Text = "Créer un produit";
         this.createProductButton.UseVisualStyleBackColor = true;
-        this.createProductButton.Click += this.createProductButton_Click;
+        this.createProductButton.Click += this.CreateProductButton_Click;
         // 
         // seeProductDetailsButton
         // 
@@ -516,7 +532,7 @@ partial class OffEmployeeMainMenu {
         this.seeProductDetailsButton.TabIndex = 1;
         this.seeProductDetailsButton.Text = "Voir produit détails";
         this.seeProductDetailsButton.UseVisualStyleBackColor = true;
-        this.seeProductDetailsButton.Click += this.seeProductDetailsButton_Click;
+        this.seeProductDetailsButton.Click += this.SeeProductDetailsButton_Click;
         // 
         // productSearchPanel
         // 
@@ -539,7 +555,7 @@ partial class OffEmployeeMainMenu {
         this.productListBox.Name = "productListBox";
         this.productListBox.Size = new Size(332, 173);
         this.productListBox.TabIndex = 2;
-        this.productListBox.SelectedIndexChanged += this.productListBox_SelectedIndexChanged;
+        this.productListBox.SelectedIndexChanged += this.ProductListBox_SelectedIndexChanged;
         // 
         // productSearchTextBox
         // 
@@ -550,7 +566,7 @@ partial class OffEmployeeMainMenu {
         this.productSearchTextBox.PlaceholderText = "Rechercher un produit";
         this.productSearchTextBox.Size = new Size(332, 31);
         this.productSearchTextBox.TabIndex = 1;
-        this.productSearchTextBox.TextChanged += this.productSearchTextBox_TextChanged;
+        this.productSearchTextBox.TextChanged += this.ProductSearchTextBox_TextChanged;
         // 
         // clientManagementTbLytPanel
         // 
@@ -677,16 +693,6 @@ partial class OffEmployeeMainMenu {
         this.clientSearchTextBox.PlaceholderText = "Rechercher un client";
         this.clientSearchTextBox.Size = new Size(332, 31);
         this.clientSearchTextBox.TabIndex = 0;
-        // 
-        // greetingLabel
-        // 
-        this.greetingLabel.AutoSize = true;
-        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.greetingLabel.Location = new Point(579, 11);
-        this.greetingLabel.Name = "greetingLabel";
-        this.greetingLabel.Size = new Size(205, 28);
-        this.greetingLabel.TabIndex = 1;
-        this.greetingLabel.Text = "Bonjour UtilisateurX";
         // 
         // OffEmployeeMainMenu
         // 

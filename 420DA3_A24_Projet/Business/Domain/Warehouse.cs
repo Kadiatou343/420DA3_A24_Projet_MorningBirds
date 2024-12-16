@@ -89,6 +89,11 @@ public class Warehouse {
         this.RowVersion = rowVersion;
     }
 
+    /// <summary>
+    /// Constructeur par default
+    /// </summary>
+    public Warehouse() { }
+
     #region Methodes
 
     /// <summary>
