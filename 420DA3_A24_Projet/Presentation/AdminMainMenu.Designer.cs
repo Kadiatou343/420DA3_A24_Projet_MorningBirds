@@ -492,6 +492,7 @@ partial class AdminMainMenu {
         this.warehouseListBox.Name = "warehouseListBox";
         this.warehouseListBox.Size = new Size(265, 135);
         this.warehouseListBox.TabIndex = 6;
+        this.warehouseListBox.SelectedIndexChanged += this.WarehouseListBox_SelectedIndexChanged;
         // 
         // whActionTableLayout
         // 
@@ -530,6 +531,7 @@ partial class AdminMainMenu {
         this.seeWhDetailsButton.Text = "Voir details";
         this.seeWhDetailsButton.TextAlign = ContentAlignment.TopCenter;
         this.seeWhDetailsButton.UseVisualStyleBackColor = true;
+        this.seeWhDetailsButton.Click += this.SeeWhDetailsButton_Click;
         // 
         // updateWarehouseBtn
         // 
@@ -541,6 +543,7 @@ partial class AdminMainMenu {
         this.updateWarehouseBtn.Text = "Modifier";
         this.updateWarehouseBtn.TextAlign = ContentAlignment.TopCenter;
         this.updateWarehouseBtn.UseVisualStyleBackColor = true;
+        this.updateWarehouseBtn.Click += this.UpdateWarehouseBtn_Click;
         // 
         // deleteWarehouseBtn
         // 
@@ -553,6 +556,7 @@ partial class AdminMainMenu {
         this.deleteWarehouseBtn.Text = "Supprimer";
         this.deleteWarehouseBtn.TextAlign = ContentAlignment.TopCenter;
         this.deleteWarehouseBtn.UseVisualStyleBackColor = true;
+        this.deleteWarehouseBtn.Click += this.DeleteWarehouseBtn_Click;
         // 
         // searchWhseTextBox
         // 
@@ -563,6 +567,7 @@ partial class AdminMainMenu {
         this.searchWhseTextBox.PlaceholderText = "Rechercher un entrepôt";
         this.searchWhseTextBox.Size = new Size(265, 31);
         this.searchWhseTextBox.TabIndex = 4;
+        this.searchWhseTextBox.TextChanged += this.SearchWhseTextBox_TextChanged;
         // 
         // whCreateTableLayout
         // 
@@ -588,6 +593,7 @@ partial class AdminMainMenu {
         this.createWarehouseButton.TabIndex = 0;
         this.createWarehouseButton.Text = "Créer un entrepôt";
         this.createWarehouseButton.UseVisualStyleBackColor = true;
+        this.createWarehouseButton.Click += this.CreateWarehouseButton_Click;
         // 
         // warehousePanelHeader
         // 
@@ -621,6 +627,7 @@ partial class AdminMainMenu {
         this.shipmentListBox.Name = "shipmentListBox";
         this.shipmentListBox.Size = new Size(265, 205);
         this.shipmentListBox.TabIndex = 8;
+        this.shipmentListBox.SelectedIndexChanged += this.ShipmentListBox_SelectedIndexChanged;
         // 
         // shtActionTableLayout
         // 
@@ -646,6 +653,7 @@ partial class AdminMainMenu {
         this.seeShipmentDetailsButton.TabIndex = 0;
         this.seeShipmentDetailsButton.Text = "Voir Détails";
         this.seeShipmentDetailsButton.UseVisualStyleBackColor = true;
+        this.seeShipmentDetailsButton.Click += this.SeeShipmentDetailsButton_Click;
         // 
         // searchShipmentTextBox
         // 
@@ -656,6 +664,7 @@ partial class AdminMainMenu {
         this.searchShipmentTextBox.PlaceholderText = "Rechercher une expédition";
         this.searchShipmentTextBox.Size = new Size(265, 31);
         this.searchShipmentTextBox.TabIndex = 5;
+        this.searchShipmentTextBox.TextChanged += this.SearchShipmentTextBox_TextChanged;
         // 
         // shptCreateTableLayout
         // 
@@ -681,6 +690,7 @@ partial class AdminMainMenu {
         this.createShipmentButton.TabIndex = 0;
         this.createShipmentButton.Text = "Créer expédition";
         this.createShipmentButton.UseVisualStyleBackColor = true;
+        this.createShipmentButton.Click += this.CreateShipmentButton_Click;
         // 
         // shipmentPanelHeader
         // 

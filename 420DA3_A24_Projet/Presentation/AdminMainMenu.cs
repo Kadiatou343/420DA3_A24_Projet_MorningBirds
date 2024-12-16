@@ -490,4 +490,197 @@ internal partial class AdminMainMenu : Form {
     }
 
     #endregion
+
+    #region Gestion des entrepôts 
+
+    /// <summary>
+    /// Charger une liste d'entrepôts dans la list box fait pour
+    /// </summary>
+    /// <param name="warehouses">La liste d'entrepôts fournie</param>
+    private void LoadWarehousesInListBox(List<Warehouse> warehouses) {
+        this.warehouseListBox.Items.Clear();
+        this.warehouseListBox.SelectedItem = null;
+        this.warehouseListBox.SelectedIndex = -1;
+
+        foreach (Warehouse warehouse in warehouses) {
+            _ = this.warehouseListBox.Items.Add(warehouse);
+        }
+    }
+
+    /// <summary>
+    /// Activer les boutons d'actions pour les entrepôts
+    /// </summary>
+    private void ActivateWarehouseActionButton() {
+        this.seeWhDetailsButton.Enabled = true;
+        this.updateWarehouseBtn.Enabled = true;
+        this.deleteWarehouseBtn.Enabled = true;
+    }
+
+    /// <summary>
+    /// Desactiver les boutons d'actions pour les entrepôts
+    /// </summary>
+    private void DeactivateWarehouseActionButton() {
+        this.seeWhDetailsButton.Enabled = false;
+        this.updateWarehouseBtn.Enabled = false;
+        this.deleteWarehouseBtn.Enabled = false;
+    }
+
+    /// <summary>
+    /// Declencher le processus de création d'un entrepôt
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void CreateWarehouseButton_Click(object sender, EventArgs e) {
+        _ = this.parentApp.WarehouseService.OpenViewForCreation();
+    }
+
+    /// <summary>
+    /// Declencher le processus de recherche d'entrepôts
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SearchWhseTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchWhseTextBox.Text.Trim();
+
+        this.LoadWarehousesInListBox(this.parentApp.WarehouseService.SearchWarehouse(filter));
+    }
+
+
+    /// <summary>
+    /// Activer les boutons d'action si un item est selectionné, dans le cas contraire
+    /// les desactiver, dans la list box des entrepôts
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void WarehouseListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        Warehouse? selectedWh = this.warehouseListBox.SelectedItem as Warehouse;
+
+        if (selectedWh != null) {
+            this.ActivateWarehouseActionButton();
+        } else {
+            this.DeactivateWarehouseActionButton();
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de visualisation d'un entrepôt
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SeeWhDetailsButton_Click(object sender, EventArgs e) {
+        Warehouse? selectedWh = this.warehouseListBox.SelectedItem as Warehouse;
+
+        if (selectedWh != null) {
+            _ = this.parentApp.WarehouseService.OpenForView(selectedWh);
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de mise à jour d'un entrepôt
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void UpdateWarehouseBtn_Click(object sender, EventArgs e) {
+        Warehouse? selectedWh = this.warehouseListBox.SelectedItem as Warehouse;
+
+        if (selectedWh != null) {
+            _ = this.parentApp.WarehouseService.OpenViewForUpdate(selectedWh);
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de suppression d'un entrepôt
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DeleteWarehouseBtn_Click(object sender, EventArgs e) {
+        Warehouse? selectedWh = this.warehouseListBox.SelectedItem as Warehouse;
+
+        if (selectedWh != null) {
+            _ = this.parentApp.WarehouseService.OpenViewForDelete(selectedWh);
+        }
+    }
+
+    #endregion
+
+    #region Gestion des expéditions
+
+    /// <summary>
+    /// Charger une liste d'expéditions dans la list box fait pour
+    /// </summary>
+    /// <param name="shipments"></param>
+    private void LoadShipmentsInListBox(List<Shipment> shipments) {
+        this.shipmentListBox.Items.Clear();
+        this.shipmentListBox.SelectedItem = null;
+        this.shipmentListBox.SelectedIndex = -1;
+
+        foreach(Shipment shipment in shipments) {
+            _ = this.shipmentListBox.Items.Add(shipment);
+        }
+    }
+
+    /// <summary>
+    /// Activer le bouton d'action des expéditions
+    /// </summary>
+    private void ActivateShipmentActionButton() {
+        this.seeShipmentDetailsButton.Enabled = true;
+    }
+
+    /// <summary>
+    /// Desactiver le bouton d'action des expéditions
+    /// </summary>
+    private void DeactivateShipmentActionButton() {
+        this.seeShipmentDetailsButton.Enabled = false;
+    }
+
+    /// <summary>
+    /// Declencher le processus de création d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void CreateShipmentButton_Click(object sender, EventArgs e) {
+        _ = this.parentApp.ShipmentService.OpenViewForCreation();
+    }
+
+    /// <summary>
+    /// Declencher le processus de recherche d'expéditions
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SearchShipmentTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchShipmentTextBox.Text.Trim();
+
+        this.LoadShipmentsInListBox(this.parentApp.ShipmentService.SearchShipment(filter));
+    }
+
+    /// <summary>
+    /// Activer le bouton d'action si un item est selectionné, dans le cas contraire
+    /// les desactiver, dans la list box des expéditions
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ShipmentListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        Shipment? selectedShip = this.shipmentListBox.SelectedItem as Shipment;
+
+        if (selectedShip != null) {
+            this.ActivateShipmentActionButton();
+        } else {
+            this.DeactivateShipmentActionButton();
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de visualisation d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SeeShipmentDetailsButton_Click(object sender, EventArgs e) {
+        Shipment? selectedShip = this.shipmentListBox.SelectedItem as Shipment;
+
+        if (selectedShip != null) {
+            _ = this.parentApp.ShipmentService.OpenViewForView(selectedShip);
+        }
+    }
+
+    #endregion
 }
