@@ -361,7 +361,7 @@ partial class OffEmployeeMainMenu {
         this.deleteSupplierButton.TabIndex = 3;
         this.deleteSupplierButton.Text = "Supprimer fournisseur";
         this.deleteSupplierButton.UseVisualStyleBackColor = true;
-        this.deleteSupplierButton.Click += this.deleteSupplierButton_Click;
+        this.deleteSupplierButton.Click += this.DeleteSupplierButton_Click;
         // 
         // updateSupplierButton
         // 
@@ -374,7 +374,7 @@ partial class OffEmployeeMainMenu {
         this.updateSupplierButton.TabIndex = 2;
         this.updateSupplierButton.Text = "Modifier fournisseur";
         this.updateSupplierButton.UseVisualStyleBackColor = true;
-        this.updateSupplierButton.Click += this.updateSupplierButton_Click;
+        this.updateSupplierButton.Click += this.UpdateSupplierButton_Click;
         // 
         // createSupplierButton
         // 
@@ -387,7 +387,7 @@ partial class OffEmployeeMainMenu {
         this.createSupplierButton.TabIndex = 0;
         this.createSupplierButton.Text = "Créer un fournisseur";
         this.createSupplierButton.UseVisualStyleBackColor = true;
-        this.createSupplierButton.Click += this.createSupplierButton_Click;
+        this.createSupplierButton.Click += this.CreateSupplierButton_Click;
         // 
         // seeSupplierDetailsButton
         // 
@@ -400,7 +400,7 @@ partial class OffEmployeeMainMenu {
         this.seeSupplierDetailsButton.TabIndex = 1;
         this.seeSupplierDetailsButton.Text = "Voir fournisseur détails";
         this.seeSupplierDetailsButton.UseVisualStyleBackColor = true;
-        this.seeSupplierDetailsButton.Click += this.seeSupplierDetailsButton_Click;
+        this.seeSupplierDetailsButton.Click += this.SeeSupplierDetailsButton_Click;
         // 
         // supplierSearchPanel
         // 
@@ -423,7 +423,7 @@ partial class OffEmployeeMainMenu {
         this.supplierListBox.Name = "supplierListBox";
         this.supplierListBox.Size = new Size(332, 175);
         this.supplierListBox.TabIndex = 2;
-        this.supplierListBox.SelectedIndexChanged += this.supplierListBox_SelectedIndexChanged;
+        this.supplierListBox.SelectedIndexChanged += this.SupplierListBox_SelectedIndexChanged;
         // 
         // supplierSearchTextBox
         // 
@@ -434,7 +434,7 @@ partial class OffEmployeeMainMenu {
         this.supplierSearchTextBox.PlaceholderText = "Rechercher un fournisseur";
         this.supplierSearchTextBox.Size = new Size(332, 31);
         this.supplierSearchTextBox.TabIndex = 1;
-        this.supplierSearchTextBox.TextChanged += this.supplierSearchTextBox_TextChanged;
+        this.supplierSearchTextBox.TextChanged += this.SupplierSearchTextBox_TextChanged;
         // 
         // productManagementTbLytPanel
         // 
@@ -493,7 +493,7 @@ partial class OffEmployeeMainMenu {
         this.deleteProductButton.TabIndex = 3;
         this.deleteProductButton.Text = "Supprimer produit";
         this.deleteProductButton.UseVisualStyleBackColor = true;
-        this.deleteProductButton.Click += this.deleteProductButton_Click;
+        this.deleteProductButton.Click += this.DeleteProductButton_Click;
         // 
         // updateProductButton
         // 
@@ -506,7 +506,7 @@ partial class OffEmployeeMainMenu {
         this.updateProductButton.TabIndex = 2;
         this.updateProductButton.Text = "Modifier produit";
         this.updateProductButton.UseVisualStyleBackColor = true;
-        this.updateProductButton.Click += this.updateProductButton_Click;
+        this.updateProductButton.Click += this.UpdateProductButton_Click;
         // 
         // createProductButton
         // 
@@ -519,7 +519,7 @@ partial class OffEmployeeMainMenu {
         this.createProductButton.TabIndex = 0;
         this.createProductButton.Text = "Créer un produit";
         this.createProductButton.UseVisualStyleBackColor = true;
-        this.createProductButton.Click += this.createProductButton_Click;
+        this.createProductButton.Click += this.CreateProductButton_Click;
         // 
         // seeProductDetailsButton
         // 
@@ -532,7 +532,7 @@ partial class OffEmployeeMainMenu {
         this.seeProductDetailsButton.TabIndex = 1;
         this.seeProductDetailsButton.Text = "Voir produit détails";
         this.seeProductDetailsButton.UseVisualStyleBackColor = true;
-        this.seeProductDetailsButton.Click += this.seeProductDetailsButton_Click;
+        this.seeProductDetailsButton.Click += this.SeeProductDetailsButton_Click;
         // 
         // productSearchPanel
         // 
@@ -555,7 +555,7 @@ partial class OffEmployeeMainMenu {
         this.productListBox.Name = "productListBox";
         this.productListBox.Size = new Size(332, 173);
         this.productListBox.TabIndex = 2;
-        this.productListBox.SelectedIndexChanged += this.productListBox_SelectedIndexChanged;
+        this.productListBox.SelectedIndexChanged += this.ProductListBox_SelectedIndexChanged;
         // 
         // productSearchTextBox
         // 
@@ -566,7 +566,7 @@ partial class OffEmployeeMainMenu {
         this.productSearchTextBox.PlaceholderText = "Rechercher un produit";
         this.productSearchTextBox.Size = new Size(332, 31);
         this.productSearchTextBox.TabIndex = 1;
-        this.productSearchTextBox.TextChanged += this.productSearchTextBox_TextChanged;
+        this.productSearchTextBox.TextChanged += this.ProductSearchTextBox_TextChanged;
         // 
         // clientManagementTbLytPanel
         // 

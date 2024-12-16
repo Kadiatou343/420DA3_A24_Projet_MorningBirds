@@ -83,6 +83,7 @@ internal partial class OffEmployeeMainMenu : Form {
     private void SearchSOTextBox_TextChanged(object sender, EventArgs e) {
         string filter = this.searchSOTextBox.Text.Trim();
 
+        // TODO: Add search method in so services
         //this.LoadShippingOrdersInListBox(this.parentApp.ShippingOrderServices.Search(filter));
     }
 
@@ -188,7 +189,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void productSearchTextBox_TextChanged(object sender, EventArgs e) {
+    private void ProductSearchTextBox_TextChanged(object sender, EventArgs e) {
         List<Product> results = this.parentApp.ProductService.SearchProduct(this.productSearchTextBox.Text.Trim());
         this.LoadProductsInListBox(results);
     }
@@ -198,7 +199,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void productListBox_SelectedIndexChanged(object sender, EventArgs e) {
+    private void ProductListBox_SelectedIndexChanged(object sender, EventArgs e) {
         Product? selectedProduct = this.productListBox.SelectedItem as Product;
         if (selectedProduct != null) {
             this.ActivateProductActionButtons();
@@ -212,7 +213,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void createProductButton_Click(object sender, EventArgs e) {
+    private void CreateProductButton_Click(object sender, EventArgs e) {
         Product? product = this.parentApp.ProductService.OpenViewForCreation();
         if (product != null) {
             _ = this.productListBox.Items.Add(product);
@@ -224,7 +225,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void seeProductDetailsButton_Click(object sender, EventArgs e) {
+    private void SeeProductDetailsButton_Click(object sender, EventArgs e) {
         Product? selectedProduct = this.productListBox.SelectedItem as Product;
         if (selectedProduct != null) {
             _ = this.parentApp.ProductService.OpenViewForView(selectedProduct);
@@ -236,7 +237,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void updateProductButton_Click(object sender, EventArgs e) {
+    private void UpdateProductButton_Click(object sender, EventArgs e) {
         Product? selectedProduct = this.productListBox.SelectedItem as Product;
         if (selectedProduct != null) {
             _ = this.parentApp.ProductService.OpenViewForModification(selectedProduct);
@@ -249,7 +250,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void deleteProductButton_Click(object sender, EventArgs e) {
+    private void DeleteProductButton_Click(object sender, EventArgs e) {
         Product? selectedProduct = this.productListBox.SelectedItem as Product;
         if (selectedProduct != null) {
             _ = this.parentApp.ProductService.OpenViewForDeletion(selectedProduct);
@@ -334,7 +335,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void supplierSearchTextBox_TextChanged(object sender, EventArgs e) {
+    private void SupplierSearchTextBox_TextChanged(object sender, EventArgs e) {
         List<Supplier> results = this.parentApp.SupplierService.SearchSupplier(this.supplierSearchTextBox.Text.Trim());
         this.LoadSuppliersInListBox(results);
     }
@@ -344,7 +345,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void supplierListBox_SelectedIndexChanged(object sender, EventArgs e) {
+    private void SupplierListBox_SelectedIndexChanged(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
         if (selectedSupplier != null) {
             this.ActivateSupplierActionButton();
@@ -358,7 +359,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void createSupplierButton_Click(object sender, EventArgs e) {
+    private void CreateSupplierButton_Click(object sender, EventArgs e) {
         Supplier? supplier = this.parentApp.SupplierService.OpenViewForCreation();
         if (supplier != null) {
             _ = this.productListBox.Items.Add(supplier);
@@ -370,7 +371,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void seeSupplierDetailsButton_Click(object sender, EventArgs e) {
+    private void SeeSupplierDetailsButton_Click(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
         if (selectedSupplier != null) {
             _ = this.parentApp.SupplierService.OpenViewForView(selectedSupplier);
@@ -382,7 +383,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void updateSupplierButton_Click(object sender, EventArgs e) {
+    private void UpdateSupplierButton_Click(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
         if (selectedSupplier != null) {
             _ = this.parentApp.SupplierService.OpenViewForModification(selectedSupplier);
@@ -395,7 +396,7 @@ internal partial class OffEmployeeMainMenu : Form {
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void deleteSupplierButton_Click(object sender, EventArgs e) {
+    private void DeleteSupplierButton_Click(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
         if (selectedSupplier != null) {
             _ = this.parentApp.SupplierService.OpenViewForDeletion(selectedSupplier);
@@ -406,10 +407,15 @@ internal partial class OffEmployeeMainMenu : Form {
 
     #endregion
 
+    /// <summary>
+    /// Déclencher le processus de deconnexion
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void LogoutButton_Click(object sender, EventArgs e) {
         this.parentApp.LoginService.Logout();
         this.DialogResult = DialogResult.Continue;
     }
 
-    
+
 }
