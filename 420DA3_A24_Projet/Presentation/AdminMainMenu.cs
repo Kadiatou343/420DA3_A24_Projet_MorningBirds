@@ -271,18 +271,28 @@ internal partial class AdminMainMenu : Form {
 
     #region Gestion des produits 
 
+    /// <summary>
+    /// Activer les boutons d'action pour les produits
+    /// </summary>
     private void ActivateProductActionButtons() {
         this.seePoDetailsButton.Enabled = true;
         this.updateProdButton.Enabled = true;
         this.deleteProdButton.Enabled = true;
     }
 
+    /// <summary>
+    /// Desactiver les boutons d'action pour les produits
+    /// </summary>
     private void DeactivateProductActionButtons() {
         this.seePoDetailsButton.Enabled = false;
         this.updateProdButton.Enabled = false;
         this.deleteProdButton.Enabled = false;
     }
 
+    /// <summary>
+    /// Charger une liste de produits dans la list box fait pour
+    /// </summary>
+    /// <param name="products">La liste de produits</param>
     private void LoadProductsInListBox(List<Product> products) {
         this.prodListBox.Items.Clear();
         this.prodListBox.SelectedItem = null;
@@ -293,16 +303,32 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Declencher le processus de création d'un produit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void CreateProductButton_Click(object sender, EventArgs e) {
         _ = this.parentApp.ProductService.OpenViewForCreation();
     }
 
+    /// <summary>
+    /// Déclencher le processsus de recherche de produits
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SearchProdTextBox_TextChanged(object sender, EventArgs e) {
         string filter = this.searchProdTextBox.Text.Trim();
 
         this.LoadProductsInListBox(this.parentApp.ProductService.SearchProduct(filter));
     }
 
+    /// <summary>
+    /// Activer les boutons d'action des produits si un item est selectionné, le cas contraire les desactiver, 
+    /// dans la list box des produits
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ProdListBox_SelectedIndexChanged(object sender, EventArgs e) {
         Product? selectedProd = this.prodListBox.SelectedItem as Product;
 
@@ -313,6 +339,11 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Déclencher le processsus de visualisation d'un produit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SeeProdDetailsButton_Click(object sender, EventArgs e) {
         Product? selectedProd = this.prodListBox.SelectedItem as Product;
 
@@ -321,6 +352,11 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Déclencher le processsus de mise à jour d'un produit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void UpdateProdButton_Click(object sender, EventArgs e) {
         Product? selectedProd = this.prodListBox.SelectedItem as Product;
 
@@ -329,6 +365,11 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Déclencher le processsus de suppression d'un produit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void DeleteProdButton_Click(object sender, EventArgs e) {
         Product? selectedProd = this.prodListBox.SelectedItem as Product;
 
@@ -341,6 +382,10 @@ internal partial class AdminMainMenu : Form {
 
     #region Gestion des fournisseurs
 
+    /// <summary>
+    /// Charger une liste de fournisseurs dans la list box fait pour
+    /// </summary>
+    /// <param name="suppliers">La liste de fournisseurs fournie</param>
     private void LoadSuppliersInListBox(List<Supplier> suppliers) {
         this.supplierListBox.Items.Clear();
         this.supplierListBox.SelectedItem = null;
@@ -351,28 +396,50 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Activer les boutons d'action pour les fournisseurs
+    /// </summary>
     private void ActivateSupplierActionButton() {
         this.seeSupplierDetailsBtn.Enabled = true;
         this.updateSupplierButton.Enabled = true;
         this.deleteSupllierButton.Enabled = true;
     }
 
+    /// <summary>
+    /// Desactiver les boutons d'action pour les fournisseurs
+    /// </summary>
     private void DeactivateSupplierActionButton() {
         this.seeSupplierDetailsBtn.Enabled = false;
         this.updateSupplierButton.Enabled = false;
         this.deleteSupllierButton.Enabled = false;
     }
 
+    /// <summary>
+    /// Declencher le processus de création d'un fournisseur
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void CreateSupplierButton_Click(object sender, EventArgs e) {
         _ = this.parentApp.SupplierService.OpenViewForCreation();
     }
 
+    /// <summary>
+    /// Déclencher le processsus de recherche de fournisseurs
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SearchSupplierTextBox_TextChanged(object sender, EventArgs e) {
         string filter = this.searchSupplierTextBox.Text.Trim();
 
         this.LoadSuppliersInListBox(this.parentApp.SupplierService.SearchSupplier(filter));
     }
 
+    /// <summary>
+    /// Activer les boutons d'action des fournisseurs si un item est selectionné, le cas contraire 
+    /// les desactiver, dans la list box des fournisseurs
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SupplierListBox_SelectedIndexChanged(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
 
@@ -383,6 +450,11 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Déclencher le processsus de visualisation d'un fournisseur
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SeeSupplierDetailsBtn_Click(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
 
@@ -391,6 +463,11 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Déclencher le processsus de mise à jour d'un fournisseur
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void UpdateSupplierButton_Click(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
 
@@ -399,6 +476,11 @@ internal partial class AdminMainMenu : Form {
         }
     }
 
+    /// <summary>
+    /// Déclencher le processsus de suppression d'un fournisseur
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void DeleteSupllierButton_Click(object sender, EventArgs e) {
         Supplier? selectedSupplier = this.supplierListBox.SelectedItem as Supplier;
 
