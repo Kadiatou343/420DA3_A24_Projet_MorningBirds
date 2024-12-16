@@ -119,6 +119,9 @@ public class Product {
     /// Le id du supplier 
     /// </summary>
     public int SupplierId { get; set; }
+    /// <summary>
+    /// Le code du supplier
+    /// </summary>
     public string SupplierCode {
         get {
             return this.supplierCode;
@@ -129,22 +132,67 @@ public class Product {
                 : value;
         }
     }
+    /// <summary>
+    /// La quantité actuel du produit
+    /// </summary>
     public int Quantity { get; set; }
+    /// <summary>
+    /// La quantité visé du produit
+    /// </summary>
     public int AimQuantity { get; set; }
+    /// <summary>
+    /// Le poid du produit en kg
+    /// </summary>
     public double Weight { get; set; }
+    /// <summary>
+    /// Date de création du produit
+    /// </summary>
     public DateTime DateCreated { get; set; }
+    /// <summary>
+    /// La date de modification du produit
+    /// </summary>
     public DateTime? DateModified { get; set; }
+    /// <summary>
+    /// Le date de supression du produit
+    /// </summary>
     public DateTime? DateDeleted { get; set; }
+    /// <summary>
+    /// Valeur anti-concurence de EF Core
+    /// </summary>
     public byte[] RowVersion { get; set; } = null!;
 
     // Propriété de navigation 
+    /// <summary>
+    /// Le supplier associé à ce produit
+    /// </summary>
     public virtual Supplier Supplier { get; set; } = null!;
+    /// <summary>
+    /// Le client associé à ce produit
+    /// </summary>
     public virtual Client Client { get; set; } = null!;
 
+    /// <summary>
+    /// La liste des achats de ce produit
+    /// </summary>
     public virtual List<PurchaseOrder> PurchaseOrders { get; set; } = null!;
+    /// <summary>
+    /// La liste des ordres de shipping de ce produit
+    /// </summary>
     public virtual List<ShippingOrderProduct> ShippingOrderProducts { get; set; } = null!;
 
-    // Constructeur
+    /// <summary>
+    /// Constructeur manuelle 
+    /// </summary>
+    /// <param name="productName">le nom du produit</param>
+    /// <param name="desc">la description du produit</param>
+    /// <param name="codeUPC">le code upc du produit</param>
+    /// <param name="clientId">le client id associé à ce produit</param>
+    /// <param name="supplierId">le supplier id associé à ce produit</param>
+    /// <param name="supplierCode">le code du supplier</param>
+    /// <param name="quantity">la quantité actuel de ce produit</param>
+    /// <param name="aimQuantity">la quantité visé de ce produit</param>
+    /// <param name="weight">le poids de ce produit</param>
+    /// <param name="pictureName">le nom de la picture de ce produit</param>
     public Product(string productName, string desc, string codeUPC, int clientId, int supplierId, string supplierCode, int quantity,
         int aimQuantity, double weight, string? pictureName = null) {
         this.ProductName = productName;
@@ -159,7 +207,24 @@ public class Product {
         this.PictureName = pictureName;
     }
 
-    // Constructeur de BD 
+    /// <summary>
+    /// Constructeur orienté création par Entity Framework
+    /// </summary>
+    /// <param name="productId">L'identifiant du produit</param>
+    /// <param name="productName">le nom du produit</param>
+    /// <param name="desc">la description du produit</param>
+    /// <param name="codeUPC">le code upc du produit</param>
+    /// <param name="clientId">le client id associé à ce produit</param>
+    /// <param name="supplierId">le supplier id associé à ce produit</param>
+    /// <param name="supplierCode">le code du supplier</param>
+    /// <param name="quantity">la quantité actuel de ce produit</param>
+    /// <param name="aimQuantity">la quantité visé de ce produit</param>
+    /// <param name="weight">le poids de ce produit</param>
+    /// <param name="dateCreated">la date de création du produit</param>
+    /// <param name="dateModified">la date de la dernière modification du produit</param>
+    /// <param name="dateDeleted">la date de suppression du produit</param>
+    /// <param name="rowVersion">valeur anti-concurrence de la base de données</param>
+    /// <param name="pictureName">le nom de la picture de ce produit</param>
     private Product(int productId, string productName, string desc, string codeUPC, int clientId, int supplierId, string supplierCode, int quantity,
         int aimQuantity, double weight, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion, string? pictureName = null)
         : this(productName, desc, codeUPC, clientId, supplierId, supplierCode, quantity, aimQuantity, weight, pictureName) {
@@ -174,22 +239,47 @@ public class Product {
     public Product() { }
 
     #region METHODES DE VERIFICATION
+    /// <summary>
+    /// Validation du nom de produit
+    /// </summary>
+    /// <param name="value">la valeur que l'on souhaite assigner</param>
+    /// <returns>vrai si la validtion passe</returns>
     static private bool ValidateProductName(string value) {
         return value.Length <= PRODUCT_NAME_MAX_LENGTH;
     }
 
+    /// <summary>
+    /// Validation de la description du produit
+    /// </summary>
+    /// <param name="value">la valeur que l'on souhaite assigner</param>
+    /// <returns>vrai si la validtion passe</returns>
     static private bool ValidateProductDesc(string value) {
         return value.Length <= DESC_MAX_LENGTH;
     }
 
+    /// <summary>
+    /// Validation du code UPC du produit
+    /// </summary>
+    /// <param name="value">la valeur que l'on souhaite assigner</param>
+    /// <returns>vrai si la validtion passe</returns>
     static private bool ValidateCodeUPC(string value) {
         return value.Length == CODE_UPC_MAX_LENGTH;
     }
 
+    /// <summary>
+    /// Validation du picture name du produit
+    /// </summary>
+    /// <param name="value">la valeur que l'on souhaite assigner</param>
+    /// <returns>vrai si la validtion passe</returns>
     static private bool ValidatePictureName(string value) {
         return value.Length <= PICTURE_NAME_MAX_LENGTH || value == null;
     }
 
+    /// <summary>
+    /// Validation du supplier code du produit
+    /// </summary>
+    /// <param name="value">la valeur que l'on souhaite assigner</param>
+    /// <returns>vrai si la validtion passe</returns>
     static private bool ValidateSupplierCode(string value) {
         return value.Length <= SUPPLIER_CODE_MAX_LENGTH;
     }
@@ -198,6 +288,10 @@ public class Product {
 
     #region METHODES
 
+    /// <summary>
+    /// Override de la méthode ToString pour afficher les informations d'un prpduit
+    /// </summary>
+    /// <returns>Un string représentant un produit</returns>
     public override string ToString() {
         return $"#{this.ProductId} - {this.productName} | {this.Quantity}";
     }
