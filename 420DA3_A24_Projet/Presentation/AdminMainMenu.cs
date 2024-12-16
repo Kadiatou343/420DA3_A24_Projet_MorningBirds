@@ -259,10 +259,11 @@ internal partial class AdminMainMenu : Form {
 
 
     private void DeleteSoButton_Click(object sender, EventArgs e) {
-        _ = this.parentApp.UserService.OpenViewFor(ViewActionsEnum.Deletion,
-           this.userListBox.SelectedItem as User);
+        ShippingOrder? selectedShippingorder = this.ShippingOrderListBox.SelectedItem as ShippingOrder;
 
-        this.userListBox.Refresh();
+        if (selectedShippingorder != null) {
+            _ = this.parentApp.ShippingOrderServices.OpenViewForDeletion(selectedShippingorder);
+        }
     }
 
     private void DeleteClientButton_Click(object sender, EventArgs e) {
@@ -302,6 +303,7 @@ internal partial class AdminMainMenu : Form {
             _ = this.prodListBox.Items.Add(product);
         }
     }
+   
 
     /// <summary>
     /// Declencher le processus de création d'un produit
@@ -490,4 +492,60 @@ internal partial class AdminMainMenu : Form {
     }
 
     #endregion
+
+
+    private void LoaShippingOrderInListBox(List<ShippingOrder> shippingOrders) {
+        this.ShippingOrderListBox.Items.Clear();
+        this.ShippingOrderListBox.SelectedItem = null;
+        this.ShippingOrderListBox.SelectedIndex = -1;
+
+        foreach (ShippingOrder shippingOrder in shippingOrders) {
+            _ = this.ShippingOrderListBox.Items.Add(shippingOrder);
+        }
+    }
+    private void LoadPurchaseOrderInListBox(List<PurchaseOrder> purchaseOrders) {
+        this.PurchaseOrderListBox.Items.Clear();
+        this.PurchaseOrderListBox.SelectedItem = null;
+        this.PurchaseOrderListBox.SelectedIndex = -1;
+
+        foreach (PurchaseOrder purchaseOrder in purchaseOrders) {
+            _ = this.ShippingOrderListBox.Items.Add(purchaseOrder);
+        }
+    }
+    private void SeeSoDetailsButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedShippingOrder = this.ShippingOrderListBox.SelectedItem as ShippingOrder;
+
+        if (selectedShippingOrder != null) {
+            _ = this.parentApp.ShippingOrderServices.OpenViewForView(selectedShippingOrder);
+        }
+    }
+
+    private void UpdateSoButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedShippingOrder = this.ShippingOrderListBox.SelectedItem as ShippingOrder;
+
+        if (selectedShippingOrder != null) {
+            _ = this.parentApp.ShippingOrderServices.OpenViewForModification(selectedShippingOrder);
+        }
+    }
+
+    private void SeePoDetailsButton_Click(object sender, EventArgs e) {
+        PurchaseOrder? selectedPurchaseOrder = this.PurchaseOrderListBox.SelectedItem as PurchaseOrder;
+
+        if (selectedPurchaseOrder != null) {
+            _ = this.parentApp.PurchaseOrderServices.OpenViewForView(selectedPurchaseOrder);
+        }
+    }
+
+    private void SearchSoTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchShippingOrder.Text.Trim();
+
+        this.LoaShippingOrderInListBox(this.parentApp.ShippingOrderServices.SearchShippingOrder(filter));
+    }
+
+    private void SearchPoTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchPurchaseOrderPoTextBox.Text.Trim();
+
+        this.LoadPurchaseOrderInListBox(this.parentApp.PurchaseOrderServices.SearchPurchaseOrderNomProd(filter));
+
+    }
 }

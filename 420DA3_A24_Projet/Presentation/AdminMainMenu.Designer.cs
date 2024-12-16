@@ -30,21 +30,21 @@ partial class AdminMainMenu {
         this.logoutButtton = new Button();
         this.primaryTableLayout = new TableLayoutPanel();
         this.purchaseOrderManagementPanel = new Panel();
-        this.poListBox = new ListBox();
+        this.PurchaseOrderListBox = new ListBox();
         this.poActionTableLayout = new TableLayoutPanel();
         this.seePoDetailsButton = new Button();
-        this.searchPoTextBox = new TextBox();
+        this.searchPurchaseOrderPoTextBox = new TextBox();
         this.poCreateTableLayout = new TableLayoutPanel();
         this.createPoButton = new Button();
         this.purchaseOrderPanelHeader = new Label();
         this.shippingOrderManagementPanel = new Panel();
-        this.soListBox = new ListBox();
+        this.ShippingOrderListBox = new ListBox();
         this.soActionTableLayout = new TableLayoutPanel();
         this.panel9 = new Panel();
         this.seeSoDetailsButton = new Button();
         this.updateSoButton = new Button();
         this.deleteSoButton = new Button();
-        this.searchSoTextBox = new TextBox();
+        this.searchShippingOrder = new TextBox();
         this.soCreateTableLayout = new TableLayoutPanel();
         this.createSoButton = new Button();
         this.shippingOrderPanelHeader = new Label();
@@ -248,9 +248,9 @@ partial class AdminMainMenu {
         // 
         // purchaseOrderManagementPanel
         // 
-        this.purchaseOrderManagementPanel.Controls.Add(this.poListBox);
+        this.purchaseOrderManagementPanel.Controls.Add(this.PurchaseOrderListBox);
         this.purchaseOrderManagementPanel.Controls.Add(this.poActionTableLayout);
-        this.purchaseOrderManagementPanel.Controls.Add(this.searchPoTextBox);
+        this.purchaseOrderManagementPanel.Controls.Add(this.searchPurchaseOrderPoTextBox);
         this.purchaseOrderManagementPanel.Controls.Add(this.poCreateTableLayout);
         this.purchaseOrderManagementPanel.Controls.Add(this.purchaseOrderPanelHeader);
         this.purchaseOrderManagementPanel.Dock = DockStyle.Fill;
@@ -259,15 +259,15 @@ partial class AdminMainMenu {
         this.purchaseOrderManagementPanel.Size = new Size(266, 354);
         this.purchaseOrderManagementPanel.TabIndex = 9;
         // 
-        // poListBox
+        // PurchaseOrderListBox
         // 
-        this.poListBox.Dock = DockStyle.Fill;
-        this.poListBox.FormattingEnabled = true;
-        this.poListBox.ItemHeight = 25;
-        this.poListBox.Location = new Point(0, 109);
-        this.poListBox.Name = "poListBox";
-        this.poListBox.Size = new Size(266, 205);
-        this.poListBox.TabIndex = 9;
+        this.PurchaseOrderListBox.Dock = DockStyle.Fill;
+        this.PurchaseOrderListBox.FormattingEnabled = true;
+        this.PurchaseOrderListBox.ItemHeight = 25;
+        this.PurchaseOrderListBox.Location = new Point(0, 109);
+        this.PurchaseOrderListBox.Name = "PurchaseOrderListBox";
+        this.PurchaseOrderListBox.Size = new Size(266, 205);
+        this.PurchaseOrderListBox.TabIndex = 9;
         // 
         // poActionTableLayout
         // 
@@ -293,16 +293,18 @@ partial class AdminMainMenu {
         this.seePoDetailsButton.TabIndex = 0;
         this.seePoDetailsButton.Text = "Voir Détails";
         this.seePoDetailsButton.UseVisualStyleBackColor = true;
+        this.seePoDetailsButton.Click += this.SeePoDetailsButton_Click;
         // 
-        // searchPoTextBox
+        // searchPurchaseOrderPoTextBox
         // 
-        this.searchPoTextBox.Dock = DockStyle.Top;
-        this.searchPoTextBox.Location = new Point(0, 78);
-        this.searchPoTextBox.Margin = new Padding(5, 3, 5, 3);
-        this.searchPoTextBox.Name = "searchPoTextBox";
-        this.searchPoTextBox.PlaceholderText = "Rechercher ordre de restockage";
-        this.searchPoTextBox.Size = new Size(266, 31);
-        this.searchPoTextBox.TabIndex = 6;
+        this.searchPurchaseOrderPoTextBox.Dock = DockStyle.Top;
+        this.searchPurchaseOrderPoTextBox.Location = new Point(0, 78);
+        this.searchPurchaseOrderPoTextBox.Margin = new Padding(5, 3, 5, 3);
+        this.searchPurchaseOrderPoTextBox.Name = "searchPurchaseOrderPoTextBox";
+        this.searchPurchaseOrderPoTextBox.PlaceholderText = "Rechercher ordre de restockage";
+        this.searchPurchaseOrderPoTextBox.Size = new Size(266, 31);
+        this.searchPurchaseOrderPoTextBox.TabIndex = 6;
+        this.searchPurchaseOrderPoTextBox.TextChanged += this.SearchPoTextBox_TextChanged;
         // 
         // poCreateTableLayout
         // 
@@ -341,9 +343,9 @@ partial class AdminMainMenu {
         // 
         // shippingOrderManagementPanel
         // 
-        this.shippingOrderManagementPanel.Controls.Add(this.soListBox);
+        this.shippingOrderManagementPanel.Controls.Add(this.ShippingOrderListBox);
         this.shippingOrderManagementPanel.Controls.Add(this.soActionTableLayout);
-        this.shippingOrderManagementPanel.Controls.Add(this.searchSoTextBox);
+        this.shippingOrderManagementPanel.Controls.Add(this.searchShippingOrder);
         this.shippingOrderManagementPanel.Controls.Add(this.soCreateTableLayout);
         this.shippingOrderManagementPanel.Controls.Add(this.shippingOrderPanelHeader);
         this.shippingOrderManagementPanel.Dock = DockStyle.Fill;
@@ -352,15 +354,15 @@ partial class AdminMainMenu {
         this.shippingOrderManagementPanel.Size = new Size(265, 354);
         this.shippingOrderManagementPanel.TabIndex = 8;
         // 
-        // soListBox
+        // ShippingOrderListBox
         // 
-        this.soListBox.Dock = DockStyle.Fill;
-        this.soListBox.FormattingEnabled = true;
-        this.soListBox.ItemHeight = 25;
-        this.soListBox.Location = new Point(0, 109);
-        this.soListBox.Name = "soListBox";
-        this.soListBox.Size = new Size(265, 135);
-        this.soListBox.TabIndex = 7;
+        this.ShippingOrderListBox.Dock = DockStyle.Fill;
+        this.ShippingOrderListBox.FormattingEnabled = true;
+        this.ShippingOrderListBox.ItemHeight = 25;
+        this.ShippingOrderListBox.Location = new Point(0, 109);
+        this.ShippingOrderListBox.Name = "ShippingOrderListBox";
+        this.ShippingOrderListBox.Size = new Size(265, 135);
+        this.ShippingOrderListBox.TabIndex = 7;
         // 
         // soActionTableLayout
         // 
@@ -399,6 +401,7 @@ partial class AdminMainMenu {
         this.seeSoDetailsButton.Text = "Voir details";
         this.seeSoDetailsButton.TextAlign = ContentAlignment.TopCenter;
         this.seeSoDetailsButton.UseVisualStyleBackColor = true;
+        this.seeSoDetailsButton.Click += this.SeeSoDetailsButton_Click;
         // 
         // updateSoButton
         // 
@@ -410,6 +413,7 @@ partial class AdminMainMenu {
         this.updateSoButton.Text = "Modifier";
         this.updateSoButton.TextAlign = ContentAlignment.TopCenter;
         this.updateSoButton.UseVisualStyleBackColor = true;
+        this.updateSoButton.Click += this.UpdateSoButton_Click;
         // 
         // deleteSoButton
         // 
@@ -424,15 +428,16 @@ partial class AdminMainMenu {
         this.deleteSoButton.UseVisualStyleBackColor = true;
         this.deleteSoButton.Click += this.DeleteSoButton_Click;
         // 
-        // searchSoTextBox
+        // searchShippingOrder
         // 
-        this.searchSoTextBox.Dock = DockStyle.Top;
-        this.searchSoTextBox.Location = new Point(0, 78);
-        this.searchSoTextBox.Margin = new Padding(5, 3, 5, 3);
-        this.searchSoTextBox.Name = "searchSoTextBox";
-        this.searchSoTextBox.PlaceholderText = "Rechercher une commande";
-        this.searchSoTextBox.Size = new Size(265, 31);
-        this.searchSoTextBox.TabIndex = 5;
+        this.searchShippingOrder.Dock = DockStyle.Top;
+        this.searchShippingOrder.Location = new Point(0, 78);
+        this.searchShippingOrder.Margin = new Padding(5, 3, 5, 3);
+        this.searchShippingOrder.Name = "searchShippingOrder";
+        this.searchShippingOrder.PlaceholderText = "Rechercher une commande";
+        this.searchShippingOrder.Size = new Size(265, 31);
+        this.searchShippingOrder.TabIndex = 5;
+        this.searchShippingOrder.TextChanged += this.SearchSoTextBox_TextChanged;
         // 
         // soCreateTableLayout
         // 
@@ -1680,15 +1685,15 @@ partial class AdminMainMenu {
     private Button seeSoDetailsButton;
     private Button updateSoButton;
     private Button deleteSoButton;
-    private TextBox searchSoTextBox;
+    private TextBox searchShippingOrder;
     private TableLayoutPanel soCreateTableLayout;
     private Button createSoButton;
-    private ListBox soListBox;
-    private TextBox searchPoTextBox;
+    private ListBox ShippingOrderListBox;
+    private TextBox searchPurchaseOrderPoTextBox;
     private ListBox shipmentListBox;
     private TableLayoutPanel shtActionTableLayout;
     private Button seeShipmentDetailsButton;
-    private ListBox poListBox;
+    private ListBox PurchaseOrderListBox;
     private TableLayoutPanel poActionTableLayout;
     private Button seePoDetailsButton;
     private Label greetingLabel;

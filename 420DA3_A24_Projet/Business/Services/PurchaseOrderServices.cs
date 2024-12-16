@@ -41,6 +41,10 @@ internal class PurchaseOrderServices {
             throw new Exception("Impossible de supprimer le purchaseOrder.", ex);
         }
     }
+    // chercher par le nom du produit 
+    public List<PurchaseOrder> SearchPurchaseOrderNomProd(string searchElement, bool excludeDeleted = true) {
+        return this.dao.Search(searchElement, excludeDeleted);
+    }
 
     // Obtenir PurchaseOrder par son identifiant
     public PurchaseOrder? GetPurchaseOrderById(int id, bool excludeDeleted = true) {

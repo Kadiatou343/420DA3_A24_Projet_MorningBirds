@@ -90,6 +90,16 @@ internal class ShippingOrderDAO {
 
     }
 
-
+    public List<ShippingOrder> Search(string filter, bool excludeDeleted = true) {
+        return this.context.ShippingOrders
+                .Include(so => so.SourceClient)
+                .Where(
+                    shippingOrder =>
+                         (shippingOrder.Id.ToString().ToLower().Contains(filter.ToLower())
+                         || shippingOrder.SourceClient.ClientName.ToLower().Contains(filter.ToLower()))
+                         && (excludeDeleted || shippingOrder.DateDeleted == null)
+                )
+                .ToList();
+    }
 
 }

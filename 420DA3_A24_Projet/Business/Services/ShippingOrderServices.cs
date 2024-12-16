@@ -52,6 +52,10 @@ internal class ShippingOrderServices {
         return result == DialogResult.OK ? shippingOrder : null;
     }
 
+    public List<ShippingOrder> SearchShippingOrder(string searchElement, bool excludeDeleted = true) {
+        return this.dao.Search(searchElement, excludeDeleted);
+    }
+
     /// <summary>
     /// Ouvre la vue pour voir un shippingOrder
     /// </summary>

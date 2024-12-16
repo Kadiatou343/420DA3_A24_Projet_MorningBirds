@@ -49,16 +49,16 @@ partial class PurchaseOrderView {
         // 
         this.middleTLP.ColumnCount = 3;
         this.middleTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.middleTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1138F));
+        this.middleTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 875F));
         this.middleTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
         this.middleTLP.Controls.Add(this.midPanel, 1, 0);
         this.middleTLP.Dock = DockStyle.Fill;
-        this.middleTLP.Location = new Point(0, 120);
-        this.middleTLP.Margin = new Padding(5);
+        this.middleTLP.Location = new Point(0, 94);
+        this.middleTLP.Margin = new Padding(4, 4, 4, 4);
         this.middleTLP.Name = "middleTLP";
         this.middleTLP.RowCount = 1;
         this.middleTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        this.middleTLP.Size = new Size(1459, 866);
+        this.middleTLP.Size = new Size(1122, 391);
         this.middleTLP.TabIndex = 13;
         // 
         // midPanel
@@ -76,19 +76,19 @@ partial class PurchaseOrderView {
         this.midPanel.Controls.Add(this.idValue);
         this.midPanel.Controls.Add(this.idLabel);
         this.midPanel.Dock = DockStyle.Fill;
-        this.midPanel.Location = new Point(165, 5);
-        this.midPanel.Margin = new Padding(5);
+        this.midPanel.Location = new Point(127, 4);
+        this.midPanel.Margin = new Padding(4, 4, 4, 4);
         this.midPanel.Name = "midPanel";
-        this.midPanel.Size = new Size(1128, 856);
+        this.midPanel.Size = new Size(867, 383);
         this.midPanel.TabIndex = 0;
         // 
         // button1
         // 
         this.button1.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.button1.Location = new Point(658, 715);
-        this.button1.Margin = new Padding(5);
+        this.button1.Location = new Point(505, 273);
+        this.button1.Margin = new Padding(4, 4, 4, 4);
         this.button1.Name = "button1";
-        this.button1.Size = new Size(210, 91);
+        this.button1.Size = new Size(162, 71);
         this.button1.TabIndex = 33;
         this.button1.Text = "ACTION";
         this.button1.UseVisualStyleBackColor = true;
@@ -97,10 +97,10 @@ partial class PurchaseOrderView {
         // button2
         // 
         this.button2.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.button2.Location = new Point(878, 715);
-        this.button2.Margin = new Padding(5);
+        this.button2.Location = new Point(674, 273);
+        this.button2.Margin = new Padding(4, 4, 4, 4);
         this.button2.Name = "button2";
-        this.button2.Size = new Size(210, 91);
+        this.button2.Size = new Size(162, 71);
         this.button2.TabIndex = 32;
         this.button2.Text = "Cancel";
         this.button2.UseVisualStyleBackColor = true;
@@ -109,19 +109,19 @@ partial class PurchaseOrderView {
         // quantiteValue
         // 
         this.quantiteValue.Enabled = false;
-        this.quantiteValue.Location = new Point(220, 368);
-        this.quantiteValue.Margin = new Padding(5);
+        this.quantiteValue.Location = new Point(169, 288);
+        this.quantiteValue.Margin = new Padding(4, 4, 4, 4);
         this.quantiteValue.Maximum = new decimal(new int[] { 30000000, 0, 0, 0 });
         this.quantiteValue.Name = "quantiteValue";
-        this.quantiteValue.Size = new Size(344, 39);
+        this.quantiteValue.Size = new Size(265, 31);
         this.quantiteValue.TabIndex = 31;
         // 
         // label1
         // 
-        this.label1.Location = new Point(20, 366);
-        this.label1.Margin = new Padding(5, 0, 5, 0);
+        this.label1.Location = new Point(15, 286);
+        this.label1.Margin = new Padding(4, 0, 4, 0);
         this.label1.Name = "label1";
-        this.label1.Size = new Size(190, 42);
+        this.label1.Size = new Size(146, 33);
         this.label1.TabIndex = 30;
         this.label1.Text = "Quantite :";
         this.label1.TextAlign = ContentAlignment.MiddleRight;
@@ -129,10 +129,10 @@ partial class PurchaseOrderView {
         // btnAction
         // 
         this.btnAction.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.btnAction.Location = new Point(1621, 1578);
-        this.btnAction.Margin = new Padding(5);
+        this.btnAction.Location = new Point(1246, 947);
+        this.btnAction.Margin = new Padding(4, 4, 4, 4);
         this.btnAction.Name = "btnAction";
-        this.btnAction.Size = new Size(210, 91);
+        this.btnAction.Size = new Size(162, 71);
         this.btnAction.TabIndex = 29;
         this.btnAction.Text = "ACTION";
         this.btnAction.UseVisualStyleBackColor = true;
@@ -140,10 +140,10 @@ partial class PurchaseOrderView {
         // btnCancel
         // 
         this.btnCancel.Anchor =  AnchorStyles.Bottom | AnchorStyles.Right;
-        this.btnCancel.Location = new Point(1841, 1578);
-        this.btnCancel.Margin = new Padding(5);
+        this.btnCancel.Location = new Point(1415, 947);
+        this.btnCancel.Margin = new Padding(4, 4, 4, 4);
         this.btnCancel.Name = "btnCancel";
-        this.btnCancel.Size = new Size(210, 91);
+        this.btnCancel.Size = new Size(162, 71);
         this.btnCancel.TabIndex = 28;
         this.btnCancel.Text = "Cancel";
         this.btnCancel.UseVisualStyleBackColor = true;
@@ -151,19 +151,19 @@ partial class PurchaseOrderView {
         // produitValue
         // 
         this.produitValue.FormattingEnabled = true;
-        this.produitValue.ItemHeight = 32;
-        this.produitValue.Location = new Point(17, 118);
-        this.produitValue.Margin = new Padding(5);
+        this.produitValue.ItemHeight = 25;
+        this.produitValue.Location = new Point(13, 92);
+        this.produitValue.Margin = new Padding(4, 4, 4, 4);
         this.produitValue.Name = "produitValue";
-        this.produitValue.Size = new Size(547, 196);
+        this.produitValue.Size = new Size(422, 154);
         this.produitValue.TabIndex = 25;
         // 
         // label2
         // 
-        this.label2.Location = new Point(202, 75);
-        this.label2.Margin = new Padding(5, 0, 5, 0);
+        this.label2.Location = new Point(155, 59);
+        this.label2.Margin = new Padding(4, 0, 4, 0);
         this.label2.Name = "label2";
-        this.label2.Size = new Size(190, 42);
+        this.label2.Size = new Size(146, 33);
         this.label2.TabIndex = 24;
         this.label2.Text = "Produit ID :";
         this.label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -171,19 +171,19 @@ partial class PurchaseOrderView {
         // WarehouseValue
         // 
         this.WarehouseValue.FormattingEnabled = true;
-        this.WarehouseValue.ItemHeight = 32;
-        this.WarehouseValue.Location = new Point(581, 118);
-        this.WarehouseValue.Margin = new Padding(5);
+        this.WarehouseValue.ItemHeight = 25;
+        this.WarehouseValue.Location = new Point(447, 92);
+        this.WarehouseValue.Margin = new Padding(4, 4, 4, 4);
         this.WarehouseValue.Name = "WarehouseValue";
-        this.WarehouseValue.Size = new Size(547, 196);
+        this.WarehouseValue.Size = new Size(422, 154);
         this.WarehouseValue.TabIndex = 21;
         // 
         // label9
         // 
-        this.label9.Location = new Point(766, 75);
-        this.label9.Margin = new Padding(5, 0, 5, 0);
+        this.label9.Location = new Point(589, 59);
+        this.label9.Margin = new Padding(4, 0, 4, 0);
         this.label9.Name = "label9";
-        this.label9.Size = new Size(190, 42);
+        this.label9.Size = new Size(146, 33);
         this.label9.TabIndex = 20;
         this.label9.Text = "Warehouse ID :";
         this.label9.TextAlign = ContentAlignment.MiddleCenter;
@@ -191,19 +191,19 @@ partial class PurchaseOrderView {
         // idValue
         // 
         this.idValue.Enabled = false;
-        this.idValue.Location = new Point(205, 26);
-        this.idValue.Margin = new Padding(5);
+        this.idValue.Location = new Point(158, 20);
+        this.idValue.Margin = new Padding(4, 4, 4, 4);
         this.idValue.Maximum = new decimal(new int[] { 30000000, 0, 0, 0 });
         this.idValue.Name = "idValue";
-        this.idValue.Size = new Size(344, 39);
+        this.idValue.Size = new Size(265, 31);
         this.idValue.TabIndex = 11;
         // 
         // idLabel
         // 
-        this.idLabel.Location = new Point(5, 24);
-        this.idLabel.Margin = new Padding(5, 0, 5, 0);
+        this.idLabel.Location = new Point(4, 19);
+        this.idLabel.Margin = new Padding(4, 0, 4, 0);
         this.idLabel.Name = "idLabel";
-        this.idLabel.Size = new Size(190, 42);
+        this.idLabel.Size = new Size(146, 33);
         this.idLabel.TabIndex = 2;
         this.idLabel.Text = "Id :";
         this.idLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -212,18 +212,19 @@ partial class PurchaseOrderView {
         // 
         this.panelTop.Dock = DockStyle.Top;
         this.panelTop.Location = new Point(0, 0);
-        this.panelTop.Margin = new Padding(5);
+        this.panelTop.Margin = new Padding(4, 4, 4, 4);
         this.panelTop.Name = "panelTop";
-        this.panelTop.Size = new Size(1459, 120);
+        this.panelTop.Size = new Size(1122, 94);
         this.panelTop.TabIndex = 12;
         // 
         // PurchaseOrderView
         // 
-        this.AutoScaleDimensions = new SizeF(13F, 32F);
+        this.AutoScaleDimensions = new SizeF(10F, 25F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(1459, 986);
+        this.ClientSize = new Size(1122, 485);
         this.Controls.Add(this.middleTLP);
         this.Controls.Add(this.panelTop);
+        this.Margin = new Padding(2, 2, 2, 2);
         this.Name = "PurchaseOrderView";
         this.Text = "PurchaseOrderView";
         this.middleTLP.ResumeLayout(false);

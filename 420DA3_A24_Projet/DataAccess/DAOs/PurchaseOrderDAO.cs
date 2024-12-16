@@ -71,5 +71,16 @@ internal class PurchaseOrderDAO {
             ))
             .ToList();
     }
+    public List<PurchaseOrder> Search(string filter, bool excludeDeleted = true) {
+        return this.context.PurchaseOrders
+                .Include(so => so.OrderedProduct)
+                .Where(
+                    purchaseOrder =>
+                         (purchaseOrder.Id.ToString().ToLower().Contains(filter.ToLower())
+                         || purchaseOrder.OrderedProduct.ProductName.ToLower().Contains(filter.ToLower()))
+                         && (excludeDeleted || purchaseOrder.DateDeleted == null)
+                )
+                .ToList();
+    }
 
 }
