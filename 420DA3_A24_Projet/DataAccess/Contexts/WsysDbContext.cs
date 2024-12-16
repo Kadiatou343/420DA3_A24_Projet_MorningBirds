@@ -1191,10 +1191,10 @@ internal class WsysDbContext : DbContext {
         user2.Roles.Add(role2);
 
         // Pour un employé d'entrepôt, je dois lui associer un entrepôt qui lui doit avoir une adresse
-        Address address1 = new Address("We Store You Sell Inc Entrepot 0001", "entrepot",
+        Address address1 = new Address(Address.AddressTypeEnum.Commercial,"We Store You Sell Inc Entrepot 0001",
             "7777", "Destiny Street", "Montreal", "Quebec", "Canada", "H0E 1H1") {
             Id = 1
-        };
+        }; 
 
         Warehouse warehouse1 = new Warehouse("Entrepot For Bessy", 1) {
             Id = 1
@@ -1219,25 +1219,39 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
+        // Ajout des données de Clients 
+        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450", 1) { Id = 1 };
+
+        Client cli2 = new Client("SUPREME KADI", "Iles", "Menar", "ilesmenar@gmail.com", "450450470", 1) { Id = 2 };
+
+        _ = modelBuilder.Entity<Address>().HasData(cli1, cli2);
+
         #region Product et Supplier
         // Ajout des données de Supplier 
         Supplier sup1 = new Supplier("THE ULTIMATE SUPPLIER", "Test", "Jonhy", "jonhytest@gmail.com", "4503497684") { SupplierId = 1 };
+        Supplier sup2 = new Supplier("THE BEST SUPPLIER", "Davis", "Amel", "davisamel@gmail.com", "2903497684") { SupplierId = 2 };
 
         // Ajout des données de Product
         Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) {
             ProductId = 1,
             Supplier = sup1
         };
+        Product pro2 = new Product("Radio Stero", "Une qui fait BOOM BOOM", "102123435213", 2, 2, "bcode", 30, 100, 50) {
+            ProductId = 2,
+            Supplier = sup2
+        };
+        Product pro3 = new Product("Table de bureau", "Un bureau magnifique", "102123435021", 2, 2, "bcode", 20, 100, 50) {
+            ProductId = 2,
+            Supplier = sup2 
+        };
         sup1.Products.Add(pro1);
+        sup2.Products.Add(pro2);
+        sup2.Products.Add(pro3);
 
-        _ = modelBuilder.Entity<Product>().HasData(pro1);
-        _ = modelBuilder.Entity<Supplier>().HasData(sup1);
+        _ = modelBuilder.Entity<Product>().HasData(pro1, pro2, pro3);
+        _ = modelBuilder.Entity<Supplier>().HasData(sup1, sup2);
 
         #endregion
-
-
-        // Ajout des données de Clients 
-        Client cli1 = new Client("MISA DARK JARJAR", "Binks", "Jar Jar", "darkjarjar@gmail.com", "450450450", 10) { Id = 1 };
 
         #endregion
 

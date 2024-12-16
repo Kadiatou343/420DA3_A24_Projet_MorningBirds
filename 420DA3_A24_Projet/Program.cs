@@ -1,3 +1,5 @@
+using _420DA3_A24_Projet.Business;
+
 namespace _420DA3_A24_Projet;
 
 internal static class Program {
@@ -6,9 +8,6 @@ internal static class Program {
     /// </summary>
     [STAThread]
     private static void Main(string[] args) {
-        // To customize application configuration such as set high DPI settings or default font,
-        // see https://aka.ms/applicationconfiguration.
-        ApplicationConfiguration.Initialize();
-        Application.Run(new PasswordHasherWindow());
+        (new WsysApplication()).Start();
     }
 }

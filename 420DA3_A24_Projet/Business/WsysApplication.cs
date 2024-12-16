@@ -95,6 +95,7 @@ internal class WsysApplication {
     /// </summary>
     /// 
     public WsysApplication() {
+        ApplicationConfiguration.Initialize();
         this.context = new WsysDbContext();
         this.UserService = new UserService(this, this.context);
         this.RoleService = new RoleService(this, this.context);
