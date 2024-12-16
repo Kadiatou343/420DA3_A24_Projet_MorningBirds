@@ -66,6 +66,81 @@ internal partial class OffEmployeeMainMenu : Form {
         this.deleteSoButton.Enabled = false;
     }
 
+    /// <summary>
+    /// Declencher le processus de création d'un ordre expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void CreateSoButton_Click(object sender, EventArgs e) {
+        _ = this.parentApp.ShippingOrderServices.OpenViewForCreation();
+    }
+
+    /// <summary>
+    /// Declencher le processus de recherches d'ordres expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SearchSOTextBox_TextChanged(object sender, EventArgs e) {
+        string filter = this.searchSOTextBox.Text.Trim();
+
+        //this.LoadShippingOrdersInListBox(this.parentApp.ShippingOrderServices.Search(filter));
+    }
+
+    /// <summary>
+    /// Activer les boutons d'action si un item est selectionné, dans le cas contraire
+    /// les desactiver, dans la list box des ordres d'expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SoListBox_SelectedIndexChanged(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.soListBox.SelectedItem as ShippingOrder;
+
+        if (selectedSo != null) {
+            this.ActivateShippingOrderActionButtons();
+        } else {
+            this.DeactivateShippingOrderActionButtons();
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de visualisation d'un ordre expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SeeSoDetailsButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.soListBox.SelectedItem as ShippingOrder;
+
+        if (selectedSo != null) {
+            _ = this.parentApp.ShippingOrderServices.OpenViewForView(selectedSo);
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de modification d'un ordre expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void UpdateSoButtton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.soListBox.SelectedItem as ShippingOrder;
+
+        if (selectedSo != null) {
+            _ = this.parentApp.ShippingOrderServices.OpenViewForModification(selectedSo);
+        }
+    }
+
+    /// <summary>
+    /// Declencher le processus de suppression d'un ordre expédition
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DeleteSoButton_Click(object sender, EventArgs e) {
+        ShippingOrder? selectedSo = this.soListBox.SelectedItem as ShippingOrder;
+
+        if (selectedSo != null) {
+            _ = this.parentApp.ShippingOrderServices.OpenViewForDeletion(selectedSo);
+        }
+    }
+
     #endregion
 
     #region Client 
@@ -336,5 +411,5 @@ internal partial class OffEmployeeMainMenu : Form {
         this.DialogResult = DialogResult.Continue;
     }
 
-
+    
 }

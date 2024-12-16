@@ -25,6 +25,7 @@ partial class OffEmployeeMainMenu {
     /// </summary>
     private void InitializeComponent() {
         this.topBarPanel = new Panel();
+        this.greetingLabel = new Label();
         this.botttomBarPanel = new Panel();
         this.logoutButton = new Button();
         this.primaryTableLayoutPanel = new TableLayoutPanel();
@@ -70,7 +71,6 @@ partial class OffEmployeeMainMenu {
         this.clientSearchPanel = new Panel();
         this.clientListBox = new ListBox();
         this.clientSearchTextBox = new TextBox();
-        this.greetingLabel = new Label();
         this.topBarPanel.SuspendLayout();
         this.botttomBarPanel.SuspendLayout();
         this.primaryTableLayoutPanel.SuspendLayout();
@@ -103,6 +103,16 @@ partial class OffEmployeeMainMenu {
         this.topBarPanel.Name = "topBarPanel";
         this.topBarPanel.Size = new Size(1362, 50);
         this.topBarPanel.TabIndex = 0;
+        // 
+        // greetingLabel
+        // 
+        this.greetingLabel.AutoSize = true;
+        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+        this.greetingLabel.Location = new Point(579, 11);
+        this.greetingLabel.Name = "greetingLabel";
+        this.greetingLabel.Size = new Size(205, 28);
+        this.greetingLabel.TabIndex = 1;
+        this.greetingLabel.Text = "Bonjour UtilisateurX";
         // 
         // botttomBarPanel
         // 
@@ -165,6 +175,7 @@ partial class OffEmployeeMainMenu {
         this.soListBox.Name = "soListBox";
         this.soListBox.Size = new Size(677, 407);
         this.soListBox.TabIndex = 3;
+        this.soListBox.SelectedIndexChanged += this.SoListBox_SelectedIndexChanged;
         // 
         // searchSOTextBox
         // 
@@ -175,6 +186,7 @@ partial class OffEmployeeMainMenu {
         this.searchSOTextBox.PlaceholderText = "Rechercher un ordre d'expédition";
         this.searchSOTextBox.Size = new Size(677, 31);
         this.searchSOTextBox.TabIndex = 2;
+        this.searchSOTextBox.TextChanged += this.SearchSOTextBox_TextChanged;
         // 
         // createSOPanel
         // 
@@ -195,6 +207,7 @@ partial class OffEmployeeMainMenu {
         this.createSoButton.TabIndex = 2;
         this.createSoButton.Text = "Créer un ordre d'expédition";
         this.createSoButton.UseVisualStyleBackColor = true;
+        this.createSoButton.Click += this.CreateSoButton_Click;
         // 
         // poActionButttonsPanel
         // 
@@ -245,6 +258,7 @@ partial class OffEmployeeMainMenu {
         this.deleteSoButton.TabIndex = 2;
         this.deleteSoButton.Text = "Supprimer ordre d'expédition";
         this.deleteSoButton.UseVisualStyleBackColor = true;
+        this.deleteSoButton.Click += this.DeleteSoButton_Click;
         // 
         // updateSoButtton
         // 
@@ -257,6 +271,7 @@ partial class OffEmployeeMainMenu {
         this.updateSoButtton.TabIndex = 1;
         this.updateSoButtton.Text = "Modifier ordre d'expédition";
         this.updateSoButtton.UseVisualStyleBackColor = true;
+        this.updateSoButtton.Click += this.UpdateSoButtton_Click;
         // 
         // seeSoDetailsButton
         // 
@@ -269,6 +284,7 @@ partial class OffEmployeeMainMenu {
         this.seeSoDetailsButton.TabIndex = 0;
         this.seeSoDetailsButton.Text = "Voir ordre d'expédition détails";
         this.seeSoDetailsButton.UseVisualStyleBackColor = true;
+        this.seeSoDetailsButton.Click += this.SeeSoDetailsButton_Click;
         // 
         // enititesTableLayoutPanel
         // 
@@ -677,16 +693,6 @@ partial class OffEmployeeMainMenu {
         this.clientSearchTextBox.PlaceholderText = "Rechercher un client";
         this.clientSearchTextBox.Size = new Size(332, 31);
         this.clientSearchTextBox.TabIndex = 0;
-        // 
-        // greetingLabel
-        // 
-        this.greetingLabel.AutoSize = true;
-        this.greetingLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-        this.greetingLabel.Location = new Point(579, 11);
-        this.greetingLabel.Name = "greetingLabel";
-        this.greetingLabel.Size = new Size(205, 28);
-        this.greetingLabel.TabIndex = 1;
-        this.greetingLabel.Text = "Bonjour UtilisateurX";
         // 
         // OffEmployeeMainMenu
         // 
