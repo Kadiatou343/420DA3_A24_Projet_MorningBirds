@@ -166,7 +166,7 @@ internal partial class WarehouseView : Form {
     /// <param name="e"></param>
     private void creationAdressBtn_Click(object sender, EventArgs e) {
         //Pas de methodes OpenAddressViewForCreation() dans la class AddresseService pour le moment
-        Address? addresse = this.parentApp.AdresseService.OpenAddressViewForCreation();
+        Address? addresse = null;// this.parentApp.AdresseService.OpenAddressViewForCreation();
         try {
             if (addresse != null) {
                 this.addresseIdValue.Text = addresse.Id.ToString();

@@ -26,7 +26,7 @@ public class PurchaseOrder {
     //constructeur base de donnée
     public PurchaseOrder(int id, PurchaseOrderStatusEnum status, int productId,
         int warehouseId, int quantity, DateTime? completionDate, DateTime dateCreated, DateTime? dateDeleted
-        , DateTime? dateModified) {
+        , DateTime? dateModified, byte[] rowVersion) {
         this.Id = id;
         this.Status = status;
         this.ProductId = productId;
@@ -36,7 +36,7 @@ public class PurchaseOrder {
         this.DateCreated = dateCreated;
         this.DateDeleted = dateDeleted;
         this.DateModified = dateModified;
-      
+        this.RowVersion = rowVersion;
     }
 
     public PurchaseOrder() {

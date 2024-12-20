@@ -49,13 +49,11 @@ public class ShippingOrderProduct {
     /// <param name="shippingOrder">L'ordre d'expédition lui-même</param>
     /// <param name="rowVersion">Valeur anti-concurence EF Core</param>
     protected ShippingOrderProduct(int shippingOrderId, int productId,
-        int quantity, Product product, ShippingOrder shippingOrder,
+        int quantity,
         byte[] rowVersion) {
         this.ShippingOrderId = shippingOrderId;
         this.ProductId = productId;
         this.Quantity = quantity;
-        this.Product = product;
-        this.ShippingOrder = shippingOrder;
         this.RowVersion = rowVersion;
     }
 }

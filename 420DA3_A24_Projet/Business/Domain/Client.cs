@@ -39,6 +39,16 @@ public class Client {
     /// </summary>
     public const int ContactTelephoneMaxLength = 15;
 
+
+    private string clientName = null!;
+    private string contactFirstName = null!;
+    private string contactLastName = null!;
+    private string contactEmail = null!;
+    private string contactTelephone = null!;
+
+
+
+
     // Propriétés principales
 
     /// <summary>
@@ -53,7 +63,7 @@ public class Client {
     public string ClientName {
 
         get {
-            return this.ClientName;
+            return this.clientName;
 
         }
         set {
@@ -61,7 +71,7 @@ public class Client {
 
                 throw new ArgumentException("ClientName", $"La longueur de ClientName doit entre{ClientNameMinLength} et {ClientNameMaxLength}");
             }
-            this.ClientName = value;
+            this.clientName = value;
         }
     }
 
@@ -76,7 +86,7 @@ public class Client {
     /// </summary>
     public string ContactFirstName {
         get {
-            return this.ContactFirstName;
+            return this.contactFirstName;
 
         }
         set {
@@ -84,7 +94,7 @@ public class Client {
                 throw new ArgumentException("ContactFirstName", $"La longueur de ContactFirstName doit être inférieur à {ContactFirstNameMaxLength}");
             }
 
-            this.ContactFirstName = value;
+            this.contactFirstName = value;
         }
     }
 
@@ -93,7 +103,7 @@ public class Client {
     /// </summary>
     public string ContactLastName {
         get {
-            return this.ContactLastName;
+            return this.contactLastName;
 
         }
         set {
@@ -101,7 +111,7 @@ public class Client {
                 throw new ArgumentException("ContactLastName", $"La longueur de ContactLastName doit être inférieur à {ContactLastNameMaxLength}");
             }
 
-            this.ContactLastName = value;
+            this.contactLastName = value;
         }
     }
 
@@ -110,7 +120,7 @@ public class Client {
     /// </summary>
     public string ContactEmail {
         get {
-            return this.ContactEmail;
+            return this.contactEmail;
 
         }
         set {
@@ -118,7 +128,7 @@ public class Client {
                 throw new ArgumentException("ContactEmail", $"La longueur de l'email doit être inférieur à {ContactEmailMaxLength}");
             }
 
-            this.ContactEmail = value;
+            this.contactEmail = value;
         }
     }
 
@@ -127,7 +137,7 @@ public class Client {
     /// </summary>
     public string ContactTelephone {
         get {
-            return this.ContactTelephone;
+            return this.contactTelephone;
 
         }
         set {
@@ -135,7 +145,7 @@ public class Client {
                 throw new ArgumentException("ContactTelephone", $"La longueur ddu numéro de téléphone doit être inférieur à {ContactTelephoneMaxLength}");
             }
 
-            this.ContactTelephone = value;
+            this.contactTelephone = value;
         }
     }
 
@@ -249,17 +259,17 @@ public class Client {
     }
 
     public bool ValidateContactFirstName(string contactFirstName) {
-        return contactFirstName.Length <= ContactFirstNameMaxLength && contactFirstName.Length >= ClientNameMinLength;
+        return contactFirstName.Length <= ContactFirstNameMaxLength;
     }
     public bool ValidateContactLastName(string contactLastName) {
-        return contactLastName.Length <= ContactLastNameMaxLength && contactLastName.Length >= ClientNameMinLength;
+        return contactLastName.Length <= ContactLastNameMaxLength;
     }
 
     public bool ValidateContactEmail(string contactEmail) {
         return contactEmail.Length <= ContactEmailMaxLength;
     }
     public bool ValidateContactTelephone(string contactTelephone) {
-        return contactTelephone.Length <= ContactEmailMaxLength;
+        return contactTelephone.Length <= ContactTelephoneMaxLength;
     }
 
     #endregion

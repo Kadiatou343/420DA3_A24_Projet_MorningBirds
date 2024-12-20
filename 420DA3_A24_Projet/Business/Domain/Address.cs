@@ -44,6 +44,16 @@ public class Address {
     /// </summary>
     public const int PostalCodeMaxLength = 64;
 
+    private string addresse = null!;
+    private string civicNumber = null!;
+    private string street = null!;
+    private string city = null!;
+    private string state = null!;
+    private string country = null!;
+    private string postalCode = null!;
+
+
+
     // Identifiants et données de l'adresse
     [Key]
     public int Id { get; set; }
@@ -59,7 +69,7 @@ public class Address {
     [MaxLength(AddresseeMaxLength)]
     public string Addresse {
         get {
-            return this.Addresse;
+            return this.addresse;
 
         }
         set {
@@ -67,7 +77,7 @@ public class Address {
                 throw new ArgumentException("Addresse", $"La longueur d' addresse doit être inférieur à {AddresseeMaxLength}");
             }
 
-            this.Addresse = value;
+            this.addresse = value;
         }
 
     }
@@ -78,7 +88,7 @@ public class Address {
     [MaxLength(CivicNumberMaxLength)]
     public string CivicNumber {
         get {
-            return this.CivicNumber;
+            return this.civicNumber;
 
         }
         set {
@@ -86,7 +96,7 @@ public class Address {
                 throw new ArgumentException("CivicNumber", $"La longueur de CivicNumber doit être inférieur à {CivicNumberMaxLength}");
             }
 
-            this.CivicNumber = value;
+            this.civicNumber = value;
         }
 
     }
@@ -96,7 +106,7 @@ public class Address {
     [MaxLength(StreetMaxLength)]
     public string Street {
         get {
-            return this.Street;
+            return this.street;
 
         }
         set {
@@ -104,7 +114,7 @@ public class Address {
                 throw new ArgumentException("Street", $"La longueur de Street doit être inférieur à {StreetMaxLength}");
             }
 
-            this.Street = value;
+            this.street = value;
         }
     }
 
@@ -112,7 +122,7 @@ public class Address {
     [MaxLength(CityMaxLength)]
     public string City {
         get {
-            return this.City;
+            return this.city;
 
         }
         set {
@@ -120,7 +130,7 @@ public class Address {
                 throw new ArgumentException("City", $"La longueur de City doit être inférieur à {CityMaxLength}");
             }
 
-            this.City = value;
+            this.city = value;
         }
     }
 
@@ -129,7 +139,7 @@ public class Address {
     [MaxLength(StateMaxLength)]
     public string State {
         get {
-            return this.State;
+            return this.state;
 
         }
         set {
@@ -137,7 +147,7 @@ public class Address {
                 throw new ArgumentException("State", $"La longueur de State doit être inférieur à {StateMaxLength}");
             }
 
-            this.State = value;
+            this.state = value;
         }
     }
 
@@ -146,7 +156,7 @@ public class Address {
     [MaxLength(CountryMaxLength)]
     public string Country {
         get {
-            return this.Country;
+            return this.country;
 
         }
         set {
@@ -154,7 +164,7 @@ public class Address {
                 throw new ArgumentException("Country", $"La longueur de State doit être inférieur à {StateMaxLength}");
             }
 
-            this.State = value;
+            this.country = value;
         }
     }
 
@@ -162,7 +172,7 @@ public class Address {
     [MaxLength(PostalCodeMaxLength)]
     public string PostalCode {
         get {
-            return this.PostalCode;
+            return this.postalCode;
 
         }
         set {
@@ -170,7 +180,7 @@ public class Address {
                 throw new ArgumentException("PostalCode", $"La longueur de Street doit être inférieur à {PostalCodeMaxLength}");
             }
 
-            this.PostalCode = value;
+            this.postalCode = value;
         }
     }
 
@@ -194,7 +204,7 @@ public class Address {
     /// <summary>
     /// Liste des clients associés à cette adresse
     /// </summary>
-    public List<Client> Clients { get; set; } = new List<Client>();
+    public virtual List<Client> Clients { get; set; } = new List<Client>();
 
     /// <summary>
     /// Entrepôt propriétaire de cette adresse

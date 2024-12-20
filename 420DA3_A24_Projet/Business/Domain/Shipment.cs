@@ -12,7 +12,7 @@ public class Shipment {
     /// Longeur maximale de numéro d'expédition.
     /// </summary>
     public const int TRACKING_NUMBER_MAX_LENGTH = 32;
-    private readonly string trackingnumber = null!;
+    private string trackingnumber = null!;
 
     //Attributs
 
@@ -28,6 +28,7 @@ public class Shipment {
             if (!this.ValidateTrackingNumber(value)) {
                 throw new ArgumentOutOfRangeException("TrackingNumber", $"La longueur de Tracking Number devrait être inférieur à {TRACKING_NUMBER_MAX_LENGTH}!");
             }
+            this.trackingnumber = value;
         }
     }
 

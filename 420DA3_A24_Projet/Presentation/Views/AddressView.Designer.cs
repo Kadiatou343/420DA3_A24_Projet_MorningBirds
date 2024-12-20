@@ -313,7 +313,7 @@ partial class AddressView {
         this.Controls.Add(this.panel1);
         this.Name = "AddressView";
         this.Text = "Gestion des adresses";
-        this.Load += this.AddressView_Load;
+        //this.Load += this.AddressView_Load;
         this.panel1.ResumeLayout(false);
         this.panel1.PerformLayout();
         this.panel2.ResumeLayout(false);

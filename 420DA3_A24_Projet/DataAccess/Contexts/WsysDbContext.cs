@@ -239,7 +239,7 @@ internal class WsysDbContext : DbContext {
         .HasColumnName("WarehouseId ")
         .HasColumnOrder(3)
         .HasColumnType("int")
-        .IsRequired(false);
+        .IsRequired(true);
 
         _ = modelBuilder.Entity<Client>()
         .Property(client => client.ContactFirstName)
@@ -468,7 +468,7 @@ internal class WsysDbContext : DbContext {
 
         _ = modelBuilder.Entity<Product>()
             .Property(product => product.Quantity)
-            .HasColumnName("SupplierCode")
+            .HasColumnName("Quantity")
             .HasColumnOrder(8)
             .HasColumnType("int")
             .IsRequired(true);
@@ -804,7 +804,7 @@ internal class WsysDbContext : DbContext {
            .HasPrecision(6)
            .HasDefaultValueSql("GETUTCDATE()")
            .HasConversion(utcDateTimeConverter)
-           .IsRequired(false);
+           .IsRequired(true);
 
         _ = modelBuilder.Entity<PurchaseOrder>()
             .Property(PurchaseOrder => PurchaseOrder.DateDeleted)
@@ -877,7 +877,7 @@ internal class WsysDbContext : DbContext {
            .HasPrecision(6)
            .HasDefaultValueSql("GETUTCDATE()")
            .HasConversion(utcDateTimeConverter)
-           .IsRequired(true);
+           .IsRequired(false);
 
         _ = modelBuilder.Entity<ShippingOrder>()
            .Property(ShippingOrder => ShippingOrder.DateCreated)
@@ -887,7 +887,7 @@ internal class WsysDbContext : DbContext {
            .HasPrecision(6)
            .HasDefaultValueSql("GETUTCDATE()")
            .HasConversion(utcDateTimeConverter)
-           .IsRequired(false);
+           .IsRequired(true);
 
         _ = modelBuilder.Entity<ShippingOrder>()
             .Property(ShippingOrder => ShippingOrder.DateDeleted)
@@ -941,10 +941,6 @@ internal class WsysDbContext : DbContext {
         #endregion
 
         #region RELATIONS COTÉ USER
-        // Relation plusieurs à plusieurs entre User et Role
-        _ = modelBuilder.Entity<User>()
-            .HasMany(user => user.Roles)
-            .WithMany(role => role.Users);
 
         // Relation un à plusieurs entre User et Warehouse coté User
         _ = modelBuilder.Entity<User>()
@@ -1036,8 +1032,8 @@ internal class WsysDbContext : DbContext {
 
         // Relation un à plusieurs entre Client et ShipmentOrder coté Client
         _ = modelBuilder.Entity<Client>()
-            .HasOne(client => client.ShippingOrders)
-            .WithMany(shippingOrder => shippingOrder.SourceClient)
+            .HasMany(client => client.ShippingOrders)
+            .WithOne(shippingOrder => shippingOrder.SourceClient)
             .HasForeignKey(shippingOrder => shippingOrder.SourceClientId)
             .OnDelete(DeleteBehavior.Cascade);
 
@@ -1180,21 +1176,16 @@ internal class WsysDbContext : DbContext {
             Id = 1
         };
 
-        user1.Roles.Add(role1);
-        user1.Roles.Add(role2);
-
         User user2 = new User("deiiidia", "4ECAA597B625B3FCA7E36442D4C6A3EB05AB9DFFC9F254EE483FBDBEB6D2910C:" +
             "D761ED59218EDF8032D7F7882DE44EAE:100000:SHA256") { // Mpd non hashé : GitIsOurSavior
             Id = 2
         };
 
-        user2.Roles.Add(role2);
-
         // Pour un employé d'entrepôt, je dois lui associer un entrepôt qui lui doit avoir une adresse
-        Address address1 = new Address(Address.AddressTypeEnum.Commercial,"We Store You Sell Inc Entrepot 0001",
+        Address address1 = new Address(Address.AddressTypeEnum.Commercial, "We Store You Sell Inc Entrepot 0001",
             "7777", "Destiny Street", "Montreal", "Quebec", "Canada", "H0E 1H1") {
             Id = 1
-        }; 
+        };
 
         Warehouse warehouse1 = new Warehouse("Entrepot For Bessy", 1) {
             Id = 1
@@ -1202,11 +1193,9 @@ internal class WsysDbContext : DbContext {
 
         User user3 = new User("maximus", "6A8EFEE80A6B9FE951105B1105A01E9BDC17BBA64ED70E36C6499713641CF6D4:" +
             "172AAB90868D82E03834D8C43F6799B0:100000:SHA256", 1) { // Mdp non hashé : warehouse
-            Id = 3
+            Id = 3,
+            EmployeeWarehouseId = warehouse1.Id
         };
-
-        user3.Roles.Add(role3);
-        user3.EmployeeWarehouse = warehouse1;
 
         _ = modelBuilder.Entity<Address>()
             .HasData(address1);
@@ -1217,6 +1206,24 @@ internal class WsysDbContext : DbContext {
         _ = modelBuilder.Entity<User>()
             .HasData(user1, user2, user3);
 
+        // Relation plusieurs à plusieurs entre User et Role
+        _ = modelBuilder.Entity<User>()
+            .HasMany(user => user.Roles)
+            .WithMany(role => role.Users)
+            .UsingEntity("UserRoles",
+            right => right.HasOne(typeof(Role)).WithMany().HasForeignKey("RoleId"),
+            left => left.HasOne(typeof(User)).WithMany().HasForeignKey("UserId"),
+            ent => {
+                ent.HasKey("UserId", "RoleId");
+                ent.ToTable("UserRoles");
+                ent.HasData(
+                    new { UserId = 1, RoleId = 1 },
+                    new { UserId = 2, RoleId = 2 },
+                    new { UserId = 3, RoleId = 3 }
+                    );
+            }
+            );
+
         #endregion
 
         // Ajout des données de Clients 
@@ -1224,7 +1231,7 @@ internal class WsysDbContext : DbContext {
 
         Client cli2 = new Client("SUPREME KADI", "Iles", "Menar", "ilesmenar@gmail.com", "450450470", 1) { Id = 2 };
 
-        _ = modelBuilder.Entity<Address>().HasData(cli1, cli2);
+        _ = modelBuilder.Entity<Client>().HasData(cli1, cli2);
 
         #region Product et Supplier
         // Ajout des données de Supplier 
@@ -1232,21 +1239,23 @@ internal class WsysDbContext : DbContext {
         Supplier sup2 = new Supplier("THE BEST SUPPLIER", "Davis", "Amel", "davisamel@gmail.com", "2903497684") { SupplierId = 2 };
 
         // Ajout des données de Product
-        Product pro1 = new Product("Chaise", "Une chaise sibole", "1038330384463", 1, 1, "acode", 50, 100, 50) {
+        Product pro1 = new Product("Chaise", "Une chaise sibole", "103833038446", 1, 1, "acode", 50, 100, 50, "default") {
             ProductId = 1,
-            Supplier = sup1
+            SupplierId = sup1.SupplierId
         };
-        Product pro2 = new Product("Radio Stero", "Une qui fait BOOM BOOM", "102123435213", 2, 2, "bcode", 30, 100, 50) {
+        Product pro2 = new Product("Radio Stero", "Une qui fait BOOM BOOM", "10212343521", 2, 2, "bcode", 30, 100, 50, "default") {
             ProductId = 2,
-            Supplier = sup2
+            SupplierId = sup2.SupplierId
         };
-        Product pro3 = new Product("Table de bureau", "Un bureau magnifique", "102123435021", 2, 2, "bcode", 20, 100, 50) {
-            ProductId = 2,
-            Supplier = sup2 
+        Product pro3 = new Product("Table de bureau", "Un bureau magnifique", "10212343502", 2, 2, "bcode", 20, 100, 50, "default") {
+            ProductId = 3,
+            SupplierId = sup2.SupplierId
         };
+        /*
         sup1.Products.Add(pro1);
         sup2.Products.Add(pro2);
         sup2.Products.Add(pro3);
+        */
 
         _ = modelBuilder.Entity<Product>().HasData(pro1, pro2, pro3);
         _ = modelBuilder.Entity<Supplier>().HasData(sup1, sup2);

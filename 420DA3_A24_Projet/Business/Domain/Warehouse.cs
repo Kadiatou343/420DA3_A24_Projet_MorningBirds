@@ -9,7 +9,7 @@ public class Warehouse {
     /// </summary>
     public const int WAREHOUSE_NAME_MAX_LENGTH = 128;
 
-    private readonly string warehouseName = null!;
+    private string warehouseName = null!;
 
     //Attributs
 
@@ -22,6 +22,7 @@ public class Warehouse {
             if (!this.ValidateWarehouseName(value)) {
                 throw new ArgumentOutOfRangeException("WareHouseName", $"La longueur de Warehousename devrait être inférieur à {WAREHOUSE_NAME_MAX_LENGTH}!");
             }
+            this.warehouseName = value;
         }
     }
 

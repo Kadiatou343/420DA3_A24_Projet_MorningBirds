@@ -263,7 +263,7 @@ public class Product {
     /// <param name="value">la valeur que l'on souhaite assigner</param>
     /// <returns>vrai si la validtion passe</returns>
     static private bool ValidateCodeUPC(string value) {
-        return value.Length == CODE_UPC_MAX_LENGTH;
+        return value.Length <= CODE_UPC_MAX_LENGTH;
     }
 
     /// <summary>

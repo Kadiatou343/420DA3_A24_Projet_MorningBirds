@@ -105,7 +105,7 @@ internal class ClientDAO {
             .Where(
             client => (
             client.ClientName.ToLower().Contains(filter.ToLower())
-            && client.DateDeleted == null)
+            && client.DateDeleted == null))
             .ToList();
 
     }

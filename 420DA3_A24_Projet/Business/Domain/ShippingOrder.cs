@@ -40,7 +40,8 @@ public class ShippingOrder {
         int fulfillerEmployeeId, DateTime? shippingDate, DateTime dateCreated, DateTime? dateDeleted,
          DateTime? dateModified, byte[] rowVersion) {
         this.Id = id;
-        this.Status = ShippingOrderStatusEnum.New;
+        this.Status = status;
+        this.ShipmentId = shipmentId;
         this.SourceClientId = sourceClientId;
         this.CreatorEmployeeId = creatorEmployeeId;
         this.DestinationAdressId = destinationAdressId;

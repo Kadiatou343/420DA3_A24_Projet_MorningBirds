@@ -134,7 +134,7 @@ public class Supplier {
     /// <summary>
     /// La liste des produits associé à ce supplier
     /// </summary>
-    public List<Product> Products { get; set; } = new List<Product>();
+    public virtual List<Product> Products { get; set; } = new List<Product>();
 
     /// <summary>
     /// Constructeur manuelle
